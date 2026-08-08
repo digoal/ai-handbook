@@ -1,11 +1,17 @@
 AI 相关技术栈热门项目 handbook.
   
-Agent 用户手册: 
-- [Claude Code CLI](claude_handbook)
+Agent 真身栖息地:
+- [Cloudflare Computer](computer_handbook)  
   
-Agent 源码手册:
+Agent 产品: 
+- [Claude Code CLI](claude_handbook)
+- [Hermes](https://hermes-agent.nousresearch.com/docs/user-stories)  
+  
+Agent 源代码:
 - [Claude Code 泄漏源码 handbook](claude_leaked_source_handbook)
-- [Pi](pi_handbook)
+- [Pi](pi_handbook)  
+- [KiloCode](https://github.com/Kilo-Org/kilocode)  
+- [freebuff](https://github.com/CodebuffAI/freebuff)  
   
 记忆:
 - [Mem0](mem0_handbook)
