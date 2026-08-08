@@ -1,0 +1,8 @@
+Usage: claude mcp remove [options] <name>
+
+Remove an MCP server
+
+Options:
+  -h, --help           Display help for command
+  -s, --scope <scope>  Configuration scope (local, user, or project) - if not
+                       specified, removes from whichever scope it exists in

@@ -1,0 +1,10 @@
+Usage: claude mcp add-json [options] <name> <json>
+
+Add an MCP server (stdio or SSE) with a JSON string
+
+Options:
+  --client-secret      Prompt for OAuth client secret (or set MCP_CLIENT_SECRET
+                       env var)
+  -h, --help           Display help for command
+  -s, --scope <scope>  Configuration scope (local, user, or project) (default:
+                       "local")

@@ -1,0 +1,7 @@
+Usage: claude mcp get [options] <name>
+
+Get details about an MCP server. Unapproved .mcp.json servers are shown as ⏸
+Pending approval and not connected to; approved servers are health-checked.
+
+Options:
+  -h, --help  Display help for command

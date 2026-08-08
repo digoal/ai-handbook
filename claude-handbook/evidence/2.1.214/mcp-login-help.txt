@@ -1,0 +1,9 @@
+Usage: claude mcp login [options] <name>
+
+Authenticate with an MCP server (HTTP, SSE, or claude.ai connector)
+
+Options:
+  -h, --help    Display help for command
+  --no-browser  Print the authorization URL instead of opening a browser (for
+                SSH/headless sessions — paste the redirect URL back when
+                prompted)

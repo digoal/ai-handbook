@@ -1,0 +1,24 @@
+{
+  "theme": "neutral",
+  "themeVariables": {
+    "background": "#FAFAFA",
+    "primaryColor": "#3B82F6",
+    "primaryTextColor": "#FFFFFF",
+    "primaryBorderColor": "#1E40AF",
+    "secondaryColor": "#10B981",
+    "tertiaryColor": "#F59E0B",
+    "lineColor": "#6B7280",
+    "textColor": "#1F2937",
+    "fontFamily": "PingFang SC, Microsoft YaHei, system-ui",
+    "fontSize": "14px"
+  },
+  "flowchart": {
+    "curve": "basis",
+    "nodeSpacing": 50,
+    "rankSpacing": 60
+  },
+  "sequence": {
+    "actorMargin": 80,
+    "messageMargin": 40
+  }
+}

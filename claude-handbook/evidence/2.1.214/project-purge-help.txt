@@ -1,0 +1,12 @@
+Usage: claude project purge [options] [path]
+
+Delete all Claude Code state for a project (transcripts, tasks, file history,
+config entry)
+
+Options:
+  --all              Purge state for every project (mutually exclusive with
+                     [path])
+  --dry-run          List what would be deleted without deleting anything
+  -h, --help         Display help for command
+  -i, --interactive  Prompt for each item before deleting
+  -y, --yes          Skip confirmation prompt

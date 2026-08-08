@@ -1,0 +1,9 @@
+Usage: claude plugin validate [options] <path>
+
+Validate a plugin or marketplace manifest
+
+Options:
+  -h, --help  Display help for command
+  --strict    Treat warnings as errors (exit 1). Use in CI to fail on
+              unrecognized fields, missing metadata, and other issues that the
+              runtime tolerates.

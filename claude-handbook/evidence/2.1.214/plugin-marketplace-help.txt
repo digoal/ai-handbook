@@ -1,0 +1,14 @@
+Usage: claude plugin marketplace [options] [command]
+
+Manage Claude Code marketplaces
+
+Options:
+  -h, --help                  Display help for command
+
+Commands:
+  add [options] <source>      Add a marketplace from a URL, path, or GitHub repo
+  help [command]              display help for command
+  list [options]              List all configured marketplaces
+  remove|rm [options] <name>  Remove a configured marketplace
+  update [options] [name]     Update marketplace(s) from their source - updates
+                              all if no name specified

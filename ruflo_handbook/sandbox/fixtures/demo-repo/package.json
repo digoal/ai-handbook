@@ -1,0 +1,9 @@
+{
+  "name": "demo-repo",
+  "version": "1.0.0",
+  "description": "Sandbox fixture for ruflo handbook hands-on",
+  "type": "module",
+  "scripts": {
+    "test": "node --test src/*.test.js"
+  }
+}

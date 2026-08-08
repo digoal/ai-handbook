@@ -1,0 +1,13 @@
+Usage: claude plugin init|new [options] <name>
+
+Scaffold a new plugin at ~/.claude/skills/<name>/ (auto-loads next session as
+<name>@skills-dir)
+
+Options:
+  --author <name>         Author name (default: git config user.name)
+  --author-email <email>  Author email (default: git config user.email)
+  --description <text>    Manifest description
+  -f, --force             Overwrite an existing .claude-plugin/ at the target
+  -h, --help              Display help for command
+  --with <components...>  Also scaffold: skills, agents, hooks, mcp, lsp,
+                          output-style, channel

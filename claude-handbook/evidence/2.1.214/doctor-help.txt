@@ -1,0 +1,8 @@
+Usage: claude doctor [options]
+
+Check the health of your Claude Code installation. Reads settings files in the
+current directory without a trust prompt. For a full checkup that can also fix
+issues, run /doctor in a session.
+
+Options:
+  -h, --help  Display help for command
