@@ -1,21 +1,3 @@
-# --- Build artifacts (regenerable via `make all`) ---
-# Pandoc/Chrome EPUB/PDF/HTML 输出
-dist/
-# extract_mermaid.py 中间产物
-assets/diagrams/*.mmd
-
-# --- Test / Python cache ---
-.pytest_cache/
-__pycache__/
-*.pyc
-# pytest 自动生成
-code-review/smoke-test-report.md
-
-# --- Local backups (not source) ---
-# 内联 mermaid 备份,M8b 已不需要
-chapters-inline-mermaid.bak/
-
-# --- OS / IDE / tool state ---
 .DS_Store
 .vscode/
 .idea/

@@ -1,0 +1,43 @@
+graph TB
+  subgraph UNIT["单元测试 gtest"]
+    U1["unittest/<br/>镜像 src/ 目录结构"]
+    U2["deps/oblib/unittest/<br/>基础库测试"]
+    U3["run_tests.sh → ctest<br/>单例 300s 超时"]
+    U1 --> U3
+    U2 --> U3
+  end
+
+  subgraph MYSQL["集成测试 mysqltest"]
+    M1["tools/deploy/mysql_test/test_suite/<br/>53 个套件"]
+    M2["用例 = t/&lt;name&gt;.test<br/>期望 = r/&lt;name&gt;.result"]
+    M3["obd.sh mysqltest -n test --all"]
+    M1 --> M2 --> M3
+  end
+
+  subgraph FOCUS["四个重点主题的套件"]
+    F1["vector_index/ 22 例"]
+    F2["merge_uncommitted/ 27 例"]
+    F3["fork_table/ 17 例"]
+    F4["fts_index/ 15 例"]
+    F5["ai_function/ 5 例"]
+  end
+
+  subgraph CI["持续集成"]
+    C1[".github/workflows/seekdb.yml<br/>编译 → 4 路分片 mysqltest → 汇总"]
+    C2["codeql.yml 每周安全扫描"]
+    C3["rust-checks.yml<br/>clippy -D warnings + RustSec"]
+    C4[".gitlab-ci.yml → farm"]
+  end
+
+  M1 --> FOCUS
+  UNIT --> CI
+  MYSQL --> CI
+
+  classDef u fill:#DBEAFE,stroke:#2563EB
+  classDef m fill:#FEF3C7,stroke:#D97706
+  classDef f fill:#EDE9FE,stroke:#7C3AED
+  classDef c fill:#D1FAE5,stroke:#059669
+  class U1,U2,U3 u
+  class M1,M2,M3 m
+  class F1,F2,F3,F4,F5 f
+  class C1,C2,C3,C4 c

@@ -1,0 +1,31 @@
+graph TB
+  subgraph OB["OceanBase 原生：多租户"]
+    direction TB
+    T1["租户 1<br/>ObTenantBase"]
+    T2["租户 2<br/>ObTenantBase"]
+    T3["租户 N<br/>ObTenantBase"]
+    MTL["MTL_NEW / MTL_GET 宏<br/>线程局部变量定位<br/>当前租户实例"]
+    T1 --- MTL
+    T2 --- MTL
+    T3 --- MTL
+  end
+
+  subgraph SK["seekdb：单实例 + 模块提供者"]
+    direction TB
+    MP["ObIModuleProvider<br/>src/share/rc/ob_module_provider.h:214<br/>全局 g_mp = &amp;ObServer"]
+    S1["ls_service()"]
+    S2["trans_service()"]
+    S3["log_service()"]
+    S4["ai_service()"]
+    MP --> S1
+    MP --> S2
+    MP --> S3
+    MP --> S4
+  end
+
+  OB ==>|"seekdb 整体移除<br/>src/ 中 MTL_ 出现 0 次"| SK
+
+  classDef old fill:#FEE2E2,stroke:#DC2626,stroke-width:2px
+  classDef new fill:#D1FAE5,stroke:#059669,stroke-width:2px
+  class T1,T2,T3,MTL old
+  class MP,S1,S2,S3,S4 new

@@ -1,0 +1,36 @@
+graph TB
+  A["FORK DATABASE src TO dst<br/>FORK TABLE src TO dst"]
+  B["ObForkDatabaseResolver<br/>ObForkTableResolver<br/>src/sql/resolver/ddl/"]
+  C["ObForkTableService<br/>ObForkDatabaseService<br/>src/rootserver/fork_table/"]
+  D["记录 ObForkTableInfo<br/>fork_src_table_id_<br/>fork_snapshot_version_"]
+  E["ObForkTabletInfo<br/>每个 tablet 记录<br/>fork_src_tablet_id_ + 快照版本"]
+
+  A --> B --> C --> D --> E
+
+  subgraph COW["COW 的本质：不拷贝数据，只记一个快照版本号"]
+    F["ObForkSnapshotRowScan<br/>src/storage/ddl/ob_tablet_fork_task.cpp"]
+    G["按 fork_snapshot_version<br/>扫描源 tablet 的多版本 SSTable"]
+    H["过滤 trans_version ><br/>fork_snapshot_version 的行"]
+    F --> G --> H
+  end
+
+  E --> F
+
+  subgraph MERGE["MERGE TABLE ... STRATEGY"]
+    M0["MERGE_STRATEGY_FAIL = 0<br/>冲突即报错（默认）"]
+    M1["MERGE_STRATEGY_THEIRS = 1<br/>沙箱侧覆盖主线"]
+    M2["MERGE_STRATEGY_OURS = 2<br/>主线保留 忽略沙箱"]
+    MR["ObMergeTableResolver<br/>build_merge_sqls_<br/>合成 INSERT / UPDATE / 冲突检查 SQL"]
+    M0 --> MR
+    M1 --> MR
+    M2 --> MR
+  end
+
+  H -.沙箱内自由读写.-> MERGE
+
+  classDef ddl fill:#DBEAFE,stroke:#2563EB
+  classDef cow fill:#FEF3C7,stroke:#D97706
+  classDef mg fill:#D1FAE5,stroke:#059669
+  class A,B,C,D,E ddl
+  class F,G,H cow
+  class M0,M1,M2,MR mg

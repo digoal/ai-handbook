@@ -1,0 +1,34 @@
+graph TB
+  MAIN["main()<br/>src/observer/main.cpp"]
+  OPTS["ObCommandLineParser<br/>--nodaemon / --initialize / --embedded"]
+  LOG["打开 log/seekdb.log<br/>可选 daemonize"]
+
+  subgraph INIT["ObServer::init  src/observer/ob_server.cpp"]
+    direction TB
+    I0["g_mp = this<br/>发布全局模块提供者"]
+    I1["配置 ObServerConfig"]
+    I2["IO / 设备"]
+    I3["KV Cache"]
+    I4["Schema 服务"]
+    I5["网络 embedded 模式跳过 TCP"]
+    I6["存储 ObLSService"]
+    I7["日志服务 palf"]
+    I8["事务 ObTransService"]
+    I9["ObServerRuntime 工作线程池"]
+    I10["SQL 引擎工厂"]
+    I11["PL 引擎"]
+    I0 --> I1 --> I2 --> I3 --> I4 --> I5 --> I6 --> I7 --> I8 --> I9 --> I10 --> I11
+  end
+
+  START["ObServer::start()<br/>ObService::start()<br/>仅接受 PRIMARY 角色数据目录"]
+  WAIT["ObServer::wait()<br/>主循环"]
+  DESTROY["ObServer::destroy()"]
+
+  MAIN --> OPTS --> LOG --> INIT --> START --> WAIT --> DESTROY
+
+  classDef m fill:#DBEAFE,stroke:#2563EB
+  classDef i fill:#FEF3C7,stroke:#D97706
+  classDef s fill:#D1FAE5,stroke:#059669
+  class MAIN,OPTS,LOG m
+  class I0,I1,I2,I3,I4,I5,I6,I7,I8,I9,I10,I11 i
+  class START,WAIT,DESTROY s

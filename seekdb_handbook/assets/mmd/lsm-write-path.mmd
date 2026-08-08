@@ -1,0 +1,38 @@
+graph LR
+  subgraph MEM["内存态"]
+    ACTIVE["活跃 MemTable<br/>ObMemtable"]
+    MVCC["ObMvccRow 链表<br/>ObMvccTransNode<br/>tx_id_ / trans_version_ / scn_"]
+    FROZEN["冻结 MemTable"]
+    ACTIVE --> MVCC
+    ACTIVE -->|"内存达阈值<br/>freeze"| FROZEN
+  end
+
+  subgraph DISK["磁盘态 —— LSM Tree"]
+    MINOR["Minor SSTable<br/>转储产物"]
+    MAJOR["Major SSTable<br/>合并产物 全量有序"]
+    FROZEN -->|"mini merge<br/>转储"| MINOR
+    MINOR -->|"major compaction<br/>合并"| MAJOR
+  end
+
+  subgraph FMT["物理格式 src/storage/blocksstable"]
+    MACRO["宏块 Macro Block<br/>约 2MB IO 单位"]
+    MICRO["微块 Micro Block<br/>16-64KB 行存储单位"]
+    ENC["编码压缩<br/>字典 / RLE / 位压缩<br/>zstd / zlib"]
+    MACRO --> MICRO --> ENC
+  end
+
+  MAJOR --> MACRO
+
+  READ["读路径<br/>多路归并"]
+  MVCC -.-> READ
+  MINOR -.-> READ
+  MAJOR -.-> READ
+
+  classDef m fill:#DBEAFE,stroke:#2563EB
+  classDef d fill:#FEF3C7,stroke:#D97706
+  classDef f fill:#EDE9FE,stroke:#7C3AED
+  classDef r fill:#D1FAE5,stroke:#059669
+  class ACTIVE,MVCC,FROZEN m
+  class MINOR,MAJOR d
+  class MACRO,MICRO,ENC f
+  class READ r

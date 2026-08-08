@@ -1,0 +1,43 @@
+graph TB
+  DDL["CREATE TABLE t (<br/>  id INT PRIMARY KEY,<br/>  emb VECTOR(384),<br/>  VECTOR INDEX idx (emb)<br/>  WITH (DISTANCE=l2, TYPE=hnsw, LIB=vsag))"]
+
+  subgraph RESOLVE["解析与建表 src/sql/resolver/ddl"]
+    G["语法 vec_index_params<br/>sql_parser_mysql_mode.y"]
+    P["ObVectorIndexUtil::parser_params_from_string<br/>解析 distance/type/lib/m/ef_construction"]
+    B["ObVecIndexBuilderUtil::append_vec_args<br/>展开为多张辅助表"]
+    G --> P --> B
+  end
+
+  subgraph AUX["HNSW 的 5 张辅助表（索引类型码）"]
+    A1["23 VEC_ROWKEY_VID<br/>主键 → 向量 ID"]
+    A2["24 VEC_VID_ROWKEY<br/>向量 ID → 主键"]
+    A3["25 VEC_DELTA_BUFFER<br/>增量缓冲"]
+    A4["26 VEC_INDEX_ID<br/>索引元信息"]
+    A5["27 VEC_INDEX_SNAPSHOT_DATA<br/>快照序列化数据"]
+  end
+
+  subgraph LIBS["索引算法与库"]
+    T["ObVectorIndexAlgorithmType<br/>HNSW / HNSW_SQ / HNSW_BQ / HGRAPH<br/>IVF_FLAT / IVF_SQ8 / IVF_PQ<br/>SPIV / IPIVF"]
+    L["ObVectorIndexAlgorithmLib<br/>VIAL_VSAG 默认 / VIAL_OB 内置"]
+    DIST["ObVectorIndexDistAlgorithm<br/>VIDA_L2 / VIDA_IP / VIDA_COS"]
+    VSAG["deps/oblib/src/lib/vector<br/>ob_vsag_adaptor<br/>create/build/add/knn_search"]
+    T --> VSAG
+    L --> VSAG
+    DIST --> VSAG
+  end
+
+  B --> A1
+  B --> A2
+  B --> A3
+  B --> A4
+  B --> A5
+  DDL --> G
+  A3 --> LIBS
+  A5 --> LIBS
+
+  classDef r fill:#DBEAFE,stroke:#2563EB
+  classDef a fill:#FEF3C7,stroke:#D97706
+  classDef l fill:#EDE9FE,stroke:#7C3AED
+  class G,P,B r
+  class A1,A2,A3,A4,A5 a
+  class T,L,DIST,VSAG l

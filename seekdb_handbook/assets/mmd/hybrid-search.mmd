@@ -1,0 +1,45 @@
+graph TB
+  REQ["dbms_hybrid_vector.SEARCH(table, json)<br/>或 MATCH ... AGAINST + ORDER BY dist APPROXIMATE"]
+
+  subgraph HS["src/sql/hybrid_search"]
+    PARSE["ObESQueryParser<br/>ob_query_parse.cpp<br/>解析 JSON DSL"]
+    REQIR["ObQueryReqFromJson<br/>请求中间表示"]
+    TRANS["ObQueryTranslator<br/>ob_query_translator.cpp<br/>翻译成单条 SQL"]
+    EXEC["ObHybridSearchExecutor<br/>SEARCH / GET_SQL"]
+    PARSE --> REQIR --> TRANS --> EXEC
+  end
+
+  subgraph BRANCH["单条 SQL 内的两路召回"]
+    KNN["向量召回<br/>ObDASHNSWScanIter<br/>_semantic_score / _semantic_rank"]
+    FTS["全文召回<br/>ObDASTRMergeIter + BM25<br/>_keyword_score / _keyword_rank"]
+    SCALAR["标量过滤<br/>下推到 TableScan"]
+  end
+
+  subgraph FUSE["融合 ObRankFusion"]
+    W["WEIGHT_SUM<br/>加权求和"]
+    R["RRF<br/>Reciprocal Rank Fusion<br/>rank_const"]
+  end
+
+  RESULT["Top-K 结果"]
+
+  REQ --> PARSE
+  EXEC --> KNN
+  EXEC --> FTS
+  EXEC --> SCALAR
+  KNN --> W
+  FTS --> W
+  KNN --> R
+  FTS --> R
+  SCALAR -.过滤.-> W
+  SCALAR -.过滤.-> R
+  W --> RESULT
+  R --> RESULT
+
+  classDef h fill:#DBEAFE,stroke:#2563EB
+  classDef b fill:#FEF3C7,stroke:#D97706
+  classDef f fill:#EDE9FE,stroke:#7C3AED
+  classDef o fill:#D1FAE5,stroke:#059669
+  class PARSE,REQIR,TRANS,EXEC h
+  class KNN,FTS,SCALAR b
+  class W,R f
+  class RESULT o

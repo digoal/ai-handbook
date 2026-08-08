@@ -1,0 +1,22 @@
+sequenceDiagram
+  autonumber
+  participant C as 客户端
+  participant M as ObMPQuery
+  participant T as ObTransService
+  participant MT as ObMemtable / MVCC
+  participant P as palf 日志
+
+  C->>M: INSERT INTO t VALUES (...)
+  M->>T: start_trans
+  T-->>M: ObTxDesc 事务句柄
+  M->>MT: 写入 ObMvccTransNode<br/>tx_id_ / seq_no_ 已定，trans_version_ 未定
+  Note over MT: 行上挂 ObMvccRowCallback<br/>加入事务回调链表
+  M->>T: end_trans (COMMIT)
+  T->>T: 取提交版本号 GTS<br/>ObTimestampService
+  T->>P: 写 redo + commit 日志
+  P-->>T: 日志持久化成功
+  T->>MT: trans_commit()<br/>回填 trans_version_
+  T-->>M: 提交完成
+  M-->>C: OK 包
+
+  Note over C,P: 读操作按快照版本 ObTxReadSnapshot::version_<br/>跳过 trans_version_ 大于快照的节点

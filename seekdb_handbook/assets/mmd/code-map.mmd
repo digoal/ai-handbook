@@ -1,0 +1,56 @@
+graph TB
+  subgraph L5["layer 5 — 服务入口"]
+    OBSERVER["src/observer<br/>进程 / 协议 / 虚拟表"]
+    RS["src/rootserver<br/>DDL / 本地管控"]
+  end
+  subgraph L4["layer 4 — 过程语言"]
+    PL["src/pl<br/>存储过程 / 系统包"]
+    LIBTABLE["src/libtable"]
+  end
+  subgraph L3["layer 3 — 内核三大件"]
+    SQL["src/sql<br/>解析 优化 执行"]
+    STORAGE["src/storage<br/>LSM-Tree 事务"]
+    LOGSVC["src/logservice<br/>palf 日志"]
+    OBJIT["src/objit"]
+  end
+  subgraph L2["layer 2 — 公共服务"]
+    SHARE["src/share<br/>schema 参数 缓存 内部表"]
+  end
+  subgraph L1["layer 1 — 通信与公共类型"]
+    COMMON["oblib/common"]
+    RPC["oblib/rpc"]
+    GRPC["oblib/grpc"]
+  end
+  subgraph L0["layer 0 — 基础库"]
+    LIB["oblib/lib<br/>内存 容器 哈希 日志"]
+  end
+
+  OBSERVER --> PL
+  OBSERVER --> SQL
+  RS --> PL
+  RS --> STORAGE
+  PL --> SQL
+  PL --> STORAGE
+  LIBTABLE --> STORAGE
+  SQL --> SHARE
+  STORAGE --> SHARE
+  LOGSVC --> SHARE
+  OBJIT --> SHARE
+  SHARE --> COMMON
+  SHARE --> RPC
+  COMMON --> LIB
+  RPC --> LIB
+  GRPC --> LIB
+
+  classDef l0 fill:#EFF6FF,stroke:#2563EB,stroke-width:2px
+  classDef l1 fill:#F0FDF4,stroke:#059669,stroke-width:2px
+  classDef l2 fill:#FEF3C7,stroke:#D97706,stroke-width:2px
+  classDef l3 fill:#FCE7F3,stroke:#DB2777,stroke-width:2px
+  classDef l4 fill:#EDE9FE,stroke:#7C3AED,stroke-width:2px
+  classDef l5 fill:#FEE2E2,stroke:#DC2626,stroke-width:2px
+  class LIB l0
+  class COMMON,RPC,GRPC l1
+  class SHARE l2
+  class SQL,STORAGE,LOGSVC,OBJIT l3
+  class PL,LIBTABLE l4
+  class OBSERVER,RS l5

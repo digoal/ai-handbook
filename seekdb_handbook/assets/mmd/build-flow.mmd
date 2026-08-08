@@ -1,0 +1,43 @@
+graph TB
+  START["bash build.sh &lt;mode&gt; [--init] [--make]"]
+
+  subgraph INIT["--init 拉依赖"]
+    DEP["deps/init/dep_create.sh<br/>识别 OS + 架构"]
+    MANIFEST["oceanbase.&lt;os&gt;.&lt;arch&gt;.deps<br/>el7/el8/el9/al8/macos/windows/android"]
+    DL["从 mirrors.oceanbase.com 下载 RPM<br/>rpm2cpio 解包到 deps/3rd"]
+    DEP --> MANIFEST --> DL
+  end
+
+  subgraph MODES["构建模式"]
+    D["debug / debug_no_unity"]
+    R["release / release_no_unity"]
+    E["release_embedded<br/>嵌入式"]
+    P["rpm / deb / tgz / package"]
+    I["ccls / clangd<br/>仅生成索引"]
+    O["perf / errsim / coverage"]
+  end
+
+  subgraph CMAKE["CMake 配置"]
+    ENV["cmake/Env.cmake<br/>编译器 架构 LTO AutoFDO"]
+    RUST["cmake/Rust.cmake<br/>编译 rust/sql-nio"]
+    CHECK["module_layer_check<br/>模块分层 DAG 守卫"]
+  end
+
+  OUT["build_&lt;mode&gt;/src/observer/seekdb"]
+
+  START --> INIT
+  START --> MODES
+  MODES --> CMAKE
+  DL --> CMAKE
+  ENV --> OUT
+  RUST --> OUT
+  CHECK -.违规则构建失败.-> OUT
+
+  classDef i fill:#DBEAFE,stroke:#2563EB
+  classDef m fill:#FEF3C7,stroke:#D97706
+  classDef c fill:#EDE9FE,stroke:#7C3AED
+  classDef o fill:#D1FAE5,stroke:#059669
+  class DEP,MANIFEST,DL i
+  class D,R,E,P,I,O m
+  class ENV,RUST,CHECK c
+  class OUT o

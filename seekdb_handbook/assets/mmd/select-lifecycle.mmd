@@ -1,0 +1,41 @@
+graph LR
+  SQL["SELECT ... <br/>ORDER BY dist APPROXIMATE"]
+
+  subgraph FRONT["接入层 src/observer"]
+    NET["ObSrvNetworkFrame<br/>accept"]
+    XLATOR["ObSrvMySQLXlator::translate<br/>按 pcode 分发"]
+    MPQ["ObMPQuery<br/>COM_QUERY 处理器"]
+  end
+
+  subgraph SQLENG["SQL 引擎 src/sql"]
+    PARSE["parser<br/>sql_parser_mysql_mode.y"]
+    RESOLVE["resolver<br/>ObSelectResolver"]
+    REWRITE["rewrite<br/>改写规则"]
+    OPT["optimizer<br/>ObLogPlan::generate_plan"]
+    CG["code_generator<br/>ObStaticEngineCG"]
+    EXEC["engine<br/>ObOperator 向量化"]
+    PC["plan_cache<br/>ObPlanCache"]
+  end
+
+  subgraph STORE["存储层 src/storage"]
+    DAS["das<br/>ObDASScanOp"]
+    ACCESS["access<br/>ObTableScanIterator"]
+    MEM["memtable<br/>MVCC 读"]
+    SST["blocksstable<br/>SSTable 读"]
+  end
+
+  SQL --> NET --> XLATOR --> MPQ
+  MPQ --> PARSE --> RESOLVE --> REWRITE --> OPT --> CG --> EXEC
+  PC -. 命中则跳过解析优化 .-> EXEC
+  MPQ -.查询.-> PC
+  EXEC --> DAS --> ACCESS
+  ACCESS --> MEM
+  ACCESS --> SST
+  EXEC --> RESP["ObMPPacketSender<br/>编码回包"]
+
+  classDef front fill:#DBEAFE,stroke:#2563EB
+  classDef sqle fill:#FEF3C7,stroke:#D97706
+  classDef store fill:#D1FAE5,stroke:#059669
+  class NET,XLATOR,MPQ,RESP front
+  class PARSE,RESOLVE,REWRITE,OPT,CG,EXEC,PC sqle
+  class DAS,ACCESS,MEM,SST store

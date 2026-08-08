@@ -1,0 +1,43 @@
+graph TB
+  subgraph MODES["seekdb 的三种形态"]
+    direction LR
+
+    subgraph EMB["嵌入式 embedded"]
+      E1["seekdb --embedded"]
+      E2["关闭 TCP 监听<br/>ob_srv_network_frame.cpp"]
+      E3["run/seekdb.clients<br/>进程内 IPC 通道"]
+      E4["构建模式 release_embedded"]
+      E1 --> E2
+      E1 --> E3
+      E4 -.-> E1
+    end
+
+    subgraph SRV["单机 Server"]
+      S1["seekdb 默认启动"]
+      S2["MySQL 端口 2881<br/>RPC 端口 2882"]
+      S3["单副本 palf<br/>DDL 角色硬编码 LEADER"]
+      S1 --> S2
+      S1 --> S3
+    end
+
+    subgraph CLU["OceanBase 集群"]
+      C1["多副本 palf Paxos"]
+      C2["分布式 DDL / 负载均衡"]
+      C3["代码在但 seekdb 默认不走"]
+      C1 --> C2 --> C3
+    end
+  end
+
+  APP["应用<br/>pyseekdb / MySQL 驱动<br/>LangChain / LlamaIndex / Dify"]
+  APP -->|"进程内 无网络开销"| EMB
+  APP -->|"MySQL 协议"| SRV
+  APP -->|"MySQL 协议"| CLU
+
+  classDef e fill:#D1FAE5,stroke:#059669,stroke-width:2px
+  classDef s fill:#DBEAFE,stroke:#2563EB,stroke-width:2px
+  classDef c fill:#F3F4F6,stroke:#9CA3AF,stroke-width:2px,stroke-dasharray: 4 4
+  classDef a fill:#FEF3C7,stroke:#D97706
+  class E1,E2,E3,E4 e
+  class S1,S2,S3 s
+  class C1,C2,C3 c
+  class APP a

@@ -1,0 +1,44 @@
+graph TB
+  SQL["SELECT AI_EMBED('m', content)<br/>AI_COMPLETE / AI_RERANK / AI_PROMPT"]
+
+  subgraph EXPR["表达式层 src/sql/engine/expr/ob_expr_ai/"]
+    E1["ObExprAIEmbed<br/>T_FUN_SYS_AI_EMBED"]
+    E2["ObExprAIComplete"]
+    E3["ObExprAIRerank"]
+    E4["ObExprAIPrompt"]
+    INFO["ObAIFuncExprInfo<br/>name_ / type_ / model_"]
+  end
+
+  subgraph RT["运行时"]
+    GUARD["omt::ObAiService<br/>ObAiServiceGuard<br/>endpoint 缓存"]
+    MODEL["ObAIFuncModel<br/>call_dense_embedding 等"]
+    CLIENT["ObAIFuncClient<br/>libcurl 多句柄<br/>重试 3 次 / 超时 60s / 批量"]
+  end
+
+  subgraph META["元数据 src/observer/ai_service/"]
+    EXEC["ObAiServiceExecutor<br/>create / alter / drop<br/>ai_model_endpoint"]
+    TYPE["EndpointType<br/>DENSE_EMBEDDING = 1<br/>SPARSE_EMBEDDING = 2<br/>COMPLETION = 3<br/>RERANK = 4"]
+    PKG["dbms_ai_service<br/>PL 系统包"]
+  end
+
+  EXT["外部模型服务<br/>OpenAI 兼容 HTTP 接口"]
+
+  SQL --> E1
+  SQL --> E2
+  SQL --> E3
+  SQL --> E4
+  E1 --> INFO
+  INFO --> GUARD
+  GUARD --> MODEL --> CLIENT --> EXT
+  EXEC --> GUARD
+  TYPE --> EXEC
+  PKG --> EXEC
+
+  classDef ex fill:#DBEAFE,stroke:#2563EB
+  classDef rt fill:#FEF3C7,stroke:#D97706
+  classDef mt fill:#EDE9FE,stroke:#7C3AED
+  classDef out fill:#FEE2E2,stroke:#DC2626
+  class E1,E2,E3,E4,INFO ex
+  class GUARD,MODEL,CLIENT rt
+  class EXEC,TYPE,PKG mt
+  class EXT out

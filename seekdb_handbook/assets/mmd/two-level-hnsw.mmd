@@ -1,0 +1,44 @@
+graph TB
+  subgraph WRITE["写路径 —— 事务提交后立即返回"]
+    DML["INSERT / UPDATE<br/>向量列写入"]
+    TX["事务提交<br/>只写 redo 日志"]
+    CLOG["CLOG / palf"]
+    DML --> TX --> CLOG
+  end
+
+  subgraph CS["Change Stream 异步管线 src/observer/change_stream"]
+    FETCH["ObCSFetcher<br/>单线程消费 CLOG<br/>IDLE / ACTIVE 状态机"]
+    DISP["ObCSDispatcher<br/>拆 ObCSRow 零拷贝<br/>组批 ObCSExecSubTask"]
+    WORKER["ObCSExecutor<br/>多线程并行执行"]
+    PLUGIN["ObCSPluginAsyncIndex<br/>写入 delta HNSW"]
+    FETCH --> DISP --> WORKER --> PLUGIN
+  end
+
+  subgraph IDX["两级索引 ObPluginVectorIndexAdaptor"]
+    DELTA["incr_data_<br/>delta HNSW<br/>增量 新写入立即可见"]
+    SNAP["snap_data_<br/>snapshot HNSW<br/>快照 存量数据"]
+    BITMAP["vbitmap_data_<br/>可见性 bitmap"]
+  end
+
+  subgraph READ["读路径 —— 永远只查两个索引"]
+    Q["ORDER BY dist<br/>APPROXIMATE LIMIT k"]
+    ITER["ObDASHNSWScanIter"]
+    MERGE["sort_merge_delta_and_snap_vids<br/>归并两路结果"]
+    Q --> ITER --> MERGE
+  end
+
+  CLOG -.异步消费 不阻塞提交.-> FETCH
+  PLUGIN --> DELTA
+  DELTA -.定期固化.-> SNAP
+  ITER --> DELTA
+  ITER --> SNAP
+  BITMAP -.过滤已删除.-> MERGE
+
+  classDef w fill:#DBEAFE,stroke:#2563EB,stroke-width:2px
+  classDef c fill:#FEF3C7,stroke:#D97706,stroke-width:2px
+  classDef i fill:#EDE9FE,stroke:#7C3AED,stroke-width:2px
+  classDef r fill:#D1FAE5,stroke:#059669,stroke-width:2px
+  class DML,TX,CLOG w
+  class FETCH,DISP,WORKER,PLUGIN c
+  class DELTA,SNAP,BITMAP i
+  class Q,ITER,MERGE r
