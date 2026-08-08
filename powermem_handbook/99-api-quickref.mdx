@@ -1,0 +1,467 @@
+---
+id: 99-api-quickref
+title: 99 · API 速查表
+sidebar_label: API 速查
+sidebar_position: 11
+description: Python SDK / HTTP API / MCP / CLI 四种入口的速查表 — 一页查全所有常用方法
+---
+
+<!--
+读者定位:
+  👤 用户 (主) — 想快速找某个 API 的签名
+  🛠 开发者 (辅) — 想确认某个 HTTP endpoint 的请求/响应格式
+-->
+
+# API 速查表
+
+> **读者定位**: 👤 用户 (主) · 🛠 开发者 (辅)
+>
+> 整本 handbook 的最后一章 — 四种入口的速查表。每张表都按"方法 → 签名 → 关键参数 → 返回"四列组织, 方便一页查全。
+
+## 你将学到
+
+1. Python SDK 11 个常用方法签名
+2. HTTP API 路由速查
+3. MCP 13 个工具签名
+4. CLI 主命令
+5. 错误码对照表
+
+> ⚠️ 锚点基于当前 commit (`9d1b484`), 代码演化后可能漂移; 真位置请以 `git blame` 为准。
+
+---
+
+## 1. Python SDK 速查
+
+来源: `src/powermem/core/memory.py` (同步) + `async_memory.py` (异步)
+
+### 1.1 创建
+
+```python
+from powermem import create_memory, Memory, AsyncMemory
+
+# 最简 (从 .env 自动配置)
+memory = create_memory()                  # sync
+amemory = AsyncMemory()                   # async
+
+# 显式配置
+from powermem import auto_config
+memory = create_memory(config=auto_config())
+
+# 传 dict
+memory = create_memory(config={
+    "llm": {"provider": "qwen", "config": {"api_key": "...", "model": "qwen-plus"}},
+    "embedder": {"provider": "openai", "config": {"api_key": "..."}},
+    "vector_store": {"provider": "oceanbase", "config": {"host": "...", "port": 2881, ...}},
+})
+```
+
+### 1.2 核心 CRUD
+
+| 方法 | 签名 | 返回 |
+|------|------|------|
+| `add(messages, ...)` | `messages: str \| dict \| list[dict], user_id=None, agent_id=None, run_id=None, metadata=None, filters=None, scope=None, memory_type=None, prompt=None, infer=True` | `Dict` 含 `results` + 可选 `relations` |
+| `search(query, ...)` | `query: str, user_id=None, agent_id=None, run_id=None, filters=None, limit=30, threshold=None, retrieval_mode="auto", fusion="rrf", vector_weight=None, fts_weight=None, rrf_k=60, candidate_limit=None, include_explanation=False` | `Dict` 含 `results` + `relations` |
+| `get(memory_id, user_id=None, agent_id=None)` | 拿一条 | `Dict` 或 `None` |
+| `update(memory_id, content, user_id=None, agent_id=None, metadata=None)` | 改 content / metadata | `Dict` |
+| `delete(memory_id, user_id=None, agent_id=None)` | 删一条 | `bool` |
+| `delete_all(user_id=None, agent_id=None, run_id=None)` | 按 scope 删 | `int` (删除条数) |
+| `get_all(user_id=None, agent_id=None, run_id=None, limit=100, offset=0, filters=None, sort_by=None, order="desc")` | 列出 | `List[Dict]` |
+| `reset()` | 删库重建 | `None` |
+
+### 1.3 Skill 管理
+
+| 方法 | 签名 | 返回 |
+|------|------|------|
+| `distill_skills(messages, today=None)` | 从对话抽 skill | `List[Dict]` |
+| `add_skill(title, description, tags=None, procedure=None, user_id=None, agent_id=None, skip_review=False, title_embedding=None, description_embedding=None)` | 写入一条 (带去重) | `Dict` 含 `action: created\|merged\|blocked` |
+| `merge_skills(existing, new)` | 决策合并 | `Dict` 含 `action: merge\|skip` |
+| `search_skills(query, limit=10, user_id=None, agent_id=None)` | 4 路检索 | `List[Dict]` |
+
+### 1.4 异步版
+
+所有上述方法在 `AsyncMemory` 都有异步版本 (`async def`), 签名相同 (除返回 awaitable)。例:
+
+```python
+await amemory.add(messages, user_id="alice")
+results = await amemory.search("...", limit=5)
+```
+
+### 1.5 配置与诊断
+
+```python
+memory.config              # 当前生效的 config dict
+memory.llm                 # LLM 实例 (e.g. QwenLLM)
+memory.embedder            # Embedder 实例
+memory.vector_store        # StorageAdapter → OceanBase 等
+memory.skill_manager       # SkillManager (仅 OceanBase)
+memory.telemetry           # TelemetryManager (opt-in)
+memory.audit               # AuditLogger
+```
+
+---
+
+## 2. HTTP API 速查
+
+来源: `src/server/api/v1/` (`onBrokenLinks: 'throw'`)
+
+服务端口默认 `8848` (`.env` 的 `POWERMEM_SERVER_PORT`), 路径前缀 `/api/v1`。
+
+### 2.1 Memory 路由 (memories.py)
+
+| Method | Path | 用途 |
+|--------|------|------|
+| POST | `/api/v1/memories` | 创建一条 (`infer=True` 默认走 LLM 抽取) |
+| POST | `/api/v1/memories/batch` | 批量创建 |
+| GET | `/api/v1/memories` | 列出 (filters, sort_by, order, time_range) |
+| GET | `/api/v1/memories/stats` | 用户/agent 统计 |
+| GET | `/api/v1/memories/sessions` | coding-agent session 列表 |
+| GET | `/api/v1/memories/session-stats` | session 级统计 |
+| GET | `/api/v1/memories/timeline` | 时间线 |
+| GET | `/api/v1/memories/quality` | 质量分析 |
+| GET | `/api/v1/memories/users` | 唯一 user_id 列表 |
+| GET | `/api/v1/memories/export` | 导出 (JSON / CSV) |
+| GET | `/api/v1/memories/{memory_id}` | 单条 |
+| PUT | `/api/v1/memories/batch` | 批量更新 |
+| PUT | `/api/v1/memories/{memory_id}` | 更新一条 |
+| DELETE | `/api/v1/memories/batch` | 批量删除 |
+| DELETE | `/api/v1/memories/{memory_id}` | 删除一条 |
+| POST | `/api/v1/memories/import` | 导入 |
+
+### 2.2 Search 路由 (search.py)
+
+| Method | Path | 用途 |
+|--------|------|------|
+| GET | `/api/v1/memories/search` | GET 形式 (filter 都在 query string) |
+| POST | `/api/v1/memories/search` | POST 形式 (body 传 filter, 推荐) |
+
+Query/Body 字段: `query`, `user_id`, `agent_id`, `run_id`, `filters` (JSON), `limit`, `threshold`, `retrieval_mode`, `fusion`, `rrf_k`, `vector_weight`, `fts_weight`。
+
+### 2.3 Observations 路由 (observations.py)
+
+| Method | Path | 用途 |
+|--------|------|------|
+| POST | `/api/v1/observations` | 摄入 coding-agent observation (单条) |
+| POST | `/api/v1/observations/batch` | 批量 (支持逐项 partial 失败) |
+
+### 2.4 Users 路由 (users.py)
+
+| Method | Path | 用途 |
+|--------|------|------|
+| GET | `/api/v1/users/{user_id}/profile` | 取画像 |
+| POST | `/api/v1/users/{user_id}/profile` | 创建/覆盖画像 |
+| PUT | `/api/v1/users/{user_id}/memories/{memory_id}` | 改用户某条记忆 |
+| GET | `/api/v1/users/{user_id}/memories` | 列用户记忆 |
+| DELETE | `/api/v1/users/{user_id}/profile` | 删画像 |
+| DELETE | `/api/v1/users/{user_id}/memories` | 删用户所有记忆 |
+| GET | `/api/v1/users/profiles` | 列所有画像 (支持主题过滤) |
+
+### 2.5 Agents 路由 (agents.py)
+
+| Method | Path | 用途 |
+|--------|------|------|
+| GET | `/api/v1/agents/{agent_id}/memories` | 列 agent 记忆 |
+| POST | `/api/v1/agents/{agent_id}/memories` | 创建 agent 记忆 |
+| POST | `/api/v1/agents/{agent_id}/memories/share` | 跨 agent 共享 |
+| GET | `/api/v1/agents/{agent_id}/memories/share` | 列共享给该 agent 的记忆 |
+
+### 2.6 System 路由 (system.py)
+
+| Method | Path | 用途 |
+|--------|------|------|
+| GET | `/api/v1/system/health` | 健康检查 |
+| GET | `/api/v1/system/status` | 服务状态 (version, storage_type, llm_provider, capabilities) |
+| GET | `/api/v1/system/metrics` | Prometheus 指标 |
+| DELETE | `/api/v1/system/delete-all-memories` | 管理员 wipe-all (gated) |
+
+### 2.7 MCP 端点
+
+| Path | 用途 |
+|------|------|
+| `/mcp` | FastMCP streamable-HTTP ASGI app, 13 tools (详见下节) |
+
+### 2.8 Dashboard
+
+| Path | 用途 |
+|------|------|
+| `/dashboard/` | React SPA (Memories / Sessions / User Profile / Settings) |
+
+### 2.9 通用请求示例
+
+```bash
+# 创建记忆
+curl -X POST http://localhost:8848/api/v1/memories \
+  -H "X-API-Key: your-key" \
+  -H "Content-Type: application/json" \
+  -d '{"messages": "Alice likes PostgreSQL", "user_id": "alice"}'
+
+# 搜索
+curl -X POST http://localhost:8848/api/v1/memories/search \
+  -H "X-API-Key: your-key" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "数据库偏好", "user_id": "alice", "limit": 5}'
+
+# 列出
+curl "http://localhost:8848/api/v1/memories?user_id=alice&limit=10" \
+  -H "X-API-Key: your-key"
+```
+
+### 2.10 错误格式
+
+```json
+{
+  "error": {
+    "code": "MEMORY_NOT_FOUND",
+    "message": "Memory 123 not found",
+    "details": {}
+  },
+  "timestamp": "2026-08-08T10:30:00Z"
+}
+```
+
+常用错误码:
+
+| Code | HTTP | 含义 |
+|------|------|------|
+| `INVALID_REQUEST` | 400 | 参数错误 |
+| `UNAUTHORIZED` | 401 | API Key 缺失/错误 |
+| `FORBIDDEN` | 403 | 无权限 |
+| `NOT_FOUND` | 404 | 路径不存在 |
+| `MEMORY_NOT_FOUND` | 404 | 记忆 ID 不存在 |
+| `RATE_LIMIT_EXCEEDED` | 429 | 限流 |
+| `STORAGE_ERROR` | 500 | 后端失败 |
+| `LLM_ERROR` | 500 | LLM 调用失败 |
+| `INTERNAL_ERROR` | 500 | 兜底 |
+
+---
+
+## 3. MCP 13 个工具速查
+
+来源: `src/powermem/mcp/server.py` (FastMCP)
+
+启动: `powermem-mcp streamable-http` (默认) / `stdio` / `sse`
+
+### 3.1 Core Memory (7 tools)
+
+| Tool | 签名 | 用途 |
+|------|------|------|
+| `add_memory` | `(messages, user_id?, agent_id?, run_id?, metadata?, infer=true)` | 添加 (LLM 抽取可选) |
+| `search_memories` | `(query, user_id?, agent_id?, run_id?, limit=10, threshold?, filters?)` | 搜索 |
+| `get_memory_by_id` | `(memory_id: str, user_id?, agent_id?)` | 取单条 |
+| `update_memory` | `(memory_id, content, user_id?, agent_id?, metadata?)` | 更新 |
+| `delete_memory` | `(memory_id, user_id?, agent_id?)` | 删一条 |
+| `delete_all_memories` | `(user_id?, agent_id?, run_id?)` | 按 scope 删 |
+| `list_memories` | `(user_id?, agent_id?, run_id?, limit=100, offset=0, filters?)` | 列 |
+
+### 3.2 User Profile (6 tools)
+
+| Tool | 签名 | 用途 |
+|------|------|------|
+| `add_memory_with_profile` | `(messages, user_id, agent_id?, run_id?, metadata?, infer=true, profile_type="content", custom_topics?, strict_mode=false)` | 加记忆 + 抽画像 |
+| `search_memories_with_profile` | `(query, user_id, agent_id?, run_id?, limit=10, threshold?, filters?, add_profile=true)` | 搜索 + 附画像 |
+| `get_user_profile` | `(user_id)` | 取画像 |
+| `list_user_profiles` | `(user_id?, main_topic?, sub_topic?, topic_value?, limit=100, offset=0)` | 列画像 |
+| `delete_user_profile` | `(user_id)` | 删画像 |
+| `delete_memory_with_profile` | `(memory_id, user_id, agent_id?, delete_profile=false)` | 删记忆 + 可选删画像 |
+
+---
+
+## 4. CLI 主命令速查
+
+入口: `pmem` / `powermem-cli`
+
+### 4.1 memory 子命令
+
+```bash
+pmem memory add "Alice likes PostgreSQL" \
+  --user-id alice --infer
+
+pmem memory search "数据库偏好" \
+  --user-id alice --limit 5
+
+pmem memory get 123 --user-id alice
+
+pmem memory update 123 "Alice prefers Postgres" --user-id alice
+
+pmem memory delete 123 --user-id alice --yes
+
+pmem memory list --user-id alice --limit 10 \
+  --sort-by created_at --order desc
+
+pmem memory delete-all --user-id alice --confirm
+
+pmem memory export --output alice.json --user-id alice
+pmem memory import alice.json
+
+pmem memory quality --user-id alice
+pmem memory optimize
+```
+
+### 4.2 profile 子命令
+
+```bash
+pmem profile get alice
+pmem profile list --main-topic preferences
+pmem profile delete alice --yes
+```
+
+### 4.3 config 子命令
+
+```bash
+pmem config show
+pmem config validate
+pmem config test           # 测试 LLM/embedder/storage 连通性
+pmem config init           # 交互式向导生成 .env
+```
+
+### 4.4 manage 子命令
+
+```bash
+pmem manage backup --output backup.zip
+pmem manage restore backup.zip
+pmem manage cleanup        # 清理被遗忘的记录
+pmem manage migrate        # 跑 schema migration (sparse vector 等)
+```
+
+### 4.5 其它
+
+```bash
+pmem stats                 # 总体统计
+pmem shell                 # 交互式 REPL
+pmem --help                # 全局帮助
+```
+
+---
+
+## 5. 错误码对照 (Python SDK)
+
+`Memory.add()` / `search()` 等方法可能抛:
+
+| 异常 | 触发条件 |
+|------|---------|
+| `ValueError` | 参数错误 (e.g. messages=None, retrieval_mode 非法) |
+| `RuntimeError("SkillStore not enabled")` | 主存储不是 OceanBase 时调 add_skill |
+| `httpx.HTTPStatusError` | HTTP 后端 fallback 时上游返回 4xx/5xx |
+| `ImportError` | 选用的 provider 包没装 (e.g. 没装 `anthropic` 用 anthropic) |
+| `pydantic.ValidationError` | config 字段类型错误 |
+
+---
+
+## 6. 配置文件速查
+
+来源: `.env.example` (简化), `.env.example.full` (完整)
+
+### 6.1 最小可用 (.env)
+
+```bash
+# LLM
+LLM_PROVIDER=qwen
+LLM_API_KEY=sk-...
+
+# Embedder (可选, 默认 pyseekdb_default 零配置)
+EMBEDDING_PROVIDER=openai
+EMBEDDING_API_KEY=sk-...
+EMBEDDING_MODEL=text-embedding-3-small
+EMBEDDING_DIMS=1536
+
+# Vector Store
+DATABASE_PROVIDER=oceanbase
+OCEANBASE_HOST=127.0.0.1
+OCEANBASE_PORT=2881
+OCEANBASE_USER=root@test
+OCEANBASE_PASSWORD=***
+OCEANBASE_DB_NAME=powermem
+```
+
+### 6.2 常用可选配置
+
+```bash
+# Rerank
+RERANKER_ENABLED=true
+RERANKER_PROVIDER=qwen
+RERANKER_MODEL=qwen3-rerank
+RERANKER_TOP_N=10
+
+# Graph Store
+GRAPH_STORE_ENABLED=true
+GRAPH_STORE_PROVIDER=oceanbase
+GRAPH_EMBEDDING_MODEL_DIMS=1536
+
+# Skill Store
+SKILL_STORE_ENABLED=true
+
+# Intelligence (Ebbinghaus)
+INTELLIGENT_MEMORY_ENABLED=true
+INTELLIGENT_MEMORY_DECAY_RATE=1.5
+INTELLIGENT_MEMORY_WORKING_THRESHOLD=0.3
+INTELLIGENT_MEMORY_SHORT_TERM_THRESHOLD=0.6
+INTELLIGENT_MEMORY_LONG_TERM_THRESHOLD=0.8
+
+# Sparse Embedder
+SPARSE_EMBEDDER_PROVIDER=qwen
+
+# Query Rewrite
+QUERY_REWRITE_ENABLED=true
+
+# Server
+POWERMEM_SERVER_HOST=0.0.0.0
+POWERMEM_SERVER_PORT=8848
+POWERMEM_SERVER_WORKERS=4
+
+# Telemetry (opt-in)
+TELEMETRY_ENABLED=false
+```
+
+详见 [docs/guides/0003-configuration](../guides/0003-configuration) 完整说明。
+
+---
+
+## 7. 故障排查速查
+
+| 现象 | 检查 |
+|------|------|
+| `Unsupported LLM provider` | 漏 import 了 config? 调 `BaseLLMConfig.get_provider_class_path("xxx")` 验证 |
+| `LLM is disabled; falling back to simple add` | `LLM_PROVIDER=noop` 或 LLM 没装好 |
+| 搜索结果空 | 后端不支持 hybrid? 改 `retrieval_mode="vector"` 或检查 embedding_dims |
+| `SkillStore not enabled` | 主存储不是 OceanBase, 或 `SKILL_STORE_ENABLED=false` |
+| HTTP 401 | `X-API-Key` 头缺失或错; 检查 `AUTH_ENABLED` |
+| HTTP 429 | 触发限流; 调高 `RATE_LIMIT_PER_MINUTE` |
+| `error_code=MEMORY_NOT_FOUND` | 用了 string ID 而非 int (MCP 场景常见) |
+| `add_memory` 返回 `{"results": []}` | fact 抽取返回空, LLM 失败; 改 `infer=false` 临时绕过 |
+| Source store 不可用 | 仅 OceanBase 模式支持; 关闭 `SOURCE_STORE_ENABLED` |
+
+---
+
+## 8. 性能基线 (参考)
+
+来源: [docs/benchmark/overview](../benchmark/overview) + LOCOMO
+
+| 后端 | p50 检索 | p95 检索 | 备注 |
+|------|---------|---------|------|
+| OceanBase hybrid (远程) | 250ms | 1.44s | LOCOMO 基准 |
+| OceanBase vector (单路) | 80ms | 300ms | 仅 ANN |
+| SQLite (brute-force, 1 万条) | 30ms | 80ms | 全本地 |
+| SQLite + FTS5 hybrid | 50ms | 150ms | |
+| PGVector (HNSW, 100 万) | 40ms | 200ms | |
+
+(数据来自官方 benchmark 脚本, 实测随机器配置浮动。)
+
+---
+
+## 延伸阅读
+
+- 详细配置: [docs/guides/0003-configuration](../guides/0003-configuration)
+- CLI 详细: [docs/guides/0012-cli_usage](../guides/0012-cli_usage)
+- MCP 详细: [docs/api/0004-mcp](../api/0004-mcp)
+- HTTP API 详细: [docs/api/0005-api_server](../api/0005-api_server)
+- Dashboard 使用: [docs/guides/0013-dashboard](../guides/0013-dashboard)
+- 性能基准: [docs/benchmark/overview](../benchmark/overview)
+
+---
+
+## 完结
+
+到这里, 你已经走完 PowerMem Handbook 的全部 11 章。从 [00-overview](./00-overview) 的全景图, 到 [01-architecture](./01-architecture) 的模块地图, 再到 [02-pipeline-add](./02-pipeline-add) / [03-pipeline-search](./03-pipeline-search) 的核心流水线, [04-ebbinghaus](./04-ebbinghaus) / [05-skill-distill](./05-skill-distill) 的自进化算法, [06-storage](./06-storage) / [07-providers](./07-providers) 的存储与扩展机制, [08-agents-users](./08-agents-users) 的多智能体编排, [09-extending](./09-extending) 的扩展点全景, 最后到本页 [99-api-quickref](./99-api-quickref) 的速查表 —
+
+希望这本 handbook 能让你**一次性建立起对 PowerMem 的完整心智模型**, 而不是反复在多份文档之间跳转。
+
+Happy hacking! 🛠️

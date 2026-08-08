@@ -11,6 +11,8 @@ Agent 源码手册:
 - [Mem0](mem0_handbook)
 - [Cognee](cognee_handbook)
 - [PowerMem](powermem_handbook)
+- [Cortrix](cortrix_handbook)
+- [AI Agent Infra with PostgreSQL](ai_infra_with_postgresql_handbook)
   
 代码地图:
 - [Codegraph](codegraph_handbook)
