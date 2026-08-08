@@ -2,7 +2,7 @@
 
 > **目标读者**:开发者、想接 SDK 的工程师。
 > **阅读时间**:10 分钟。
-> **关键事实**:Python SDK 入口是 `cortrix` 包(注意拼写:`cortrix`,不是 `cortix`);同步 `Cortrix`、异步 `AsyncCortrix`;**关键字参数构造**;支持 `with`/`async with`;**资源(lazy 属性)**。
+> **关键事实**:Python SDK 入口是 `cortrix` 包;同步 `Cortrix`、异步 `AsyncCortrix`;**关键字参数构造**;支持 `with`/`async with`;**资源(lazy 属性)**。
 
 ---
 

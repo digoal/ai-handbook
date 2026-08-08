@@ -1,7 +1,5 @@
 # Cortrix Handbook
 
-> **路径说明**:仓库目录拼写为 `cortrix`(不是 `cortix`),本手册中所有路径、命令、URL 均使用这一正式拼写。
-
 > **版本基线**:`v1.0.0-rc.1`(对应仓库根 `VERSION` 文件与 `sdk/python/cortrix/_constants.py:3` 中的 `SDK_VERSION = "1.0.0rc1"`)。
 
 > **许可证**:Cortrix 自有材料按 `AGPL-3.0-only`(`README.md:8`)分发;第三方材料保留各自许可。
