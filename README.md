@@ -1,5 +1,7 @@
 AI 相关技术栈热门项目 handbook.
   
+![ai_agent_tech_stack_layers](svg/ai_agent_tech_stack_layers.svg)  
+  
 Agent 真身栖息地:
 - [Cloudflare Computer](computer_handbook)  
 - [Docker image](https://github.com/digoal/blog/blob/master/202607/20260730_02.md)  
