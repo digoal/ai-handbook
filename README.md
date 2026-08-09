@@ -16,6 +16,7 @@ Agent:
   
 Agent 编排:
 - [Ruflo](ruflo_handbook)
+- [CrewAI](https://github.com/crewAIInc/crewAI)
   
 SKILL:   
 - [常用 SKILL](https://github.com/digoal/skills)
