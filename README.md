@@ -15,6 +15,9 @@ Agent:
 Agent 编排:
 - [Ruflo](ruflo_handbook)
   
+SKILL:   
+- [常用 SKILL](https://github.com/digoal/skills)
+  
 记忆:
 - [Mem0](mem0_handbook)
 - [Cognee](cognee_handbook)
