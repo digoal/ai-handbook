@@ -15,7 +15,7 @@ Agent:
 - [freebuff(免费的 Agent)产品](https://github.com/CodebuffAI/freebuff)  
   
 Agent 设计:
-- [Agentic Design Patterns(智能体设计模式)](agi-cn/output/agi-zh-by-chapter)
+- [Agentic Design Patterns(智能体设计模式) 中文翻译, 仅作学习交流, 请勿传播](agi-cn/output/agi-zh-by-chapter)
   
 Agent 编排:
 - [Ruflo](ruflo_handbook)
