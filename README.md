@@ -9,7 +9,7 @@ Agent 真身栖息地:
 Agent: 
 - [Hermes 产品](https://hermes-agent.nousresearch.com/docs/user-stories)  
 - [Claude Code CLI 产品](claude_handbook)
-- [Claude Code CLI 产品, 另一本开源手册](claude-howto)
+- [Claude Code CLI 产品, 另一本开源手册](https://github.com/luongnv89/claude-howto)
 - [Claude Code 泄漏源码 handbook](claude_leaked_source_handbook)
 - [Pi 源码](pi_handbook)  
 - [KiloCode 产品](https://github.com/Kilo-Org/kilocode)  
