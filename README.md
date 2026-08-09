@@ -9,6 +9,7 @@ Agent 真身栖息地:
 Agent: 
 - [Hermes 产品](https://hermes-agent.nousresearch.com/docs/user-stories)  
 - [Claude Code CLI 产品](claude_handbook)
+- [Claude Code CLI 产品, 另一本开源手册](claude-howto)
 - [Claude Code 泄漏源码 handbook](claude_leaked_source_handbook)
 - [Pi 源码](pi_handbook)  
 - [KiloCode 产品](https://github.com/Kilo-Org/kilocode)  
@@ -55,3 +56,39 @@ AI 应用:
   
 AI 论文:
 - [Huggingface AI paper trending](https://huggingface.co/papers/trending)  
+
+
+----
+
+# 附录
+## submodules
+添加 submodules
+```
+# 1. 先浅克隆到目标目录
+git clone --depth 1 https://github.com/author/project.git path/to/subdirectory
+
+# 2. 再把它注册为子模块
+git submodule add https://github.com/author/project.git path/to/subdirectory
+```
+  
+更新 submodules  
+```
+# 1. 初始化并更新所有子模块
+git submodule update --init --recursive --remote
+
+# 2. 添加所有更改（包括子模块的更新）
+git add .
+
+# 3. 提交更改
+git commit -m "Update all submodules to latest versions"
+
+# 4. 推送到 GitHub
+git push origin main  # 或你的分支名
+```
+  
+克隆 submodules
+```
+git clone --depth 1 https://github.com/digoal/ai-handbook
+cd ai-handbook
+git submodule update --init --recursive --depth 1
+```

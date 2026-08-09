@@ -1,0 +1,3 @@
+[submodule "claude-howto"]
+	path = claude-howto
+	url = https://github.com/luongnv89/claude-howto
