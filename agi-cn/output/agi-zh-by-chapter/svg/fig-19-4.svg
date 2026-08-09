@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <marker id="arrow-19_4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+    <marker id="arrow-alert" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#B45309"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#FFFFFF"/>
+
+  <!-- 标题 -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="20" font-weight="bold" fill="#111827">评估与监控模式视觉总览</text>
+
+  <!-- ====== 第1行: 性能指标(顶部强调) ====== -->
+  <rect x="280" y="65" width="240" height="55" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="400" y="92" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">性能指标</text>
+  <text x="400" y="110" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">准确率 / 延迟 / 成本</text>
+
+  <!-- ====== 第2行: 离线评估 与 在线监控 ====== -->
+  <!-- 离线评估(左) -->
+  <rect x="60" y="200" width="260" height="120" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="190" y="230" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">离线评估</text>
+  <rect x="85" y="250" width="100" height="45" rx="8" ry="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+  <text x="135" y="278" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">测试集</text>
+  <rect x="195" y="250" width="100" height="45" rx="8" ry="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+  <text x="245" y="278" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">基准</text>
+
+  <!-- 在线监控(右) -->
+  <rect x="480" y="200" width="260" height="120" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="610" y="230" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">在线监控</text>
+  <rect x="505" y="250" width="100" height="45" rx="8" ry="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+  <text x="555" y="278" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">实时追踪</text>
+  <rect x="615" y="250" width="100" height="45" rx="8" ry="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+  <text x="665" y="278" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">A/B 测试</text>
+
+  <!-- ====== 第3行: 反馈回路 - 告警(强调) ====== -->
+  <rect x="280" y="400" width="240" height="60" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="400" y="437" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">反馈回路 · 告警</text>
+
+  <!-- ====== 连接箭头 ====== -->
+  <!-- 性能指标 → 离线评估 -->
+  <line x1="340" y1="120" x2="220" y2="198" stroke="#374151" stroke-width="2" marker-end="url(#arrow-19_4)"/>
+  <!-- 性能指标 → 在线监控 -->
+  <line x1="460" y1="120" x2="580" y2="198" stroke="#374151" stroke-width="2" marker-end="url(#arrow-19_4)"/>
+
+  <!-- 离线评估 → 告警(向左下弧形) -->
+  <path d="M 190 320 Q 190 380 300 400" fill="none" stroke="#B45309" stroke-width="2" marker-end="url(#arrow-alert)"/>
+  <!-- 在线监控 → 告警(向右下弧形) -->
+  <path d="M 610 320 Q 610 380 500 400" fill="none" stroke="#B45309" stroke-width="2" marker-end="url(#arrow-alert)"/>
+
+  <!-- 告警 → 性能指标(顶部回路) -->
+  <path d="M 400 400 Q 400 360 400 120" fill="none" stroke="#B45309" stroke-width="2" marker-end="url(#arrow-alert)"/>
+
+  <!-- ====== 底部说明 ====== -->
+  <text x="400" y="510" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">指标异常时触发告警,反馈驱动系统迭代优化</text>
+  <text x="400" y="535" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">Evaluation &amp; Monitoring: 离线评估 + 在线监控 + 反馈回路,保障 Agent 稳定可靠</text>
+</svg>

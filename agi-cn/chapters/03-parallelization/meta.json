@@ -1,0 +1,15 @@
+{
+  "id": 3,
+  "part": "I",
+  "slug": "parallelization",
+  "en_title": "Parallelization",
+  "zh_title": "并行化",
+  "pdf_pages": [
+    69,
+    83
+  ],
+  "page_count": 15,
+  "char_count": 26542,
+  "word_count": 3449,
+  "source_file": "chapters/03-parallelization/source.md"
+}

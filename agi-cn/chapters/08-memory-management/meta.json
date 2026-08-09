@@ -1,0 +1,15 @@
+{
+  "id": 8,
+  "part": "I",
+  "slug": "memory-management",
+  "en_title": "Memory Management",
+  "zh_title": "记忆管理",
+  "pdf_pages": [
+    148,
+    167
+  ],
+  "page_count": 20,
+  "char_count": 39972,
+  "word_count": 5148,
+  "source_file": "chapters/08-memory-management/source.md"
+}

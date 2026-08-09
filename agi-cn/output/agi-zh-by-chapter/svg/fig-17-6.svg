@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <marker id="arrow-17_6" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#374151"/>
+    </marker>
+    <marker id="arrow-self" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 z" fill="#374151"/>
+    </marker>
+    <style>
+      .node-text { font-family: sans-serif, "Microsoft YaHei", "微软雅黑"; fill: #111827; text-anchor: middle; font-size: 15px; }
+      .title { font-family: sans-serif, "Microsoft YaHei", "微软雅黑"; fill: #111827; text-anchor: middle; font-size: 19px; font-weight: 600; }
+      .desc { font-family: sans-serif, "Microsoft YaHei", "微软雅黑"; fill: #6B7280; text-anchor: middle; font-size: 13px; }
+      .edge-label { font-family: sans-serif, "Microsoft YaHei", "微软雅黑"; fill: #374151; text-anchor: middle; font-size: 12px; }
+    </style>
+  </defs>
+
+  <rect width="800" height="600" fill="#FFFFFF"/>
+
+  <text class="title" x="400" y="32">多次反思步骤的 DeepSearch 示例</text>
+  <text class="desc" x="400" y="52">通过多轮反思迭代,逐步深化搜索结果,直到信息充分后整合答案</text>
+
+  <!-- Start Node: 初始查询 -->
+  <g>
+    <rect x="50" y="140" width="140" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+    <text class="node-text" x="120" y="166">初始查询</text>
+    <text class="node-text" x="120" y="186" style="font-size:12px;fill:#374151;">User Query</text>
+  </g>
+
+  <!-- Arrow to first search -->
+  <line x1="190" y1="170" x2="240" y2="170" stroke="#374151" stroke-width="2" marker-end="url(#arrow-17_6)"/>
+
+  <!-- Decision: 第一次搜索 -->
+  <g>
+    <rect x="240" y="140" width="150" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+    <text class="node-text" x="315" y="166">第一次搜索</text>
+    <text class="node-text" x="315" y="186" style="font-size:12px;fill:#374151;">Search Round 1</text>
+  </g>
+
+  <!-- Arrow to first reflection -->
+  <line x1="390" y1="170" x2="440" y2="170" stroke="#374151" stroke-width="2" marker-end="url(#arrow-17_6)"/>
+
+  <!-- Reflection Decision 1 -->
+  <g>
+    <rect x="440" y="130" width="170" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+    <text class="node-text" x="525" y="160">反思①</text>
+    <text class="node-text" x="525" y="182" style="font-size:13px;">结果是否充分?</text>
+    <text class="node-text" x="525" y="200" style="font-size:11px;fill:#374151;">Reflect &amp; Evaluate</text>
+  </g>
+
+  <!-- No branch: 调整关键词 -> loop back -->
+  <line x1="525" y1="210" x2="525" y2="260" stroke="#374151" stroke-width="2" marker-end="url(#arrow-17_6)"/>
+  <text class="edge-label" x="565" y="240">否 / No</text>
+
+  <!-- 调整关键词 node -->
+  <g>
+    <rect x="440" y="260" width="170" height="55" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+    <text class="node-text" x="525" y="284">调整关键词 / 继续搜索</text>
+    <text class="node-text" x="525" y="303" style="font-size:11px;fill:#92400E;">Refine &amp; Continue</text>
+  </g>
+
+  <!-- Curve back to second search -->
+  <path d="M 440 287 Q 380 287 380 230 Q 380 200 390 175" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrow-17_6)"/>
+  <text class="edge-label" x="365" y="225">优化查询</text>
+
+  <!-- 第二次搜索 -->
+  <g>
+    <rect x="240" y="345" width="150" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+    <text class="node-text" x="315" y="371">第二次搜索</text>
+    <text class="node-text" x="315" y="391" style="font-size:12px;fill:#374151;">Search Round 2</text>
+  </g>
+
+  <!-- Reflection Decision 2 -->
+  <g>
+    <rect x="440" y="335" width="170" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+    <text class="node-text" x="525" y="365">反思②</text>
+    <text class="node-text" x="525" y="387" style="font-size:13px;">结果是否充分?</text>
+    <text class="node-text" x="525" y="405" style="font-size:11px;fill:#374151;">Reflect &amp; Evaluate</text>
+  </g>
+
+  <!-- Arrow from second search to second reflection -->
+  <line x1="390" y1="375" x2="440" y2="375" stroke="#374151" stroke-width="2" marker-end="url(#arrow-17_6)"/>
+
+  <!-- Reflection 2 - 充分 branch (right) -->
+  <line x1="610" y1="375" x2="650" y2="375" stroke="#374151" stroke-width="2" marker-end="url(#arrow-17_6)"/>
+  <text class="edge-label" x="630" y="365">是 / Yes</text>
+
+  <!-- Reflection 2 - 不充分 branch (down) -->
+  <line x1="525" y1="415" x2="525" y2="465" stroke="#374151" stroke-width="2" marker-end="url(#arrow-17_6)"/>
+  <text class="edge-label" x="565" y="445">否 / No</text>
+
+  <!-- Loop back indicator (dashed) -->
+  <path d="M 440 480 Q 350 480 350 440 Q 350 410 390 390" fill="none" stroke="#374151" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-17_6)"/>
+  <text class="edge-label" x="340" y="450" style="fill:#374151;">继续迭代…</text>
+
+  <!-- 整合答案 (highlighted) -->
+  <g>
+    <rect x="650" y="345" width="140" height="60" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+    <text class="node-text" x="720" y="371">整合答案</text>
+    <text class="node-text" x="720" y="391" style="font-size:12px;fill:#92400E;">Final Answer</text>
+  </g>
+
+  <!-- Annotation / 反馈循环说明 -->
+  <g>
+    <rect x="50" y="500" width="700" height="70" rx="8" ry="8" fill="#F9FAFB" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="4,3"/>
+    <text class="node-text" x="400" y="528" style="font-size:14px;">多轮反思 (Multi-round Reflection)</text>
+    <text class="node-text" x="400" y="550" style="font-size:12px;fill:#374151;">每一轮搜索后,Agent 反思结果质量,决定是优化查询继续搜索,还是整合输出最终答案</text>
+  </g>
+
+  <!-- Small loop indicator near reflection 1 -->
+  <path d="M 460 145 Q 455 120 495 120" fill="none" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow-self)"/>
+</svg>

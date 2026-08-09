@@ -1,0 +1,15 @@
+{
+  "id": 27,
+  "part": "II",
+  "slug": "under-the-hood-reasoning-engines",
+  "en_title": "Under the Hood: An Inside Look at the Agents' Reasoning Engines",
+  "zh_title": "深入引擎:智能体推理引擎内部探秘",
+  "pdf_pages": [
+    414,
+    430
+  ],
+  "page_count": 17,
+  "char_count": 27443,
+  "word_count": 4094,
+  "source_file": "chapters/27-under-the-hood-reasoning-engines/source.md"
+}

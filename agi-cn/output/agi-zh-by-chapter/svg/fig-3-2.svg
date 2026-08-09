@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <marker id="arrow-3_2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="20" font-weight="bold" fill="#111827">并行化模式视觉总览</text>
+  <text x="400" y="58" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">Parallelization Pattern Overview</text>
+
+  <!-- Central node (highlighted) - 并行执行 -->
+  <rect x="320" y="260" width="160" height="80" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="400" y="295" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="18" font-weight="bold" fill="#111827">并行执行</text>
+  <text x="400" y="318" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#B45309">Parallel Execution</text>
+
+  <!-- Top-left: 适用场景 header -->
+  <rect x="40" y="100" width="180" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="130" y="125" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="15" font-weight="bold" fill="#111827">适用场景</text>
+
+  <!-- Top-right: 关键优势 header -->
+  <rect x="580" y="100" width="180" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="670" y="125" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="15" font-weight="bold" fill="#111827">关键优势</text>
+
+  <!-- Bottom: 挑战 header -->
+  <rect x="310" y="480" width="180" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="400" y="505" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="15" font-weight="bold" fill="#111827">挑战</text>
+
+  <!-- Scenario nodes (top-left) -->
+  <rect x="40" y="160" width="180" height="55" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="130" y="185" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">信息收集</text>
+  <text x="130" y="203" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#6B7280">Information Gathering</text>
+
+  <rect x="40" y="230" width="180" height="55" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="130" y="255" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">数据处理</text>
+  <text x="130" y="273" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#6B7280">Data Processing</text>
+
+  <rect x="40" y="300" width="180" height="55" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="130" y="325" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">多 API 调用</text>
+  <text x="130" y="343" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#6B7280">Multiple API Calls</text>
+
+  <!-- Advantage nodes (top-right) -->
+  <rect x="580" y="160" width="180" height="55" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="670" y="185" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">速度提升</text>
+  <text x="670" y="203" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#6B7280">Speed Boost</text>
+
+  <rect x="580" y="230" width="180" height="55" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="670" y="255" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">资源利用</text>
+  <text x="670" y="273" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#6B7280">Resource Utilization</text>
+
+  <!-- Challenge nodes (bottom) -->
+  <rect x="210" y="380" width="180" height="55" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="300" y="405" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">结果合并</text>
+  <text x="300" y="423" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#6B7280">Result Aggregation</text>
+
+  <rect x="410" y="380" width="180" height="55" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="500" y="405" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">错误处理</text>
+  <text x="500" y="423" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#6B7280">Error Handling</text>
+
+  <!-- Arrows: Scenarios -> Center -->
+  <line x1="220" y1="187" x2="318" y2="275" stroke="#374151" stroke-width="2" marker-end="url(#arrow-3_2)"/>
+  <line x1="220" y1="257" x2="318" y2="300" stroke="#374151" stroke-width="2" marker-end="url(#arrow-3_2)"/>
+  <line x1="220" y1="327" x2="318" y2="325" stroke="#374151" stroke-width="2" marker-end="url(#arrow-3_2)"/>
+
+  <!-- Arrows: Center -> Advantages -->
+  <line x1="482" y1="275" x2="578" y2="187" stroke="#374151" stroke-width="2" marker-end="url(#arrow-3_2)"/>
+  <line x1="482" y1="300" x2="578" y2="257" stroke="#374151" stroke-width="2" marker-end="url(#arrow-3_2)"/>
+
+  <!-- Arrows: Center -> Challenges -->
+  <line x1="370" y1="340" x2="330" y2="378" stroke="#374151" stroke-width="2" marker-end="url(#arrow-3_2)"/>
+  <line x1="430" y1="340" x2="470" y2="378" stroke="#374151" stroke-width="2" marker-end="url(#arrow-3_2)"/>
+
+  <!-- Bottom description -->
+  <text x="400" y="565" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">并行化模式通过同时执行多个独立任务来提升 AI Agent 效率</text>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="sans-serif, Microsoft YaHei, 微软雅黑">
+  <defs>
+    <marker id="arrow-5_1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="600" fill="#FFFFFF"/>
+
+  <!-- 标题 -->
+  <text x="400" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#111827">智能体使用工具的若干示例</text>
+
+  <!-- 中心智能体(强调节点) -->
+  <rect x="320" y="260" width="160" height="80" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="400" y="295" text-anchor="middle" font-size="18" font-weight="bold" fill="#111827">智能体 Agent</text>
+  <text x="400" y="318" text-anchor="middle" font-size="13" fill="#6B7280">工具选择器</text>
+
+  <!-- 四个工具节点(围绕中心) -->
+  <!-- 1. 网络搜索(左上) -->
+  <rect x="80" y="100" width="180" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="170" y="135" text-anchor="middle" font-size="16" font-weight="bold" fill="#111827">网络搜索工具</text>
+  <text x="170" y="158" text-anchor="middle" font-size="13" fill="#374151">获取实时信息</text>
+
+  <!-- 2. 计算器(右上) -->
+  <rect x="540" y="100" width="180" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="630" y="135" text-anchor="middle" font-size="16" font-weight="bold" fill="#111827">计算器工具</text>
+  <text x="630" y="158" text-anchor="middle" font-size="13" fill="#374151">执行数学计算</text>
+
+  <!-- 3. 数据库(左下) -->
+  <rect x="80" y="420" width="180" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="170" y="455" text-anchor="middle" font-size="16" font-weight="bold" fill="#111827">数据库查询工具</text>
+  <text x="170" y="478" text-anchor="middle" font-size="13" fill="#374151">访问结构化数据</text>
+
+  <!-- 4. 邮件(右下) -->
+  <rect x="540" y="420" width="180" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="630" y="455" text-anchor="middle" font-size="16" font-weight="bold" fill="#111827">邮件发送工具</text>
+  <text x="630" y="478" text-anchor="middle" font-size="13" fill="#374151">执行外部操作</text>
+
+  <!-- 连接线(Agent -> 工具) -->
+  <line x1="320" y1="285" x2="260" y2="155" stroke="#374151" stroke-width="2" marker-end="url(#arrow-5_1)"/>
+  <line x1="480" y1="285" x2="540" y2="155" stroke="#374151" stroke-width="2" marker-end="url(#arrow-5_1)"/>
+  <line x1="320" y1="315" x2="260" y2="445" stroke="#374151" stroke-width="2" marker-end="url(#arrow-5_1)"/>
+  <line x1="480" y1="315" x2="540" y2="445" stroke="#374151" stroke-width="2" marker-end="url(#arrow-5_1)"/>
+
+  <!-- 工具标签说明 -->
+  <text x="280" y="215" text-anchor="middle" font-size="12" fill="#6B7280">① 调用</text>
+  <text x="520" y="215" text-anchor="middle" font-size="12" fill="#6B7280">② 调用</text>
+  <text x="280" y="395" text-anchor="middle" font-size="12" fill="#6B7280">③ 调用</text>
+  <text x="520" y="395" text-anchor="middle" font-size="12" fill="#6B7280">④ 调用</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="570" text-anchor="middle" font-size="13" fill="#6B7280">智能体通过工具选择器,根据任务需求选择合适的工具,扩展自身能力边界</text>
+</svg>

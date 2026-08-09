@@ -1,0 +1,15 @@
+{
+  "id": 13,
+  "part": "I",
+  "slug": "human-in-the-loop",
+  "en_title": "Human-in-the-Loop",
+  "zh_title": "人在回路",
+  "pdf_pages": [
+    216,
+    224
+  ],
+  "page_count": 9,
+  "char_count": 19084,
+  "word_count": 2560,
+  "source_file": "chapters/13-human-in-the-loop/source.md"
+}

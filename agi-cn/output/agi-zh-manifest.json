@@ -1,0 +1,641 @@
+{
+  "metadata": {
+    "title_en": "Agentic Design Patterns",
+    "title_zh": "智能体设计模式",
+    "subtitle": "A Hands-On Guide to Building Intelligent Systems",
+    "author": "Antonio Gullí",
+    "publisher": "Springer Nature",
+    "year": 2025,
+    "isbn": "978-3-032-01401-6",
+    "translator_note": "由 Claude AI 全自动翻译,经多轮质量修复(术语统一、补译、图替换)。仅供个人学习使用。",
+    "build_time": "2026-08-09T15:43:19.049712"
+  },
+  "structure": {
+    "total_chapters": 29,
+    "part_i_count": 21,
+    "part_ii_count": 8,
+    "total_chars": 364528,
+    "total_code_chars": 93250,
+    "total_text_chars": 271278,
+    "total_figures": 25
+  },
+  "files": {
+    "full_markdown": "output/agi-zh.md",
+    "by_chapter_dir": "output/agi-zh-by-chapter",
+    "svg_dir": "output/agi-zh-by-chapter/svg"
+  },
+  "figures": [
+    {
+      "id": "3-2",
+      "file": "svg/fig-3-2.svg",
+      "chapter": 3,
+      "title": "并行化模式视觉总览",
+      "diagram_type": "overview"
+    },
+    {
+      "id": "5-1",
+      "file": "svg/fig-5-1.svg",
+      "chapter": 5,
+      "title": "智能体使用工具的若干示例",
+      "diagram_type": "architecture"
+    },
+    {
+      "id": "3-1",
+      "file": "svg/fig-3-1.svg",
+      "chapter": 3,
+      "title": "并行化模式:多组件并发执行",
+      "diagram_type": "flowchart"
+    },
+    {
+      "id": "6-4",
+      "file": "svg/fig-6-4.svg",
+      "chapter": 6,
+      "title": "规划模式视觉总览",
+      "diagram_type": "overview"
+    },
+    {
+      "id": "7-1",
+      "file": "svg/fig-7-1.svg",
+      "chapter": 7,
+      "title": "多智能体系统架构",
+      "diagram_type": "architecture"
+    },
+    {
+      "id": "11-2",
+      "file": "svg/fig-11-2.svg",
+      "chapter": 11,
+      "title": "目标设定与监控模式视觉总览",
+      "diagram_type": "overview"
+    },
+    {
+      "id": "8-1",
+      "file": "svg/fig-8-1.svg",
+      "chapter": 8,
+      "title": "记忆管理模式视觉总览",
+      "diagram_type": "overview"
+    },
+    {
+      "id": "10-1",
+      "file": "svg/fig-10-1.svg",
+      "chapter": 10,
+      "title": "模型上下文协议(MCP)架构",
+      "diagram_type": "architecture"
+    },
+    {
+      "id": "17-3",
+      "file": "svg/fig-17-3.svg",
+      "chapter": 17,
+      "title": "ReAct 范式:推理-行动循环",
+      "diagram_type": "cycle"
+    },
+    {
+      "id": "19-4",
+      "file": "svg/fig-19-4.svg",
+      "chapter": 19,
+      "title": "评估与监控模式视觉总览",
+      "diagram_type": "overview"
+    },
+    {
+      "id": "4-1",
+      "file": "svg/fig-4-1.svg",
+      "chapter": 4,
+      "title": "反思设计模式:自我反思循环",
+      "diagram_type": "cycle"
+    },
+    {
+      "id": "13-1",
+      "file": "svg/fig-13-1.svg",
+      "chapter": 13,
+      "title": "人在回路(HITL)模式",
+      "diagram_type": "cycle"
+    },
+    {
+      "id": "4-2",
+      "file": "svg/fig-4-2.svg",
+      "chapter": 4,
+      "title": "反思设计模式:生产者与评审者",
+      "diagram_type": "architecture"
+    },
+    {
+      "id": "7-3",
+      "file": "svg/fig-7-3.svg",
+      "chapter": 7,
+      "title": "多智能体设计模式总览",
+      "diagram_type": "overview"
+    },
+    {
+      "id": "5-2",
+      "file": "svg/fig-5-2.svg",
+      "chapter": 5,
+      "title": "工具使用模式:ReAct 循环",
+      "diagram_type": "cycle"
+    },
+    {
+      "id": "14-2",
+      "file": "svg/fig-14-2.svg",
+      "chapter": 14,
+      "title": "智能体式 RAG:推理智能体优化检索",
+      "diagram_type": "flowchart"
+    },
+    {
+      "id": "15-1",
+      "file": "svg/fig-15-1.svg",
+      "chapter": 15,
+      "title": "A2A 与 MCP 协议对比",
+      "diagram_type": "comparison"
+    },
+    {
+      "id": "16-1",
+      "file": "svg/fig-16-1.svg",
+      "chapter": 16,
+      "title": "OpenRouter:多模型路由平台",
+      "diagram_type": "architecture"
+    },
+    {
+      "id": "17-4",
+      "file": "svg/fig-17-4.svg",
+      "chapter": 17,
+      "title": "多智能体系统搜索(MASS)框架",
+      "diagram_type": "flowchart"
+    },
+    {
+      "id": "17-6",
+      "file": "svg/fig-17-6.svg",
+      "chapter": 17,
+      "title": "多次反思步骤的 DeepSearch 示例",
+      "diagram_type": "flowchart"
+    },
+    {
+      "id": "7-2",
+      "file": "svg/fig-7-2.svg",
+      "chapter": 7,
+      "title": "智能体的多种通信与交互方式",
+      "diagram_type": "architecture"
+    },
+    {
+      "id": "25-2",
+      "file": "svg/fig-25-2.svg",
+      "chapter": 25,
+      "title": "AgentSpace 与多样化服务集成",
+      "diagram_type": "architecture"
+    },
+    {
+      "id": "20-1",
+      "file": "svg/fig-20-1.svg",
+      "chapter": 20,
+      "title": "优先级排序设计模式",
+      "diagram_type": "flowchart"
+    },
+    {
+      "id": "18-1",
+      "file": "svg/fig-18-1.svg",
+      "chapter": 18,
+      "title": "护栏设计模式总览",
+      "diagram_type": "overview"
+    },
+    {
+      "id": "17-8",
+      "file": "svg/fig-17-8.svg",
+      "chapter": 17,
+      "title": "推理设计模式总览",
+      "diagram_type": "overview"
+    }
+  ],
+  "chapters": [
+    {
+      "id": 1,
+      "part": "I",
+      "slug": "prompt-chaining",
+      "zh_title": "提示链",
+      "en_title": "Prompt Chaining",
+      "pdf_pages": [
+        41,
+        54
+      ],
+      "block_count": 18,
+      "char_count": 8448,
+      "code_char_count": 1684,
+      "file": "output/agi-zh-by-chapter/01-prompt-chaining.md"
+    },
+    {
+      "id": 2,
+      "part": "I",
+      "slug": "routing",
+      "zh_title": "路由",
+      "en_title": "Routing",
+      "pdf_pages": [
+        55,
+        68
+      ],
+      "block_count": 17,
+      "char_count": 15825,
+      "code_char_count": 5784,
+      "file": "output/agi-zh-by-chapter/02-routing.md"
+    },
+    {
+      "id": 3,
+      "part": "I",
+      "slug": "parallelization",
+      "zh_title": "并行化",
+      "en_title": "Parallelization",
+      "pdf_pages": [
+        69,
+        83
+      ],
+      "block_count": 22,
+      "char_count": 15042,
+      "code_char_count": 0,
+      "file": "output/agi-zh-by-chapter/03-parallelization.md"
+    },
+    {
+      "id": 4,
+      "part": "I",
+      "slug": "reflection",
+      "zh_title": "反思",
+      "en_title": "Reflection",
+      "pdf_pages": [
+        84,
+        96
+      ],
+      "block_count": 15,
+      "char_count": 11337,
+      "code_char_count": 4495,
+      "file": "output/agi-zh-by-chapter/04-reflection.md"
+    },
+    {
+      "id": 5,
+      "part": "I",
+      "slug": "tool-use",
+      "zh_title": "工具使用(函数调用)",
+      "en_title": "Tool Use (Function Calling)",
+      "pdf_pages": [
+        97,
+        117
+      ],
+      "block_count": 18,
+      "char_count": 24694,
+      "code_char_count": 18395,
+      "file": "output/agi-zh-by-chapter/05-tool-use.md"
+    },
+    {
+      "id": 6,
+      "part": "I",
+      "slug": "planning",
+      "zh_title": "规划",
+      "en_title": "Planning",
+      "pdf_pages": [
+        118,
+        130
+      ],
+      "block_count": 17,
+      "char_count": 11469,
+      "code_char_count": 6123,
+      "file": "output/agi-zh-by-chapter/06-planning.md"
+    },
+    {
+      "id": 7,
+      "part": "I",
+      "slug": "multi-agent-collaboration",
+      "zh_title": "多智能体协作",
+      "en_title": "Multi-Agent Collaboration",
+      "pdf_pages": [
+        131,
+        147
+      ],
+      "block_count": 24,
+      "char_count": 18411,
+      "code_char_count": 3991,
+      "file": "output/agi-zh-by-chapter/07-multi-agent-collaboration.md"
+    },
+    {
+      "id": 8,
+      "part": "I",
+      "slug": "memory-management",
+      "zh_title": "记忆管理",
+      "en_title": "Memory Management",
+      "pdf_pages": [
+        148,
+        167
+      ],
+      "block_count": 31,
+      "char_count": 24179,
+      "code_char_count": 10099,
+      "file": "output/agi-zh-by-chapter/08-memory-management.md"
+    },
+    {
+      "id": 9,
+      "part": "I",
+      "slug": "learning-and-adaptation",
+      "zh_title": "学习与适应",
+      "en_title": "Learning and Adaptation",
+      "pdf_pages": [
+        168,
+        179
+      ],
+      "block_count": 17,
+      "char_count": 8431,
+      "code_char_count": 921,
+      "file": "output/agi-zh-by-chapter/09-learning-and-adaptation.md"
+    },
+    {
+      "id": 10,
+      "part": "I",
+      "slug": "model-context-protocol",
+      "zh_title": "模型上下文协议",
+      "en_title": "Model Context Protocol",
+      "pdf_pages": [
+        180,
+        195
+      ],
+      "block_count": 26,
+      "char_count": 14683,
+      "code_char_count": 1620,
+      "file": "output/agi-zh-by-chapter/10-model-context-protocol.md"
+    },
+    {
+      "id": 11,
+      "part": "I",
+      "slug": "goal-setting-and-monitoring",
+      "zh_title": "目标设定与监控",
+      "en_title": "Goal Setting and Monitoring",
+      "pdf_pages": [
+        196,
+        207
+      ],
+      "block_count": 17,
+      "char_count": 12128,
+      "code_char_count": 7726,
+      "file": "output/agi-zh-by-chapter/11-goal-setting-and-monitoring.md"
+    },
+    {
+      "id": 12,
+      "part": "I",
+      "slug": "exception-handling-and-recovery",
+      "zh_title": "异常处理与恢复",
+      "en_title": "Exception Handling and Recovery",
+      "pdf_pages": [
+        208,
+        215
+      ],
+      "block_count": 13,
+      "char_count": 5752,
+      "code_char_count": 1650,
+      "file": "output/agi-zh-by-chapter/12-exception-handling-and-recovery.md"
+    },
+    {
+      "id": 13,
+      "part": "I",
+      "slug": "human-in-the-loop",
+      "zh_title": "人在回路",
+      "en_title": "Human-in-the-Loop",
+      "pdf_pages": [
+        216,
+        224
+      ],
+      "block_count": 16,
+      "char_count": 8014,
+      "code_char_count": 0,
+      "file": "output/agi-zh-by-chapter/13-human-in-the-loop.md"
+    },
+    {
+      "id": 14,
+      "part": "I",
+      "slug": "knowledge-retrieval-rag",
+      "zh_title": "知识检索(RAG)",
+      "en_title": "Knowledge Retrieval (RAG)",
+      "pdf_pages": [
+        225,
+        240
+      ],
+      "block_count": 23,
+      "char_count": 15627,
+      "code_char_count": 6553,
+      "file": "output/agi-zh-by-chapter/14-knowledge-retrieval-rag.md"
+    },
+    {
+      "id": 15,
+      "part": "I",
+      "slug": "inter-agent-communication-a2a",
+      "zh_title": "智能体间通信(A2A)",
+      "en_title": "Inter-Agent Communication (A2A)",
+      "pdf_pages": [
+        241,
+        255
+      ],
+      "block_count": 22,
+      "char_count": 13007,
+      "code_char_count": 2424,
+      "file": "output/agi-zh-by-chapter/15-inter-agent-communication-a2a.md"
+    },
+    {
+      "id": 16,
+      "part": "I",
+      "slug": "resource-aware-optimization",
+      "zh_title": "资源感知优化",
+      "en_title": "Resource-Aware Optimization",
+      "pdf_pages": [
+        256,
+        270
+      ],
+      "block_count": 23,
+      "char_count": 15106,
+      "code_char_count": 4801,
+      "file": "output/agi-zh-by-chapter/16-resource-aware-optimization.md"
+    },
+    {
+      "id": 17,
+      "part": "I",
+      "slug": "reasoning-techniques",
+      "zh_title": "推理技术",
+      "en_title": "Reasoning Techniques",
+      "pdf_pages": [
+        271,
+        293
+      ],
+      "block_count": 36,
+      "char_count": 20096,
+      "code_char_count": 0,
+      "file": "output/agi-zh-by-chapter/17-reasoning-techniques.md"
+    },
+    {
+      "id": 18,
+      "part": "I",
+      "slug": "guardrails-safety-patterns",
+      "zh_title": "护栏/安全模式",
+      "en_title": "Guardrails/Safety Patterns",
+      "pdf_pages": [
+        294,
+        313
+      ],
+      "block_count": 29,
+      "char_count": 21928,
+      "code_char_count": 1769,
+      "file": "output/agi-zh-by-chapter/18-guardrails-safety-patterns.md"
+    },
+    {
+      "id": 19,
+      "part": "I",
+      "slug": "evaluation-and-monitoring",
+      "zh_title": "评估与监控",
+      "en_title": "Evaluation and Monitoring",
+      "pdf_pages": [
+        314,
+        331
+      ],
+      "block_count": 27,
+      "char_count": 17972,
+      "code_char_count": 1630,
+      "file": "output/agi-zh-by-chapter/19-evaluation-and-monitoring.md"
+    },
+    {
+      "id": 20,
+      "part": "I",
+      "slug": "prioritization",
+      "zh_title": "优先级排序",
+      "en_title": "Prioritization",
+      "pdf_pages": [
+        332,
+        341
+      ],
+      "block_count": 12,
+      "char_count": 11197,
+      "code_char_count": 8000,
+      "file": "output/agi-zh-by-chapter/20-prioritization.md"
+    },
+    {
+      "id": 21,
+      "part": "I",
+      "slug": "exploration-and-discovery",
+      "zh_title": "探索与发现",
+      "en_title": "Exploration and Discovery",
+      "pdf_pages": [
+        342,
+        355
+      ],
+      "block_count": 24,
+      "char_count": 13268,
+      "code_char_count": 3564,
+      "file": "output/agi-zh-by-chapter/21-exploration-and-discovery.md"
+    },
+    {
+      "id": 22,
+      "part": "II",
+      "slug": "advanced-prompting-techniques",
+      "zh_title": "高级提示技术",
+      "en_title": "Advanced Prompting Techniques",
+      "pdf_pages": [
+        357,
+        386
+      ],
+      "block_count": 41,
+      "char_count": 23660,
+      "code_char_count": 1946,
+      "file": "output/agi-zh-by-chapter/22-advanced-prompting-techniques.md"
+    },
+    {
+      "id": 23,
+      "part": "II",
+      "slug": "ai-agentic-interactions",
+      "zh_title": "AI 智能体交互:从 GUI 到真实世界环境",
+      "en_title": "AI Agentic Interactions: From GUI to Real World Environment",
+      "pdf_pages": [
+        387,
+        393
+      ],
+      "block_count": 12,
+      "char_count": 5160,
+      "code_char_count": 0,
+      "file": "output/agi-zh-by-chapter/23-ai-agentic-interactions.md"
+    },
+    {
+      "id": 24,
+      "part": "II",
+      "slug": "agentic-frameworks-overview",
+      "zh_title": "智能体框架速览",
+      "en_title": "A Quick Overview of Agentic Frameworks",
+      "pdf_pages": [
+        394,
+        401
+      ],
+      "block_count": 14,
+      "char_count": 7125,
+      "code_char_count": 0,
+      "file": "output/agi-zh-by-chapter/24-agentic-frameworks-overview.md"
+    },
+    {
+      "id": 25,
+      "part": "II",
+      "slug": "building-an-agent-with-agentspace",
+      "zh_title": "使用 AgentSpace 构建智能体",
+      "en_title": "Building an Agent with AgentSpace",
+      "pdf_pages": [
+        402,
+        407
+      ],
+      "block_count": 7,
+      "char_count": 1121,
+      "code_char_count": 0,
+      "file": "output/agi-zh-by-chapter/25-building-an-agent-with-agentspace.md"
+    },
+    {
+      "id": 26,
+      "part": "II",
+      "slug": "ai-agents-on-the-cli",
+      "zh_title": "CLI 上的 AI 智能体",
+      "en_title": "AI Agents on the CLI",
+      "pdf_pages": [
+        408,
+        413
+      ],
+      "block_count": 8,
+      "char_count": 3815,
+      "code_char_count": 0,
+      "file": "output/agi-zh-by-chapter/26-ai-agents-on-the-cli.md"
+    },
+    {
+      "id": 27,
+      "part": "II",
+      "slug": "under-the-hood-reasoning-engines",
+      "zh_title": "深入引擎:智能体推理引擎内部探秘",
+      "en_title": "Under the Hood: An Inside Look at the Agents' Reasoning Engines",
+      "pdf_pages": [
+        414,
+        430
+      ],
+      "block_count": 27,
+      "char_count": 8715,
+      "code_char_count": 75,
+      "file": "output/agi-zh-by-chapter/27-under-the-hood-reasoning-engines.md"
+    },
+    {
+      "id": 28,
+      "part": "II",
+      "slug": "coding-agents",
+      "zh_title": "编程智能体",
+      "en_title": "Coding Agents",
+      "pdf_pages": [
+        431,
+        438
+      ],
+      "block_count": 4,
+      "char_count": 2423,
+      "code_char_count": 0,
+      "file": "output/agi-zh-by-chapter/28-coding-agents.md"
+    },
+    {
+      "id": 29,
+      "part": "II",
+      "slug": "conclusion",
+      "zh_title": "结语",
+      "en_title": "Conclusion",
+      "pdf_pages": [
+        439,
+        447
+      ],
+      "block_count": 12,
+      "char_count": 5895,
+      "code_char_count": 0,
+      "file": "output/agi-zh-by-chapter/29-conclusion.md"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <marker id="arrow-8_1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#B45309"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="600" fill="#FFFFFF"/>
+
+  <!-- 标题 -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="20" font-weight="bold" fill="#111827">记忆管理模式视觉总览</text>
+
+  <!-- 副标题/分隔线说明 -->
+  <text x="400" y="58" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">Memory Management Pattern Overview</text>
+
+  <!-- 中央：Agent 核心节点 (强调) -->
+  <rect x="340" y="280" width="120" height="80" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="400" y="315" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">Agent</text>
+  <text x="400" y="338" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#B45309">核心调度</text>
+
+  <!-- 左侧：短期记忆 -->
+  <rect x="50" y="120" width="170" height="90" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="135" y="150" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">短期记忆</text>
+  <text x="135" y="172" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#374151">Short-term Memory</text>
+  <text x="135" y="194" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">上下文窗口 Context</text>
+
+  <!-- 左侧：长期记忆 -->
+  <rect x="50" y="430" width="170" height="90" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="135" y="460" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">长期记忆</text>
+  <text x="135" y="482" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#374151">Long-term Memory</text>
+  <text x="135" y="504" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">向量数据库 Vector DB</text>
+
+  <!-- 右侧：情景记忆 -->
+  <rect x="580" y="120" width="170" height="90" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="665" y="150" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">情景记忆</text>
+  <text x="665" y="172" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#374151">Episodic Memory</text>
+  <text x="665" y="194" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">对话历史 Dialogue</text>
+
+  <!-- 右上：操作面板 -->
+  <rect x="580" y="430" width="170" height="160" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="665" y="458" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">记忆操作</text>
+  <line x1="600" y1="470" x2="730" y2="470" stroke="#1F2937" stroke-width="1"/>
+  <text x="605" y="492" text-anchor="start" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">• 写入 Write</text>
+  <text x="605" y="515" text-anchor="start" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">• 读取 Read</text>
+  <text x="605" y="538" text-anchor="start" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">• 检索 Retrieve</text>
+  <text x="605" y="561" text-anchor="start" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">• 遗忘 Forget</text>
+  <text x="605" y="584" text-anchor="start" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">• 整合 Consolidate</text>
+
+  <!-- Agent 到 短期记忆：读取 -->
+  <line x1="340" y1="300" x2="225" y2="180" stroke="#374151" stroke-width="2" marker-end="url(#arrow-8_1)"/>
+  <text x="260" y="232" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">读取 Read</text>
+
+  <!-- Agent 到 长期记忆：检索 -->
+  <line x1="340" y1="340" x2="225" y2="450" stroke="#374151" stroke-width="2" marker-end="url(#arrow-8_1)"/>
+  <text x="260" y="408" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">检索 Retrieve</text>
+
+  <!-- Agent 到 情景记忆：写入 -->
+  <line x1="460" y1="300" x2="575" y2="180" stroke="#374151" stroke-width="2" marker-end="url(#arrow-8_1)"/>
+  <text x="540" y="232" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">写入 Write</text>
+
+  <!-- 情景记忆 到 Agent：回放 -->
+  <path d="M 580 195 Q 500 260 460 310" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrow-8_1)"/>
+  <text x="500" y="265" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">回放 Replay</text>
+
+  <!-- 长期记忆 到 Agent：返回检索结果 -->
+  <path d="M 225 460 Q 280 400 340 345" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrow-8_1)"/>
+  <text x="240" y="395" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">召回 Recall</text>
+
+  <!-- 短期记忆 到 长期记忆：巩固(虚线) -->
+  <path d="M 135 210 Q 135 320 135 430" fill="none" stroke="#B45309" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow-orange)"/>
+  <text x="155" y="325" text-anchor="start" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#B45309">巩固 Consolidate</text>
+
+  <!-- 操作面板 到 Agent：管理(强调色) -->
+  <path d="M 580 500 Q 510 460 460 350" fill="none" stroke="#B45309" stroke-width="2" marker-end="url(#arrow-orange)"/>
+  <text x="540" y="450" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#B45309">记忆管理</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="590" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">三种记忆协同工作:短期记忆处理即时上下文,长期记忆通过向量检索提供知识,情景记忆保留对话轨迹。</text>
+</svg>

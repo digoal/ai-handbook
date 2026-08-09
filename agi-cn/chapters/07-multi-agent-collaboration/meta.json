@@ -1,0 +1,15 @@
+{
+  "id": 7,
+  "part": "I",
+  "slug": "multi-agent-collaboration",
+  "en_title": "Multi-Agent Collaboration",
+  "zh_title": "多智能体协作",
+  "pdf_pages": [
+    131,
+    147
+  ],
+  "page_count": 17,
+  "char_count": 32139,
+  "word_count": 4261,
+  "source_file": "chapters/07-multi-agent-collaboration/source.md"
+}

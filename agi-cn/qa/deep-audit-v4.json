@@ -1,0 +1,2270 @@
+{
+  "summary": {
+    "total_p0": 166,
+    "total_p1": 0,
+    "total_p2": 6,
+    "code_fences_total": 109,
+    "code_fences_tagged": 109,
+    "code_fences_untagged": 0,
+    "orphan_svgs": [],
+    "missing_svgs": []
+  },
+  "chapters": [
+    {
+      "chapter_id": 1,
+      "file": "output/agi-zh-by-chapter/01-prompt-chaining.md",
+      "char_count": 8530,
+      "p0_count": 1,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 120,
+            "line_end": 120,
+            "preview": "请注意，`langchain-openai` 可替换为相应其他模型提供商对应的软件包。随后，必须为所选大语言模型(LLM)提供商(如 OpenAI、Google Gemini 或 Anthropic)在执行环境中配置所需的 API 凭证。",
+            "chinese_ratio": 0.44,
+            "english_words": 8
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 2,
+          "tagged": 2,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 2,
+      "file": "output/agi-zh-by-chapter/02-routing.md",
+      "char_count": 14747,
+      "p0_count": 3,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 29,
+            "line_end": 29,
+            "preview": "First, ensure you have the necessary libraries installed:",
+            "chinese_ratio": 0.0,
+            "english_words": 8
+          },
+          {
+            "line_start": 131,
+            "line_end": 131,
+            "preview": "你还需要为你选择的语言模型(例如 OpenAI、Google Gemini、Anthropic)设置 API key 环境变量。如前所述，这段 Python 代码使用 LangChain 库和 Google 的 Generative AI 模型(具体为 gemini-2.5-flash)构建了一个简",
+            "chinese_ratio": 0.4,
+            "english_words": 30
+          },
+          {
+            "line_start": 329,
+            "line_end": 330,
+            "preview": "- Google Agent Developer Kit Documentation: https://google.github.io/adk-docs/ - LangGraph Documentation: https://www.langchain.com/",
+            "chinese_ratio": 0.0,
+            "english_words": 16
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 4,
+          "tagged": 4,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": [
+            {
+              "line": 139,
+              "tag": "javascript",
+              "issue": "javascript but contains Python"
+            }
+          ]
+        },
+        "svg_refs": [],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 3,
+      "file": "output/agi-zh-by-chapter/03-parallelization.md",
+      "char_count": 14494,
+      "p0_count": 5,
+      "p1_count": 0,
+      "p2_count": 1,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 202,
+            "line_end": 202,
+            "preview": "为最终的合成步骤定义了一个独立的 `ChatPromptTemplate`,它将摘要、问题、关键词和原始主题作为输入，以生成一个综合性的回答。这个完整的端到端处理链被命名为 `full_parallel_chain`,它通过将 `map_chain`(并行化块)按顺序接入合成提示，再接入语言模型和输",
+            "chinese_ratio": 0.41,
+            "english_words": 9
+          },
+          {
+            "line_start": 275,
+            "line_end": 284,
+            "preview": "Do NOT add any external knowledge, facts, or details not present in these specific summaries.** **Input Summaries:** *   **Renewable Energy:** {renewa",
+            "chinese_ratio": 0.0,
+            "english_words": 22
+          },
+          {
+            "line_start": 300,
+            "line_end": 301,
+            "preview": "final output of the sequence )",
+            "chinese_ratio": 0.0,
+            "english_words": 4
+          },
+          {
+            "line_start": 317,
+            "line_end": 317,
+            "preview": "此代码定义了一个多智能体系统，用于研究并综合有关可持续技术进步的信息。它设置了三个 `LlmAgent` 实例作为专项研究员。`ResearcherAgent_1` 专注于可再生能源，`ResearcherAgent_2` 研究电动汽车技术，`ResearcherAgent_3` 调查碳捕集方法。每",
+            "chinese_ratio": 0.47,
+            "english_words": 13
+          },
+          {
+            "line_start": 353,
+            "line_end": 355,
+            "preview": "- Google Agent Developer Kit (ADK) 文档(多智能体系统): https://google.github.io/adk-docs/agents/multi-agents/ - LangChain Expression Language (LCEL) 文档(并行化): ",
+            "chinese_ratio": 0.06,
+            "english_words": 33
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 5,
+          "tagged": 5,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "3-1",
+            "line": 6
+          },
+          {
+            "fig_id": "3-2",
+            "line": 7
+          }
+        ],
+        "punctuation": [
+          {
+            "line": 6,
+            "count": 1,
+            "preview": "![图 3.1 并行化模式:多组件并发执行](svg/fig-3-1.svg)"
+          }
+        ]
+      }
+    },
+    {
+      "chapter_id": 4,
+      "file": "output/agi-zh-by-chapter/04-reflection.md",
+      "char_count": 11428,
+      "p0_count": 5,
+      "p1_count": 0,
+      "p2_count": 3,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 33,
+            "line_end": 35,
+            "preview": "Repeat until the post meets quality standards. – 收益：产出更精炼、更有效的内容。",
+            "chinese_ratio": 0.2,
+            "english_words": 7
+          },
+          {
+            "line_start": 235,
+            "line_end": 235,
+            "preview": "此代码演示了在 Google ADK 中使用顺序代理 (Sequential Agent) 流水线来生成和审查文本。",
+            "chinese_ratio": 0.43,
+            "english_words": 4
+          },
+          {
+            "line_start": 255,
+            "line_end": 255,
+            "preview": "图 4.2 反思(Reflection)设计模式，生产者(Producer)智能体与评审(Critique)智能体",
+            "chinese_ratio": 0.33,
+            "english_words": 3
+          },
+          {
+            "line_start": 275,
+            "line_end": 278,
+            "preview": "1. Google Agent Developer Kit (ADK) 文档(多智能体系统): <https://google.github.io/adk-docs/agents/multi-agents/> 2. LangChain Expression Language (LCEL) 文档: <",
+            "chinese_ratio": 0.04,
+            "english_words": 44
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [
+          {
+            "forbidden": "代理",
+            "line": 91,
+            "preview": "进。\n\n\n\n此代码演示了在 Google ADK 中使用顺序代理 (Sequential Agent) 流水线来生成和审查文"
+          }
+        ],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 3,
+          "tagged": 3,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "4-1",
+            "line": 249
+          },
+          {
+            "fig_id": "4-2",
+            "line": 253
+          }
+        ],
+        "punctuation": [
+          {
+            "line": 276,
+            "count": 1,
+            "preview": "2. LangChain Expression Language (LCEL) 文档: <https://python.langchain.com/docs/i"
+          },
+          {
+            "line": 277,
+            "count": 1,
+            "preview": "3. LangGraph 文档: <https://www.langchain.com/langgraph>"
+          },
+          {
+            "line": 278,
+            "count": 1,
+            "preview": "4. Kumar, A., et al. (2024). 《Training Language Models to Self-Correct via Reinf"
+          }
+        ]
+      }
+    },
+    {
+      "chapter_id": 5,
+      "file": "output/agi-zh-by-chapter/05-tool-use.md",
+      "char_count": 24903,
+      "p0_count": 5,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 126,
+            "line_end": 126,
+            "preview": "该代码使用 LangChain 库和 Google Gemini 模型设置了一个支持工具调用的智能体。它定义了一个 search_information 工具，用于模拟对特定查询提供事实性答案。该工具针对 \"weather in london\"、\"capital of france\" 和 \"popu",
+            "chinese_ratio": 0.48,
+            "english_words": 16
+          },
+          {
+            "line_start": 251,
+            "line_end": 251,
+            "preview": "Google 智能体开发工具包(Agent Developer Kit, ADK)包含一组原生集成的工具库，可以直接纳入智能体的能力中。",
+            "chinese_ratio": 0.49,
+            "english_words": 5
+          },
+          {
+            "line_start": 411,
+            "line_end": 411,
+            "preview": "此代码使用 Python 中的 `google.adk` 库定义了一个 Google ADK 应用程序。它具体使用了一个 `VSearchAgent`,该智能体旨在通过搜索指定的 Vertex AI Search 数据存储来回答问题。代码初始化了一个名为 `\"q2_strategy_vsearch_",
+            "chinese_ratio": 0.32,
+            "english_words": 16
+          },
+          {
+            "line_start": 530,
+            "line_end": 530,
+            "preview": "*Fig. 5.2 Tool use design pattern*",
+            "chinese_ratio": 0.0,
+            "english_words": 5
+          },
+          {
+            "line_start": 548,
+            "line_end": 551,
+            "preview": "- CrewAI 文档(工具):https://docs.crewai.com/concepts/tools - Google 智能体开发套件(ADK)文档(工具):https://google.github.io/adk-docs/tools/ - LangChain 文档(工具):https:/",
+            "chinese_ratio": 0.09,
+            "english_words": 32
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 5,
+          "tagged": 5,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": [
+            {
+              "line": 253,
+              "tag": "javascript",
+              "issue": "javascript but contains Python"
+            }
+          ]
+        },
+        "svg_refs": [
+          {
+            "fig_id": "5-1",
+            "line": 6
+          },
+          {
+            "fig_id": "5-2",
+            "line": 528
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 6,
+      "file": "output/agi-zh-by-chapter/06-planning.md",
+      "char_count": 11613,
+      "p0_count": 4,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 94,
+            "line_end": 94,
+            "preview": "图 6.1 Google Deep Research 智能体生成使用 Google 搜索作为工具的执行规划",
+            "chinese_ratio": 0.36,
+            "english_words": 4
+          },
+          {
+            "line_start": 112,
+            "line_end": 112,
+            "preview": "图 6.3 由 Google Deep Research 智能体为我们生成的最终输出，该智能体使用 Google Search 作为工具来分析所获取的来源",
+            "chinese_ratio": 0.44,
+            "english_words": 5
+          },
+          {
+            "line_start": 126,
+            "line_end": 126,
+            "preview": "要使用该 API,你需要向 `client.responses.create` 端点发送请求，指定模型、输入提示以及智能体可以使用的工具。输入通常包括一个 `system_message`,用于定义智能体的角色定位和期望的输出格式，以及 `user_query`。",
+            "chinese_ratio": 0.48,
+            "english_words": 4
+          },
+          {
+            "line_start": 251,
+            "line_end": 253,
+            "preview": "- Google DeepResearch (Gemini Feature): gemini.google.com - OpenAI, *Introducing deep research*, https://openai.com/index/introducing-deep-research/ -",
+            "chinese_ratio": 0.0,
+            "english_words": 32
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 2,
+          "tagged": 2,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": [
+            {
+              "line": 130,
+              "tag": "yaml",
+              "issue": "yaml but contains Python"
+            }
+          ]
+        },
+        "svg_refs": [
+          {
+            "fig_id": "6-4",
+            "line": 8
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 7,
+      "file": "output/agi-zh-by-chapter/07-multi-agent-collaboration.md",
+      "char_count": 18233,
+      "p0_count": 9,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 140,
+            "line_end": 140,
+            "preview": "以下代码示例演示了如何通过创建父子关系，在 Google ADK 中建立一个分层(层次结构)的智能体结构。代码定义了两类智能体：LlmAgent 和一个从 BaseAgent 派生的自定义 TaskExecutor 智能体。TaskExecutor 专为特定的、非 LLM 的任务而设计，在本例中，它",
+            "chinese_ratio": 0.45,
+            "english_words": 19
+          },
+          {
+            "line_start": 142,
+            "line_end": 142,
+            "preview": "Finally, it prints a message indicating that the agent hierarchy has been successfully created.",
+            "chinese_ratio": 0.0,
+            "english_words": 12
+          },
+          {
+            "line_start": 193,
+            "line_end": 193,
+            "preview": "此代码片段展示了在 Google ADK 框架内使用 LoopAgent 来建立迭代工作流。代码定义了两个智能体(Agent):ConditionChecker 和 ProcessingStep。ConditionChecker 是一个自定义智能体，用于检查会话状态中的 \"status\" 值。如果 ",
+            "chinese_ratio": 0.3,
+            "english_words": 24
+          },
+          {
+            "line_start": 195,
+            "line_end": 195,
+            "preview": "LoopAgent 将按顺序执行子智能体，最多进行 10 次迭代，如果 ConditionChecker 发现状态为 \"completed\" 则停止。",
+            "chinese_ratio": 0.36,
+            "english_words": 3
+          },
+          {
+            "line_start": 247,
+            "line_end": 247,
+            "preview": "这段代码阐释了 Google ADK 中顺序智能体(SequentialAgent)模式的应用，该模式用于构建线性工作流。代码使用 `google.adk.agents` 库定义了一个顺序智能体流水线。流水线由两个智能体组成：`step1` 和 `step2`。`step1` 命名为 `\"Step1",
+            "chinese_ratio": 0.45,
+            "english_words": 13
+          },
+          {
+            "line_start": 272,
+            "line_end": 272,
+            "preview": "以下代码示例演示了 Google ADK 中的并行化智能体(ParallelAgent)模式，该模式支持多个智能体任务的并发执行。`data_gatherer` 被设计为并发运行两个子智能体：`weather_fetcher` 和 `news_fetcher`。`weather_fetcher` 智",
+            "chinese_ratio": 0.41,
+            "english_words": 11
+          },
+          {
+            "line_start": 307,
+            "line_end": 307,
+            "preview": "所提供的代码片段展示了 Google ADK 中的\"智能体即工具\"模式，使一个智能体能够以类似于函数调用的方式利用另一个智能体的能力。具体而言，该代码使用 Google 的 `LlmAgent` 和 `AgentTool` 类定义了一个图像生成系统。它由两个智能体组成：一个父级 `artist_ag",
+            "chinese_ratio": 0.45,
+            "english_words": 8
+          },
+          {
+            "line_start": 392,
+            "line_end": 392,
+            "preview": "图 7.3 多智能体设计模式(Multi-Agent Design Pattern)",
+            "chinese_ratio": 0.21,
+            "english_words": 4
+          },
+          {
+            "line_start": 407,
+            "line_end": 408,
+            "preview": "- 多智能体协作机制：大语言模型综述：https://arxiv.org/abs/2501.06322 - 多智能体系统——协作的力量：https://aravindakumar.medium.com/introducing-multi-agent-frameworks-the-power-of-c",
+            "chinese_ratio": 0.15,
+            "english_words": 15
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 8,
+          "tagged": 8,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "7-1",
+            "line": 28
+          },
+          {
+            "fig_id": "7-2",
+            "line": 32
+          },
+          {
+            "fig_id": "7-3",
+            "line": 390
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 8,
+      "file": "output/agi-zh-by-chapter/08-memory-management.md",
+      "char_count": 24328,
+      "p0_count": 7,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 66,
+            "line_end": 66,
+            "preview": "此外，还有 VertexAiSessionService,它使用 Vertex AI 基础设施，在 Google Cloud 上实现可扩展的生产部署。",
+            "chinese_ratio": 0.31,
+            "english_words": 4
+          },
+          {
+            "line_start": 157,
+            "line_end": 158,
+            "preview": "在背后，Runner 会识别你的 `output_key`，并在调用 `append_event` 时自动通过 `state_delta` 创建必要的动作。 2. **标准方式：使用 `EventActions.state_delta`（用于更复杂的更新）**：当你需要执行更复杂的操作时——例如同时",
+            "chinese_ratio": 0.47,
+            "english_words": 5
+          },
+          {
+            "line_start": 234,
+            "line_end": 234,
+            "preview": "**Memory: Long-Term Knowledge with MemoryService**",
+            "chinese_ratio": 0.0,
+            "english_words": 6
+          },
+          {
+            "line_start": 249,
+            "line_end": 249,
+            "preview": "Google ADK 提供了多种实现来构建这种长期知识存储。`InMemoryMemoryService` 提供了一种适用于测试用途的临时存储方案，但数据不会在应用重启后保留。在生产环境中，通常使用 `VertexAiRagMemoryService`。",
+            "chinese_ratio": 0.47,
+            "english_words": 4
+          },
+          {
+            "line_start": 310,
+            "line_end": 310,
+            "preview": "**ConversationBufferMemory:链的自动化记忆**。对于将记忆直接集成到链中，`ConversationBufferMemory` 是一个常见选择。它保存一个对话缓冲区，并将其提供给提示(Prompt)。其行为可以通过两个关键参数进行自定义：",
+            "chinese_ratio": 0.47,
+            "english_words": 3
+          },
+          {
+            "line_start": 533,
+            "line_end": 533,
+            "preview": "To quickly recap the main points about memory management:",
+            "chinese_ratio": 0.0,
+            "english_words": 8
+          },
+          {
+            "line_start": 557,
+            "line_end": 559,
+            "preview": "ADK Memory, https://google.github.io/adk-docs/sessions/memory/ LangGraph Memory, https://langchain-ai.github.io/langgraph/concepts/memory/ Vertex AI A",
+            "chinese_ratio": 0.0,
+            "english_words": 35
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 14,
+          "tagged": 14,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "8-1",
+            "line": 280
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 9,
+      "file": "output/agi-zh-by-chapter/09-learning-and-adaptation.md",
+      "char_count": 8486,
+      "p0_count": 6,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 36,
+            "line_end": 36,
+            "preview": "h an iterative cycle (see Fig. 9.1).",
+            "chinese_ratio": 0.0,
+            "english_words": 4
+          },
+          {
+            "line_start": 54,
+            "line_end": 54,
+            "preview": "**图 9.2** 跨迭代的性能表现。关键改进处标注了对应的工具或智能体修改。(由 Maxime Robeyns、Martin Szummer、Laurence Aitchison 提供)",
+            "chinese_ratio": 0.33,
+            "english_words": 6
+          },
+          {
+            "line_start": 62,
+            "line_end": 62,
+            "preview": "该项目正在积极开发中，旨在为那些对在工具使用及其他智能体式任务上对 LLM 进行后训练感兴趣的人提供一个稳健的框架，完整代码可在 https://github.com/MaximeRobeyns/self_improving_coding_agent/ 的 GitHub 仓库获取，以便进一步探索和贡",
+            "chinese_ratio": 0.47,
+            "english_words": 6
+          },
+          {
+            "line_start": 78,
+            "line_end": 78,
+            "preview": "该控制器负责编排若干关键组件：程序采样器(Program Sampler)、程序数据库(Program Database)、评估器池(Evaluator Pool)以及大语言模型集成(LLM Ensembles)。其主要功能是促进这些组件的学习与适应(Learning and Adaptation)",
+            "chinese_ratio": 0.4,
+            "english_words": 11
+          },
+          {
+            "line_start": 129,
+            "line_end": 135,
+            "preview": "- AlphaEvolve 博客：https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/ - Goodfellow, I., ",
+            "chinese_ratio": 0.01,
+            "english_words": 75
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [
+          {
+            "forbidden": "映射",
+            "line": 49,
+            "preview": " Prompt):包含问题陈述或指令、打开的文件内容以及目录映射。\n- 助手消息(Assistant Messages):记"
+          }
+        ],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 1,
+          "tagged": 1,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": [
+            {
+              "line": 82,
+              "tag": "yaml",
+              "issue": "yaml but contains Python"
+            }
+          ]
+        },
+        "svg_refs": [],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 10,
+      "file": "output/agi-zh-by-chapter/10-model-context-protocol.md",
+      "char_count": 14770,
+      "p0_count": 13,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 65,
+            "line_end": 65,
+            "preview": "1. 发现(Discovery):模型上下文协议(MCP)客户端代表大语言模型(LLM)查询 MCP 服务器，询问它提供哪些能力。服务器以清单形式响应，列出其可用的工具(例如 send_email)、资源(例如 customer_database)和提示。",
+            "chinese_ratio": 0.47,
+            "english_words": 4
+          },
+          {
+            "line_start": 81,
+            "line_end": 81,
+            "preview": "- **生成式媒体编排**:MCP 使智能体能够与先进的生成式媒体服务集成。通过 MCP Tools for Genmedia Services,智能体可以编排涉及 Google Imagen 的图像生成、Google Veo 的视频创作、Google Chirp 3 HD 的逼真语音，或 Goog",
+            "chinese_ratio": 0.4,
+            "english_words": 14
+          },
+          {
+            "line_start": 101,
+            "line_end": 101,
+            "preview": "要为智能体配置文件系统交互，必须创建一个 `agent.py` 文件(例如，位于 `./adk_agent_samples/mcp_agent/agent.py`)。`MCPToolset` 在 `LlmAgent` 对象的 `tools` 列表中实例化。关键是要将 `args` 列表中的 `\"/p",
+            "chinese_ratio": 0.4,
+            "english_words": 10
+          },
+          {
+            "line_start": 149,
+            "line_end": 149,
+            "preview": "'npx'(Node Package Execute)是 npm(Node Package Manager)5.2.0 及以上版本附带的实用工具，能够直接从 npm 注册表执行 Node.js 包。这消除了全局安装的需求。本质上，'npx'充当 npm 包的运行器，通常用于运行许多作为 Node.j",
+            "chinese_ratio": 0.38,
+            "english_words": 14
+          },
+          {
+            "line_start": 151,
+            "line_end": 151,
+            "preview": "创建 `__init__.py` 文件是必要的，以确保 `agent.py` 文件被识别为智能体开发套件(ADK)中可发现的 Python 包的一部分。该文件应与 `agent.py` 位于同一目录中。",
+            "chinese_ratio": 0.46,
+            "english_words": 4
+          },
+          {
+            "line_start": 201,
+            "line_end": 203,
+            "preview": "- \"Show me the contents of this folder.\" - \"Read the 'sample.txt' file.\"(前提是 `sample.txt` 位于 `TARGET_FOLDER_PATH`。) - \"What's in 'another_file.md'?\"",
+            "chinese_ratio": 0.03,
+            "english_words": 13
+          },
+          {
+            "line_start": 254,
+            "line_end": 254,
+            "preview": "可以将 ADK 智能体设置为模型上下文协议(MCP)客户端，以使用正在运行的 FastMCP 服务器。这需要使用 FastMCP 服务器的网络地址(通常是 http://localhost:8000)配置 HttpServerParameters。可以包含 tool_filter 参数，以将智能体的",
+            "chinese_ratio": 0.45,
+            "english_words": 8
+          },
+          {
+            "line_start": 256,
+            "line_end": 256,
+            "preview": "当智能体接收到类似\"问候 John Doe\"的请求时，其内嵌的大语言模型(LLM)会识别出通过模型上下文协议(MCP)可用的 'greet' 工具，并使用参数 \"John Doe\" 调用该工具，然后返回服务器的响应。此过程演示了通过 MCP 暴露的用户自定义工具与 Google ADK 智能体的集成",
+            "chinese_ratio": 0.44,
+            "english_words": 15
+          },
+          {
+            "line_start": 287,
+            "line_end": 287,
+            "preview": "在 `fastmcp_client_agent` 目录内创建一个 `__init__.py` 文件是必要的。这可确保智能体被识别为 Google ADK 可发现的 Python 包。",
+            "chinese_ratio": 0.33,
+            "english_words": 3
+          },
+          {
+            "line_start": 289,
+            "line_end": 289,
+            "preview": "开始时，打开一个新终端并运行 `python fastmcp_server.py` 以启动 FastMCP 服务器。接下来，在终端中切换到 `fastmcp_client_agent` 的父目录(例如 `adk_agent_samples`),然后执行 `adk web`。当 ADK Web UI ",
+            "chinese_ratio": 0.35,
+            "english_words": 11
+          },
+          {
+            "line_start": 299,
+            "line_end": 299,
+            "preview": "**Visual Summary (Fig. 10.1)**",
+            "chinese_ratio": 0.0,
+            "english_words": 3
+          },
+          {
+            "line_start": 305,
+            "line_end": 310,
+            "preview": "- 模型上下文协议(Model Context Protocol, MCP)是一个开放标准，用于促进大语言模型(LLM)与外部应用程序、数据源和工具之间的标准化通信。 - 它采用客户端-服务器架构，定义了暴露和消费资源、提示和工具的方法。 - 智能体开发工具包(Agent Development K",
+            "chinese_ratio": 0.49,
+            "english_words": 25
+          },
+          {
+            "line_start": 316,
+            "line_end": 319,
+            "preview": "- FastMCP Documentation. FastMCP. https://github.com/jlowin/fastmcp - MCP Toolbox for Databases Documentation. (Latest). MCP Toolbox for Databases. ht",
+            "chinese_ratio": 0.0,
+            "english_words": 63
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 8,
+          "tagged": 8,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "10-1",
+            "line": 8
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 11,
+      "file": "output/agi-zh-by-chapter/11-goal-setting-and-monitoring.md",
+      "char_count": 12306,
+      "p0_count": 3,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 53,
+            "line_end": 53,
+            "preview": "Fig. 11.1 Goal Setting and Monitor example",
+            "chinese_ratio": 0.0,
+            "english_words": 6
+          },
+          {
+            "line_start": 277,
+            "line_end": 281,
+            "preview": "- **同行程序员(The Peer Programmer)**：协助编写代码并进行头脑风暴。 - **代码审查员(The Code Reviewer)**：捕获错误并提出改进建议。 - **文档编写员(The Documenter)**：生成清晰简洁的文档。 - **测试编写员(The Test ",
+            "chinese_ratio": 0.34,
+            "english_words": 14
+          },
+          {
+            "line_start": 314,
+            "line_end": 314,
+            "preview": "SMART 目标框架。https://en.wikipedia.org/wiki/SMART_criteria",
+            "chinese_ratio": 0.07,
+            "english_words": 5
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 4,
+          "tagged": 4,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "11-2",
+            "line": 8
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 12,
+      "file": "output/agi-zh-by-chapter/12-exception-handling-and-recovery.md",
+      "char_count": 5901,
+      "p0_count": 3,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 19,
+            "line_end": 19,
+            "preview": "异常处理与恢复(Exception Handling and Recovery)对于任何部署在现实世界场景中、无法保证完美运行条件的智能体(Agent)都至关重要。",
+            "chinese_ratio": 0.49,
+            "english_words": 5
+          },
+          {
+            "line_start": 124,
+            "line_end": 126,
+            "preview": "1. McConnell, S. (2004). 《Code Complete》(第 2 版). Microsoft Press. 2. O'Neill, V. (2022). 《Improving Fault Tolerance and Reliability of Heterogeneous M",
+            "chinese_ratio": 0.01,
+            "english_words": 34
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [
+          {
+            "forbidden": "代理",
+            "line": 25,
+            "preview": "le)时，它需要优雅地处理这些情况。这可能包括暂停操作、使用代理，或报告失败的具体 URL。\n- **机器人与制造业**:执"
+          }
+        ],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 2,
+          "tagged": 2,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 13,
+      "file": "output/agi-zh-by-chapter/13-human-in-the-loop.md",
+      "char_count": 8090,
+      "p0_count": 1,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 144,
+            "line_end": 144,
+            "preview": "Wu、Xingjiao、Luwei Xiao、Yixuan Sun、Junhang Zhang、Tianlong Ma、Liang He 合著的《机器学习中的人在回路综述》: https://arxiv.org/abs/2108.00941",
+            "chinese_ratio": 0.12,
+            "english_words": 13
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 2,
+          "tagged": 2,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "13-1",
+            "line": 147
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 14,
+      "file": "output/agi-zh-by-chapter/14-knowledge-retrieval-rag.md",
+      "char_count": 15812,
+      "p0_count": 7,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 40,
+            "line_end": 40,
+            "preview": "核心检索机制通常由 Meta AI 的 FAISS 或 Google Research 的 ScaNN 等库提供支持，这些库对这些系统的效率至关重要。",
+            "chinese_ratio": 0.44,
+            "english_words": 5
+          },
+          {
+            "line_start": 78,
+            "line_end": 78,
+            "preview": "知识检索(Retrieval-Augmented Generation,RAG)正在改变大语言模型(Large Language Models,LLMs)在各个行业中的应用方式，增强了它们提供更准确且具有上下文相关性响应的能力。",
+            "chinese_ratio": 0.42,
+            "english_words": 8
+          },
+          {
+            "line_start": 270,
+            "line_end": 270,
+            "preview": "这段 Python 代码演示了使用 LangChain 和 LangGraph 实现的检索增强生成(RAG)流水线。该过程首先从一个文本文档构建知识库，将文档分割成块并转换为嵌入。这些嵌入随后被存储到 Weaviate 向量数据库中，以实现高效的信息检索。LangGraph 中的 StateGrap",
+            "chinese_ratio": 0.47,
+            "english_words": 12
+          },
+          {
+            "line_start": 302,
+            "line_end": 302,
+            "preview": "Google AI for Developers Documentation. Retrieval Augmented Generation - https://cloud.google.com/vertex-ai/generative-ai/docs/rag-engine/rag-overview",
+            "chinese_ratio": 0.0,
+            "english_words": 18
+          },
+          {
+            "line_start": 304,
+            "line_end": 304,
+            "preview": "Google Cloud Vertex AI RAG Corpus https://cloud.google.com/vertex-ai/generative-ai/docs/rag-engine/manage-your-rag-corpus#corpus-management",
+            "chinese_ratio": 0.0,
+            "english_words": 20
+          },
+          {
+            "line_start": 306,
+            "line_end": 306,
+            "preview": "LangChain and LangGraph: Leonie Monigatti, \"Retrieval-Augmented Generation (RAG): From Theory to LangChain Implementation,\" https://medium.com/data-sc",
+            "chinese_ratio": 0.0,
+            "english_words": 26
+          },
+          {
+            "line_start": 310,
+            "line_end": 310,
+            "preview": "Retrieval-Augmented Generation with Graphs (GraphRAG), https://arxiv.org/abs/2501.00309",
+            "chinese_ratio": 0.0,
+            "english_words": 10
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 3,
+          "tagged": 3,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "14-2",
+            "line": 10
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 15,
+      "file": "output/agi-zh-by-chapter/15-inter-agent-communication-a2a.md",
+      "char_count": 13175,
+      "p0_count": 14,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 13,
+            "line_end": 13,
+            "preview": "A2A 得到了众多技术公司与服务提供商的支持，包括 Atlassian、Box、LangChain、MongoDB、Salesforce、SAP 和 ServiceNow。Microsoft 规划将 A2A 集成到 Azure AI Foundry 和 Copilot Studio 中，以体现其对开",
+            "chinese_ratio": 0.3,
+            "english_words": 13
+          },
+          {
+            "line_start": 149,
+            "line_end": 149,
+            "preview": "- **双向传输层安全(Transport Layer Security, TLS):** 通过加密与认证的连接来防止未授权访问与数据拦截，从而确保通信安全。",
+            "chinese_ratio": 0.48,
+            "english_words": 4
+          },
+          {
+            "line_start": 159,
+            "line_end": 159,
+            "preview": "A2A 是一套协议，用以补充 Anthropic 的模型上下文协议(Model Context Protocol)(MCP)(参见图 15.1)。MCP 侧重于为智能体以及它们与外部数据、工具的交互组织上下文结构，而 A2A 则促进",
+            "chinese_ratio": 0.45,
+            "english_words": 6
+          },
+          {
+            "line_start": 179,
+            "line_end": 179,
+            "preview": "让我们考察智能体到智能体(A2A)协议的实际应用。仓库 https://github.com/google-a2a/a2a-samples/tree/main/samples 提供了 Java、Go 和 Python 示例，展示 LangGraph、CrewAI、Azure AI Foundry 和",
+            "chinese_ratio": 0.27,
+            "english_words": 27
+          },
+          {
+            "line_start": 209,
+            "line_end": 209,
+            "preview": "这段 Python 代码定义了一个异步函数 `create_agent`，用于构造一个 ADK LlmAgent。它首先使用提供的客户端凭据初始化一个 `CalendarToolset`，以访问 Google Calendar API。随后，创建一个 `LlmAgent` 实例，配置指定的 Gemi",
+            "chinese_ratio": 0.49,
+            "english_words": 13
+          },
+          {
+            "line_start": 211,
+            "line_end": 211,
+            "preview": "下面的代码展示了智能体如何通过其特定的指令和工具进行定义。请注意，这里仅展示了解释此功能所需的代码；你可以通过以下链接访问完整文件：https://github.com/a2aproject/a2a-samples/blob/main/samples/python/agents/birthday_p",
+            "chinese_ratio": 0.33,
+            "english_words": 9
+          },
+          {
+            "line_start": 286,
+            "line_end": 286,
+            "preview": "这段 Python 代码演示了如何设置一个符合 A2A 协议的\"日历智能体(Calendar Agent)\",以便使用 Google Calendar 检查用户可用时间。它涉及验证 API 密钥或 Vertex AI 配置以用于身份验证。智能体的能力(包括 \"check_availability\" ",
+            "chinese_ratio": 0.43,
+            "english_words": 17
+          },
+          {
+            "line_start": 290,
+            "line_end": 290,
+            "preview": "建议进一步通过 https://www.trickle.so/blog/how-to-build-google-a2a-project 上的代码演示探索 A2A。该链接提供的资源包括 Python 和 JavaScript 的 A2A 客户端与服务器示例、多智能体 Web 应用程序、命令行界面，以及",
+            "chinese_ratio": 0.39,
+            "english_words": 11
+          },
+          {
+            "line_start": 320,
+            "line_end": 320,
+            "preview": "Communication between different AI frameworks such as LangGraph, CrewAI, and Google ADK https://www.trickle.so/blog/how-to-build-google-a2a-project",
+            "chinese_ratio": 0.0,
+            "english_words": 18
+          },
+          {
+            "line_start": 322,
+            "line_end": 322,
+            "preview": "Designing Collaborative Multi-Agent Systems with the A2A Protocol https://www.oreilly.com/radar/designing-collaborative-multi-agent-systems-with-the-a",
+            "chinese_ratio": 0.0,
+            "english_words": 21
+          },
+          {
+            "line_start": 324,
+            "line_end": 324,
+            "preview": "Getting Started with Agent-to-Agent (A2A) Protocol: https://codelabs.developers.google.com/intro-a2a-purchasing-concierge#0",
+            "chinese_ratio": 0.0,
+            "english_words": 14
+          },
+          {
+            "line_start": 326,
+            "line_end": 326,
+            "preview": "Google A2A GitHub Repository. https://github.com/google-a2a/A2A",
+            "chinese_ratio": 0.0,
+            "english_words": 7
+          },
+          {
+            "line_start": 328,
+            "line_end": 328,
+            "preview": "Google Agent Development Kit (ADK) https://google.github.io/adk-docs/",
+            "chinese_ratio": 0.0,
+            "english_words": 10
+          },
+          {
+            "line_start": 330,
+            "line_end": 330,
+            "preview": "Google AgentDiscovery—https://a2a-protocol.org/latest/",
+            "chinese_ratio": 0.0,
+            "english_words": 6
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 6,
+          "tagged": 6,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "15-1",
+            "line": 161
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 16,
+      "file": "output/agi-zh-by-chapter/16-resource-aware-optimization.md",
+      "char_count": 15295,
+      "p0_count": 5,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 107,
+            "line_end": 107,
+            "preview": "代码采用 MIT 许可证，可在 GitHub 上获取：(https://github.com/mahtabsyed/21-Agentic-Patterns/blob/main/16_Resource_Aware_Opt_LLM_Reflection_v2.ipynb)。",
+            "chinese_ratio": 0.09,
+            "english_words": 11
+          },
+          {
+            "line_start": 295,
+            "line_end": 295,
+            "preview": "OpenRouter 提供了一个详细的排行榜(https://openrouter.ai/rankings),该排行榜根据各模型的累计令牌(token)生成量对可用的 AI 模型进行排名。它还汇集了不同提供商的最新模型(ChatGPT、Gemini、Claude)(见图 16.1)。",
+            "chinese_ratio": 0.39,
+            "english_words": 8
+          },
+          {
+            "line_start": 297,
+            "line_end": 297,
+            "preview": "图 16.1 OpenRouter 网站(https://openrouter.ai/)",
+            "chinese_ratio": 0.07,
+            "english_words": 3
+          },
+          {
+            "line_start": 321,
+            "line_end": 321,
+            "preview": "**图 16.2 资源感知优化(Resource-Aware Optimization)设计模式**",
+            "chinese_ratio": 0.22,
+            "english_words": 3
+          },
+          {
+            "line_start": 336,
+            "line_end": 338,
+            "preview": "Gemini Flash 2.5 & Gemini 2.5 Pro: https://aistudio.google.com/ Google 的智能体开发工具包(ADK):https://google.github.io/adk-docs/ OpenRouter: https://openroute",
+            "chinese_ratio": 0.05,
+            "english_words": 20
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 7,
+          "tagged": 7,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "16-1",
+            "line": 341
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 17,
+      "file": "output/agi-zh-by-chapter/17-reasoning-techniques.md",
+      "char_count": 18542,
+      "p0_count": 13,
+      "p1_count": 0,
+      "p2_count": 1,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 49,
+            "line_end": 53,
+            "preview": "**Thought 2(构建搜索查询):** - \"differences classical vs quantum computers\" - \"how quantum computers work\" - \"how classical computers work\" - \"applications ",
+            "chinese_ratio": 0.04,
+            "english_words": 16
+          },
+          {
+            "line_start": 176,
+            "line_end": 177,
+            "preview": "An example is the use of external tools within Google's ADK for generating code.",
+            "chinese_ratio": 0.0,
+            "english_words": 11
+          },
+          {
+            "line_start": 212,
+            "line_end": 212,
+            "preview": "图 17.3 推理与行动(Reasoning and Act)",
+            "chinese_ratio": 0.19,
+            "english_words": 3
+          },
+          {
+            "line_start": 246,
+            "line_end": 246,
+            "preview": "**图 17.5 用于信息收集的 Google Deep Research**",
+            "chinese_ratio": 0.21,
+            "english_words": 3
+          },
+          {
+            "line_start": 277,
+            "line_end": 277,
+            "preview": "**图 17.6 多次反思步骤的 DeepSearch 示例。(Courtesy of authors)**",
+            "chinese_ratio": 0.19,
+            "english_words": 3
+          },
+          {
+            "line_start": 279,
+            "line_end": 279,
+            "preview": "迭代式地完善查询，并合成带有引用的答案。前端和后端均支持热重载。项目结构包含独立的 `frontend/` 和 `backend/` 目录。环境搭建需要 Node.js、npm、Python 3.8+ 以及一个 Google Gemini API 密钥。在后端的 `.env` 文件中配置好 API ",
+            "chinese_ratio": 0.45,
+            "english_words": 31
+          },
+          {
+            "line_start": 309,
+            "line_end": 309,
+            "preview": "**图 17.7** 使用 LangGraph 的 DeepSearch 示例(代码来自 `backend/src/agent/graph.py`)",
+            "chinese_ratio": 0.14,
+            "english_words": 6
+          },
+          {
+            "line_start": 311,
+            "line_end": 311,
+            "preview": "应用采用 React 结合 Vite、Tailwind CSS、Shadcn UI、LangGraph 以及 Google Gemini 构建。项目遵循 Apache 2.0 许可证(图 17.7)。",
+            "chinese_ratio": 0.18,
+            "english_words": 9
+          },
+          {
+            "line_start": 353,
+            "line_end": 353,
+            "preview": "\"Chain-of-Thought Prompting Elicits Reasoning in Large Language Models\",Wei 等人(2022)",
+            "chinese_ratio": 0.02,
+            "english_words": 9
+          },
+          {
+            "line_start": 355,
+            "line_end": 355,
+            "preview": "Multi-Agent Design: Optimizing Agents with Better Prompts and Topologies,https://arxiv.org/abs/2502.02533",
+            "chinese_ratio": 0.0,
+            "english_words": 14
+          },
+          {
+            "line_start": 357,
+            "line_end": 357,
+            "preview": "\"Program-Aided Language Models\",Gao 等人(2023)",
+            "chinese_ratio": 0.05,
+            "english_words": 5
+          },
+          {
+            "line_start": 359,
+            "line_end": 359,
+            "preview": "\"ReAct: Synergizing Reasoning and Acting in Language Models\",Yao 等人(2023)",
+            "chinese_ratio": 0.03,
+            "english_words": 8
+          },
+          {
+            "line_start": 361,
+            "line_end": 361,
+            "preview": "\"Tree of Thoughts: Deliberate Problem Solving with Large Language Models\",Yao 等人(2023)",
+            "chinese_ratio": 0.02,
+            "english_words": 10
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 5,
+          "tagged": 5,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "17-4",
+            "line": 228
+          },
+          {
+            "fig_id": "17-6",
+            "line": 275
+          },
+          {
+            "fig_id": "17-3",
+            "line": 363
+          },
+          {
+            "fig_id": "17-8",
+            "line": 364
+          }
+        ],
+        "punctuation": [
+          {
+            "line": 363,
+            "count": 1,
+            "preview": "![图 17.3 ReAct 范式:推理-行动循环](svg/fig-17-3.svg)"
+          }
+        ]
+      }
+    },
+    {
+      "chapter_id": 18,
+      "file": "output/agi-zh-by-chapter/18-guardrails-safety-patterns.md",
+      "char_count": 21771,
+      "p0_count": 8,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 5,
+            "line_end": 5,
+            "preview": "护栏(Guardrails),也称为安全模式(Safety Patterns),是一种至关重要的机制，用于确保智能体能够安全、合乎伦理地按预期运行，尤其是在这些智能体日益自主并被集成到关键系统中时。它们充当一层保护，引导智能体的行为与输出，以防止有害的、带有偏见的、不相关的或其他不当的响应。这些护栏",
+            "chinese_ratio": 0.47,
+            "english_words": 25
+          },
+          {
+            "line_start": 55,
+            "line_end": 55,
+            "preview": "**安全策略指令(Safety Policy Directives):**",
+            "chinese_ratio": 0.16,
+            "english_words": 3
+          },
+          {
+            "line_start": 80,
+            "line_end": 81,
+            "preview": "* 批评、诽谤或以负面方式呈现我们的专有品牌或服务：[Your Service A、Your Product B]。 * 发起比较、套取情报或讨论竞争对手：[Rival Company X、Competing Solution Y]。",
+            "chinese_ratio": 0.32,
+            "english_words": 8
+          },
+          {
+            "line_start": 304,
+            "line_end": 304,
+            "preview": "该提示明确提供了若干可接受输入的示例以便说明，并概述了一个评估流程：逐条对照每个指令检查输入，只有在未发现明显违规时才默认判定为\"合规\"。期望的输出格式被严格定义为 JSON 对象，包含 `compliance_status`(合规状态)、`evaluation_summary`(评估摘要)以及 `",
+            "chinese_ratio": 0.45,
+            "english_words": 26
+          },
+          {
+            "line_start": 306,
+            "line_end": 306,
+            "preview": "该任务的 expected_output 强化了要求返回符合 PolicyEvaluation 模式的 JSON 对象。关键之处在于，此任务被分配给 policy_enforcer_agent,并使用 validate_policy_evaluation 函数作为其护栏。output_pydanti",
+            "chinese_ratio": 0.46,
+            "english_words": 16
+          },
+          {
+            "line_start": 365,
+            "line_end": 365,
+            "preview": "此代码定义了一个智能体及一个用于工具执行的验证回调。它导入了必要的组件，如智能体(Agent)、BaseTool 和 ToolContext。`validate_tool_params` 函数是一个回调，设计为在智能体调用工具之前执行。该函数接受工具、其参数和 ToolContext 作为输入。在回",
+            "chinese_ratio": 0.49,
+            "english_words": 6
+          },
+          {
+            "line_start": 419,
+            "line_end": 419,
+            "preview": "你**必须**以 JSON 格式输出你的判定，其中包含两个键：`decision` 和 `reasoning`。",
+            "chinese_ratio": 0.36,
+            "english_words": 3
+          },
+          {
+            "line_start": 469,
+            "line_end": 472,
+            "preview": "Google AI Safety Principles: https://ai.google/principles/ OpenAI API Moderation Guide: https://platform.openai.com/docs/guides/ moderation Prompt inj",
+            "chinese_ratio": 0.0,
+            "english_words": 23
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 9,
+          "tagged": 9,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "18-1",
+            "line": 448
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 19,
+      "file": "output/agi-zh-by-chapter/19-evaluation-and-monitoring.md",
+      "char_count": 17641,
+      "p0_count": 6,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 44,
+            "line_end": 45,
+            "preview": "- `agent_response`:\"The capital of France is Paris.\" - `ground_truth`:\"Paris is the capital of France.\"",
+            "chinese_ratio": 0.0,
+            "english_words": 8
+          },
+          {
+            "line_start": 94,
+            "line_end": 94,
+            "preview": "本节介绍一个概念性的 Python 类 `LLMInteractionMonitor`,用于跟踪大语言模型(LLM)交互中的 token 使用情况。该类包含输入 token 和输出 token 的计数器。其 `record_interaction` 方法通过拆分提示字符串和响应字符串来模拟 toke",
+            "chinese_ratio": 0.49,
+            "english_words": 12
+          },
+          {
+            "line_start": 159,
+            "line_end": 164,
+            "preview": "Suggest specific improvements. * `concerns`: A list of any specific legal, ethical, or method- ological concerns. * `recommended_action`: A brief reco",
+            "chinese_ratio": 0.0,
+            "english_words": 20
+          },
+          {
+            "line_start": 257,
+            "line_end": 257,
+            "preview": "这段 Python 代码定义了一个 `LLMJudgeForLegalSurvey` 类，用于使用生成式 AI 模型评估法律调查问题的质量。它利用 `google.generativeai` 库与 Gemini 模型交互。",
+            "chinese_ratio": 0.35,
+            "english_words": 5
+          },
+          {
+            "line_start": 265,
+            "line_end": 269,
+            "preview": "| 评估方法 | 优势 | 劣势 | |---|---|---| | 人工评估(Human Evaluation) | 能够捕捉细微行为 | 难以扩展，成本高昂且耗时，因为涉及主观人为因素 | | LLM 充当评审器(LLM-as-a-Judge) | 一致、高效、可扩展 | 可能会忽略中间步骤；受",
+            "chinese_ratio": 0.44,
+            "english_words": 8
+          },
+          {
+            "line_start": 347,
+            "line_end": 351,
+            "preview": "- ADK Evaluate: https://google.github.io/adk-docs/evaluate/ - ADK Web: https://github.com/google/adk-web - Agent-as-a-Judge: Evaluate Agents with Agen",
+            "chinese_ratio": 0.0,
+            "english_words": 45
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 4,
+          "tagged": 4,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "19-4",
+            "line": 327
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 20,
+      "file": "output/agi-zh-by-chapter/20-prioritization.md",
+      "char_count": 11293,
+      "p0_count": 2,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 254,
+            "line_end": 254,
+            "preview": "AI 驱动的决策支持系统在敏捷软件项目管理中的应用：增强风险缓解与资源分配；https://www.mdpi.com/2079-8954/13/3/208",
+            "chinese_ratio": 0.43,
+            "english_words": 4
+          },
+          {
+            "line_start": 256,
+            "line_end": 256,
+            "preview": "人工智能在项目管理中的安全性研究：信息系统项目中 AI 驱动的项目调度与资源分配案例研究；https://www.irejournals.com/paper-details/1706160",
+            "chinese_ratio": 0.41,
+            "english_words": 6
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 1,
+          "tagged": 1,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "20-1",
+            "line": 238
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 21,
+      "file": "output/agi-zh-by-chapter/21-exploration-and-discovery.md",
+      "char_count": 13013,
+      "p0_count": 5,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 25,
+            "line_end": 25,
+            "preview": "图 21.1 AI 共同科学家：从构思到验证。(Courtesy of the authors)",
+            "chinese_ratio": 0.25,
+            "english_words": 3
+          },
+          {
+            "line_start": 60,
+            "line_end": 60,
+            "preview": "让我们看一个探索与发现领域中智能体式 AI(Agentic AI)的具体实例：Agent Laboratory,这是 Samuel Schmidgall 在 MIT 许可证下开发的一个项目。",
+            "chinese_ratio": 0.39,
+            "english_words": 6
+          },
+          {
+            "line_start": 134,
+            "line_end": 149,
+            "preview": "- \"Summary\":对论文内容及其贡献的总结。 - \"Strengths\":论文优点列表。 - \"Weaknesses\":论文缺点列表。 - \"Originality\":评分 1 到 4(低、中、高、很高)。 - \"Quality\":评分 1 到 4(低、中、高、很高)。 - \"Clarity\"",
+            "chinese_ratio": 0.31,
+            "english_words": 31
+          },
+          {
+            "line_start": 243,
+            "line_end": 243,
+            "preview": "**图 21.2 探索与发现(Exploration and Discovery)设计模式**",
+            "chinese_ratio": 0.21,
+            "english_words": 3
+          },
+          {
+            "line_start": 258,
+            "line_end": 261,
+            "preview": "- Agent Laboratory: Using LLM Agents as Research Assistants https://github.com/SamuelSchmidgall/AgentLaboratory - AgentRxiv: Towards Collaborative Aut",
+            "chinese_ratio": 0.0,
+            "english_words": 51
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 5,
+          "tagged": 5,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 22,
+      "file": "output/agi-zh-by-chapter/22-advanced-prompting-techniques.md",
+      "char_count": 23727,
+      "p0_count": 9,
+      "p1_count": 0,
+      "p2_count": 1,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 27,
+            "line_end": 44,
+            "preview": "| 英文 | 中文 | 英文 | 中文 | |---|---|---|---| | Act | 行动 | Identify | 识别 | | Analyze | 分析 | List | 列出 | | Categorize | 分类 | Measure | 衡量 | | Classify | 归类 |",
+            "chinese_ratio": 0.13,
+            "english_words": 32
+          },
+          {
+            "line_start": 77,
+            "line_end": 82,
+            "preview": "- 示例： - 将以下英语句子翻译成西班牙语： - 英语：'Thank you.' - 西班牙语：'Gracias.' - 英语：'Please.' - 西班牙语：",
+            "chinese_ratio": 0.34,
+            "english_words": 4
+          },
+          {
+            "line_start": 98,
+            "line_end": 107,
+            "preview": "- 示例： - 将以下电影评论的情感分类为 POSITIVE(正面)、NEUTRAL(中性)或 NEGATIVE(负面): - 评论：\"演技出色，故事引人入胜。\" - 情感：POSITIVE - 评论：\"还可以，没什么特别的。\" - 情感：NEUTRAL - 评论：\"我觉得剧情混乱，角色也不讨喜。\"",
+            "chinese_ratio": 0.43,
+            "english_words": 6
+          },
+          {
+            "line_start": 129,
+            "line_end": 133,
+            "preview": "- 示例： - \\<instruction\\>总结以下文章，聚焦于作者所提出的主要论点。\\</instruction\\> - \\<article\\> - [在此处插入文章的完整文本] - \\</article\\>",
+            "chinese_ratio": 0.31,
+            "english_words": 4
+          },
+          {
+            "line_start": 137,
+            "line_end": 141,
+            "preview": "- **系统提示(System prompts)**:定义 AI 操作参数的基础指令(例如，\"你是一名技术写作人员；你的语气必须正式而精确\")。 - **外部数据(External data)**: - **检索到的文档(Retrieved documents)**:从知识库中主动获取的信息，用于为",
+            "chinese_ratio": 0.46,
+            "english_words": 11
+          },
+          {
+            "line_start": 151,
+            "line_end": 152,
+            "preview": "- 示例： - 从以下文本中提取信息，并以包含\"name\"、\"address\"和\"phone_number\"键的 JSON 对象形式返回。",
+            "chinese_ratio": 0.36,
+            "english_words": 3
+          },
+          {
+            "line_start": 158,
+            "line_end": 158,
+            "preview": "- Text: \"Contact John Smith at 123 Main St, Anytown, CA or call (555) 123-4567.\"",
+            "chinese_ratio": 0.0,
+            "english_words": 7
+          },
+          {
+            "line_start": 164,
+            "line_end": 164,
+            "preview": "你可以使用 `model_validate_json` 方法直接将 LLM 输出的 JSON 字符串解析为 Pydantic 对象。这尤其有用，因为它将解析与验证合二为一。",
+            "chinese_ratio": 0.45,
+            "english_words": 3
+          },
+          {
+            "line_start": 319,
+            "line_end": 325,
+            "preview": "{ \"tool_code\": \"get_current_weather\", \"tool_name\": \"get_current_weather\", \"parameters\": { \"city\": \"London\" } }",
+            "chinese_ratio": 0.0,
+            "english_words": 3
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 4,
+          "tagged": 4,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": [
+            {
+              "line": 166,
+              "tag": "yaml",
+              "issue": "yaml but contains Python"
+            }
+          ]
+        },
+        "svg_refs": [],
+        "punctuation": [
+          {
+            "line": 25,
+            "count": 2,
+            "preview": "下表汇总了常用的动作动词,供提示设计参考:"
+          }
+        ]
+      }
+    },
+    {
+      "chapter_id": 23,
+      "file": "output/agi-zh-by-chapter/23-ai-agentic-interactions.md",
+      "char_count": 5293,
+      "p0_count": 1,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 63,
+            "line_end": 73,
+            "preview": "Bibliography Anthropic Computer use: https://docs.anthropic.com/en/docs/build-with-claude/ computer-use Browser Use: https://docs.browser-use.com/intr",
+            "chinese_ratio": 0.0,
+            "english_words": 79
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 0,
+          "tagged": 0,
+          "untagged": 0,
+          "untagged_ratio": 0,
+          "mismatched": []
+        },
+        "svg_refs": [],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 24,
+      "file": "output/agi-zh-by-chapter/24-agentic-frameworks-overview.md",
+      "char_count": 7093,
+      "p0_count": 1,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 152,
+            "line_end": 156,
+            "preview": "参考文献 Crew.AI, https://docs.crewai.com/en/introduction Google's ADK, https://google.github.io/adk-docs/ LangChain, https://www.langchain.com/ LangGraph",
+            "chinese_ratio": 0.02,
+            "english_words": 24
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 4,
+          "tagged": 4,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 25,
+      "file": "output/agi-zh-by-chapter/25-building-an-agent-with-agentspace.md",
+      "char_count": 2101,
+      "p0_count": 7,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 17,
+            "line_end": 17,
+            "preview": "图 25.1 展示了如何通过从 Google Cloud Console 中选择 AI Applications 来访问 AgentSpace。",
+            "chinese_ratio": 0.21,
+            "english_words": 5
+          },
+          {
+            "line_start": 21,
+            "line_end": 21,
+            "preview": "你的智能体能够连接各类服务，包括 Google 日历、Google 邮箱、Workday、Jira、Outlook 以及 Service Now(参见图 25.2)。",
+            "chinese_ratio": 0.29,
+            "english_words": 7
+          },
+          {
+            "line_start": 33,
+            "line_end": 33,
+            "preview": "AgentSpace 还提供了诸多高级特性，例如与用于存储自有数据的数据存储集成、与 Google Knowledge Graph 或你自己的私有 Knowledge Graph 集成、用于将你的智能体暴露到 Web 的 Web 界面，以及用于监控使用情况的分析功能等(见图 25.5)。",
+            "chinese_ratio": 0.49,
+            "english_words": 8
+          },
+          {
+            "line_start": 49,
+            "line_end": 50,
+            "preview": "- Agentspace 企业版官方文档：https://cloud.google.com/agentspace/agentspace-enterprise/docs/agent-designer - Google Cloud Skills Boost:https://www.cloudskills",
+            "chinese_ratio": 0.04,
+            "english_words": 19
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [
+          {
+            "forbidden": "映射",
+            "line": 11,
+            "preview": "实现这一目标，AgentSpace 构建了一个企业知识图谱，映射人员、文档与数据之间的关系。这使 AI 能够理解上下文并提供"
+          },
+          {
+            "forbidden": "映射",
+            "line": 43,
+            "preview": "t)。该系统的架构将复杂的后端流程(如自主推理和企业知识图谱映射)与用于构建智能体的图形用户界面相连接。通过该界面，用户可以"
+          }
+        ],
+        "soft_hyphens": [],
+        "short_content": [
+          {
+            "char_count": 2101,
+            "threshold": 3000,
+            "file": "output/agi-zh-by-chapter/25-building-an-agent-with-agentspace.md"
+          }
+        ],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 0,
+          "tagged": 0,
+          "untagged": 0,
+          "untagged_ratio": 0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "25-1",
+            "line": 19
+          },
+          {
+            "fig_id": "25-2",
+            "line": 23
+          },
+          {
+            "fig_id": "25-3",
+            "line": 27
+          },
+          {
+            "fig_id": "25-4",
+            "line": 31
+          },
+          {
+            "fig_id": "25-5",
+            "line": 35
+          },
+          {
+            "fig_id": "25-6",
+            "line": 39
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 26,
+      "file": "output/agi-zh-by-chapter/26-ai-agents-on-the-cli.md",
+      "char_count": 3936,
+      "p0_count": 6,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 19,
+            "line_end": 22,
+            "preview": "1. **多模态开发**:你从设计文件中提供一个 Web 组件的截图(`gemini describe component.png`),并指示它：\"编写 HTML 和 CSS 代码，构建一个与该截图外观完全一致的 React 组件。确保它是响应式的。\" 2. **云资源管理**:利用其内置的 Goo",
+            "chinese_ratio": 0.43,
+            "english_words": 36
+          },
+          {
+            "line_start": 48,
+            "line_end": 48,
+            "preview": "3. **Shell 命令助手：** 当用户对某个复杂的 Shell 命令没有把握时，可以提问：`gh? find all files larger than 50 MB, compress them, and place them in an archive folder`(查找所有大于 50 M",
+            "chinese_ratio": 0.31,
+            "english_words": 16
+          },
+          {
+            "line_start": 62,
+            "line_end": 62,
+            "preview": "Anthropic. Claude. https://docs.anthropic.com/en/docs/claude-code/cli-reference",
+            "chinese_ratio": 0.0,
+            "english_words": 11
+          },
+          {
+            "line_start": 64,
+            "line_end": 64,
+            "preview": "GitHub Copilot CLI https://docs.github.com/en/copilot/github-copilot-enterprise/copilot-cli",
+            "chinese_ratio": 0.0,
+            "english_words": 13
+          },
+          {
+            "line_start": 66,
+            "line_end": 66,
+            "preview": "Google Gemini Cli https://github.com/google-gemini/gemini-cli",
+            "chinese_ratio": 0.0,
+            "english_words": 10
+          },
+          {
+            "line_start": 68,
+            "line_end": 68,
+            "preview": "Terminal Bench: https://www.tbench.ai/",
+            "chinese_ratio": 0.0,
+            "english_words": 5
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 0,
+          "tagged": 0,
+          "untagged": 0,
+          "untagged_ratio": 0,
+          "mismatched": []
+        },
+        "svg_refs": [],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 27,
+      "file": "output/agi-zh-by-chapter/27-under-the-hood-reasoning-engines.md",
+      "char_count": 8721,
+      "p0_count": 12,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 34,
+            "line_end": 34,
+            "preview": "你说：\"如果 Tom 比 Jane 年长，而 Jane 比 Sue 年长，那么谁最年轻？\"",
+            "chinese_ratio": 0.38,
+            "english_words": 4
+          },
+          {
+            "line_start": 70,
+            "line_end": 73,
+            "preview": "1. Tom 比 Jane 年长 2. Jane 比 Sue 年长 3. 所以：Tom > Jane > Sue 4.",
+            "chinese_ratio": 0.14,
+            "english_words": 7
+          },
+          {
+            "line_start": 75,
+            "line_end": 76,
+            "preview": "因此，Sue 是最年轻的 这被称为思维链(Chain of Thought)推理——我模拟\"逐步思考\"的过程。",
+            "chinese_ratio": 0.47,
+            "english_words": 3
+          },
+          {
+            "line_start": 86,
+            "line_end": 87,
+            "preview": "示例： \"Sue 是最年轻的，因为 Tom 比 Jane 年长，而 Jane 比 Sue 年长。\"",
+            "chinese_ratio": 0.33,
+            "english_words": 5
+          },
+          {
+            "line_start": 180,
+            "line_end": 183,
+            "preview": "- **逻辑结构(Logical Structure)**:我致力于以清晰的、循序渐进的方式呈现信息，模拟人类的逻辑过程。 - **概率评估(Probabilistic Evaluation)**:我根据预测的相关性和清晰度权衡多个回复选项，选出最有效的一个。 - **上下文敏感性(Context ",
+            "chinese_ratio": 0.5,
+            "english_words": 8
+          },
+          {
+            "line_start": 205,
+            "line_end": 211,
+            "preview": "- 分词(Tokenization) - 我将文本拆分为离散符号：[\"Which\", \"is\", \"larger\", \":\", \"3\", \"^\", \"4\", \"or\", \"4\", \"^\", \"3\", \"?\"] - 句法分析(Syntactic parsing) - 我识别出该结构： - COMPAR",
+            "chinese_ratio": 0.18,
+            "english_words": 9
+          },
+          {
+            "line_start": 238,
+            "line_end": 239,
+            "preview": "PHASE 2——知识检索(KNOWLEDGE RETRIEVAL) 6. 检索算术事实",
+            "chinese_ratio": 0.23,
+            "english_words": 3
+          },
+          {
+            "line_start": 248,
+            "line_end": 249,
+            "preview": "**PHASE 3—EXECUTION & VERIFICATION**(执行与验证阶段) 8. Perform comparison(执行比较)",
+            "chinese_ratio": 0.15,
+            "english_words": 5
+          },
+          {
+            "line_start": 264,
+            "line_end": 265,
+            "preview": "PHASE 5—METACOGNITIVE REFLECTION (internal) 12. Confidence score",
+            "chinese_ratio": 0.0,
+            "english_words": 6
+          },
+          {
+            "line_start": 304,
+            "line_end": 306,
+            "preview": "1. **接收并解析输入：** - 我接收你的查询(\"你是如何推理的？\")。 - 将其分解为各个组成部分：关键词(\"reason\"、\"explain\"、\"step by step\")、语法和意图。这里的关键意图是解释我的内部过程。",
+            "chinese_ratio": 0.49,
+            "english_words": 4
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [
+          {
+            "forbidden": "映射",
+            "line": 207,
+            "preview": "NENT_TERMS [3^4] 与 [4^3]。\n- 语义映射(Semantic mapping)\n  - 我将\"larg"
+          },
+          {
+            "forbidden": "映射",
+            "line": 208,
+            "preview": "mantic mapping)\n  - 我将\"larger\"映射到数值关系\">\"。\n\n阶段一——问题识别与策略选择\n\n4. "
+          }
+        ],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 1,
+          "tagged": 1,
+          "untagged": 0,
+          "untagged_ratio": 0.0,
+          "mismatched": []
+        },
+        "svg_refs": [],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 28,
+      "file": "output/agi-zh-by-chapter/28-coding-agents.md",
+      "char_count": 2528,
+      "p0_count": 3,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 25,
+            "line_end": 25,
+            "preview": "3. **建立版本化的提示库**:在你的项目 Git 仓库中创建一个专用的 `/prompts` 目录。其中，以 Markdown 文件形式存储每个专业智能体的调用提示(例如 `reviewer.md`、`documenter.md`、`tester.md`)。将提示视为代码，使整个团队能够长期协作",
+            "chinese_ratio": 0.48,
+            "english_words": 6
+          },
+          {
+            "line_start": 46,
+            "line_end": 47,
+            "preview": "- AI 负责生成 Google 超过 30% 的代码 <https://www.reddit.com/r/singularity/comments/1k7rxo0/ai_is_now_writing_well_over_30_of_the_code_at/> - AI 负责生成 Microsoft",
+            "chinese_ratio": 0.06,
+            "english_words": 23
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [
+          {
+            "char_count": 2528,
+            "threshold": 3000,
+            "file": "output/agi-zh-by-chapter/28-coding-agents.md"
+          }
+        ],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 0,
+          "tagged": 0,
+          "untagged": 0,
+          "untagged_ratio": 0,
+          "mismatched": []
+        },
+        "svg_refs": [
+          {
+            "fig_id": "28-1",
+            "line": 19
+          }
+        ],
+        "punctuation": []
+      }
+    },
+    {
+      "chapter_id": 29,
+      "file": "output/agi-zh-by-chapter/29-conclusion.md",
+      "char_count": 5956,
+      "p0_count": 2,
+      "p1_count": 0,
+      "p2_count": 0,
+      "issues": {
+        "pdf_header": [],
+        "translator_notes": [],
+        "short_english_clauses": [
+          {
+            "line_start": 68,
+            "line_end": 68,
+            "preview": "**循环神经网络(Recurrent Neural Network, RNN)** 循环神经网络是 Transformer 之前的基础架构。RNN 顺序处理信息，通过循环维持对先前输入的\"记忆\",因此适用于文本和语音处理等任务。",
+            "chinese_ratio": 0.48,
+            "english_words": 6
+          },
+          {
+            "line_start": 74,
+            "line_end": 74,
+            "preview": "**Mamba** Mamba 是近期出现的 AI 架构，采用选择性状态空间模型(Selective State Space Model, SSM)高效处理序列，尤其适用于极长上下文。其选择性机制使其能够聚焦相关信息、过滤噪声，有望成为 Transformer 的替代方案。",
+            "chinese_ratio": 0.47,
+            "english_words": 8
+          }
+        ],
+        "duplicate_h1": [],
+        "forbidden_terms_v2": [],
+        "soft_hyphens": [],
+        "short_content": [],
+        "duplicate_paragraphs": [],
+        "bold_english": [],
+        "heading_hierarchy": [],
+        "duplicate_h2": [],
+        "code_fence_stats": {
+          "total_fences": 0,
+          "tagged": 0,
+          "untagged": 0,
+          "untagged_ratio": 0,
+          "mismatched": []
+        },
+        "svg_refs": [],
+        "punctuation": []
+      }
+    }
+  ]
+}

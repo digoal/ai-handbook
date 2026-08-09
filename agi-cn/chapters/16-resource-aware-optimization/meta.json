@@ -1,0 +1,15 @@
+{
+  "id": 16,
+  "part": "I",
+  "slug": "resource-aware-optimization",
+  "en_title": "Resource-Aware Optimization",
+  "zh_title": "资源感知优化",
+  "pdf_pages": [
+    256,
+    270
+  ],
+  "page_count": 15,
+  "char_count": 27971,
+  "word_count": 3561,
+  "source_file": "chapters/16-resource-aware-optimization/source.md"
+}

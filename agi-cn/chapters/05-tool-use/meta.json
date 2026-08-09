@@ -1,0 +1,15 @@
+{
+  "id": 5,
+  "part": "I",
+  "slug": "tool-use",
+  "en_title": "Tool Use (Function Calling)",
+  "zh_title": "工具使用(函数调用)",
+  "pdf_pages": [
+    97,
+    117
+  ],
+  "page_count": 21,
+  "char_count": 39311,
+  "word_count": 5117,
+  "source_file": "chapters/05-tool-use/source.md"
+}

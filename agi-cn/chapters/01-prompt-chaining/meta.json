@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "part": "I",
+  "slug": "prompt-chaining",
+  "en_title": "Prompt Chaining",
+  "zh_title": "提示链",
+  "pdf_pages": [
+    41,
+    54
+  ],
+  "page_count": 14,
+  "char_count": 26808,
+  "word_count": 3876,
+  "source_file": "chapters/01-prompt-chaining/source.md"
+}

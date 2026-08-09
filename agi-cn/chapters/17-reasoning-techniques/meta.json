@@ -1,0 +1,15 @@
+{
+  "id": 17,
+  "part": "I",
+  "slug": "reasoning-techniques",
+  "en_title": "Reasoning Techniques",
+  "zh_title": "推理技术",
+  "pdf_pages": [
+    271,
+    293
+  ],
+  "page_count": 23,
+  "char_count": 45836,
+  "word_count": 6304,
+  "source_file": "chapters/17-reasoning-techniques/source.md"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 2,
+  "part": "I",
+  "slug": "routing",
+  "en_title": "Routing",
+  "zh_title": "路由",
+  "pdf_pages": [
+    55,
+    68
+  ],
+  "page_count": 14,
+  "char_count": 27115,
+  "word_count": 3523,
+  "source_file": "chapters/02-routing/source.md"
+}

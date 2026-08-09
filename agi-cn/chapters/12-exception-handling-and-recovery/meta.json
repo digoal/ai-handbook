@@ -1,0 +1,15 @@
+{
+  "id": 12,
+  "part": "I",
+  "slug": "exception-handling-and-recovery",
+  "en_title": "Exception Handling and Recovery",
+  "zh_title": "异常处理与恢复",
+  "pdf_pages": [
+    208,
+    215
+  ],
+  "page_count": 8,
+  "char_count": 14099,
+  "word_count": 1963,
+  "source_file": "chapters/12-exception-handling-and-recovery/source.md"
+}

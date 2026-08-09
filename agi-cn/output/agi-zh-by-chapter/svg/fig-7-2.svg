@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <marker id="arrow-7_2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="800" height="600" fill="#FFFFFF"/>
+  <text x="400" y="30" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="20" fill="#111827">智能体的多种通信与交互方式</text>
+
+  <!-- (1) 点对点消息传递 -->
+  <text x="100" y="65" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="15" fill="#111827">(1) 点对点消息传递</text>
+  <rect x="40" y="90" width="80" height="45" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="80" y="118" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">Agent A</text>
+  <rect x="150" y="90" width="80" height="45" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="190" y="118" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">Agent B</text>
+  <line x1="120" y1="105" x2="150" y2="105" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="150" y1="120" x2="120" y2="120" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+
+  <!-- (2) 共享消息总线/广播 -->
+  <text x="380" y="65" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="15" fill="#111827">(2) 共享消息总线/广播</text>
+  <rect x="295" y="90" width="170" height="20" rx="4" ry="4" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="380" y="104" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#111827">Message Bus</text>
+  <rect x="300" y="130" width="60" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="330" y="155" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">A1</text>
+  <rect x="380" y="130" width="60" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="410" y="155" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">A2</text>
+  <rect x="460" y="130" width="60" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="490" y="155" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">A3</text>
+  <line x1="330" y1="130" x2="350" y2="110" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="410" y1="130" x2="410" y2="110" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="490" y1="130" x2="470" y2="110" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+
+  <!-- (3) 黑板模式 -->
+  <text x="660" y="65" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="15" fill="#111827">(3) 黑板模式</text>
+  <rect x="620" y="90" width="120" height="80" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="680" y="113" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">黑板</text>
+  <text x="680" y="135" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#111827">(共享内存)</text>
+  <rect x="560" y="195" width="60" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="590" y="220" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">Agent</text>
+  <rect x="740" y="195" width="60" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="770" y="220" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">Agent</text>
+  <line x1="620" y1="210" x2="680" y2="170" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="740" y1="210" x2="680" y2="170" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+
+  <!-- (4) 中心化协调器(Hub) -->
+  <text x="130" y="295" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="15" fill="#111827">(4) 中心化协调器 (Hub)</text>
+  <rect x="90" y="320" width="80" height="50" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="130" y="343" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">Hub</text>
+  <text x="130" y="360" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#111827">协调器</text>
+  <rect x="30" y="410" width="60" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="60" y="435" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">A1</text>
+  <rect x="110" y="410" width="60" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="140" y="435" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">A2</text>
+  <rect x="190" y="410" width="60" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="220" y="435" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">A3</text>
+  <line x1="60" y1="410" x2="115" y2="370" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="140" y1="410" x2="130" y2="370" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="220" y1="410" x2="145" y2="370" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="115" y1="370" x2="60" y2="410" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="130" y1="370" x2="140" y2="410" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="145" y1="370" x2="220" y2="410" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+
+  <!-- (5) 层次化通信 -->
+  <text x="490" y="295" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="15" fill="#111827">(5) 层次化通信(上下级)</text>
+  <rect x="450" y="320" width="100" height="45" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="500" y="348" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">上级 Agent</text>
+  <rect x="340" y="410" width="80" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="380" y="435" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">下级 A1</text>
+  <rect x="460" y="410" width="80" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="500" y="435" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">下级 A2</text>
+  <rect x="580" y="410" width="80" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="620" y="435" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">下级 A3</text>
+  <rect x="380" y="485" width="80" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="420" y="510" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#111827">子级 A1-1</text>
+  <line x1="470" y1="365" x2="400" y2="410" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="500" y1="365" x2="500" y2="410" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="530" y1="365" x2="600" y2="410" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="400" y1="410" x2="470" y2="365" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="500" y1="410" x2="500" y2="365" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="600" y1="410" x2="530" y2="365" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+  <line x1="420" y1="485" x2="400" y2="450" stroke="#374151" stroke-width="2" marker-end="url(#arrow-7_2)"/>
+
+  <!-- 说明 -->
+  <text x="400" y="570" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">多智能体系统常见的五种通信与交互模式示意</text>
+</svg>

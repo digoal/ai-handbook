@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="sans-serif, Microsoft YaHei, 微软雅黑">
+  <defs>
+    <marker id="arrow-18_1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+    <marker id="arrow-emph" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#B45309"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="600" fill="#FFFFFF"/>
+
+  <!-- 标题 -->
+  <text x="400" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#111827">护栏设计模式总览</text>
+  <text x="400" y="58" text-anchor="middle" font-size="13" fill="#6B7280">多层防御的纵深安全策略 (Defense in Depth)</text>
+
+  <!-- 输入源 -->
+  <rect x="40" y="260" width="110" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="95" y="287" text-anchor="middle" font-size="15" font-weight="bold" fill="#111827">用户输入</text>
+  <text x="95" y="306" text-anchor="middle" font-size="12" fill="#374151">User Input</text>
+
+  <!-- 中心 AI Agent (强调节点) -->
+  <rect x="340" y="240" width="120" height="100" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="3"/>
+  <text x="400" y="280" text-anchor="middle" font-size="16" font-weight="bold" fill="#111827">AI Agent</text>
+  <text x="400" y="302" text-anchor="middle" font-size="13" fill="#92400E">核心代理</text>
+  <text x="400" y="322" text-anchor="middle" font-size="12" fill="#B45309">受护栏保护</text>
+
+  <!-- 输出端 -->
+  <rect x="650" y="260" width="110" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="705" y="287" text-anchor="middle" font-size="15" font-weight="bold" fill="#111827">用户输出</text>
+  <text x="705" y="306" text-anchor="middle" font-size="12" fill="#374151">Response</text>
+
+  <!-- 5 层护栏节点 -->
+  <!-- (1) 输入验证 -->
+  <rect x="180" y="90" width="170" height="70" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="265" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="#111827">① 输入验证</text>
+  <text x="265" y="135" text-anchor="middle" font-size="12" fill="#374151">提示注入检测</text>
+  <text x="265" y="151" text-anchor="middle" font-size="11" fill="#6B7280">Prompt Injection Detection</text>
+
+  <!-- (2) 输出过滤 -->
+  <rect x="450" y="90" width="170" height="70" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="535" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="#111827">② 输出过滤</text>
+  <text x="535" y="135" text-anchor="middle" font-size="12" fill="#374151">有害内容拦截</text>
+  <text x="535" y="151" text-anchor="middle" font-size="11" fill="#6B7280">Harmful Content Filter</text>
+
+  <!-- (3) 行为约束 -->
+  <rect x="180" y="200" width="170" height="70" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="265" y="225" text-anchor="middle" font-size="15" font-weight="bold" fill="#111827">③ 行为约束</text>
+  <text x="265" y="245" text-anchor="middle" font-size="12" fill="#374151">权限限制 &amp; 工具白名单</text>
+  <text x="265" y="261" text-anchor="middle" font-size="11" fill="#6B7280">Permission Constraints</text>
+
+  <!-- (4) 审计日志 -->
+  <rect x="450" y="200" width="170" height="70" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="535" y="225" text-anchor="middle" font-size="15" font-weight="bold" fill="#111827">④ 审计日志</text>
+  <text x="535" y="245" text-anchor="middle" font-size="12" fill="#374151">行为追踪 &amp; 可追溯性</text>
+  <text x="535" y="261" text-anchor="middle" font-size="11" fill="#6B7280">Audit Logging</text>
+
+  <!-- (5) 异常处理 -->
+  <rect x="315" y="430" width="170" height="70" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="400" y="455" text-anchor="middle" font-size="15" font-weight="bold" fill="#111827">⑤ 异常处理</text>
+  <text x="400" y="475" text-anchor="middle" font-size="12" fill="#374151">熔断 &amp; 优雅降级</text>
+  <text x="400" y="491" text-anchor="middle" font-size="11" fill="#6B7280">Exception Handling</text>
+
+  <!-- 主流程连线 -->
+  <!-- 输入 -> Agent -->
+  <line x1="150" y1="290" x2="340" y2="290" stroke="#374151" stroke-width="2" marker-end="url(#arrow-18_1)"/>
+  <!-- Agent -> 输出 -->
+  <line x1="460" y1="290" x2="650" y2="290" stroke="#374151" stroke-width="2" marker-end="url(#arrow-18_1)"/>
+
+  <!-- 护栏节点到 Agent 的连线 (强调) -->
+  <!-- ①输入验证 -> Agent -->
+  <line x1="265" y1="160" x2="340" y2="255" stroke="#B45309" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-emph)"/>
+  <!-- ②输出过滤 -> Agent -->
+  <line x1="535" y1="160" x2="460" y2="255" stroke="#B45309" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-emph)"/>
+  <!-- ③行为约束 -> Agent -->
+  <line x1="350" y1="235" x2="380" y2="270" stroke="#B45309" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-emph)"/>
+  <line x1="265" y1="270" x2="380" y2="280" stroke="#B45309" stroke-width="2" stroke-dasharray="5,3"/>
+  <!-- ④审计日志 -> Agent -->
+  <line x1="450" y1="235" x2="420" y2="270" stroke="#B45309" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-emph)"/>
+  <line x1="535" y1="270" x2="420" y2="280" stroke="#B45309" stroke-width="2" stroke-dasharray="5,3"/>
+  <!-- ⑤异常处理 -> Agent -->
+  <line x1="400" y1="430" x2="400" y2="340" stroke="#B45309" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-emph)"/>
+
+  <!-- 防护层标识 -->
+  <ellipse cx="400" cy="540" rx="320" ry="22" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="400" y="546" text-anchor="middle" font-size="14" font-weight="bold" fill="#92400E">🛡️ 多层防御 · 纵深安全策略 · Defense in Depth</text>
+
+  <!-- 图例 -->
+  <g font-size="12" fill="#374151">
+    <line x1="60" y1="380" x2="100" y2="380" stroke="#374151" stroke-width="2" marker-end="url(#arrow-18_1)"/>
+    <text x="110" y="384" text-anchor="start">主数据流</text>
+
+    <line x1="220" y1="380" x2="260" y2="380" stroke="#B45309" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-emph)"/>
+    <text x="270" y="384" text-anchor="start">护栏检查/拦截</text>
+
+    <rect x="430" y="370" width="22" height="20" rx="4" ry="4" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+    <text x="460" y="384" text-anchor="start">受保护的核心</text>
+
+    <rect x="610" y="370" width="22" height="20" rx="4" ry="4" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+    <text x="640" y="384" text-anchor="start">护栏模块</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="580" text-anchor="middle" font-size="12" fill="#6B7280">输入侧 / 输出侧 / 行为侧 / 追溯侧 / 异常侧 五道防线协同保障 Agent 安全</text>
+</svg>

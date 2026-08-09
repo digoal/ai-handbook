@@ -1,0 +1,157 @@
+# 第 24 章 智能体框架速览(A Quick Overview of Agentic Frameworks)
+
+<!-- chapter: 24 | part: II | pages: 394-401 | translated_from: pdf/394-401 -->
+
+LangChain 是一个用于开发由 LLM 驱动的应用的框架。其核心优势在于 LangChain 表达式语言(LangChain Expression Language, LCEL),它允许你将各个组件像管道一样"串联"成一个链。这会形成一个清晰的线性序列，其中上一步的输出成为下一步的输入。它专为有向无环图(Directed Acyclic Graph, DAG)类工作流而构建，意味着流程单向流动，不存在循环。
+
+适用场景：
+
+- 简单 RAG:检索文档，构造提示，从 LLM 获得答案。
+- 摘要：接收用户文本，送入摘要提示，然后返回输出。
+- 抽取：从一段文本中抽取结构化数据(如 JSON)。
+
+```python
+# A simple LCEL chain conceptually
+# (This is not runnable code, just illustrates the flow)
+chain = prompt | model | output_parse
+```
+
+## 该选择哪一个？
+
+- 当应用具有清晰、可预测且线性的步骤流程时，选择 LangChain。如果你可以将流程定义为 A 到 B 到 C 而无需回退，那么使用 LangChain 与 LCEL 是最合适的工具。
+
+- 当应用需要进行推理、规划或循环运行时，选择 LangGraph。如果你的智能体需要使用工具、对结果进行反思，并可能以不同方法重试，那么你需要 LangGraph 的循环与有状态特性。
+
+如果你的智能体需要使用工具、反思结果，并可能尝试不同的方法再次尝试，你需要 LangGraph 的循环且有状态的特性。
+
+```python
+# Graph state
+class State(TypedDict):
+    topic: str
+    joke: str
+    story: str
+    poem: str
+    combined_output: str
+
+# Nodes
+def call_llm_1(state: State):
+    """First LLM call to generate initial joke"""
+    msg = llm.invoke(f"Write a joke about {state['topic']}")
+    return {"joke": msg.content}
+
+def call_llm_2(state: State):
+    """Second LLM call to generate story"""
+    msg = llm.invoke(f"Write a story about {state['topic']}")
+    return {"story": msg.content}
+
+def call_llm_3(state: State):
+    """Third LLM call to generate poem"""
+    msg = llm.invoke(f"Write a poem about {state['topic']}")
+    return {"poem": msg.content}
+
+def aggregator(state: State):
+    """Combine the joke and story into a single output"""
+    combined = f"Here's a story, joke, and poem about {state['topic']}!\n\n"
+    combined += f"STORY:\n{state['story']}\n\n"
+    combined += f"JOKE:\n{state['joke']}\n\n"
+    combined += f"POEM:\n{state['poem']}"
+    return {"combined_output": combined}
+
+# Build workflow
+parallel_builder = StateGraph(State)
+# Add nodes
+parallel_builder.add_node("call_llm_1", call_llm_1)
+parallel_builder.add_node("call_llm_2", call_llm_2)
+parallel_builder.add_node("call_llm_3", call_llm_3)
+parallel_builder.add_node("aggregator", aggregator)
+# Add edges to connect nodes
+parallel_builder.add_edge(START, "call_llm_1")
+parallel_builder.add_edge(START, "call_llm_2")
+parallel_builder.add_edge(START, "call_llm_3")
+parallel_builder.add_edge("call_llm_1", "aggregator")
+parallel_builder.add_edge("call_llm_2", "aggregator")
+parallel_builder.add_edge("call_llm_3", "aggregator")
+parallel_builder.add_edge("aggregator", END)
+
+parallel_workflow = parallel_builder.compile()
+# Show workflow
+display(Image(parallel_workflow.get_graph().draw_mermaid_png()))
+# Invoke
+state = parallel_workflow.invoke({"topic": "cats"})
+print(state["combined_output"])
+```
+
+这段代码定义并运行了一个以并行方式运作的 LangGraph 工作流(Workflow)。
+
+它的主要目的是同时就给定主题生成一个笑话、一个故事和一首诗，然后将它们合并为一段格式化的文本输出。
+
+## Google 的 ADK
+
+Google 的智能体开发工具包(Agent Development Kit,ADK)提供了一个高级、结构化的框架，用于构建和部署由多个相互交互的 AI 智能体组成的应用程序。它与 LangChain 和 LangGraph 形成对比，提供了一种更具倾向性(production-oriented)的系统来编排智能体协作，而不是为智能体的内部逻辑提供基础构件。LangChain 运行在最基础的层级，提供用于创建操作序列的组件和标准化接口，例如调用模型并解析其输出。LangGraph 通过引入更灵活、更强大的控制流来扩展这一能力；它将智能体的工作流视为一个有状态图。使用 LangGraph,开发者可以显式地定义节点(即函数或工具)和边(即规定执行路径)。这种图结构允许复杂的循环推理，系统能够在节点之间传递的显式管理状态对象的基础上进行循环、重试任务并做出决策。它使开发者能够对单个智能体的思考过程进行细粒度控制，或者能够从第一性原理构建多智能体系统。Google 的 ADK 抽象掉了大量这种底层的图构建工作。它不要求开发者定义每一个节点和边，而是为多智能体交互提供预构建的架构模式。例如，ADK 拥有内建的智能体类型，如 SequentialAgent 或 ParallelAgent,它们能够自动管理不同智能体之间的控制流。它围绕智能体"团队"的概念进行架构设计，通常由一个主智能体将任务委派给专门化的子智能体。状态和会话管理由框架以更隐式的方式处理，提供了一种比 LangGraph 显式状态传递更具内聚性但粒度更粗的方法。
+
+因此，虽然 LangGraph 为你提供了设计单个机器人或团队复杂连接关系的细致工具，但 Google 的 ADK 则为你提供了一条工厂流水线，用于构建和管理一支已经懂得如何协同工作的机器人队伍。
+
+
+```python
+from google.adk.agents import LlmAgent
+from google.adk.tools import google_search
+
+dice_agent = LlmAgent(
+    model="gemini-2.0-flash-exp",
+    name="question_answer_agent",
+    description="A helpful assistant agent that can answer questions.",
+    instruction="""Respond to the query using google search""",
+    tools=[google_search],
+)
+```
+
+这段代码创建了一个搜索增强型智能体。当该智能体接收到一个问题时，它不会仅仅依赖其预存的知识，而是会按照指令使用 Google Search 工具从网络中查找相关的实时信息，然后利用这些信息构建其回答。
+
+### CrewAI
+
+CrewAI 提供了一个编排框架，通过聚焦于协作角色与结构化流程来构建多智能体系统。它运行在比基础工具包更高的抽象层级之上，提供了一种模拟人类团队的概念模型。开发者无需以图的形式定义细粒度的逻辑流转，而是定义参与者及其任务分配，由 CrewAI 负责管理它们之间的交互。
+
+该框架的核心组件包括智能体(Agent)、任务(Task)与团队(Crew)。智能体不仅由其功能定义，还由其角色形象定义，包括具体的角色、目标与背景故事，这些都会引导其行为与沟通风格。任务是一项离散的、描述清晰且预期产出明确的工作单元，会被分配给某个特定的智能体。团队是包含所有智能体与任务列表的紧密单元，它执行一个预定义的流程(Process)。该流程决定工作流，通常既可以是顺序的，即一个任务的输出成为下一个任务的输入，也可以是分层的，即由一个类似管理者的智能体负责委派任务并协调其他智能体之间的工作流。
+
+与其他框架相比，CrewAI 占据了一个独特的位置。它脱离了 LangGraph 那种低层级、显式的状态管理与控制流模式(在 LangGraph 中，开发者需要将每个节点与条件边连接起来)。开发者无需构建状态机，而是设计一份团队章程。Google ADK 为整个智能体生命周期提供了一个全面的、面向生产的平台，而 CrewAI 则专门聚焦于智能体协作的逻辑，用于模拟一个由专家组成的团队。
+
+```python
+@crew
+def crew(self) -> Crew:
+    """Creates the research crew"""
+    return Crew(
+        agents=self.agents,
+        tasks=self.tasks,
+        process=Process.sequential,
+        verbose=True,
+    )
+```
+
+这段代码为 AI 智能体团队设置了顺序工作流，智能体按照特定顺序依次处理任务列表，并启用了详细日志记录以便监控其执行进度。
+
+## 其他智能体开发框架
+
+**Microsoft AutoGen**:AutoGen 是一个以编排多个智能体通过对话解决任务为中心的框架。其架构使具备不同能力的智能体能够进行交互，从而实现复杂问题的分解与协作式求解。AutoGen 的主要优势在于其灵活的、对话驱动的方法，支持动态且复杂的多智能体交互。然而，这种对话式范式可能导致执行路径的可预测性较低，可能需要复杂的提示工程以确保任务高效收敛。
+
+**LlamaIndex**:LlamaIndex 本质上是一个数据框架，旨在将大语言模型与外部和私有数据源连接起来。它擅长构建精密的数据接入与检索流水线，这些流水线对于构建能够执行 RAG 的知识型智能体至关重要。尽管其数据索引与查询能力对于创建具备上下文感知能力的智能体而言异常强大，但与智能体优先的框架相比，其用于复杂智能体式控制流与多智能体编排的原生工具相对不够成熟。当核心技术挑战是数据检索与综合时，LlamaIndex 是最佳选择。
+
+**Haystack**:Haystack 是一个开源框架，专为构建由语言模型驱动的可扩展、生产就绪的搜索系统而设计。其架构由模块化、可互操作的节点组成，这些节点构成文档检索、问答和摘要等流水线。Haystack 的主要优势在于其专注于大规模信息检索任务的性能与可扩展性，使其适用于企业级应用。一个潜在的权衡是，出于搜索流水线优化的设计，在实现高度动态和创造性的智能体式行为时可能较为僵化。
+
+**MetaGPT**:MetaGPT 通过基于一组预定义的标准操作规程(Standard Operating Procedures, SOP)分配角色和任务，实现多智能体系统。该框架对智能体协作进行结构化，以模拟软件开发公司的运作方式，让智能体扮演产品经理或工程师等角色以完成复杂任务。这种 SOP 驱动的模式能够产出高度结构化且连贯的结果，是面向代码生成等专业领域的显著优势。该框架的主要局限在于其高度专业化的特性，使其在核心设计之外难以适应通用智能体任务。
+
+**SuperAGI**:SuperAGI 是一个开源框架，旨在为自主智能体提供完整的生命周期管理系统。它包含智能体配置、监控以及图形界面等功能，旨在提升智能体执行的可靠性。其核心优势在于对生产可用性的关注，内置机制能够处理常见的故障模式(如循环执行),并提供对智能体性能的可观测性。一个潜在的缺点是，这种综合性的平台方案相比更轻量的基于库的实现方式，会引入更高的复杂度和开销。
+
+**Semantic Kernel**:Semantic Kernel 由微软开发，是一个通过"插件"(plugins)和"规划器"(planners)机制将大语言模型与传统编程代码集成的 SDK。它允许 LLM 调用原生函数并编排工作流，有效地将模型视为更大软件应用中的推理引擎。其主要优势在于与现有企业代码库的无缝集成，尤其是在 .NET 和 Python 环境中。其插件和规划器架构在概念上的开销相较于更直接的智能体框架，可能带来更陡峭的学习曲线。
+
+Strands Agents:这是一款 AWS 推出的轻量且灵活的 SDK,采用模型驱动的方式来构建和运行 AI 智能体。它设计简洁且具备可扩展性，既能支持基础的对话助手，也能支撑复杂的多智能体自主系统。该框架采用模型无关(Model-agnostic)的设计，广泛兼容各类大语言模型(LLM)提供商，并原生集成了模型上下文协议(MCP),便于访问外部工具。其核心优势在于简洁性与灵活性，提供易于上手且可定制的智能体循环(Agent Loop)。一个潜在的取舍在于：由于其轻量级设计，开发者可能需要自行构建更多的周边运营基础设施，例如高级监控或生命周期管理系统，而这些能力在更全面的框架中通常是开箱即用的。
+
+## 结论
+
+智能体式框架的版图提供了一系列多样化的工具，从用于定义智能体逻辑的低层库，到用于编排多智能体协作的高层平台。在基础层面，LangChain 支持简单的线性工作流，而 LangGraph 引入了有状态的循环图，用于更复杂的推理。CrewAI 和 Google 的 ADK 等高层框架将重点转向编排具有预定义角色的智能体团队，而 LlamaIndex 等其他框架则专注于数据密集型应用。这种多样性向开发者呈现了一个核心权衡：一方面是图式系统所提供的细粒度控制，另一方面是更具有主观倾向(opinionated)的平台所提供的精简开发体验。因此，选择合适的框架取决于应用是需要一个简单序列、一个动态的推理循环，还是一个由专家组成的管理团队。最终，这一不断演进的生态系统使开发者能够通过选择项目所需的恰当抽象层次，构建日益复杂的 AI 系统。
+
+参考文献
+Crew.AI, https://docs.crewai.com/en/introduction
+Google's ADK, https://google.github.io/adk-docs/
+LangChain, https://www.langchain.com/
+LangGraph, https://www.langchain.com/langgraph
+

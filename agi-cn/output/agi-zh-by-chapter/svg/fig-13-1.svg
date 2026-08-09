@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <marker id="arrow-13_1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#FFFFFF"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="40" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="20" font-weight="bold" fill="#111827">人在回路(HITL)模式</text>
+  
+  <!-- 智能体执行节点 (顶部) -->
+  <rect x="320" y="80" width="160" height="70" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="400" y="115" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" fill="#111827">智能体执行</text>
+  <text x="400" y="135" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">Agent Action</text>
+  
+  <!-- 生成结果节点 (右侧) -->
+  <rect x="580" y="200" width="160" height="70" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="660" y="235" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" fill="#111827">生成结果</text>
+  <text x="660" y="255" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">Generated Result</text>
+  
+  <!-- 人类审核节点 (底部, 强调) -->
+  <rect x="320" y="330" width="160" height="70" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="400" y="365" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" fill="#111827">人类审核</text>
+  <text x="400" y="385" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">Human Review ★</text>
+  
+  <!-- 人类反馈节点 (左侧) -->
+  <rect x="60" y="200" width="160" height="70" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="140" y="235" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" fill="#111827">人类反馈</text>
+  <text x="140" y="255" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">Human Feedback ★</text>
+  
+  <!-- 调整执行节点 (中间偏下) -->
+  <rect x="320" y="450" width="160" height="70" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="400" y="485" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" fill="#111827">调整执行</text>
+  <text x="400" y="505" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">Refine &amp; Re-execute</text>
+  
+  <!-- 连接箭头 -->
+  <!-- 智能体执行 → 生成结果 -->
+  <line x1="480" y1="115" x2="580" y2="220" stroke="#374151" stroke-width="2" marker-end="url(#arrow-13_1)"/>
+  
+  <!-- 生成结果 → 人类审核 -->
+  <line x1="620" y1="270" x2="480" y2="350" stroke="#374151" stroke-width="2" marker-end="url(#arrow-13_1)"/>
+  
+  <!-- 人类审核 → 人类反馈 -->
+  <line x1="320" y1="350" x2="220" y2="270" stroke="#374151" stroke-width="2" marker-end="url(#arrow-13_1)"/>
+  
+  <!-- 人类反馈 → 调整执行 -->
+  <line x1="180" y1="270" x2="320" y2="470" stroke="#374151" stroke-width="2" marker-end="url(#arrow-13_1)"/>
+  
+  <!-- 调整执行 → 智能体执行 (循环回到顶部) -->
+  <path d="M 400 450 L 400 150" stroke="#374151" stroke-width="2" marker-end="url(#arrow-13_1)" fill="none"/>
+  
+  <!-- 箭头标签 -->
+  <text x="540" y="160" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">产出</text>
+  <text x="555" y="320" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">提交审核</text>
+  <text x="245" y="320" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">反馈</text>
+  <text x="245" y="375" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">迭代</text>
+  <text x="430" y="290" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">循环</text>
+  
+  <!-- 底部说明 -->
+  <text x="400" y="565" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">人类在关键决策点介入,智能体根据反馈持续调整,形成闭环迭代</text>
+  <text x="400" y="585" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#9CA3AF">★ 强调节点:人类介入的关键环节</text>
+</svg>

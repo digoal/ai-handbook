@@ -1,0 +1,15 @@
+{
+  "id": 20,
+  "part": "I",
+  "slug": "prioritization",
+  "en_title": "Prioritization",
+  "zh_title": "优先级排序",
+  "pdf_pages": [
+    332,
+    341
+  ],
+  "page_count": 10,
+  "char_count": 18559,
+  "word_count": 2333,
+  "source_file": "chapters/20-prioritization/source.md"
+}

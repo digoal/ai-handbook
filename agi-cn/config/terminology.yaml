@@ -1,0 +1,341 @@
+---
+# terminology.yaml - 强制术语表 (v1)
+# 规则:
+#   - source: 英文术语(原文)
+#   - preferred: 推荐中文译法
+#   - first_seen: 首次出现时的格式 ("中文(English)")
+#   - later: 后续出现时的格式
+#   - forbidden: 禁止使用的译法
+#   - notes: 备注
+
+version: v1
+locked: true  # 翻译过程中不修改既有术语
+
+core_terms:
+  # ===== 智能体核心概念 =====
+  - source: Agent
+    preferred: 智能体
+    first_seen: "智能体(Agent)"
+    later: 智能体
+    forbidden: ["代理", "代理者", "代理程序"]
+    notes: 单独出现"agent"译为"智能体";Agent 类、Agent API 保留英文
+  - source: Agentic
+    preferred: 智能体式
+    first_seen: "智能体式(Agentic)"
+    later: 智能体式
+    forbidden: ["代理式", "代理的"]
+  - source: Agentic System
+    preferred: 智能体系统
+    first_seen: "智能体系统(Agentic System)"
+    later: 智能体系统
+  - source: Agentic Design Pattern
+    preferred: 智能体设计模式
+    first_seen: "智能体设计模式(Agentic Design Pattern)"
+    later: 智能体设计模式
+  - source: Multi-Agent
+    preferred: 多智能体
+    first_seen: "多智能体(Multi-Agent)"
+    later: 多智能体
+    forbidden: ["多代理", "多 agent"]
+  - source: Multi-Agent Collaboration
+    preferred: 多智能体协作
+    first_seen: "多智能体协作(Multi-Agent Collaboration)"
+    later: 多智能体协作
+  - source: Inter-Agent Communication
+    preferred: 智能体间通信
+    first_seen: "智能体间通信(Inter-Agent Communication)"
+    later: 智能体间通信
+
+  # ===== 21 个核心设计模式 =====
+  - source: Prompt Chaining
+    preferred: 提示链
+    first_seen: "提示链(Prompt Chaining)"
+    later: 提示链
+    forbidden: ["提示串联", "提示链接", "提示流水线"]
+  - source: Routing
+    preferred: 路由
+    first_seen: "路由(Routing)"
+    later: 路由
+  - source: Parallelization
+    preferred: 并行化
+    first_seen: "并行化(Parallelization)"
+    later: 并行化
+    forbidden: ["并行"]
+  - source: Reflection
+    preferred: 反思
+    first_seen: "反思(Reflection)"
+    later: 反思
+    forbidden: ["反射", "映射"]
+  - source: Self-Reflection
+    preferred: 自我反思
+    first_seen: "自我反思(Self-Reflection)"
+    later: 自我反思
+  - source: Tool Use
+    preferred: 工具使用
+    first_seen: "工具使用(Tool Use)"
+    later: 工具使用
+  - source: Function Calling
+    preferred: 函数调用
+    first_seen: "函数调用(Function Calling)"
+    later: 函数调用
+  - source: Planning
+    preferred: 规划
+    first_seen: "规划(Planning)"
+    later: 规划
+    forbidden: ["计划"]
+  - source: Memory Management
+    preferred: 记忆管理
+    first_seen: "记忆管理(Memory Management)"
+    later: 记忆管理
+  - source: Short-Term Memory
+    preferred: 短期记忆
+    first_seen: "短期记忆(Short-Term Memory)"
+    later: 短期记忆
+  - source: Long-Term Memory
+    preferred: 长期记忆
+    first_seen: "长期记忆(Long-Term Memory)"
+    later: 长期记忆
+  - source: Learning and Adaptation
+    preferred: 学习与适应
+    first_seen: "学习与适应(Learning and Adaptation)"
+    later: 学习与适应
+  - source: Model Context Protocol
+    preferred: 模型上下文协议
+    first_seen: "模型上下文协议(Model Context Protocol)"
+    later: 模型上下文协议
+  - source: MCP
+    preferred: 模型上下文协议(MCP)
+    first_seen: "模型上下文协议(MCP)"
+    later: 模型上下文协议
+  - source: Goal Setting and Monitoring
+    preferred: 目标设定与监控
+    first_seen: "目标设定与监控(Goal Setting and Monitoring)"
+    later: 目标设定与监控
+  - source: Exception Handling and Recovery
+    preferred: 异常处理与恢复
+    first_seen: "异常处理与恢复(Exception Handling and Recovery)"
+    later: 异常处理与恢复
+  - source: Human-in-the-Loop
+    preferred: 人在回路
+    first_seen: "人在回路(Human-in-the-Loop)"
+    later: 人在回路
+    forbidden: ["人在闭环", "人机交互"]
+  - source: Knowledge Retrieval
+    preferred: 知识检索
+    first_seen: "知识检索(Knowledge Retrieval)"
+    later: 知识检索
+  - source: RAG
+    preferred: 检索增强生成(RAG)
+    first_seen: "检索增强生成(RAG)"
+    later: RAG
+  - source: Retrieval-Augmented Generation
+    preferred: 检索增强生成
+    first_seen: "检索增强生成(Retrieval-Augmented Generation)"
+    later: 检索增强生成
+  - source: Agentic RAG
+    preferred: 智能体式 RAG
+    first_seen: "智能体式 RAG(Agentic RAG)"
+    later: 智能体式 RAG
+  - source: Inter-Agent Communication
+    preferred: 智能体间通信
+    first_seen: "智能体间通信(Inter-Agent Communication)"
+    later: 智能体间通信
+  - source: A2A
+    preferred: 智能体到智能体(A2A)
+    first_seen: "智能体到智能体(A2A)"
+    later: A2A
+  - source: Resource-Aware Optimization
+    preferred: 资源感知优化
+    first_seen: "资源感知优化(Resource-Aware Optimization)"
+    later: 资源感知优化
+  - source: Reasoning Techniques
+    preferred: 推理技术
+    first_seen: "推理技术(Reasoning Techniques)"
+    later: 推理技术
+  - source: Guardrails
+    preferred: 护栏
+    first_seen: "护栏(Guardrails)"
+    later: 护栏
+    forbidden: ["守卫", "防护栏", "防护"]
+  - source: Safety Patterns
+    preferred: 安全模式
+    first_seen: "安全模式(Safety Patterns)"
+    later: 安全模式
+  - source: Evaluation and Monitoring
+    preferred: 评估与监控
+    first_seen: "评估与监控(Evaluation and Monitoring)"
+    later: 评估与监控
+  - source: Prioritization
+    preferred: 优先级排序
+    first_seen: "优先级排序(Prioritization)"
+    later: 优先级排序
+  - source: Exploration and Discovery
+    preferred: 探索与发现
+    first_seen: "探索与发现(Exploration and Discovery)"
+    later: 探索与发现
+
+  # ===== AI/ML 通用术语 =====
+  - source: LLM
+    preferred: 大语言模型(LLM)
+    first_seen: "大语言模型(LLM)"
+    later: LLM
+  - source: Large Language Model
+    preferred: 大语言模型
+    first_seen: "大语言模型(Large Language Model)"
+    later: 大语言模型
+  - source: Prompt
+    preferred: 提示
+    first_seen: "提示(Prompt)"
+    later: 提示
+    forbidden: ["提示词"]
+  - source: Prompting
+    preferred: 提示工程
+    first_seen: "提示工程(Prompting)"
+    later: 提示工程
+  - source: Context Window
+    preferred: 上下文窗口
+    first_seen: "上下文窗口(Context Window)"
+    later: 上下文窗口
+  - source: Embedding
+    preferred: 嵌入
+    first_seen: "嵌入(Embedding)"
+    later: 嵌入
+    forbidden: ["嵌入向量"]
+  - source: Embeddings
+    preferred: 嵌入
+    first_seen: "嵌入(Embeddings)"
+    later: 嵌入
+  - source: Vector Database
+    preferred: 向量数据库
+    first_seen: "向量数据库(Vector Database)"
+    later: 向量数据库
+  - source: Hallucination
+    preferred: 幻觉
+    first_seen: "幻觉(Hallucination)"
+    later: 幻觉
+    forbidden: ["臆想", "虚构"]
+  - source: Inference
+    preferred: 推理
+    first_seen: "推理(Inference)"
+    later: 推理
+  - source: Fine-tuning
+    preferred: 微调
+    first_seen: "微调(Fine-tuning)"
+    later: 微调
+  - source: Few-shot
+    preferred: 少样本
+    first_seen: "少样本(Few-shot)"
+    later: 少样本
+  - source: Zero-shot
+    preferred: 零样本
+    first_seen: "零样本(Zero-shot)"
+    later: 零样本
+  - source: Chain of Thought
+    preferred: 思维链
+    first_seen: "思维链(Chain of Thought)"
+    later: 思维链
+  - source: ReAct
+    preferred: 推理-行动
+    first_seen: "推理-行动(ReAct)"
+    later: ReAct
+  - source: Tree of Thoughts
+    preferred: 思维树
+    first_seen: "思维树(Tree of Thoughts)"
+    later: 思维树
+
+  # ===== 系统组件角色 =====
+  - source: Planner
+    preferred: 规划器
+    first_seen: "规划器(Planner)"
+    later: 规划器
+  - source: Executor
+    preferred: 执行器
+    first_seen: "执行器(Executor)"
+    later: 执行器
+  - source: Router
+    preferred: 路由器
+    first_seen: "路由器(Router)"
+    later: 路由器
+  - source: Retriever
+    preferred: 检索器
+    first_seen: "检索器(Retriever)"
+    later: 检索器
+  - source: Critic
+    preferred: 评审器
+    first_seen: "评审器(Critic)"
+    later: 评审器
+    forbidden: ["批评者", "评论家"]
+  - source: Supervisor
+    preferred: 监督器
+    first_seen: "监督器(Supervisor)"
+    later: 监督器
+  - source: Orchestrator
+    preferred: 编排器
+    first_seen: "编排器(Orchestrator)"
+    later: 编排器
+  - source: Workflow
+    preferred: 工作流
+    first_seen: "工作流(Workflow)"
+    later: 工作流
+
+  # ===== 保留英文不翻译(框架/产品/API 名) =====
+  - preserve_english:
+      - LangChain
+      - LangGraph
+      - CrewAI
+      - Crew AI
+      - "Google ADK"
+      - "Google's ADK"
+      - Vertex AI
+      - AgentSpace
+      - Gemini
+      - ChatGPT
+      - Claude
+      - Grok
+      - Kimi
+      - DeepSeek
+      - OpenAI
+      - FastMCP
+      - NotebookLM
+      - OpenRouter
+      - AlphaGo
+      - AlphaEvolve
+      - OpenEvolve
+      - AlphaFold
+      - AlphaGenome
+      - NotebookLM
+      - Aider
+      - "GitHub Copilot"
+      - SICA
+      - JSON
+      - XML
+      - YAML
+      - HTML
+      - CSS
+      - JavaScript
+      - Python
+      - API
+      - SDK
+      - IDE
+      - CLI
+      - GUI
+      - "AI"
+      - "CoT"
+      - "ToT"
+      - "ReAct"
+      - "REST"
+      - "gRPC"
+      - "GraphQL"
+
+# 总体翻译规则
+translation_rules:
+  - 完整翻译正文段落,不得摘要、删节、跳过
+  - 保留所有 Markdown 结构:标题层级、列表编号、引用块、表格、图片引用
+  - 代码块完全保留英文(包括代码注释)
+  - 首次出现核心术语使用"中文(English)"格式,后续只用中文
+  - API 名、类名、函数名、变量名一律保留英文
+  - 不得添加原文不存在的内容
+  - 公式优先 LaTeX,失败的用占位符
+  - 图表用 markdown 引用 + 中文图题/表题
+  - 不要输出"以下是翻译"等元话语
+  - 否定句、条件句、情态动词(should/must/may/can)必须准确区分

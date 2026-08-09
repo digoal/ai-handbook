@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="sans-serif, Microsoft YaHei, 微软雅黑">
+  <defs>
+    <marker id="arrow-5_2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#FFFFFF"/>
+
+  <!-- 标题 -->
+  <text x="400" y="35" text-anchor="middle" font-size="20" fill="#111827" font-weight="bold">工具使用模式:ReAct 循环</text>
+
+  <!-- 副标题/说明 -->
+  <text x="400" y="58" text-anchor="middle" font-size="13" fill="#6B7280">用户查询 → 智能体决定 → 选择工具 → 调用工具 → 接收结果 → 整合到响应 → 返回用户</text>
+
+  <!-- 中心强调节点:LLM -->
+  <rect x="320" y="270" width="160" height="70" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="400" y="300" text-anchor="middle" font-size="18" fill="#111827" font-weight="bold">LLM</text>
+  <text x="400" y="322" text-anchor="middle" font-size="13" fill="#B45309">核心推理引擎</text>
+
+  <!-- 节点 1:用户查询(左上) -->
+  <rect x="60" y="120" width="160" height="65" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="140" y="148" text-anchor="middle" font-size="16" fill="#111827">用户查询</text>
+  <text x="140" y="170" text-anchor="middle" font-size="12" fill="#6B7280">User Query</text>
+
+  <!-- 节点 2:智能体决定(上中) -->
+  <rect x="320" y="120" width="160" height="65" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="400" y="148" text-anchor="middle" font-size="16" fill="#111827">智能体决定</text>
+  <text x="400" y="170" text-anchor="middle" font-size="12" fill="#6B7280">Reason / Decide</text>
+
+  <!-- 节点 3:选择工具(右上) -->
+  <rect x="580" y="120" width="160" height="65" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="660" y="148" text-anchor="middle" font-size="16" fill="#111827">选择工具</text>
+  <text x="660" y="170" text-anchor="middle" font-size="12" fill="#6B7280">Tool Selection</text>
+
+  <!-- 节点 4:调用工具(右下) -->
+  <rect x="580" y="420" width="160" height="65" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="660" y="448" text-anchor="middle" font-size="16" fill="#111827">调用工具</text>
+  <text x="660" y="470" text-anchor="middle" font-size="12" fill="#6B7280">Tool Invocation</text>
+
+  <!-- 节点 5:接收结果(下中) -->
+  <rect x="320" y="420" width="160" height="65" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="400" y="448" text-anchor="middle" font-size="16" fill="#111827">接收结果</text>
+  <text x="400" y="470" text-anchor="middle" font-size="12" fill="#6B7280">Observe Result</text>
+
+  <!-- 节点 6:整合到响应(左下) -->
+  <rect x="60" y="420" width="160" height="65" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="140" y="448" text-anchor="middle" font-size="16" fill="#111827">整合到响应</text>
+  <text x="140" y="470" text-anchor="middle" font-size="12" fill="#6B7280">Integrate Response</text>
+
+  <!-- 节点 7:返回用户(左中) -->
+  <rect x="60" y="270" width="160" height="65" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="140" y="298" text-anchor="middle" font-size="16" fill="#111827">返回用户</text>
+  <text x="140" y="320" text-anchor="middle" font-size="12" fill="#6B7280">Return to User</text>
+
+  <!-- 箭头 1: 用户查询 → 智能体决定 -->
+  <line x1="220" y1="152" x2="320" y2="152" stroke="#374151" stroke-width="2" marker-end="url(#arrow-5_2)"/>
+
+  <!-- 箭头 2: 智能体决定 → 选择工具 -->
+  <line x1="480" y1="152" x2="580" y2="152" stroke="#374151" stroke-width="2" marker-end="url(#arrow-5_2)"/>
+
+  <!-- 箭头 3: 选择工具 → 调用工具 (右下) -->
+  <path d="M 660 185 L 660 420" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrow-5_2)"/>
+
+  <!-- 箭头 4: 调用工具 → 接收结果 -->
+  <line x1="580" y1="452" x2="480" y2="452" stroke="#374151" stroke-width="2" marker-end="url(#arrow-5_2)"/>
+
+  <!-- 箭头 5: 接收结果 → 整合到响应 -->
+  <line x1="320" y1="452" x2="220" y2="452" stroke="#374151" stroke-width="2" marker-end="url(#arrow-5_2)"/>
+
+  <!-- 箭头 6: 整合到响应 → 返回用户 -->
+  <line x1="140" y1="420" x2="140" y2="335" stroke="#374151" stroke-width="2" marker-end="url(#arrow-5_2)"/>
+
+  <!-- 箭头 7: 返回用户 → LLM(回到循环) -->
+  <path d="M 220 302 L 320 302" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrow-5_2)"/>
+
+  <!-- LLM 与上下节点交互标注 -->
+  <!-- LLM → 智能体决定 -->
+  <path d="M 360 270 L 360 200 L 380 200" stroke="#374151" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrow-5_2)"/>
+  <text x="345" y="240" text-anchor="middle" font-size="11" fill="#6B7280">决策</text>
+
+  <!-- LLM → 接收结果 -->
+  <path d="M 440 340 L 440 400 L 420 400" stroke="#374151" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrow-5_2)"/>
+  <text x="470" y="375" text-anchor="middle" font-size="11" fill="#6B7280">观察</text>
+
+  <!-- LLM ↔ 调用工具 标注 -->
+  <path d="M 480 320 Q 540 340 540 380 L 580 410" stroke="#374151" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrow-5_2)"/>
+  <text x="555" y="355" text-anchor="middle" font-size="11" fill="#6B7280">行动</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="565" text-anchor="middle" font-size="13" fill="#6B7280">ReAct = Reason(推理) + Act(行动):LLM 通过循环推理与工具调用完成任务</text>
+  <text x="400" y="585" text-anchor="middle" font-size="12" fill="#6B7280">虚线表示 LLM 与各环节的交互决策;实线为主流程循环</text>
+</svg>

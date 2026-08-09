@@ -1,0 +1,15 @@
+{
+  "id": 18,
+  "part": "I",
+  "slug": "guardrails-safety-patterns",
+  "en_title": "Guardrails/Safety Patterns",
+  "zh_title": "护栏/安全模式",
+  "pdf_pages": [
+    294,
+    313
+  ],
+  "page_count": 20,
+  "char_count": 40809,
+  "word_count": 5231,
+  "source_file": "chapters/18-guardrails-safety-patterns/source.md"
+}

@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <marker id="arrow-10_1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#374151"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#B45309"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="600" fill="#FFFFFF"/>
+
+  <!-- 标题 -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="20" font-weight="bold" fill="#111827">模型上下文协议（MCP）架构</text>
+
+  <!-- ========== 左侧：MCP 客户端 (集成在 LLM 应用中) ========== -->
+  <rect x="40" y="80" width="260" height="440" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="170" y="110" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">MCP 客户端</text>
+  <text x="170" y="132" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#374151">（集成在 LLM 应用中）</text>
+
+  <!-- LLM 应用 -->
+  <rect x="70" y="155" width="200" height="60" rx="8" ry="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+  <text x="170" y="180" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="15" font-weight="bold" fill="#111827">LLM 应用</text>
+  <text x="170" y="200" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">（如聊天机器人、Agent）</text>
+
+  <!-- 连接线 LLM 应用 -> MCP 客户端核心 -->
+  <line x1="170" y1="215" x2="170" y2="245" stroke="#374151" stroke-width="2" marker-end="url(#arrow-10_1)"/>
+
+  <!-- MCP 客户端核心（强调节点） -->
+  <rect x="70" y="245" width="200" height="80" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="170" y="275" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="15" font-weight="bold" fill="#111827">MCP Client Core</text>
+  <text x="170" y="298" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">协议处理 &amp; 请求编排</text>
+  <text x="170" y="315" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">工具调用 / 上下文获取</text>
+
+  <!-- 连接线 MCP 客户端核心 -> 传输层 -->
+  <line x1="170" y1="325" x2="170" y2="360" stroke="#374151" stroke-width="2" marker-end="url(#arrow-10_1)"/>
+
+  <!-- 传输层：stdio / HTTP -->
+  <rect x="70" y="360" width="200" height="60" rx="8" ry="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+  <text x="170" y="383" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" font-weight="bold" fill="#111827">Transport Layer</text>
+  <text x="170" y="403" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">stdio / HTTP+SSE</text>
+
+  <!-- ========== 中间：JSON-RPC 协议层 ========== -->
+  <rect x="340" y="240" width="120" height="120" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="400" y="285" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">MCP 协议</text>
+  <text x="400" y="310" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">JSON-RPC 2.0</text>
+  <text x="400" y="332" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">请求 / 响应 / 通知</text>
+  <text x="400" y="350" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">工具 / 资源 / 提示</text>
+
+  <!-- 左侧 -> 中间 箭头 -->
+  <line x1="270" y1="390" x2="338" y2="320" stroke="#374151" stroke-width="2" marker-end="url(#arrow-10_1)"/>
+
+  <!-- 中间 -> 右侧 箭头 -->
+  <line x1="460" y1="320" x2="528" y2="390" stroke="#374151" stroke-width="2" marker-end="url(#arrow-10_1)"/>
+
+  <!-- 中间层说明文字 -->
+  <text x="400" y="220" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">标准化的消息协议</text>
+
+  <!-- ========== 右侧：MCP 服务器 ========== -->
+  <rect x="530" y="80" width="230" height="440" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="645" y="110" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">MCP 服务器</text>
+  <text x="645" y="132" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#374151">（连接本地与远程数据源）</text>
+
+  <!-- MCP 服务器核心（强调节点） -->
+  <rect x="555" y="155" width="180" height="70" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="645" y="180" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="15" font-weight="bold" fill="#111827">MCP Server Core</text>
+  <text x="645" y="200" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">解析请求 / 调度能力</text>
+  <text x="645" y="216" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">安全与权限控制</text>
+
+  <!-- 连接线 服务器核心 -> 传输层 -->
+  <line x1="645" y1="225" x2="645" y2="260" stroke="#374151" stroke-width="2" marker-end="url(#arrow-10_1)"/>
+
+  <!-- 右侧传输层 -->
+  <rect x="555" y="260" width="180" height="55" rx="8" ry="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+  <text x="645" y="282" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" font-weight="bold" fill="#111827">Transport Layer</text>
+  <text x="645" y="302" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#374151">stdio / HTTP+SSE</text>
+
+  <!-- 连接线 传输层 -> 数据源适配器 -->
+  <line x1="645" y1="315" x2="645" y2="345" stroke="#374151" stroke-width="2" marker-end="url(#arrow-10_1)"/>
+
+  <!-- 数据源适配器层 -->
+  <rect x="555" y="345" width="180" height="55" rx="8" ry="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+  <text x="645" y="367" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" font-weight="bold" fill="#111827">适配器 / 工具实现</text>
+  <text x="645" y="387" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#374151">Tools / Resources / Prompts</text>
+
+  <!-- 数据源标题 -->
+  <text x="645" y="425" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" font-weight="bold" fill="#111827">数据源（Data Sources）</text>
+
+  <!-- 数据源 1：本地文件 -->
+  <rect x="555" y="435" width="80" height="40" rx="8" ry="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+  <text x="595" y="452" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#111827">本地文件</text>
+  <text x="595" y="467" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="10" fill="#374151">Files</text>
+
+  <!-- 数据源 2：数据库 -->
+  <rect x="655" y="435" width="80" height="40" rx="8" ry="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+  <text x="695" y="452" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#111827">数据库</text>
+  <text x="695" y="467" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="10" fill="#374151">DB</text>
+
+  <!-- 数据源 3：第三方 API -->
+  <rect x="605" y="485" width="80" height="28" rx="8" ry="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+  <text x="645" y="504" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#111827">第三方 API</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="565" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">MCP 在客户端与服务器之间提供统一的上下文与工具调用接口，使 LLM 应用可安全访问多源数据</text>
+  <text x="400" y="583" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">客户端 ⇄ 服务器：基于 JSON-RPC 2.0 的双向消息通信</text>
+</svg>

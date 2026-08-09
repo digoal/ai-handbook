@@ -1,0 +1,18 @@
+Title:           Agentic Design Patterns
+Producer:        Adobe PDF Library 10.0.1
+CreationDate:    Wed Oct 29 20:41:46 2025 CST
+ModDate:         Thu Oct 30 13:49:23 2025 CST
+Custom Metadata: no
+Metadata Stream: yes
+Tagged:          yes
+UserProperties:  no
+Suspects:        no
+Form:            AcroForm
+JavaScript:      no
+Pages:           453
+Encrypted:       no
+Page size:       439.37 x 666.142 pts
+Page rot:        0
+File size:       22932744 bytes
+Optimized:       yes
+PDF version:     1.7

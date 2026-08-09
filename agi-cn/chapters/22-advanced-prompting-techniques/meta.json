@@ -1,0 +1,15 @@
+{
+  "id": 22,
+  "part": "II",
+  "slug": "advanced-prompting-techniques",
+  "en_title": "Advanced Prompting Techniques",
+  "zh_title": "高级提示技术",
+  "pdf_pages": [
+    357,
+    386
+  ],
+  "page_count": 30,
+  "char_count": 60699,
+  "word_count": 8833,
+  "source_file": "chapters/22-advanced-prompting-techniques/source.md"
+}

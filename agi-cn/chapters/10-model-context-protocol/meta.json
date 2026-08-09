@@ -1,0 +1,15 @@
+{
+  "id": 10,
+  "part": "I",
+  "slug": "model-context-protocol",
+  "en_title": "Model Context Protocol",
+  "zh_title": "模型上下文协议",
+  "pdf_pages": [
+    180,
+    195
+  ],
+  "page_count": 16,
+  "char_count": 31533,
+  "word_count": 4372,
+  "source_file": "chapters/10-model-context-protocol/source.md"
+}

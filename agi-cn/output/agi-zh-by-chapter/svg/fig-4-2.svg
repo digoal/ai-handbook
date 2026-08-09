@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <marker id="arrow-4_2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#B45309"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="600" fill="#FFFFFF"/>
+
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="20" font-weight="bold" fill="#111827">反思设计模式:生产者与评审者</text>
+  <text x="400" y="58" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">Reflection Pattern: Producer &amp; Reviewer Dual-Agent Architecture</text>
+
+  <!-- Input Node -->
+  <rect x="50" y="270" width="140" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="120" y="295" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">用户输入</text>
+  <text x="120" y="315" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">User Input</text>
+
+  <!-- Producer Agent Node -->
+  <rect x="260" y="190" width="170" height="110" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="345" y="225" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">生产者智能体</text>
+  <text x="345" y="248" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">Producer Agent</text>
+  <line x1="275" y1="262" x2="415" y2="262" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="345" y="282" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#111827">生成候选输出</text>
+
+  <!-- Reviewer Agent Node -->
+  <rect x="260" y="370" width="170" height="110" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="345" y="405" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">评审者智能体</text>
+  <text x="345" y="428" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">Reviewer / Critic</text>
+  <line x1="275" y1="442" x2="415" y2="442" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="345" y="462" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#111827">评估与反馈质量</text>
+
+  <!-- Quality Evaluation Node -->
+  <rect x="510" y="280" width="160" height="110" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="590" y="312" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="15" font-weight="bold" fill="#111827">质量评估结果</text>
+  <text x="590" y="334" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">Evaluation</text>
+  <line x1="525" y1="348" x2="655" y2="348" stroke="#FCD34D" stroke-width="1"/>
+  <text x="590" y="368" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#111827">通过 / 需改进</text>
+
+  <!-- Final Output Node -->
+  <rect x="510" y="430" width="160" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="590" y="455" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">最终输出</text>
+  <text x="590" y="475" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">Final Answer</text>
+
+  <!-- Arrow: Input -> Producer -->
+  <line x1="190" y1="285" x2="255" y2="240" stroke="#374151" stroke-width="2" marker-end="url(#arrow-4_2)"/>
+
+  <!-- Arrow: Producer -> Reviewer (output to evaluate) -->
+  <line x1="345" y1="300" x2="345" y2="365" stroke="#374151" stroke-width="2" marker-end="url(#arrow-4_2)"/>
+  <text x="375" y="335" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#374151">发送草稿</text>
+
+  <!-- Arrow: Reviewer -> Producer (feedback) -->
+  <path d="M 385 380 Q 470 290 385 235" fill="none" stroke="#374151" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow-4_2)"/>
+  <text x="470" y="320" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#374151">反馈/重写</text>
+
+  <!-- Arrow: Reviewer -> Quality Evaluation -->
+  <line x1="430" y1="410" x2="505" y2="340" stroke="#374151" stroke-width="2" marker-end="url(#arrow-4_2)"/>
+
+  <!-- Arrow: Quality Evaluation -> Final Output -->
+  <line x1="590" y1="390" x2="590" y2="425" stroke="#B45309" stroke-width="2" marker-end="url(#arrow-orange)"/>
+  <text x="615" y="412" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#B45309">通过</text>
+
+  <!-- Loop back arrow from Quality Evaluation (if needs improvement) to Producer -->
+  <path d="M 545 280 Q 480 170 345 190" fill="none" stroke="#B45309" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow-orange)"/>
+  <text x="455" y="180" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="11" fill="#B45309">需改进 → 重新生成</text>
+
+  <!-- Legend / Bottom Description -->
+  <rect x="50" y="520" width="700" height="55" rx="6" ry="6" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="400" y="543" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" font-weight="bold" fill="#111827">协作流程说明</text>
+  <text x="400" y="562" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">生产者生成 → 评审者评估 → 通过则输出最终结果 / 不通过则反馈重新生成</text>
+</svg>

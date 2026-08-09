@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <style>
+    .title { font-family: sans-serif; font-size: 20px; font-weight: bold; text-anchor: middle; fill: #111827; }
+    .label { font-family: sans-serif; font-size: 14px; text-anchor: middle; fill: #111827; }
+    .sublabel { font-family: sans-serif; font-size: 12px; text-anchor: middle; fill: #6B7280; }
+    .box { fill: #DBEAFE; stroke: #1F2937; stroke-width: 1.5; rx: 8; ry: 8; }
+    .arrow { stroke: #374151; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="600" fill="#FFFFFF"/>
+  <text x="400" y="40" class="title">如何访问 AgentSpace</text>
+  
+  <rect x="50" y="100" width="180" height="100" class="box"/>
+  <text x="140" y="145" class="label">Google Cloud</text>
+  <text x="140" y="165" class="label">Console</text>
+  <line x1="230" y1="150" x2="320" y2="150" class="arrow"/>
+  <rect x="320" y="100" width="180" height="100" class="box"/>
+  <text x="410" y="145" class="label">AI Applications</text>
+  <text x="410" y="165" class="sublabel">(在导航菜单中)</text>
+  <line x1="500" y1="150" x2="590" y2="150" class="arrow"/>
+  <rect x="590" y="100" width="180" height="100" class="box"/>
+  <text x="680" y="145" class="label">AgentSpace</text>
+  <text x="680" y="165" class="sublabel">(企业版)</text>
+  <text x="400" y="280" class="sublabel">点击顺序:Console → AI Applications → AgentSpace</text>
+  <text x="400" y="320" class="sublabel">进入 AgentSpace 后可使用 Agent Designer 配置智能体</text>
+  <text x="400" y="360" class="sublabel">或浏览预制提示库与已部署的智能体</text>
+
+</svg>

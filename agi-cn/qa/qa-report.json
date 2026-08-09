@@ -1,0 +1,1460 @@
+{
+  "summary": {
+    "total_chapters": 29,
+    "total_text_chars": 326482,
+    "total_code_chars": 93250,
+    "total_failed_blocks": 0,
+    "total_issues": 179
+  },
+  "chapters": [
+    {
+      "chapter_id": 1,
+      "zh_title": "提示链",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch01-b0015",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "forbidden_term",
+          "term": "并行",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 18,
+        "blocks_translated": 17,
+        "blocks_failed": 0,
+        "blocks_passthrough": 1,
+        "code_chars": 1684,
+        "text_chars": 7578
+      }
+    },
+    {
+      "chapter_id": 2,
+      "zh_title": "路由",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch02-b0004",
+          "severity": "medium",
+          "ratio": 0.21
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch02-b0005",
+          "severity": "medium",
+          "ratio": 0.01
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch02-b0006",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch02-b0007",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch02-b0008",
+          "severity": "medium",
+          "ratio": 0.18
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch02-b0009",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch02-b0017",
+          "severity": "medium",
+          "ratio": 0.07
+        },
+        {
+          "type": "forbidden_term",
+          "term": "人机交互",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 17,
+        "blocks_translated": 16,
+        "blocks_failed": 0,
+        "blocks_passthrough": 1,
+        "code_chars": 5784,
+        "text_chars": 12349
+      }
+    },
+    {
+      "chapter_id": 3,
+      "zh_title": "并行化",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch03-b0001",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch03-b0005",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch03-b0007",
+          "severity": "medium",
+          "ratio": 0.05
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch03-b0008",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch03-b0012",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch03-b0013",
+          "severity": "medium",
+          "ratio": 0.02
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch03-b0014",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch03-b0015",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch03-b0018",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch03-b0022",
+          "severity": "medium",
+          "ratio": 0.01
+        },
+        {
+          "type": "forbidden_term",
+          "term": "并行",
+          "severity": "medium"
+        },
+        {
+          "type": "forbidden_term",
+          "term": "计划",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 22,
+        "blocks_translated": 22,
+        "blocks_failed": 0,
+        "blocks_passthrough": 0,
+        "code_chars": 0,
+        "text_chars": 17243
+      }
+    },
+    {
+      "chapter_id": 4,
+      "zh_title": "反思",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch04-b0003",
+          "severity": "medium",
+          "ratio": 0.03
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch04-b0008",
+          "severity": "medium",
+          "ratio": 0.07
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch04-b0010",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch04-b0015",
+          "severity": "medium",
+          "ratio": 0.01
+        },
+        {
+          "type": "forbidden_term",
+          "term": "并行",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 15,
+        "blocks_translated": 14,
+        "blocks_failed": 0,
+        "blocks_passthrough": 1,
+        "code_chars": 4495,
+        "text_chars": 8994
+      }
+    },
+    {
+      "chapter_id": 5,
+      "zh_title": "工具使用(函数调用)",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch05-b0018",
+          "severity": "medium",
+          "ratio": 0.11
+        },
+        {
+          "type": "forbidden_term",
+          "term": "并行",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 18,
+        "blocks_translated": 13,
+        "blocks_failed": 0,
+        "blocks_passthrough": 5,
+        "code_chars": 18395,
+        "text_chars": 6289
+      }
+    },
+    {
+      "chapter_id": 6,
+      "zh_title": "规划",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch06-b0017",
+          "severity": "medium",
+          "ratio": 0.01
+        },
+        {
+          "type": "forbidden_term",
+          "term": "计划",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 17,
+        "blocks_translated": 15,
+        "blocks_failed": 0,
+        "blocks_passthrough": 2,
+        "code_chars": 6123,
+        "text_chars": 5338
+      }
+    },
+    {
+      "chapter_id": 7,
+      "zh_title": "多智能体协作",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch07-b0007",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch07-b0008",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch07-b0012",
+          "severity": "medium",
+          "ratio": 0.01
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch07-b0014",
+          "severity": "medium",
+          "ratio": 0.02
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch07-b0015",
+          "severity": "medium",
+          "ratio": 0.22
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch07-b0016",
+          "severity": "medium",
+          "ratio": 0.03
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch07-b0019",
+          "severity": "medium",
+          "ratio": 0.28
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch07-b0020",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch07-b0024",
+          "severity": "medium",
+          "ratio": 0.1
+        },
+        {
+          "type": "forbidden_term",
+          "term": "并行",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 24,
+        "blocks_translated": 22,
+        "blocks_failed": 0,
+        "blocks_passthrough": 2,
+        "code_chars": 3991,
+        "text_chars": 16700
+      }
+    },
+    {
+      "chapter_id": 8,
+      "zh_title": "记忆管理",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch08-b0008",
+          "severity": "medium",
+          "ratio": 0.22
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch08-b0010",
+          "severity": "medium",
+          "ratio": 0.07
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch08-b0015",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch08-b0016",
+          "severity": "medium",
+          "ratio": 0.16
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch08-b0018",
+          "severity": "medium",
+          "ratio": 0.12
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch08-b0027",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch08-b0031",
+          "severity": "medium",
+          "ratio": 0.04
+        }
+      ],
+      "stats": {
+        "blocks_total": 31,
+        "blocks_translated": 24,
+        "blocks_failed": 0,
+        "blocks_passthrough": 7,
+        "code_chars": 10099,
+        "text_chars": 14553
+      }
+    },
+    {
+      "chapter_id": 9,
+      "zh_title": "学习与适应",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch09-b0007",
+          "severity": "medium",
+          "ratio": 0.21
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch09-b0011",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch09-b0013",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch09-b0017",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "forbidden_term",
+          "term": "映射",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 17,
+        "blocks_translated": 16,
+        "blocks_failed": 0,
+        "blocks_passthrough": 1,
+        "code_chars": 921,
+        "text_chars": 10229
+      }
+    },
+    {
+      "chapter_id": 10,
+      "zh_title": "模型上下文协议",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch10-b0010",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch10-b0013",
+          "severity": "medium",
+          "ratio": 0.27
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch10-b0014",
+          "severity": "medium",
+          "ratio": 0.09
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch10-b0015",
+          "severity": "medium",
+          "ratio": 0.19
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch10-b0019",
+          "severity": "medium",
+          "ratio": 0.24
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch10-b0020",
+          "severity": "medium",
+          "ratio": 0.11
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch10-b0022",
+          "severity": "medium",
+          "ratio": 0.03
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch10-b0024",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch10-b0026",
+          "severity": "medium",
+          "ratio": 0.01
+        },
+        {
+          "type": "forbidden_term",
+          "term": "代理",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 26,
+        "blocks_translated": 25,
+        "blocks_failed": 0,
+        "blocks_passthrough": 1,
+        "code_chars": 1620,
+        "text_chars": 15339
+      }
+    },
+    {
+      "chapter_id": 11,
+      "zh_title": "目标设定与监控",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch11-b0007",
+          "severity": "medium",
+          "ratio": 0.06
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch11-b0011",
+          "severity": "medium",
+          "ratio": 0.12
+        },
+        {
+          "type": "forbidden_term",
+          "term": "计划",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 17,
+        "blocks_translated": 15,
+        "blocks_failed": 0,
+        "blocks_passthrough": 2,
+        "code_chars": 7726,
+        "text_chars": 6112
+      }
+    },
+    {
+      "chapter_id": 12,
+      "zh_title": "异常处理与恢复",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch12-b0009",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch12-b0013",
+          "severity": "medium",
+          "ratio": 0.01
+        },
+        {
+          "type": "forbidden_term",
+          "term": "代理",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 13,
+        "blocks_translated": 12,
+        "blocks_failed": 0,
+        "blocks_passthrough": 1,
+        "code_chars": 1650,
+        "text_chars": 4627
+      }
+    },
+    {
+      "chapter_id": 13,
+      "zh_title": "人在回路",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch13-b0008",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch13-b0009",
+          "severity": "medium",
+          "ratio": 0.09
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch13-b0016",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "forbidden_term",
+          "term": "人机交互",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 16,
+        "blocks_translated": 16,
+        "blocks_failed": 0,
+        "blocks_passthrough": 0,
+        "code_chars": 0,
+        "text_chars": 8039
+      }
+    },
+    {
+      "chapter_id": 14,
+      "zh_title": "知识检索(RAG)",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch14-b0005",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch14-b0008",
+          "severity": "medium",
+          "ratio": 0.28
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch14-b0012",
+          "severity": "medium",
+          "ratio": 0.19
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch14-b0023",
+          "severity": "medium",
+          "ratio": 0.01
+        }
+      ],
+      "stats": {
+        "blocks_total": 23,
+        "blocks_translated": 21,
+        "blocks_failed": 0,
+        "blocks_passthrough": 2,
+        "code_chars": 6553,
+        "text_chars": 10708
+      }
+    },
+    {
+      "chapter_id": 15,
+      "zh_title": "智能体间通信(A2A)",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch15-b0003",
+          "severity": "medium",
+          "ratio": 0.19
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch15-b0006",
+          "severity": "medium",
+          "ratio": 0.23
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch15-b0007",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch15-b0008",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch15-b0011",
+          "severity": "medium",
+          "ratio": 0.21
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch15-b0012",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch15-b0017",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch15-b0022",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "forbidden_term",
+          "term": "并行",
+          "severity": "medium"
+        },
+        {
+          "type": "forbidden_term",
+          "term": "计划",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 22,
+        "blocks_translated": 20,
+        "blocks_failed": 0,
+        "blocks_passthrough": 2,
+        "code_chars": 2424,
+        "text_chars": 12330
+      }
+    },
+    {
+      "chapter_id": 16,
+      "zh_title": "资源感知优化",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch16-b0003",
+          "severity": "medium",
+          "ratio": 0.06
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch16-b0005",
+          "severity": "medium",
+          "ratio": 0.02
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch16-b0006",
+          "severity": "medium",
+          "ratio": 0.25
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch16-b0012",
+          "severity": "medium",
+          "ratio": 0.09
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch16-b0013",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch16-b0014",
+          "severity": "medium",
+          "ratio": 0.21
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch16-b0019",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch16-b0023",
+          "severity": "medium",
+          "ratio": 0.07
+        },
+        {
+          "type": "forbidden_term",
+          "term": "并行",
+          "severity": "medium"
+        },
+        {
+          "type": "forbidden_term",
+          "term": "计划",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 23,
+        "blocks_translated": 22,
+        "blocks_failed": 0,
+        "blocks_passthrough": 1,
+        "code_chars": 4801,
+        "text_chars": 11631
+      }
+    },
+    {
+      "chapter_id": 17,
+      "zh_title": "推理技术",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch17-b0004",
+          "severity": "medium",
+          "ratio": 0.18
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch17-b0006",
+          "severity": "medium",
+          "ratio": 0.01
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch17-b0010",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch17-b0012",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch17-b0014",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch17-b0015",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch17-b0027",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch17-b0029",
+          "severity": "medium",
+          "ratio": 0.11
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch17-b0036",
+          "severity": "medium",
+          "ratio": 0.02
+        }
+      ],
+      "stats": {
+        "blocks_total": 36,
+        "blocks_translated": 36,
+        "blocks_failed": 0,
+        "blocks_passthrough": 0,
+        "code_chars": 0,
+        "text_chars": 23771
+      }
+    },
+    {
+      "chapter_id": 18,
+      "zh_title": "护栏/安全模式",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0004",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0006",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0007",
+          "severity": "medium",
+          "ratio": 0.07
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0008",
+          "severity": "medium",
+          "ratio": 0.05
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0009",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0010",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0011",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0012",
+          "severity": "medium",
+          "ratio": 0.29
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0015",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0020",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0021",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0022",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0027",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch18-b0029",
+          "severity": "medium",
+          "ratio": 0.02
+        },
+        {
+          "type": "forbidden_term",
+          "term": "并行",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 29,
+        "blocks_translated": 28,
+        "blocks_failed": 0,
+        "blocks_passthrough": 1,
+        "code_chars": 1769,
+        "text_chars": 28677
+      }
+    },
+    {
+      "chapter_id": 19,
+      "zh_title": "评估与监控",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch19-b0004",
+          "severity": "medium",
+          "ratio": 0.27
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch19-b0009",
+          "severity": "medium",
+          "ratio": 0.03
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch19-b0011",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch19-b0012",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch19-b0013",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch19-b0023",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch19-b0027",
+          "severity": "medium",
+          "ratio": 0.01
+        },
+        {
+          "type": "forbidden_term",
+          "term": "并行",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 27,
+        "blocks_translated": 26,
+        "blocks_failed": 0,
+        "blocks_passthrough": 1,
+        "code_chars": 1630,
+        "text_chars": 17665
+      }
+    },
+    {
+      "chapter_id": 20,
+      "zh_title": "优先级排序",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch20-b0006",
+          "severity": "medium",
+          "ratio": 0.1
+        }
+      ],
+      "stats": {
+        "blocks_total": 12,
+        "blocks_translated": 11,
+        "blocks_failed": 0,
+        "blocks_passthrough": 1,
+        "code_chars": 8000,
+        "text_chars": 3929
+      }
+    },
+    {
+      "chapter_id": 21,
+      "zh_title": "探索与发现",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch21-b0005",
+          "severity": "medium",
+          "ratio": 0.19
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch21-b0006",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch21-b0008",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch21-b0010",
+          "severity": "medium",
+          "ratio": 0.15
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch21-b0011",
+          "severity": "medium",
+          "ratio": 0.3
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch21-b0012",
+          "severity": "medium",
+          "ratio": 0.18
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch21-b0015",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch21-b0017",
+          "severity": "medium",
+          "ratio": 0.15
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch21-b0023",
+          "severity": "medium",
+          "ratio": 0.01
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch21-b0024",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "forbidden_term",
+          "term": "计划",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 24,
+        "blocks_translated": 22,
+        "blocks_failed": 0,
+        "blocks_passthrough": 2,
+        "code_chars": 3564,
+        "text_chars": 14767
+      }
+    },
+    {
+      "chapter_id": 22,
+      "zh_title": "高级提示技术",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch22-b0003",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch22-b0006",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch22-b0011",
+          "severity": "medium",
+          "ratio": 0.24
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch22-b0013",
+          "severity": "medium",
+          "ratio": 0.01
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch22-b0020",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch22-b0028",
+          "severity": "medium",
+          "ratio": 0.17
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch22-b0036",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch22-b0041",
+          "severity": "medium",
+          "ratio": 0.01
+        },
+        {
+          "type": "forbidden_term",
+          "term": "映射",
+          "severity": "medium"
+        },
+        {
+          "type": "forbidden_term",
+          "term": "提示词",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 41,
+        "blocks_translated": 40,
+        "blocks_failed": 0,
+        "blocks_passthrough": 1,
+        "code_chars": 1946,
+        "text_chars": 26667
+      }
+    },
+    {
+      "chapter_id": 23,
+      "zh_title": "AI 智能体交互:从 GUI 到真实世界环境",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch23-b0012",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "forbidden_term",
+          "term": "计划",
+          "severity": "medium"
+        },
+        {
+          "type": "forbidden_term",
+          "term": "人机交互",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 12,
+        "blocks_translated": 12,
+        "blocks_failed": 0,
+        "blocks_passthrough": 0,
+        "code_chars": 0,
+        "text_chars": 5229
+      }
+    },
+    {
+      "chapter_id": 24,
+      "zh_title": "智能体框架速览",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch24-b0003",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch24-b0004",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch24-b0006",
+          "severity": "medium",
+          "ratio": 0.15
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch24-b0014",
+          "severity": "medium",
+          "ratio": 0.02
+        }
+      ],
+      "stats": {
+        "blocks_total": 14,
+        "blocks_translated": 14,
+        "blocks_failed": 0,
+        "blocks_passthrough": 0,
+        "code_chars": 0,
+        "text_chars": 7228
+      }
+    },
+    {
+      "chapter_id": 25,
+      "zh_title": "使用 AgentSpace 构建智能体",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch25-b0007",
+          "severity": "medium",
+          "ratio": 0.02
+        },
+        {
+          "type": "forbidden_term",
+          "term": "映射",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 7,
+        "blocks_translated": 7,
+        "blocks_failed": 0,
+        "blocks_passthrough": 0,
+        "code_chars": 0,
+        "text_chars": 1206
+      }
+    },
+    {
+      "chapter_id": 26,
+      "zh_title": "CLI 上的 AI 智能体",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch26-b0005",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "forbidden_term",
+          "term": "并行",
+          "severity": "medium"
+        },
+        {
+          "type": "forbidden_term",
+          "term": "计划",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 8,
+        "blocks_translated": 8,
+        "blocks_failed": 0,
+        "blocks_passthrough": 0,
+        "code_chars": 0,
+        "text_chars": 3912
+      }
+    },
+    {
+      "chapter_id": 27,
+      "zh_title": "深入引擎:智能体推理引擎内部探秘",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch27-b0004",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch27-b0006",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch27-b0009",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch27-b0011",
+          "severity": "medium",
+          "ratio": 0.19
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch27-b0013",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch27-b0018",
+          "severity": "medium",
+          "ratio": 0.25
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch27-b0026",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "forbidden_term",
+          "term": "计划",
+          "severity": "medium"
+        },
+        {
+          "type": "forbidden_term",
+          "term": "映射",
+          "severity": "medium"
+        },
+        {
+          "type": "forbidden_term",
+          "term": "提示词",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 27,
+        "blocks_translated": 26,
+        "blocks_failed": 0,
+        "blocks_passthrough": 1,
+        "code_chars": 75,
+        "text_chars": 11973
+      }
+    },
+    {
+      "chapter_id": 28,
+      "zh_title": "编程智能体",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch28-b0003",
+          "severity": "medium",
+          "ratio": 0.01
+        }
+      ],
+      "stats": {
+        "blocks_total": 4,
+        "blocks_translated": 4,
+        "blocks_failed": 0,
+        "blocks_passthrough": 0,
+        "code_chars": 0,
+        "text_chars": 4175
+      }
+    },
+    {
+      "chapter_id": 29,
+      "zh_title": "结语",
+      "issues": [
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch29-b0008",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch29-b0010",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch29-b0011",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "low_chinese_ratio",
+          "block_id": "ch29-b0012",
+          "severity": "medium",
+          "ratio": 0.0
+        },
+        {
+          "type": "forbidden_term",
+          "term": "计划",
+          "severity": "medium"
+        }
+      ],
+      "stats": {
+        "blocks_total": 12,
+        "blocks_translated": 12,
+        "blocks_failed": 0,
+        "blocks_passthrough": 0,
+        "code_chars": 0,
+        "text_chars": 9224
+      }
+    }
+  ]
+}

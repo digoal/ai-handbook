@@ -1,0 +1,303 @@
+#!/usr/bin/env python3
+# config/figures.yaml - 待生成 SVG 的图清单
+#
+# 用于 scripts/18_generate_svgs.py
+# 每条记录包含:
+#   id:           图 ID,SVG 文件名 fig-X-Y.svg 中的 X-Y
+#   chapter:      所属章节 ID
+#   title_zh:     中文图题
+#   diagram_type: flowchart|sequence|architecture|cycle|comparison|hierarchy|overview
+#   description:  图的内容描述(供 LLM 生成 SVG 参考)
+#   source_pages: 在原书 PDF 中的页码(可选,用于上下文参考)
+
+figures:
+  # ===== 11 个原书有但翻译稿缺失的图 =====
+
+  - id: "3-1"
+    chapter: 3
+    title_zh: "并行化模式:多组件并发执行"
+    diagram_type: flowchart
+    description: |
+      展示并行化(Parallelization)模式的工作流程。左侧是输入任务,
+      拆分为多个并行分支(LLM 调用、工具调用、子智能体),并行执行后
+      通过聚合(Aggregation)节点合并为单一输出。
+      与串行执行对比,展示时间节省。
+    source_pages: [69, 70]
+
+  - id: "3-2"
+    chapter: 3
+    title_zh: "并行化模式视觉总览"
+    diagram_type: overview
+    description: |
+      并行化模式的视觉总结图。中心是核心概念"并行执行",
+      周围展示适用场景(信息收集、数据处理、多 API 调用)、
+      关键优势(速度提升、资源利用)、挑战(结果合并、错误处理)。
+    source_pages: [82]
+
+  - id: "5-1"
+    chapter: 5
+    title_zh: "智能体使用工具的若干示例"
+    diagram_type: architecture
+    description: |
+      展示智能体(Agent)使用工具的多种场景:
+      (1) 网络搜索工具获取实时信息;
+      (2) 计算器工具执行数学计算;
+      (3) 数据库查询工具访问结构化数据;
+      (4) 邮件发送工具执行外部操作。
+      中心是智能体,通过工具选择器选择合适的工具。
+    source_pages: [100, 101]
+
+  - id: "6-4"
+    chapter: 6
+    title_zh: "规划模式视觉总览"
+    diagram_type: overview
+    description: |
+      规划(Planning)模式的视觉总结图。展示:
+      (1) 任务分解:将复杂目标分解为子任务;
+      (2) 依赖分析:识别子任务间的依赖关系;
+      (3) 执行计划:生成有序的执行序列;
+      (4) 监控与重规划:根据执行反馈动态调整。
+    source_pages: [129]
+
+  - id: "7-1"
+    chapter: 7
+    title_zh: "多智能体系统架构"
+    diagram_type: architecture
+    description: |
+      多智能体协作(Multi-Agent Collaboration)系统的典型架构。
+      中心是协调器(Orchestrator)/监督器(Supervisor),协调多个
+      专业智能体(规划器、执行器、评审器、记忆器)。
+      各智能体通过消息总线通信,共享记忆与任务状态。
+    source_pages: [132, 133]
+
+  - id: "8-1"
+    chapter: 8
+    title_zh: "记忆管理模式视觉总览"
+    diagram_type: overview
+    description: |
+      记忆管理(Memory Management)模式的视觉总结图。
+      展示三种记忆类型:短期记忆(上下文窗口)、长期记忆(向量数据库)、
+      情景记忆(对话历史)。
+      包括记忆的写入、读取、检索、遗忘等操作。
+    source_pages: [166]
+
+  - id: "10-1"
+    chapter: 10
+    title_zh: "模型上下文协议(MCP)架构"
+    diagram_type: architecture
+    description: |
+      模型上下文协议(Model Context Protocol, MCP)的架构图。
+      左侧是 MCP 客户端(集成在 LLM 应用中),通过 MCP 协议
+      与右侧的 MCP 服务器通信。服务器可访问多种数据源(文件、
+      数据库、API)。中间展示 JSON-RPC 协议层。
+    source_pages: [194]
+
+  - id: "11-2"
+    chapter: 11
+    title_zh: "目标设定与监控模式视觉总览"
+    diagram_type: overview
+    description: |
+      目标设定与监控(Goal Setting and Monitoring)模式的视觉总结图。
+      展示:(1) 目标定义(高层目标分解为子目标);
+      (2) 进度监控(实时跟踪执行状态);
+      (3) 反馈调整(根据结果动态修正目标);
+      (4) 完成判定(检查是否达成目标)。
+    source_pages: [206]
+
+  - id: "13-1"
+    chapter: 13
+    title_zh: "人在回路(HITL)模式"
+    diagram_type: cycle
+    description: |
+      人在回路(Human-in-the-Loop, HITL)模式的循环图。
+      智能体执行 → 生成结果 → 提交给人类审核 → 人类反馈 →
+      智能体根据反馈调整 → 重新执行。展示人在关键决策点的介入。
+    source_pages: [223]
+
+  - id: "17-3"
+    chapter: 17
+    title_zh: "ReAct 范式:推理-行动循环"
+    diagram_type: cycle
+    description: |
+      ReAct(Reasoning + Acting)范式的循环图。
+      思考(Thought) → 行动(Action) → 观察(Observation) →
+      回到思考。智能体在循环中持续推理并采取行动,与外部环境交互。
+      与外部知识库(KB)、工具(API)交互。
+    source_pages: [280, 281]
+
+  - id: "19-4"
+    chapter: 19
+    title_zh: "评估与监控模式视觉总览"
+    diagram_type: overview
+    description: |
+      评估与监控(Evaluation and Monitoring)模式的视觉总结图。
+      展示:(1) 性能指标(准确率、延迟、成本);
+      (2) 离线评估(测试集、基准);
+      (3) 在线监控(实时追踪、A/B 测试);
+      (4) 反馈回路(指标异常时触发告警)。
+    source_pages: [329]
+
+  # ===== 13 个翻译稿引用但路径断裂的图(也需重画) =====
+
+  - id: "4-1"
+    chapter: 4
+    title_zh: "反思设计模式:自我反思循环"
+    diagram_type: cycle
+    description: |
+      反思(Reflection)模式中自我反思(Self-Reflection)的循环图。
+      生成器(Generator)生成结果 → 评审器(Critic)评估 →
+      如不达标则反馈给生成器改进 → 重新生成。
+      包含"评估-改进"迭代循环。
+    source_pages: [85, 86]
+
+  - id: "4-2"
+    chapter: 4
+    title_zh: "反思设计模式:生产者与评审者"
+    diagram_type: architecture
+    description: |
+      反思(Reflection)模式的双智能体架构图。
+      生产者智能体(Producer)生成输出,
+      评审者智能体(Reviewer/Critic)评估质量,
+      两者通过消息传递协作,最终输出经过评审的答案。
+    source_pages: [95]
+
+  - id: "5-2"
+    chapter: 5
+    title_zh: "工具使用模式:ReAct 循环"
+    diagram_type: cycle
+    description: |
+      工具使用(Tool Use)模式中 ReAct 循环的简化图。
+      用户查询 → 智能体决定 → 选择工具 → 调用工具 →
+      接收结果 → 整合到响应 → 返回用户。
+      展示 LLM 与外部工具的交互过程。
+    source_pages: [116]
+
+  - id: "7-2"
+    chapter: 7
+    title_zh: "智能体的多种通信与交互方式"
+    diagram_type: architecture
+    description: |
+      多智能体系统中智能体的多种通信方式图。
+      展示:(1) 点对点消息传递;
+      (2) 共享消息总线/广播;
+      (3) 黑板模式(共享内存);
+      (4) 中心化协调器(Hub);
+      (5) 层次化通信(上下级)。
+    source_pages: [134, 135]
+
+  - id: "7-3"
+    chapter: 7
+    title_zh: "多智能体设计模式总览"
+    diagram_type: overview
+    description: |
+      多智能体设计模式的分类图。中心是"多智能体协作",
+      周围展示主要模式:角色分工、竞争合作、监督式、扁平式、
+      层级式、市场式等。每种模式适用于不同场景。
+    source_pages: [146]
+
+  - id: "14-2"
+    chapter: 14
+    title_zh: "智能体式 RAG:推理智能体优化检索"
+    diagram_type: flowchart
+    description: |
+      智能体式 RAG(Agentic RAG)的流程图。
+      用户查询 → 推理智能体分析 → 多轮检索决策 →
+      向量数据库检索 → 文档重排序 → 智能体评估相关性 →
+      必要时调整查询并重新检索 → 最终整合生成答案。
+    source_pages: [230, 231]
+
+  - id: "15-1"
+    chapter: 15
+    title_zh: "A2A 与 MCP 协议对比"
+    diagram_type: comparison
+    description: |
+      智能体到智能体(A2A)协议与模型上下文协议(MCP)的对比图。
+      两列对比:目标(智能体间 vs 模型与数据源间)、
+      通信单元(任务 vs 上下文)、发现机制(智能体卡片 vs 服务器列表)、
+      适用场景(多智能体协作 vs 工具集成)。
+    source_pages: [247]
+
+  - id: "16-1"
+    chapter: 16
+    title_zh: "OpenRouter:多模型路由平台"
+    diagram_type: architecture
+    description: |
+      OpenRouter 平台的架构示意图。
+      用户应用通过 OpenRouter API → 路由层 →
+      选择最优模型(基于价格、性能、可用性)→
+      调用对应 LLM(GPT-4、Claude、Gemini 等)。
+      展示统一的 API 接口对接多个模型供应商。
+    source_pages: [266]
+
+  - id: "17-4"
+    chapter: 17
+    title_zh: "多智能体系统搜索(MASS)框架"
+    diagram_type: flowchart
+    description: |
+      多智能体系统搜索(MASS)框架的三阶段优化流程图。
+      阶段一:块级提示优化(独立优化每个智能体模块的提示);
+      阶段二:工作流拓扑优化(从设计空间采样有效配置);
+      阶段三:工作流级提示优化(对最优工作流进行第二轮提示优化)。
+      涉及 Aggregate、Reflect、Debate、Summarize、Tool-use 模块。
+    source_pages: [282, 283]
+
+  - id: "17-6"
+    chapter: 17
+    title_zh: "多次反思步骤的 DeepSearch 示例"
+    diagram_type: flowchart
+    description: |
+      DeepSearch 中多次反思步骤的示例流程。
+      初始查询 → 第一次搜索 → 反思(结果是否充分?)
+      → 决定继续搜索/调整关键词 → 第二次搜索 → 反思 →
+      直到结果充分 → 整合答案。
+      展示多轮反思在搜索增强中的应用。
+    source_pages: [287, 288]
+
+  - id: "17-8"
+    chapter: 17
+    title_zh: "推理设计模式总览"
+    diagram_type: overview
+    description: |
+      推理(Reasoning)设计模式的视觉总结图。
+      展示:(1) 思维链(CoT);
+      (2) 思维树(ToT);
+      (3) 推理-行动(ReAct);
+      (4) 自我反思(Self-Reflection);
+      (5) 多步推理规划。
+    source_pages: [291]
+
+  - id: "18-1"
+    chapter: 18
+    title_zh: "护栏设计模式总览"
+    diagram_type: overview
+    description: |
+      护栏(Guardrails)设计模式的视觉总结图。
+      展示:(1) 输入验证(提示注入检测);
+      (2) 输出过滤(有害内容拦截);
+      (3) 行为约束(权限限制);
+      (4) 审计日志;
+      (5) 异常处理。
+      强调多层防御的纵深安全策略。
+    source_pages: [311, 312]
+
+  - id: "20-1"
+    chapter: 20
+    title_zh: "优先级排序设计模式"
+    diagram_type: flowchart
+    description: |
+      优先级排序(Prioritization)模式的流程图。
+      多个候选任务 → 评估紧急度/重要性 →
+      评分计算 → 排序 → 选择最高优先级任务执行。
+      展示不同排序算法:加权评分、Eisenhower 矩阵、MoSCoW 法。
+    source_pages: [339, 340]
+
+  - id: "25-2"
+    chapter: 25
+    title_zh: "AgentSpace 与多样化服务集成"
+    diagram_type: architecture
+    description: |
+      Google AgentSpace 与外部服务的集成架构图。
+      中心是 AgentSpace 平台,
+      周围连接多种服务:Calendar、Gmail、Workday、Jira、Outlook、ServiceNow。
+      展示统一接口对接企业各种 SaaS 服务。
+    source_pages: [403, 404]

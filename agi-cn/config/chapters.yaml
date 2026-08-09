@@ -1,0 +1,263 @@
+---
+# chapters.yaml - 29 章边界配置(基于 PDF 物理页码)
+# 验证方式:normalized/pages/page-NNNN.md 顶部 "N + 章节名" 居中行
+# 数据来源:scripts/02_build_page_map.py 自动识别并验证
+
+chapters:
+  # ============ Part I: The Patterns (21 章) ============
+  - id: 1
+    part: I
+    slug: prompt-chaining
+    en_title: Prompt Chaining
+    zh_title: 提示链
+    pdf_start_page: 41
+    pdf_end_page: 54
+    toc_start_page: 3
+  - id: 2
+    part: I
+    slug: routing
+    en_title: Routing
+    zh_title: 路由
+    pdf_start_page: 55
+    pdf_end_page: 68
+    toc_start_page: 17
+  - id: 3
+    part: I
+    slug: parallelization
+    en_title: Parallelization
+    zh_title: 并行化
+    pdf_start_page: 69
+    pdf_end_page: 83
+    toc_start_page: 31
+  - id: 4
+    part: I
+    slug: reflection
+    en_title: Reflection
+    zh_title: 反思
+    pdf_start_page: 84
+    pdf_end_page: 96
+    toc_start_page: 47
+  - id: 5
+    part: I
+    slug: tool-use
+    en_title: "Tool Use (Function Calling)"
+    zh_title: "工具使用(函数调用)"
+    pdf_start_page: 97
+    pdf_end_page: 117
+    toc_start_page: 61
+  - id: 6
+    part: I
+    slug: planning
+    en_title: Planning
+    zh_title: 规划
+    pdf_start_page: 118
+    pdf_end_page: 130
+    toc_start_page: 83
+  - id: 7
+    part: I
+    slug: multi-agent-collaboration
+    en_title: Multi-Agent Collaboration
+    zh_title: 多智能体协作
+    pdf_start_page: 131
+    pdf_end_page: 147
+    toc_start_page: 97
+  - id: 8
+    part: I
+    slug: memory-management
+    en_title: Memory Management
+    zh_title: 记忆管理
+    pdf_start_page: 148
+    pdf_end_page: 167
+    toc_start_page: 115
+  - id: 9
+    part: I
+    slug: learning-and-adaptation
+    en_title: Learning and Adaptation
+    zh_title: 学习与适应
+    pdf_start_page: 168
+    pdf_end_page: 179
+    toc_start_page: 135
+  - id: 10
+    part: I
+    slug: model-context-protocol
+    en_title: Model Context Protocol
+    zh_title: 模型上下文协议
+    pdf_start_page: 180
+    pdf_end_page: 195
+    toc_start_page: 147
+  - id: 11
+    part: I
+    slug: goal-setting-and-monitoring
+    en_title: Goal Setting and Monitoring
+    zh_title: 目标设定与监控
+    pdf_start_page: 196
+    pdf_end_page: 207
+    toc_start_page: 163
+  - id: 12
+    part: I
+    slug: exception-handling-and-recovery
+    en_title: Exception Handling and Recovery
+    zh_title: 异常处理与恢复
+    pdf_start_page: 208
+    pdf_end_page: 215
+    toc_start_page: 175
+  - id: 13
+    part: I
+    slug: human-in-the-loop
+    en_title: Human-in-the-Loop
+    zh_title: 人在回路
+    pdf_start_page: 216
+    pdf_end_page: 224
+    toc_start_page: 183
+  - id: 14
+    part: I
+    slug: knowledge-retrieval-rag
+    en_title: "Knowledge Retrieval (RAG)"
+    zh_title: "知识检索(RAG)"
+    pdf_start_page: 225
+    pdf_end_page: 240
+    toc_start_page: 193
+  - id: 15
+    part: I
+    slug: inter-agent-communication-a2a
+    en_title: "Inter-Agent Communication (A2A)"
+    zh_title: "智能体间通信(A2A)"
+    pdf_start_page: 241
+    pdf_end_page: 255
+    toc_start_page: 209
+  - id: 16
+    part: I
+    slug: resource-aware-optimization
+    en_title: Resource-Aware Optimization
+    zh_title: 资源感知优化
+    pdf_start_page: 256
+    pdf_end_page: 270
+    toc_start_page: 225
+  - id: 17
+    part: I
+    slug: reasoning-techniques
+    en_title: Reasoning Techniques
+    zh_title: 推理技术
+    pdf_start_page: 271
+    pdf_end_page: 293
+    toc_start_page: 241
+  - id: 18
+    part: I
+    slug: guardrails-safety-patterns
+    en_title: "Guardrails/Safety Patterns"
+    zh_title: "护栏/安全模式"
+    pdf_start_page: 294
+    pdf_end_page: 313
+    toc_start_page: 265
+  - id: 19
+    part: I
+    slug: evaluation-and-monitoring
+    en_title: Evaluation and Monitoring
+    zh_title: 评估与监控
+    pdf_start_page: 314
+    pdf_end_page: 331
+    toc_start_page: 285
+  - id: 20
+    part: I
+    slug: prioritization
+    en_title: Prioritization
+    zh_title: 优先级排序
+    pdf_start_page: 332
+    pdf_end_page: 341
+    toc_start_page: 303
+  - id: 21
+    part: I
+    slug: exploration-and-discovery
+    en_title: Exploration and Discovery
+    zh_title: 探索与发现
+    pdf_start_page: 342
+    pdf_end_page: 355
+    toc_start_page: 313
+
+  # ============ Part II: The Supplement (8 章) ============
+  - id: 22
+    part: II
+    slug: advanced-prompting-techniques
+    en_title: Advanced Prompting Techniques
+    zh_title: 高级提示技术
+    pdf_start_page: 357
+    pdf_end_page: 386
+    toc_start_page: 329
+  - id: 23
+    part: II
+    slug: ai-agentic-interactions
+    en_title: "AI Agentic Interactions: From GUI to Real World Environment"
+    zh_title: "AI 智能体交互:从 GUI 到真实世界环境"
+    pdf_start_page: 387
+    pdf_end_page: 393
+    toc_start_page: 359
+  - id: 24
+    part: II
+    slug: agentic-frameworks-overview
+    en_title: "A Quick Overview of Agentic Frameworks"
+    zh_title: "智能体框架速览"
+    pdf_start_page: 394
+    pdf_end_page: 401
+    toc_start_page: 367
+  - id: 25
+    part: II
+    slug: building-an-agent-with-agentspace
+    en_title: Building an Agent with AgentSpace
+    zh_title: 使用 AgentSpace 构建智能体
+    pdf_start_page: 402
+    pdf_end_page: 407
+    toc_start_page: 375
+  - id: 26
+    part: II
+    slug: ai-agents-on-the-cli
+    en_title: AI Agents on the CLI
+    zh_title: CLI 上的 AI 智能体
+    pdf_start_page: 408
+    pdf_end_page: 413
+    toc_start_page: 381
+  - id: 27
+    part: II
+    slug: under-the-hood-reasoning-engines
+    en_title: "Under the Hood: An Inside Look at the Agents' Reasoning Engines"
+    zh_title: "深入引擎:智能体推理引擎内部探秘"
+    pdf_start_page: 414
+    pdf_end_page: 430
+    toc_start_page: 387
+  - id: 28
+    part: II
+    slug: coding-agents
+    en_title: Coding Agents
+    zh_title: 编程智能体
+    pdf_start_page: 431
+    pdf_end_page: 438
+    toc_start_page: 405
+  - id: 29
+    part: II
+    slug: conclusion
+    en_title: Conclusion
+    zh_title: 结语
+    pdf_start_page: 439
+    pdf_end_page: 447
+    toc_start_page: 413
+
+# 附录(back matter,只保留英文)
+back_matter:
+  - id: glossary
+    slug: glossary
+    en_title: Glossary
+    zh_title: 术语表
+    pdf_start_page: 449
+  - id: index
+    slug: index
+    en_title: Index
+    zh_title: 索引
+    pdf_start_page: 451
+
+# 翻译统计
+meta:
+  total_chapters: 29
+  part_i_count: 21
+  part_ii_count: 8
+  part_i_start: 40  # Part I 扉页
+  part_ii_start: 356  # Part II 扉页
+  total_pdf_pages: 453

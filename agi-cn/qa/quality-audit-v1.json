@@ -1,0 +1,2748 @@
+{
+  "summary": {
+    "total_chapters": 29,
+    "grade_distribution": {
+      "C": 10,
+      "D": 13,
+      "B": 6
+    },
+    "total_issues": {
+      "untranslated_paragraphs": 60,
+      "untranslated_headings": 226,
+      "forbidden_terms": 41,
+      "image_issues": 0,
+      "at_a_glance_untranslated": 1
+    }
+  },
+  "terminology": {
+    "preserve_count": 0,
+    "forbidden_count": 25
+  },
+  "chapters": [
+    {
+      "chapter_id": 1,
+      "slug": "prompt-chaining",
+      "zh_title": "提示链",
+      "en_title": "Prompt Chaining",
+      "file": "output/agi-zh-by-chapter/01-prompt-chaining.md",
+      "char_count": 8943,
+      "chinese_ratio": 0.54,
+      "grade": "C",
+      "severity_score": 17,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [
+          {
+            "line": 15,
+            "level": 2,
+            "title": "Practical Applications and Use Cases"
+          },
+          {
+            "line": 19,
+            "level": 3,
+            "title": "Information Processing Workflows"
+          },
+          {
+            "line": 31,
+            "level": 3,
+            "title": "Complex Query Answering"
+          },
+          {
+            "line": 179,
+            "level": 2,
+            "title": "At a Glance"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 42,
+            "preview": "提取关键信息的任务能够为每个来源并发执行。该阶段非常适合采用并行化处理(Parallelization),即同时运行独立的子"
+          },
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 44,
+            "preview": "文本又成为最终审查提示的输入。\n\n因此,复杂操作经常结合使用并行化处理来独立收集数据,并结合使用提示链(Prompt Cha"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": [
+          {
+            "line_start": 179,
+            "preview": "**What** Complex tasks often overwhelm LLMs when handled within a single prompt, leading to significant performance issues. The cognitive load on the model increases the likelihood of errors such as o",
+            "chinese_ratio": 0.27
+          }
+        ]
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 4,
+        "forbidden_terms": 2,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 1
+      }
+    },
+    {
+      "chapter_id": 2,
+      "slug": "routing",
+      "zh_title": "路由",
+      "en_title": "Routing",
+      "file": "output/agi-zh-by-chapter/02-routing.md",
+      "char_count": 18817,
+      "chinese_ratio": 0.13,
+      "grade": "D",
+      "severity_score": 78,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 149,
+            "line_end": 165,
+            "preview": "You will also need to set up your environment with your API key for the language model you choose (e.g., OpenAI, Google Gemini, Anthropic). As mention",
+            "chinese_ratio": 0.0,
+            "english_words": 182,
+            "length": 1558
+          },
+          {
+            "line_start": 169,
+            "line_end": 171,
+            "preview": "The Agent Development Kit (ADK) is a framework for engineering agentic systems, providing a structured environment for defining an agent's capabilitie",
+            "chinese_ratio": 0.0,
+            "english_words": 41,
+            "length": 369
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 38,
+            "level": 1,
+            "title": "Copyright (c) 2025 Marco Fago"
+          },
+          {
+            "line": 39,
+            "level": 1,
+            "title": "https://www.linkedin.com/in/marco-fago/"
+          },
+          {
+            "line": 41,
+            "level": 1,
+            "title": "This code is licensed under the MIT License."
+          },
+          {
+            "line": 42,
+            "level": 1,
+            "title": "See the LICENSE file in the repository for the full license text."
+          },
+          {
+            "line": 47,
+            "level": 1,
+            "title": "--- Configuration ---"
+          },
+          {
+            "line": 48,
+            "level": 1,
+            "title": "Ensure your API key environment variable is set (e.g., GOOGLE_API_KEY)"
+          },
+          {
+            "line": 55,
+            "level": 1,
+            "title": "--- Define Simulated Sub-Agent Handlers (equivalent to ADK sub_agents) ---"
+          },
+          {
+            "line": 72,
+            "level": 1,
+            "title": "--- Define Coordinator Router Chain (equivalent to ADK coordi-"
+          },
+          {
+            "line": 74,
+            "level": 1,
+            "title": "This chain decides which handler to delegate to."
+          },
+          {
+            "line": 88,
+            "level": 1,
+            "title": "--- Define the Delegation Logic (equivalent to ADK's Auto-Flow"
+          },
+          {
+            "line": 90,
+            "level": 1,
+            "title": "Use RunnableBranch to route based on the router chain's output."
+          },
+          {
+            "line": 91,
+            "level": 1,
+            "title": "Define the branches for the RunnableBranch"
+          },
+          {
+            "line": 100,
+            "level": 1,
+            "title": "Create the RunnableBranch."
+          },
+          {
+            "line": 167,
+            "level": 2,
+            "title": "Hands-On Code Example (Google ADK)"
+          },
+          {
+            "line": 178,
+            "level": 1,
+            "title": "--- Constants ---"
+          },
+          {
+            "line": 181,
+            "level": 1,
+            "title": "--- Sub-Agent 1: Booker ---"
+          },
+          {
+            "line": 182,
+            "level": 1,
+            "title": "This agent is responsible for handling booking requests."
+          },
+          {
+            "line": 183,
+            "level": 1,
+            "title": "It uses a hypothetical tool to 'create_booking'."
+          },
+          {
+            "line": 196,
+            "level": 1,
+            "title": "--- Sub-Agent 2: Info ---"
+          },
+          {
+            "line": 197,
+            "level": 1,
+            "title": "This agent is responsible for providing general information."
+          },
+          {
+            "line": 198,
+            "level": 1,
+            "title": "It uses a hypothetical tool to 'search_docs'."
+          },
+          {
+            "line": 210,
+            "level": 1,
+            "title": "--- Coordinator Agent ---"
+          },
+          {
+            "line": 211,
+            "level": 1,
+            "title": "This is the main agent that routes user requests to the appropriate sub-agent."
+          },
+          {
+            "line": 228,
+            "level": 1,
+            "title": "--- Runner ---"
+          },
+          {
+            "line": 229,
+            "level": 1,
+            "title": "The runner orchestrates the execution of the agent tree."
+          },
+          {
+            "line": 230,
+            "level": 1,
+            "title": "(Placeholder for actual runner setup, e.g., InMemoryRunner or similar)"
+          },
+          {
+            "line": 231,
+            "level": 1,
+            "title": "runner = SomeRunner(agent=coordinator_agent)"
+          },
+          {
+            "line": 232,
+            "level": 1,
+            "title": "async def main():"
+          },
+          {
+            "line": 233,
+            "level": 1,
+            "title": "await runner.run(\"I want to book a flight to London.\")"
+          },
+          {
+            "line": 237,
+            "level": 1,
+            "title": "Copyright (c) 2025 Marco Fago"
+          },
+          {
+            "line": 275,
+            "level": 1,
+            "title": "--- Create Tools from Functions ---"
+          },
+          {
+            "line": 278,
+            "level": 1,
+            "title": "Define specialized sub-agents equipped with their respec-"
+          },
+          {
+            "line": 296,
+            "level": 1,
+            "title": "Define the parent agent with explicit delegation instructions"
+          },
+          {
+            "line": 395,
+            "level": 2,
+            "title": "At a Glance"
+          }
+        ],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 2,
+        "untranslated_headings": 34,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 3,
+      "slug": "parallelization",
+      "zh_title": "并行化",
+      "en_title": "Parallelization",
+      "file": "output/agi-zh-by-chapter/03-parallelization.md",
+      "char_count": 15904,
+      "chinese_ratio": 0.24,
+      "grade": "D",
+      "severity_score": 70,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 103,
+            "line_end": 113,
+            "preview": "Furthermore, a valid API key for the chosen language model must be configured in the local environment for authentication. import os import asyncio fr",
+            "chinese_ratio": 0.0,
+            "english_words": 39,
+            "length": 412
+          },
+          {
+            "line_start": 116,
+            "line_end": 122,
+            "preview": "OPENAI_API_KEY) try: llm: Optional[ChatOpenAI] = ChatOpenAI(model=\"gpt-4o-mini\", temperature=0.7) except Exception as e: print(f\"Error initializing la",
+            "chinese_ratio": 0.0,
+            "english_words": 18,
+            "length": 180
+          },
+          {
+            "line_start": 125,
+            "line_end": 151,
+            "preview": "cuted in parallel. summarize_chain: Runnable = ( ChatPromptTemplate.from_messages([ (\"system\", \"Summarize the following topic concisely:\"), (\"user\", \"",
+            "chinese_ratio": 0.0,
+            "english_words": 45,
+            "length": 583
+          },
+          {
+            "line_start": 395,
+            "line_end": 395,
+            "preview": "[Google 智能体开发工具包(ADK)文档(多智能体系统)](https://google.github.io/adk-docs/agents/multi-agents/): https://google.github.io/adk-docs/agents/multi-agents/",
+            "chinese_ratio": 0.11,
+            "english_words": 18,
+            "length": 144
+          },
+          {
+            "line_start": 397,
+            "line_end": 397,
+            "preview": "[LangChain 表达式语言(LCEL)文档(并行)](https://python.langchain.com/docs/concepts/lcel/): https://python.langchain.com/docs/concepts/lcel/",
+            "chinese_ratio": 0.07,
+            "english_words": 16,
+            "length": 129
+          },
+          {
+            "line_start": 399,
+            "line_end": 399,
+            "preview": "[Python asyncio 文档](https://docs.python.org/3/library/asyncio.html): https://docs.python.org/3/library/asyncio.html",
+            "chinese_ratio": 0.02,
+            "english_words": 16,
+            "length": 115
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 158,
+            "level": 1,
+            "title": "along with the original topic, will be fed into the"
+          },
+          {
+            "line": 169,
+            "level": 1,
+            "title": "2. Define the final synthesis prompt which will combine the"
+          },
+          {
+            "line": 179,
+            "level": 1,
+            "title": "3. Construct the full chain by piping the parallel results"
+          },
+          {
+            "line": 181,
+            "level": 1,
+            "title": "into the synthesis prompt, followed by the LLM and output"
+          },
+          {
+            "line": 185,
+            "level": 1,
+            "title": "--- Run the Chain ---"
+          },
+          {
+            "line": 231,
+            "level": 1,
+            "title": "--- 1. Define Researcher Sub-Agents (to run in parallel) ---"
+          },
+          {
+            "line": 233,
+            "level": 1,
+            "title": "Researcher 1: Renewable Energy"
+          },
+          {
+            "line": 245,
+            "level": 1,
+            "title": "Researcher 2: Electric Vehicles"
+          },
+          {
+            "line": 257,
+            "level": 1,
+            "title": "Researcher 3: Carbon Capture"
+          },
+          {
+            "line": 301,
+            "level": 2,
+            "title": "Summary of Recent Sustainable Technology Advancements"
+          },
+          {
+            "line": 302,
+            "level": 3,
+            "title": "Renewable Energy Findings"
+          },
+          {
+            "line": 306,
+            "level": 3,
+            "title": "Electric Vehicle Findings"
+          },
+          {
+            "line": 310,
+            "level": 3,
+            "title": "Carbon Capture Findings"
+          },
+          {
+            "line": 314,
+            "level": 3,
+            "title": "Overall Conclusion"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 1,
+            "preview": "# 第 3 章 并行化(Parallelization)\n\n<!-- chapt"
+          },
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 5,
+            "preview": "ted_from: pdf/069-083 -->\n\n## 并行化模式概述\n\n在前面的章节中,我们已经探讨了用于顺序工作流的"
+          },
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 7,
+            "preview": "智能体式任务涉及可以同时执行而非依次执行的多个子任务。这正是并行化(Parallelization)模式变得关键的地方。\n\n"
+          },
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 63,
+            "preview": "并查找餐厅推荐。\n  - **优势**:更快地呈现完整的旅行计划。\n\n### 多组件内容生成\n\n并行生成复杂内容的不同部分。"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 2,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 6,
+        "untranslated_headings": 14,
+        "forbidden_terms": 4,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 4,
+      "slug": "reflection",
+      "zh_title": "反思",
+      "en_title": "Reflection",
+      "file": "output/agi-zh-by-chapter/04-reflection.md",
+      "char_count": 12868,
+      "chinese_ratio": 0.21,
+      "grade": "D",
+      "severity_score": 45,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 33,
+            "line_end": 35,
+            "preview": "Repeat until the post meets quality standards. – Benefit: Produces more polished and effective content.",
+            "chinese_ratio": 0.0,
+            "english_words": 14,
+            "length": 103
+          },
+          {
+            "line_start": 77,
+            "line_end": 78,
+            "preview": "Reviewing previous turns in a conversation to maintain context, correct mis- understandings, or improve response quality.",
+            "chinese_ratio": 0.0,
+            "english_words": 12,
+            "length": 121
+          },
+          {
+            "line_start": 213,
+            "line_end": 213,
+            "preview": "Specifically, the code showcases this by employing a Generator-Critic structure, where one component (the Generator) produces an initial result or pla",
+            "chinese_ratio": 0.0,
+            "english_words": 36,
+            "length": 300
+          },
+          {
+            "line_start": 252,
+            "line_end": 252,
+            "preview": "This code demonstrates the use of a sequential agent pipeline in Google ADK for generating and reviewing text.",
+            "chinese_ratio": 0.0,
+            "english_words": 15,
+            "length": 110
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 37,
+            "level": 3,
+            "title": "Code Generation and Debugging"
+          },
+          {
+            "line": 46,
+            "level": 3,
+            "title": "Complex Problem Solving"
+          },
+          {
+            "line": 56,
+            "level": 3,
+            "title": "Summarization and Information Synthesis"
+          },
+          {
+            "line": 66,
+            "level": 3,
+            "title": "Planning and Strategy"
+          },
+          {
+            "line": 75,
+            "level": 3,
+            "title": "Conversational Agents"
+          },
+          {
+            "line": 218,
+            "level": 1,
+            "title": "The first agent generates the initial draft."
+          },
+          {
+            "line": 226,
+            "level": 1,
+            "title": "The second agent critiques the draft from the first agent."
+          },
+          {
+            "line": 241,
+            "level": 1,
+            "title": "The SequentialAgent ensures the generator runs before the reviewer."
+          },
+          {
+            "line": 247,
+            "level": 1,
+            "title": "Execution Flow:"
+          },
+          {
+            "line": 248,
+            "level": 1,
+            "title": "1. generator runs -> saves its paragraph to state['draft_text']."
+          },
+          {
+            "line": 249,
+            "level": 1,
+            "title": "2. reviewer runs -> reads state['draft_text'] and saves its dictionary output to state['review_output']."
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 7,
+            "preview": "动态路径选择的路由(Routing),以及用于并发任务执行的并行化化(Parallelization)。这些模式使智能体能够"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 2,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 4,
+        "untranslated_headings": 11,
+        "forbidden_terms": 1,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 5,
+      "slug": "tool-use",
+      "zh_title": "工具使用(函数调用)",
+      "en_title": "Tool Use (Function Calling)",
+      "file": "output/agi-zh-by-chapter/05-tool-use.md",
+      "char_count": 25001,
+      "chinese_ratio": 0.14,
+      "grade": "C",
+      "severity_score": 29,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [
+          {
+            "line": 134,
+            "level": 1,
+            "title": "pip install crewai langchain-openai"
+          },
+          {
+            "line": 184,
+            "level": 1,
+            "title": "--- 2. Define the Agent ---"
+          },
+          {
+            "line": 185,
+            "level": 1,
+            "title": "The agent definition remains the same, but it will now leverage"
+          },
+          {
+            "line": 200,
+            "level": 1,
+            "title": "--- 3. Refined Task: Clearer Instructions and Error Handling ---"
+          },
+          {
+            "line": 201,
+            "level": 1,
+            "title": "The task description is more specific and guides the agent on"
+          },
+          {
+            "line": 203,
+            "level": 1,
+            "title": "to both successful data retrieval and potential errors."
+          },
+          {
+            "line": 303,
+            "level": 2,
+            "title": "Google Search"
+          },
+          {
+            "line": 433,
+            "level": 1,
+            "title": "os.environ[\"GOOGLE_API_KEY\"] = \"YOUR_API_KEY\""
+          },
+          {
+            "line": 434,
+            "level": 1,
+            "title": "os.environ[\"DATASTORE_ID\"] = \"YOUR_DATASTORE_ID\""
+          },
+          {
+            "line": 436,
+            "level": 1,
+            "title": "--- Application Constants ---"
+          },
+          {
+            "line": 440,
+            "level": 1,
+            "title": "--- Agent Definition (Updated with the newer model from the guide) ---"
+          },
+          {
+            "line": 450,
+            "level": 1,
+            "title": "--- Runner and Session Initialization ---"
+          },
+          {
+            "line": 456,
+            "level": 1,
+            "title": "--- Agent Invocation Logic ---"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 7,
+            "preview": "交互编排,以及管理智能体内部工作流中的信息流动(链式、路由、并行化化、反思)。然而,要让智能体真正发挥作用并与真实世界或外部"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 2,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 13,
+        "forbidden_terms": 1,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 6,
+      "slug": "planning",
+      "zh_title": "规划",
+      "en_title": "Planning",
+      "file": "output/agi-zh-by-chapter/06-planning.md",
+      "char_count": 11648,
+      "chinese_ratio": 0.33,
+      "grade": "C",
+      "severity_score": 16,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 260,
+            "line_end": 260,
+            "preview": "Perplexity，Introducing Perplexity Deep Research，https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research",
+            "chinese_ratio": 0.0,
+            "english_words": 14,
+            "length": 119
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 123,
+            "level": 2,
+            "title": "OpenAI Deep Research API"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 35,
+            "preview": "einforcement Learning in AI\"制定计划,然后撰写摘要,并规定期望输出的具体格式。由智能体和任务组成"
+          },
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 39,
+            "preview": "是一个受管理的长期运行流程。它首先将用户的提示解构为多点研究计划(参见图 6.1),然后提交给用户审阅与修改。这使得在执行前"
+          },
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 39,
+            "preview": "户审阅与修改。这使得在执行前能够以协作方式塑造研究轨迹。一旦计划获得批准,智能体式流水线即启动其迭代式搜索与分析循环。这不仅"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 1,
+        "untranslated_headings": 1,
+        "forbidden_terms": 3,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 7,
+      "slug": "multi-agent-collaboration",
+      "zh_title": "多智能体协作",
+      "en_title": "Multi-Agent Collaboration",
+      "file": "output/agi-zh-by-chapter/07-multi-agent-collaboration.md",
+      "char_count": 18269,
+      "chinese_ratio": 0.24,
+      "grade": "D",
+      "severity_score": 77,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 31,
+            "line_end": 31,
+            "preview": "<!-- TRANSLATION_NOTE: 下一块标题\"Multi-Agent Collaboration: Exploring Interrelationships and Communication Structures\"按术语表规则译为\"多智能体协作:探索相互关系与通信结构\" -->",
+            "chinese_ratio": 0.21,
+            "english_words": 8,
+            "length": 146
+          },
+          {
+            "line_start": 411,
+            "line_end": 411,
+            "preview": "多智能体系统——协作的力量:https://aravindakumar.medium.com/introducing-multi-agent-frameworks-the-power-of-collaboration-e9db31bba1b6",
+            "chinese_ratio": 0.09,
+            "english_words": 11,
+            "length": 121
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 153,
+            "level": 1,
+            "title": "Correctly implement a custom agent by extending BaseAgent"
+          },
+          {
+            "line": 165,
+            "level": 1,
+            "title": "Define individual agents with proper initialization"
+          },
+          {
+            "line": 166,
+            "level": 1,
+            "title": "LlmAgent requires a model to be specified."
+          },
+          {
+            "line": 174,
+            "level": 1,
+            "title": "Create a parent agent and assign its sub-agents"
+          },
+          {
+            "line": 175,
+            "level": 1,
+            "title": "The parent agent's description and instructions should guide"
+          },
+          {
+            "line": 188,
+            "level": 1,
+            "title": "The ADK framework automatically establishes the parent-child"
+          },
+          {
+            "line": 190,
+            "level": 1,
+            "title": "These assertions will pass if checked after initialization."
+          },
+          {
+            "line": 211,
+            "level": 1,
+            "title": "Best Practice: Define custom agents as complete, self-describing classes."
+          },
+          {
+            "line": 230,
+            "level": 1,
+            "title": "Correction: The LlmAgent must have a model and clear instructions."
+          },
+          {
+            "line": 238,
+            "level": 1,
+            "title": "If you are the final step, update session state by setting"
+          },
+          {
+            "line": 239,
+            "level": 1,
+            "title": "'status' to 'completed'."
+          },
+          {
+            "line": 240,
+            "level": 1,
+            "title": "The LoopAgent orchestrates the workflow."
+          },
+          {
+            "line": 250,
+            "level": 1,
+            "title": "This poller will now execute 'process_step'"
+          },
+          {
+            "line": 251,
+            "level": 1,
+            "title": "and then 'ConditionChecker'"
+          },
+          {
+            "line": 252,
+            "level": 1,
+            "title": "repeatedly until the status is 'completed' or 10 iterations"
+          },
+          {
+            "line": 253,
+            "level": 1,
+            "title": "have passed."
+          },
+          {
+            "line": 263,
+            "level": 1,
+            "title": "This agent's output will be saved to session.state[\"data\"]"
+          },
+          {
+            "line": 266,
+            "level": 1,
+            "title": "This agent will use the data from the previous step."
+          },
+          {
+            "line": 267,
+            "level": 1,
+            "title": "We instruct it on how to find and use this data."
+          },
+          {
+            "line": 278,
+            "level": 1,
+            "title": "When the pipeline is run with an initial input, Step1 will execute,"
+          },
+          {
+            "line": 279,
+            "level": 1,
+            "title": "its response will be stored in session.state[\"data\"], and then"
+          },
+          {
+            "line": 280,
+            "level": 1,
+            "title": "Step2 will execute, using the information from the state as instructed."
+          },
+          {
+            "line": 325,
+            "level": 1,
+            "title": "1. A simple function tool for the core capability."
+          },
+          {
+            "line": 326,
+            "level": 1,
+            "title": "This follows the best practice of separating actions from reasoning."
+          },
+          {
+            "line": 348,
+            "level": 1,
+            "title": "2. Refactor the ImageGeneratorAgent into an LlmAgent."
+          },
+          {
+            "line": 349,
+            "level": 1,
+            "title": "It now correctly uses the input passed to it."
+          },
+          {
+            "line": 363,
+            "level": 1,
+            "title": "3. Wrap the corrected agent in an AgentTool."
+          },
+          {
+            "line": 364,
+            "level": 1,
+            "title": "The description here is what the parent agent sees."
+          },
+          {
+            "line": 370,
+            "level": 1,
+            "title": "4. The parent agent remains unchanged. Its logic was correct."
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 60,
+            "preview": "探讨 Google ADK 框架中的更多示例,重点关注分层、并行和顺序协调范式,以及将智能体作为操作工具的实现。\n\n### "
+          },
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 86,
+            "preview": "es.\n\n\n\n以下代码示例演示了 Google ADK 中的并行化化智能体(ParallelAgent)模式,该模式支持多个"
+          },
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 86,
+            "preview": "置使用 \"gemini-2.0-flash-exp\" 模型。并行化化智能体(ParallelAgent)负责编排这些子智能体"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 3,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 2,
+        "untranslated_headings": 29,
+        "forbidden_terms": 3,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 8,
+      "slug": "memory-management",
+      "zh_title": "记忆管理",
+      "en_title": "Memory Management",
+      "file": "output/agi-zh-by-chapter/08-memory-management.md",
+      "char_count": 24680,
+      "chinese_ratio": 0.22,
+      "grade": "D",
+      "severity_score": 65,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 570,
+            "line_end": 570,
+            "preview": "[Vertex AI Agent Engine Memory Bank](https://cloud.google.com/blog/products/ai-machine-learning/vertex-ai-memory-bank-in-public-preview)",
+            "chinese_ratio": 0.0,
+            "english_words": 18,
+            "length": 136
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 48,
+            "level": 1,
+            "title": "Example: Using InMemorySessionService"
+          },
+          {
+            "line": 71,
+            "level": 1,
+            "title": "Example: Using VertexAiSessionService"
+          },
+          {
+            "line": 72,
+            "level": 1,
+            "title": "This is suitable for scalable production on Google Cloud Platform, leveraging"
+          },
+          {
+            "line": 73,
+            "level": 1,
+            "title": "Vertex AI infrastructure for session management."
+          },
+          {
+            "line": 74,
+            "level": 1,
+            "title": "Requires: pip install google-adk[vertexai] and GCP setup/authentication"
+          },
+          {
+            "line": 79,
+            "level": 1,
+            "title": "The app_name used with this service should correspond to the Reasoning Engine ID or name"
+          },
+          {
+            "line": 84,
+            "level": 1,
+            "title": "When using this service, pass REASONING_ENGINE_APP_NAME to service methods:"
+          },
+          {
+            "line": 85,
+            "level": 1,
+            "title": "session_service.create_session(app_name=REASONING_ENGINE_APP_NAME, …)"
+          },
+          {
+            "line": 86,
+            "level": 1,
+            "title": "session_service.get_session(app_name=REASONING_ENGINE_APP_NAME, …)"
+          },
+          {
+            "line": 87,
+            "level": 1,
+            "title": "session_service.append_event(session, event, app_name=REASONING_ENGINE_APP_NAME)"
+          },
+          {
+            "line": 88,
+            "level": 1,
+            "title": "session_service.delete_session(app_name=REASONING_ENGINE_APP_NAME, …)"
+          },
+          {
+            "line": 112,
+            "level": 1,
+            "title": "Import necessary classes from the Google Agent Developer Kit (ADK)"
+          },
+          {
+            "line": 118,
+            "level": 1,
+            "title": "Define an LlmAgent with an output_key."
+          },
+          {
+            "line": 126,
+            "level": 1,
+            "title": "--- Setup Runner and Session ---"
+          },
+          {
+            "line": 141,
+            "level": 1,
+            "title": "--- Run the Agent ---"
+          },
+          {
+            "line": 152,
+            "level": 1,
+            "title": "--- Check Updated State ---"
+          },
+          {
+            "line": 153,
+            "level": 1,
+            "title": "Correctly check the state *after* the runner has finished processing all events."
+          },
+          {
+            "line": 242,
+            "level": 1,
+            "title": "Example: Using InMemoryMemoryService"
+          },
+          {
+            "line": 243,
+            "level": 1,
+            "title": "This is suitable for local development and testing where data"
+          },
+          {
+            "line": 244,
+            "level": 1,
+            "title": "persistence across application restarts is not required."
+          },
+          {
+            "line": 245,
+            "level": 1,
+            "title": "Memory content is lost when the app stops."
+          },
+          {
+            "line": 257,
+            "level": 1,
+            "title": "Example: Using VertexAiRagMemoryService"
+          },
+          {
+            "line": 299,
+            "level": 1,
+            "title": "Initialize the history object"
+          },
+          {
+            "line": 302,
+            "level": 1,
+            "title": "Add user and AI messages"
+          },
+          {
+            "line": 306,
+            "level": 1,
+            "title": "Access the list of messages"
+          },
+          {
+            "line": 322,
+            "level": 1,
+            "title": "Initialize memory"
+          },
+          {
+            "line": 325,
+            "level": 1,
+            "title": "Save a conversation turn"
+          },
+          {
+            "line": 329,
+            "level": 1,
+            "title": "Load the memory as a string"
+          },
+          {
+            "line": 500,
+            "level": 3,
+            "title": "Vertex Memory Bank"
+          },
+          {
+            "line": 540,
+            "level": 2,
+            "title": "Key Takeaways"
+          }
+        ],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 1,
+        "untranslated_headings": 30,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 9,
+      "slug": "learning-and-adaptation",
+      "zh_title": "学习与适应",
+      "en_title": "Learning and Adaptation",
+      "file": "output/agi-zh-by-chapter/09-learning-and-adaptation.md",
+      "char_count": 8870,
+      "chinese_ratio": 0.48,
+      "grade": "C",
+      "severity_score": 28,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 82,
+            "line_end": 86,
+            "preview": "an initial program, an evaluation file, and a configuration file. The evolve. run(iterations = 1000) line starts the evolutionary process, running for",
+            "chinese_ratio": 0.0,
+            "english_words": 39,
+            "length": 323
+          },
+          {
+            "line_start": 137,
+            "line_end": 138,
+            "preview": "AlphaEvolve blog: https://deepmind.google/discover/blog/alphaevolve-­a-­gemini-­ powered-­coding-­agent-­for-­designing-­advanced-­algorithms/",
+            "chinese_ratio": 0.0,
+            "english_words": 16,
+            "length": 142
+          },
+          {
+            "line_start": 146,
+            "line_end": 148,
+            "preview": "Proximal Policy Optimization Algorithms by John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov. You can find it on arXiv: ht",
+            "chinese_ratio": 0.0,
+            "english_words": 23,
+            "length": 181
+          },
+          {
+            "line_start": 150,
+            "line_end": 152,
+            "preview": "Robeyns, M., Aitchison, L., & Szummer, M. (2025). A Self-Improving Coding Agent. arXiv:2504.15228v2: https://arxiv.org/pdf/2504.15228 https://github.c",
+            "chinese_ratio": 0.0,
+            "english_words": 16,
+            "length": 195
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 135,
+            "level": 2,
+            "title": "Bibliography"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "映射",
+            "preferred": "反思",
+            "source": "Reflection",
+            "line": 12,
+            "preview": "。\n- 监督学习(SL):智能体从带标签的样本中学习,将输入映射到期望输出,从而能够执行决策和模式识别等任务。非常适合用于邮"
+          },
+          {
+            "forbidden": "映射",
+            "preferred": "反思",
+            "source": "Reflection",
+            "line": 51,
+            "preview": " Prompt):包含问题陈述或指令、打开的文件内容以及目录映射。\n- 助手消息(Assistant Messages):记"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 4,
+        "untranslated_headings": 1,
+        "forbidden_terms": 2,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 10,
+      "slug": "model-context-protocol",
+      "zh_title": "模型上下文协议",
+      "en_title": "Model Context Protocol",
+      "file": "output/agi-zh-by-chapter/10-model-context-protocol.md",
+      "char_count": 14923,
+      "chinese_ratio": 0.42,
+      "grade": "D",
+      "severity_score": 33,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [
+          {
+            "line": 159,
+            "level": 1,
+            "title": "./adk_agent_samples/mcp_agent/__init__.py"
+          },
+          {
+            "line": 221,
+            "level": 1,
+            "title": "fastmcp_server.py"
+          },
+          {
+            "line": 222,
+            "level": 1,
+            "title": "This script demonstrates how to create a simple MCP server using FastMCP."
+          },
+          {
+            "line": 223,
+            "level": 1,
+            "title": "It exposes a single tool that generates a greeting."
+          },
+          {
+            "line": 228,
+            "level": 1,
+            "title": "pip install fastmcp"
+          },
+          {
+            "line": 231,
+            "level": 1,
+            "title": "Initialize the FastMCP server."
+          },
+          {
+            "line": 234,
+            "level": 1,
+            "title": "Define a simple tool function."
+          },
+          {
+            "line": 235,
+            "level": 1,
+            "title": "The `@mcp_server.tool` decorator registers this Python func-"
+          },
+          {
+            "line": 237,
+            "level": 1,
+            "title": "The docstring becomes the tool's description for the LLM."
+          },
+          {
+            "line": 247,
+            "level": 1,
+            "title": "Or if you want to run it from the script:"
+          },
+          {
+            "line": 265,
+            "level": 1,
+            "title": "./adk_agent_samples/fastmcp_client_agent/agent.py"
+          },
+          {
+            "line": 270,
+            "level": 1,
+            "title": "Define the FastMCP server's address."
+          },
+          {
+            "line": 271,
+            "level": 1,
+            "title": "Make sure your fastmcp_server.py (defined previously) is running on this port."
+          },
+          {
+            "line": 297,
+            "level": 2,
+            "title": "At a Glance"
+          },
+          {
+            "line": 324,
+            "level": 2,
+            "title": "Bibliography"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "代理",
+            "preferred": "智能体",
+            "source": "Agent",
+            "line": 142,
+            "preview": "。\n\n除基本工具创建之外,FastMCP 还支持服务器组合与代理等高级架构模式。这使得复杂的多组件系统能够以模块化方式开发,"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 15,
+        "forbidden_terms": 1,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 11,
+      "slug": "goal-setting-and-monitoring",
+      "zh_title": "目标设定与监控",
+      "en_title": "Goal Setting and Monitoring",
+      "file": "output/agi-zh-by-chapter/11-goal-setting-and-monitoring.md",
+      "char_count": 12362,
+      "chinese_ratio": 0.26,
+      "grade": "C",
+      "severity_score": 11,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [
+          {
+            "line": 92,
+            "level": 1,
+            "title": "Load environment variables."
+          },
+          {
+            "line": 98,
+            "level": 1,
+            "title": "Initialize OpenAI model."
+          },
+          {
+            "line": 106,
+            "level": 1,
+            "title": "--- Utility Functions ---"
+          },
+          {
+            "line": 195,
+            "level": 1,
+            "title": "--- Main Agent Function ---"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 109,
+            "preview": "工具输出。\n- 来自监控的反馈循环使智能体能够适应变化、修订计划或上报问题。\n- 在 Google ADK 中,目标通常通过"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 4,
+        "forbidden_terms": 1,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 12,
+      "slug": "exception-handling-and-recovery",
+      "zh_title": "异常处理与恢复",
+      "en_title": "Exception Handling and Recovery",
+      "file": "output/agi-zh-by-chapter/12-exception-handling-and-recovery.md",
+      "char_count": 5918,
+      "chinese_ratio": 0.44,
+      "grade": "C",
+      "severity_score": 15,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 126,
+            "line_end": 126,
+            "preview": "O'Neill, V. (2022). Improving Fault Tolerance and Reliability of Heterogeneous Multi-Agent IoT Systems Using Intelligence Transfer. *Electronics*, 11(",
+            "chinese_ratio": 0.0,
+            "english_words": 15,
+            "length": 160
+          },
+          {
+            "line_start": 128,
+            "line_end": 128,
+            "preview": "Shi, Y., Pei, H., Feng, L., Zhang, Y., & Yao, D. (2024). Towards Fault Tolerance in Multi-Agent Reinforcement Learning. *arXiv* preprint arXiv:2412.00",
+            "chinese_ratio": 0.0,
+            "english_words": 15,
+            "length": 154
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 107,
+            "level": 2,
+            "title": "Key Takeaways"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "代理",
+            "preferred": "智能体",
+            "source": "Agent",
+            "line": 25,
+            "preview": "le)时,它需要优雅地处理这些情况。这可能包括暂停操作、使用代理,或报告失败的具体 URL。\n- **机器人与制造业**:执"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 2,
+        "untranslated_headings": 1,
+        "forbidden_terms": 1,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 13,
+      "slug": "human-in-the-loop",
+      "zh_title": "人在回路",
+      "en_title": "Human-in-the-Loop",
+      "file": "output/agi-zh-by-chapter/13-human-in-the-loop.md",
+      "char_count": 7964,
+      "chinese_ratio": 0.48,
+      "grade": "C",
+      "severity_score": 11,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 156,
+            "line_end": 156,
+            "preview": "A Survey of Human-in-the-loop for Machine Learning, Xingjiao Wu, Luwei Xiao, Yixuan Sun, Junhang Zhang, Tianlong Ma, Liang He: https://arxiv.org/abs/2",
+            "chinese_ratio": 0.0,
+            "english_words": 20,
+            "length": 159
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 51,
+            "level": 2,
+            "title": "Hands-On Code Example"
+          },
+          {
+            "line": 63,
+            "level": 1,
+            "title": "Placeholder for tools (replace with actual implementations if needed)"
+          },
+          {
+            "line": 130,
+            "level": 2,
+            "title": "At a Glance"
+          }
+        ],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 1,
+        "untranslated_headings": 3,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 14,
+      "slug": "knowledge-retrieval-rag",
+      "zh_title": "知识检索(RAG)",
+      "en_title": "Knowledge Retrieval (RAG)",
+      "file": "output/agi-zh-by-chapter/14-knowledge-retrieval-rag.md",
+      "char_count": 15914,
+      "chinese_ratio": 0.36,
+      "grade": "C",
+      "severity_score": 24,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 307,
+            "line_end": 308,
+            "preview": "Google AI for Developers Documentation. Retrieval Augmented Generation - https:// cloud.google.com/vertex-­ai/generative-­ai/docs/rag-­engine/rag-­ove",
+            "chinese_ratio": 0.0,
+            "english_words": 18,
+            "length": 155
+          },
+          {
+            "line_start": 310,
+            "line_end": 311,
+            "preview": "Google Cloud Vertex AI RAG Corpus https://cloud.google.com/vertex-­ai/genera- tive-­ai/docs/rag-­engine/manage-­your-­rag-­corpus#corpus-­management",
+            "chinese_ratio": 0.0,
+            "english_words": 21,
+            "length": 148
+          },
+          {
+            "line_start": 313,
+            "line_end": 316,
+            "preview": "LangChain and LangGraph: Leonie Monigatti, \"Retrieval-Augmented Generation (RAG): From Theory to LangChain Implementation,\" https://medium.com/data-­ ",
+            "chinese_ratio": 0.0,
+            "english_words": 27,
+            "length": 255
+          },
+          {
+            "line_start": 318,
+            "line_end": 319,
+            "preview": "Lewis, P., et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. https://arxiv.org/abs/2005.11401",
+            "chinese_ratio": 0.0,
+            "english_words": 13,
+            "length": 124
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 49,
+            "level": 2,
+            "title": "Graph RAG"
+          },
+          {
+            "line": 277,
+            "level": 2,
+            "title": "At a Glance"
+          }
+        ],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 4,
+        "untranslated_headings": 2,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 15,
+      "slug": "inter-agent-communication-a2a",
+      "zh_title": "智能体间通信(A2A)",
+      "en_title": "Inter-Agent Communication (A2A)",
+      "file": "output/agi-zh-by-chapter/15-inter-agent-communication-a2a.md",
+      "char_count": 13372,
+      "chinese_ratio": 0.31,
+      "grade": "D",
+      "severity_score": 35,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 182,
+            "line_end": 182,
+            "preview": "让我们考察智能体到智能体(A2A)协议的实际应用。仓库 https://github.com/google-a2a/a2a-samples/tree/main/samples 提供了 Java、Go 和 Python 示例,展示了 LangGraph、CrewAI、Azure AI Foundry ",
+            "chinese_ratio": 0.27,
+            "english_words": 28,
+            "length": 413
+          },
+          {
+            "line_start": 326,
+            "line_end": 326,
+            "preview": "Chen, B. (2025, April 22). How to Build Your First Google A2A Project: A Step-by-­Step Tutorial. Trickle.so Blog. https://www.trickle.so/blog/how-­to-",
+            "chinese_ratio": 0.0,
+            "english_words": 21,
+            "length": 178
+          },
+          {
+            "line_start": 328,
+            "line_end": 328,
+            "preview": "Communication between different AI frameworks such as LangGraph, CrewAI, and Google ADK https://www.trickle.so/blog/how-­to-­build-­google-­a2a-­proje",
+            "chinese_ratio": 0.0,
+            "english_words": 18,
+            "length": 152
+          },
+          {
+            "line_start": 330,
+            "line_end": 330,
+            "preview": "Designing Collaborative Multi-Agent Systems with the A2A Protocol https://www.oreilly.com/radar/designing-­collaborative-­multi-­agent-­systems-­with-",
+            "chinese_ratio": 0.0,
+            "english_words": 21,
+            "length": 170
+          },
+          {
+            "line_start": 334,
+            "line_end": 334,
+            "preview": "Getting Started with Agent-to-Agent (A2A) Protocol: https://codelabs.developers.google.com/intro-­a2a-­purchasing-­concierge#0",
+            "chinese_ratio": 0.0,
+            "english_words": 14,
+            "length": 126
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 324,
+            "level": 2,
+            "title": "Bibliography"
+          },
+          {
+            "line": 332,
+            "level": 2,
+            "title": "15 Inter-Agent Communication (A2A)          223"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 31,
+            "preview": "ng)或已完成(completed)——从而支持复杂操作中的并行化处理。智能体之间的通信通过消息(Message)进行。消息"
+          },
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 13,
+            "preview": "ce、SAP 和 ServiceNow。Microsoft 计划将 A2A 集成到 Azure AI Foundry 和 C"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 5,
+        "untranslated_headings": 2,
+        "forbidden_terms": 2,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 16,
+      "slug": "resource-aware-optimization",
+      "zh_title": "资源感知优化",
+      "en_title": "Resource-Aware Optimization",
+      "file": "output/agi-zh-by-chapter/16-resource-aware-optimization.md",
+      "char_count": 15680,
+      "chinese_ratio": 0.27,
+      "grade": "D",
+      "severity_score": 33,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 13,
+            "line_end": 16,
+            "preview": "Built-in evaluation fea- tures allow systematic assessment of agent performance, which can be used for system refinement (see Chap. 19). Next, two age",
+            "chinese_ratio": 0.0,
+            "english_words": 31,
+            "length": 232
+          },
+          {
+            "line_start": 121,
+            "line_end": 121,
+            "preview": "代码采用 MIT 许可证,可在 GitHub 上获取:(https://github.com/mahtabsyed/21-Agentic-Patterns/blob/main/16_Resource_Aware_Opt_LLM_Reflection_v2.ipynb)。",
+            "chinese_ratio": 0.09,
+            "english_words": 11,
+            "length": 135
+          },
+          {
+            "line_start": 309,
+            "line_end": 309,
+            "preview": "OpenRouter offers a detailed leaderboard (https://openrouter.ai/rankings) which ranks available AI models based on their cumulative token production. ",
+            "chinese_ratio": 0.0,
+            "english_words": 29,
+            "length": 250
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 113,
+            "level": 2,
+            "title": "Hands-On Code with OpenAI"
+          },
+          {
+            "line": 124,
+            "level": 1,
+            "title": "MIT License"
+          },
+          {
+            "line": 145,
+            "level": 1,
+            "title": "--- Step 1: Classify the Prompt ---"
+          },
+          {
+            "line": 174,
+            "level": 1,
+            "title": "--- Step 2: Google Search ---"
+          },
+          {
+            "line": 331,
+            "level": 2,
+            "title": "At a Glance"
+          },
+          {
+            "line": 350,
+            "level": 2,
+            "title": "Conclusions"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 89,
+            "preview": "最小化智能体系统的能源足迹,延长运行时间并降低整体运行成本。并行化化与分布式计算感知(Parallelization and"
+          },
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 108,
+            "preview": "要、前瞻性资源预测、多智能体系统中的成本敏感探索、能效部署、并行化化与分布式计算感知、学习型资源分配策略、优雅降级与回退机制"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 3,
+        "untranslated_headings": 6,
+        "forbidden_terms": 2,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 17,
+      "slug": "reasoning-techniques",
+      "zh_title": "推理技术",
+      "en_title": "Reasoning Techniques",
+      "file": "output/agi-zh-by-chapter/17-reasoning-techniques.md",
+      "char_count": 21418,
+      "chinese_ratio": 0.42,
+      "grade": "D",
+      "severity_score": 63,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 61,
+            "line_end": 61,
+            "preview": "Classical computers use bits (0 or 1), processing information sequentially. Quantum computers use qubits, which can be 0, 1, or both simultaneously (s",
+            "chinese_ratio": 0.0,
+            "english_words": 63,
+            "length": 580
+          },
+          {
+            "line_start": 71,
+            "line_end": 71,
+            "preview": "Classical computers process information using bits, which can be either a 0 or a 1 at any given time, performing operations sequentially. In contrast,",
+            "chinese_ratio": 0.0,
+            "english_words": 39,
+            "length": 350
+          },
+          {
+            "line_start": 75,
+            "line_end": 75,
+            "preview": "<!-- TRANSLATION_NOTE: 上下文连贯处理。\"Tree-of-Thought\" 按术语表译为\"思维树\",原文使用 Tree-of-Thought 而非标准 Tree of Thoughts,翻译时按上下文保留。-->",
+            "chinese_ratio": 0.28,
+            "english_words": 6,
+            "length": 117
+          },
+          {
+            "line_start": 212,
+            "line_end": 212,
+            "preview": "This allows the model to evolve its problem-solving abilities without direct human supervision. Ultimately, these reasoning models don't just produce ",
+            "chinese_ratio": 0.0,
+            "english_words": 231,
+            "length": 1859
+          },
+          {
+            "line_start": 323,
+            "line_end": 323,
+            "preview": "application 利用了 React 与 Vite、Tailwind CSS、Shadcn UI、LangGraph 以及 Google Gemini。该项目遵循 Apache 2.0 许可证(图 17.7)。",
+            "chinese_ratio": 0.14,
+            "english_words": 10,
+            "length": 108
+          },
+          {
+            "line_start": 371,
+            "line_end": 371,
+            "preview": "Wei 等人,《思维链提示在大语言模型中激发推理能力》(Chain-of-Thought Prompting Elicits Reasoning in Large Language Models),2022",
+            "chinese_ratio": 0.19,
+            "english_words": 9,
+            "length": 103
+          },
+          {
+            "line_start": 373,
+            "line_end": 373,
+            "preview": "《推理缩放定律:面向 LLM 问题求解的计算最优推理的实证分析》(Inference Scaling Laws: An Empirical Analysis of Compute-Optimal Inference for LLM Problem-Solving),2024",
+            "chinese_ratio": 0.18,
+            "english_words": 13,
+            "length": 137
+          },
+          {
+            "line_start": 375,
+            "line_end": 375,
+            "preview": "《多智能体设计:通过更优提示与拓扑结构优化智能体》(Multi-Agent Design: Optimizing Agents with Better Prompts and Topologies),https://arxiv.org/abs/2502.02533",
+            "chinese_ratio": 0.17,
+            "english_words": 14,
+            "length": 132
+          },
+          {
+            "line_start": 381,
+            "line_end": 381,
+            "preview": "Yao 等人,《思维树:利用大语言模型进行审慎问题求解》(Tree of Thoughts: Deliberate Problem Solving with Large Language Models),2023",
+            "chinese_ratio": 0.19,
+            "english_words": 10,
+            "length": 106
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 296,
+            "level": 1,
+            "title": "Create our Agent Graph"
+          },
+          {
+            "line": 298,
+            "level": 1,
+            "title": "Define the nodes we will cycle between"
+          },
+          {
+            "line": 303,
+            "level": 1,
+            "title": "Set the entrypoint as `generate_query`"
+          },
+          {
+            "line": 304,
+            "level": 1,
+            "title": "This means that this node is the first one called"
+          },
+          {
+            "line": 306,
+            "level": 1,
+            "title": "Add conditional edge to continue with search queries in a parallel branch"
+          },
+          {
+            "line": 310,
+            "level": 1,
+            "title": "Reflect on the web research"
+          },
+          {
+            "line": 312,
+            "level": 1,
+            "title": "Evaluate the research"
+          },
+          {
+            "line": 316,
+            "level": 1,
+            "title": "Finalize the answer"
+          },
+          {
+            "line": 341,
+            "level": 2,
+            "title": "At a Glance"
+          }
+        ],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 4,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 9,
+        "untranslated_headings": 9,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 18,
+      "slug": "guardrails-safety-patterns",
+      "zh_title": "护栏/安全模式",
+      "en_title": "Guardrails/Safety Patterns",
+      "file": "output/agi-zh-by-chapter/18-guardrails-safety-patterns.md",
+      "char_count": 22559,
+      "chinese_ratio": 0.28,
+      "grade": "D",
+      "severity_score": 46,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 446,
+            "line_end": 446,
+            "preview": "fields like finance, healthcare, or legal research. Use them to enforce ethical guidelines, prevent the spread of misinformation, protect brand safety",
+            "chinese_ratio": 0.0,
+            "english_words": 24,
+            "length": 195
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 18,
+            "level": 1,
+            "title": "Copyright (c) 2025 Marco Fago"
+          },
+          {
+            "line": 19,
+            "level": 1,
+            "title": "https://www.linkedin.com/in/marco-fago/"
+          },
+          {
+            "line": 21,
+            "level": 1,
+            "title": "This code is licensed under the MIT License."
+          },
+          {
+            "line": 22,
+            "level": 1,
+            "title": "See the LICENSE file in the repository for the full license text."
+          },
+          {
+            "line": 31,
+            "level": 1,
+            "title": "--- 0. Setup ---"
+          },
+          {
+            "line": 32,
+            "level": 1,
+            "title": "Set up logging for observability. Set to logging.INFO to see detailed guardrail logs."
+          },
+          {
+            "line": 34,
+            "level": 1,
+            "title": "For demonstration, we'll assume GOOGLE_API_KEY is set in your environment"
+          },
+          {
+            "line": 39,
+            "level": 1,
+            "title": "Define the LLM to be used as a content policy enforcer"
+          },
+          {
+            "line": 40,
+            "level": 1,
+            "title": "Using a fast, cost-effective model like Gemini Flash is ideal for guardrails."
+          },
+          {
+            "line": 42,
+            "level": 1,
+            "title": "--- AI Content Policy Prompt ---"
+          },
+          {
+            "line": 43,
+            "level": 1,
+            "title": "This prompt instructs an LLM to act as a content policy enforcer."
+          },
+          {
+            "line": 44,
+            "level": 1,
+            "title": "It's designed to filter and block non-compliant inputs based on predefined rules."
+          },
+          {
+            "line": 105,
+            "level": 1,
+            "title": "--- Output Validation Guardrail Function ---"
+          },
+          {
+            "line": 158,
+            "level": 1,
+            "title": "--- Agent and Task Setup ---"
+          },
+          {
+            "line": 160,
+            "level": 1,
+            "title": "Agent 1: Policy Enforcer Agent"
+          },
+          {
+            "line": 170,
+            "level": 1,
+            "title": "Task: Evaluate User Input"
+          },
+          {
+            "line": 184,
+            "level": 1,
+            "title": "--- Crew Setup ---"
+          },
+          {
+            "line": 192,
+            "level": 1,
+            "title": "--- Execution ---"
+          },
+          {
+            "line": 432,
+            "level": 2,
+            "title": "At a Glance"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 164,
+            "preview": "使系统更易于构建、测试和维护。多智能体系统中的模块化通过启用并行化处理来提升性能。该设计改善了敏捷性与故障隔离，因为各个智能"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 1,
+        "untranslated_headings": 19,
+        "forbidden_terms": 1,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 19,
+      "slug": "evaluation-and-monitoring",
+      "zh_title": "评估与监控",
+      "en_title": "Evaluation and Monitoring",
+      "file": "output/agi-zh-by-chapter/19-evaluation-and-monitoring.md",
+      "char_count": 17996,
+      "chinese_ratio": 0.4,
+      "grade": "C",
+      "severity_score": 17,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [
+          {
+            "line": 23,
+            "level": 2,
+            "title": "Hands-On Code Example"
+          },
+          {
+            "line": 35,
+            "level": 1,
+            "title": "Example usage"
+          },
+          {
+            "line": 108,
+            "level": 1,
+            "title": "--- Configuration ---"
+          },
+          {
+            "line": 111,
+            "level": 1,
+            "title": "Set your API key as an environment variable to run this script"
+          },
+          {
+            "line": 112,
+            "level": 1,
+            "title": "For example, in your terminal: export GOOGLE_API_KEY='your_"
+          },
+          {
+            "line": 120,
+            "level": 1,
+            "title": "--- LLM-as-a-Judge Rubric for Legal Survey Quality ---"
+          },
+          {
+            "line": 306,
+            "level": 2,
+            "title": "Google ADK"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 13,
+            "preview": "）。\n\n- **针对智能体改进的 A/B 测试**：系统性地并行比较不同智能体版本或策略的性能，以识别最优方法（例如，为物流"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 7,
+        "forbidden_terms": 1,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 20,
+      "slug": "prioritization",
+      "zh_title": "优先级排序",
+      "en_title": "Prioritization",
+      "file": "output/agi-zh-by-chapter/20-prioritization.md",
+      "char_count": 11347,
+      "chinese_ratio": 0.21,
+      "grade": "B",
+      "severity_score": 2,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [
+          {
+            "line": 136,
+            "level": 1,
+            "title": "All tools the PM agent can use"
+          }
+        ],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 1,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 21,
+      "slug": "exploration-and-discovery",
+      "zh_title": "探索与发现",
+      "en_title": "Exploration and Discovery",
+      "file": "output/agi-zh-by-chapter/21-exploration-and-discovery.md",
+      "char_count": 14664,
+      "chinese_ratio": 0.3,
+      "grade": "D",
+      "severity_score": 38,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 70,
+            "line_end": 70,
+            "preview": "This involves synthesizing findings from the experimentation phase with insights from the literature review, structuring the document according to aca",
+            "chinese_ratio": 0.0,
+            "english_words": 32,
+            "length": 261
+          },
+          {
+            "line_start": 74,
+            "line_end": 74,
+            "preview": "The modular architecture of Agent Laboratory ensures computational flexibility. The aim is to enhance research productivity by automating tasks while ",
+            "chinese_ratio": 0.0,
+            "english_words": 20,
+            "length": 183
+          },
+          {
+            "line_start": 78,
+            "line_end": 78,
+            "preview": "While a comprehensive code analysis is beyond the scope of this book, I want to provide you with some key insights and encourage you to delve into the",
+            "chinese_ratio": 0.0,
+            "english_words": 25,
+            "length": 168
+          },
+          {
+            "line_start": 234,
+            "line_end": 235,
+            "preview": "\"You are a software engineer directing a machine learning engineer, where the machine learning engineer will be writing the code, and you can interact",
+            "chinese_ratio": 0.0,
+            "english_words": 72,
+            "length": 486
+          },
+          {
+            "line_start": 239,
+            "line_end": 247,
+            "preview": "\"You are a machine learning engineer being directed by a PhD student who will help you write the code, and you can interact with them through dialogue",
+            "chinese_ratio": 0.16,
+            "english_words": 69,
+            "length": 552
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 15,
+            "level": 2,
+            "title": "Google Co-scientist"
+          },
+          {
+            "line": 76,
+            "level": 2,
+            "title": "Code Analysis"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 56,
+            "preview": "健地拒绝危险输入。为确保负责任的开发,系统正通过\"可信测试者计划(Trusted Tester Program)\"向更多科学"
+          },
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 166,
+            "preview": "简洁的数据准备代码。软件工程智能体整合所提供的文献综述与实验计划，确保生成的代码简洁明了且直接契合研究目标。\n\n\"You a"
+          },
+          {
+            "forbidden": "防护",
+            "preferred": "护栏",
+            "source": "Guardrails",
+            "line": 56,
+            "preview": "\"。\n\n## 安全性\n\n安全性是一项关键考量,系统内置了多重防护措施。所有研究目标在输入时都会经过安全审查,生成的假设也会被"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 5,
+        "untranslated_headings": 2,
+        "forbidden_terms": 3,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 22,
+      "slug": "advanced-prompting-techniques",
+      "zh_title": "高级提示技术",
+      "en_title": "Advanced Prompting Techniques",
+      "file": "output/agi-zh-by-chapter/22-advanced-prompting-techniques.md",
+      "char_count": 25101,
+      "chinese_ratio": 0.56,
+      "grade": "B",
+      "severity_score": 8,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 25,
+            "line_end": 25,
+            "preview": "有效的动词包括：Act(行动)、Analyze(分析)、Categorize(分类)、Classify(归类)、Contrast(对比)、Compare(比较)、Create(创建)、Describe(描述)、Define(定义)、Evaluate(评估)、Extract(提取)、Find(查找)、",
+            "chinese_ratio": 0.19,
+            "english_words": 32,
+            "length": 379
+          }
+        ],
+        "untranslated_headings": [],
+        "forbidden_terms": [
+          {
+            "forbidden": "映射",
+            "preferred": "反思",
+            "source": "Reflection",
+            "line": 156,
+            "preview": "eld 别名,可以将 XML 常见的冗长或属性密集的结构无缝映射到对象的字段。\n\n这种方法对于确保基于 LLM 的组件与更大"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 1,
+        "untranslated_headings": 0,
+        "forbidden_terms": 1,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 23,
+      "slug": "ai-agentic-interactions",
+      "zh_title": "AI 智能体交互:从 GUI 到真实世界环境",
+      "en_title": "AI Agentic Interactions: From GUI to Real World Environment",
+      "file": "output/agi-zh-by-chapter/23-ai-agentic-interactions.md",
+      "char_count": 5334,
+      "chinese_ratio": 0.63,
+      "grade": "B",
+      "severity_score": 8,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 67,
+            "line_end": 76,
+            "preview": "参考文献 Anthropic Computer use: https://docs.anthropic.com/en/docs/build-with-claude/computer-use Browser Use: https://docs.browser-use.com/introduction ",
+            "chinese_ratio": 0.01,
+            "english_words": 78,
+            "length": 585
+          }
+        ],
+        "untranslated_headings": [],
+        "forbidden_terms": [
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 28,
+            "preview": "ject Astra 是一项推动智能体与环境交互边界的代表性计划。Astra 旨在打造一个对日常生活有用的通用人工智能智能体"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 1,
+        "untranslated_headings": 0,
+        "forbidden_terms": 1,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 24,
+      "slug": "agentic-frameworks-overview",
+      "zh_title": "智能体框架速览",
+      "en_title": "A Quick Overview of Agentic Frameworks",
+      "file": "output/agi-zh-by-chapter/24-agentic-frameworks-overview.md",
+      "char_count": 7291,
+      "chinese_ratio": 0.4,
+      "grade": "D",
+      "severity_score": 33,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 92,
+            "line_end": 92,
+            "preview": "Its main purpose is to simultaneously generate a joke, a story, and a poem about a given topic and then combine them into a single, formatted text out",
+            "chinese_ratio": 0.0,
+            "english_words": 21,
+            "length": 154
+          },
+          {
+            "line_start": 160,
+            "line_end": 163,
+            "preview": "Crew.AI, https://docs.crewai.com/en/introduction Google's ADK, https://google.github.io/adk-docs/ LangChain, https://www.langchain.com/ LangGraph, htt",
+            "chinese_ratio": 0.0,
+            "english_words": 24,
+            "length": 182
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 14,
+            "level": 1,
+            "title": "A simple LCEL chain conceptually"
+          },
+          {
+            "line": 15,
+            "level": 1,
+            "title": "(This is not runnable code, just illustrates the flow)"
+          },
+          {
+            "line": 30,
+            "level": 1,
+            "title": "Graph state"
+          },
+          {
+            "line": 38,
+            "level": 1,
+            "title": "Nodes"
+          },
+          {
+            "line": 62,
+            "level": 1,
+            "title": "Build workflow"
+          },
+          {
+            "line": 65,
+            "level": 1,
+            "title": "Add nodes"
+          },
+          {
+            "line": 71,
+            "level": 1,
+            "title": "Add edges to connect nodes"
+          },
+          {
+            "line": 82,
+            "level": 1,
+            "title": "Show workflow"
+          },
+          {
+            "line": 85,
+            "level": 1,
+            "title": "Invoke"
+          },
+          {
+            "line": 116,
+            "level": 3,
+            "title": "CrewAI"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 27,
+            "preview": "## 24 智能体框架速览\n\n\n\n这段代码定义并运行了一个以并行方式运作的 LangGraph 工作流。\n\nIts main"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 2,
+        "untranslated_headings": 10,
+        "forbidden_terms": 1,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 25,
+      "slug": "building-an-agent-with-agentspace",
+      "zh_title": "使用 AgentSpace 构建智能体",
+      "en_title": "Building an Agent with AgentSpace",
+      "file": "output/agi-zh-by-chapter/25-building-an-agent-with-agentspace.md",
+      "char_count": 1368,
+      "chinese_ratio": 0.38,
+      "grade": "B",
+      "severity_score": 8,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 37,
+            "line_end": 39,
+            "preview": "Create a no-code agent with Agent Designer, https://cloud.google.com/agentspace/ agentspace-­enterprise/docs/agent-­designer Google Cloud Skills Boost",
+            "chinese_ratio": 0.0,
+            "english_words": 24,
+            "length": 188
+          }
+        ],
+        "untranslated_headings": [],
+        "forbidden_terms": [
+          {
+            "forbidden": "映射",
+            "preferred": "反思",
+            "source": "Reflection",
+            "line": 31,
+            "preview": "t)。该系统的架构将复杂的后端流程(如自主推理和企业知识图谱映射)与用于构建智能体的图形用户界面相连接。通过该界面,用户可以"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 1,
+        "untranslated_headings": 0,
+        "forbidden_terms": 1,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 26,
+      "slug": "ai-agents-on-the-cli",
+      "zh_title": "CLI 上的 AI 智能体",
+      "en_title": "AI Agents on the CLI",
+      "file": "output/agi-zh-by-chapter/26-ai-agents-on-the-cli.md",
+      "char_count": 4056,
+      "chinese_ratio": 0.51,
+      "grade": "C",
+      "severity_score": 21,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 38,
+            "line_end": 38,
+            "preview": "\"Please go through all Python files, update the import statements and any deprecated function calls to be compatible with the latest version, and then",
+            "chinese_ratio": 0.0,
+            "english_words": 24,
+            "length": 176
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 11,
+            "level": 2,
+            "title": "Claude CLI (Claude Code)"
+          },
+          {
+            "line": 15,
+            "level": 2,
+            "title": "Gemini CLI"
+          },
+          {
+            "line": 28,
+            "level": 2,
+            "title": "Aider"
+          },
+          {
+            "line": 40,
+            "level": 2,
+            "title": "GitHub Copilot CLI"
+          },
+          {
+            "line": 60,
+            "level": 2,
+            "title": "Bibliography"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "并行",
+            "preferred": "并行化",
+            "source": "Parallelization",
+            "line": 54,
+            "preview": "化或直接连接集成多样化的智能体。未来的开发计划包括支持大规模并行评估以及纳入已建立的基准。该项目鼓励通过开源贡献来扩展任务并"
+          },
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 54,
+            "preview": "展性,允许通过容器化或直接连接集成多样化的智能体。未来的开发计划包括支持大规模并行评估以及纳入已建立的基准。该项目鼓励通过开"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 1,
+        "untranslated_headings": 5,
+        "forbidden_terms": 2,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 27,
+      "slug": "under-the-hood-reasoning-engines",
+      "zh_title": "深入引擎:智能体推理引擎内部探秘",
+      "en_title": "Under the Hood: An Inside Look at the Agents' Reasoning Engines",
+      "file": "output/agi-zh-by-chapter/27-under-the-hood-reasoning-engines.md",
+      "char_count": 10280,
+      "chinese_ratio": 0.49,
+      "grade": "D",
+      "severity_score": 34,
+      "issues": {
+        "untranslated_paragraphs": [
+          {
+            "line_start": 132,
+            "line_end": 132,
+            "preview": "For \"reasoning,\" I retrieve associations with logic, problem-solving, and cognitive processes. Since this is a meta-question about my own process, I f",
+            "chinese_ratio": 0.0,
+            "english_words": 31,
+            "length": 270
+          },
+          {
+            "line_start": 170,
+            "line_end": 173,
+            "preview": "ent sequences words and sentences to maximize clarity and relevance. I draw on patterns from my training to mimic human-like reasoning, such as breaki",
+            "chinese_ratio": 0.0,
+            "english_words": 25,
+            "length": 194
+          },
+          {
+            "line_start": 249,
+            "line_end": 254,
+            "preview": "3² = 9 (memorized) 3³ = 27 (retrieved) 4² = 16 (memorized) 4³ = 64 (retrieved) Compute remaining term 3⁴ = 3³·3 = 27×3 = 81.",
+            "chinese_ratio": 0.0,
+            "english_words": 7,
+            "length": 124
+          },
+          {
+            "line_start": 264,
+            "line_end": 270,
+            "preview": "10. Plan response structure – Restate the question. – Show the computed values. – State the conclusion. Surface realization “3⁴ is 81 and 4³ is 64, so",
+            "chinese_ratio": 0.0,
+            "english_words": 26,
+            "length": 242
+          }
+        ],
+        "untranslated_headings": [
+          {
+            "line": 113,
+            "level": 1,
+            "title": "Grok"
+          }
+        ],
+        "forbidden_terms": [
+          {
+            "forbidden": "映射",
+            "preferred": "反思",
+            "source": "Reflection",
+            "line": 121,
+            "preview": "处理(NLP)组件将你的查询拆分为词元(单词或短语),并将其映射到语义。我会识别你是在请求信息、分析、过程解释,还是其他内容"
+          },
+          {
+            "forbidden": "映射",
+            "preferred": "反思",
+            "source": "Reflection",
+            "line": 215,
+            "preview": "NENT_TERMS [3^4] 与 [4^3]。\n- 语义映射\n• 我将\"larger\"映射到数值关系\">\"。\n\n阶段一—"
+          },
+          {
+            "forbidden": "映射",
+            "preferred": "反思",
+            "source": "Reflection",
+            "line": 216,
+            "preview": "] 与 [4^3]。\n- 语义映射\n• 我将\"larger\"映射到数值关系\">\"。\n\n阶段一——问题识别与策略选择\n\n4. "
+          },
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 9,
+            "preview": "生成器;它充当着基础推理引擎,扮演着赋予智能体进行决策、制定计划并与环境交互能力的核心\"心智\"角色。\n\n因此,理解这些模型的"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 4,
+        "untranslated_headings": 1,
+        "forbidden_terms": 4,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 28,
+      "slug": "coding-agents",
+      "zh_title": "编程智能体",
+      "en_title": "Coding Agents",
+      "file": "output/agi-zh-by-chapter/28-coding-agents.md",
+      "char_count": 2543,
+      "chinese_ratio": 0.61,
+      "grade": "B",
+      "severity_score": 4,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [
+          {
+            "line": 5,
+            "level": 2,
+            "title": "Vibe Coding: A Starting Point"
+          },
+          {
+            "line": 9,
+            "level": 2,
+            "title": "Agents as Team Members"
+          }
+        ],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 2,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 29,
+      "slug": "conclusion",
+      "zh_title": "结语",
+      "en_title": "Conclusion",
+      "file": "output/agi-zh-by-chapter/29-conclusion.md",
+      "char_count": 6025,
+      "chinese_ratio": 0.69,
+      "grade": "B",
+      "severity_score": 9,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 21,
+            "preview": "构化报告\"。\n\n- **结合工具使用的信息收集**:为执行该计划,智能体将主要依赖工具使用模式。计划的每一步都会触发对 Go"
+          },
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 21,
+            "preview": "的信息收集**:为执行该计划,智能体将主要依赖工具使用模式。计划的每一步都会触发对 Google Search 或 vert"
+          },
+          {
+            "forbidden": "计划",
+            "preferred": "规划",
+            "source": "Planning",
+            "line": 23,
+            "preview": "构会采用多智能体协作模式。一个\"研究员\"智能体可负责执行搜索计划并收集原始信息。其输出(即一系列摘要与来源链接)随后会被传递"
+          }
+        ],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 3,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    }
+  ]
+}

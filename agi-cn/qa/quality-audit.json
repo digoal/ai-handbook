@@ -1,0 +1,775 @@
+{
+  "summary": {
+    "total_chapters": 29,
+    "grade_distribution": {
+      "A": 29
+    },
+    "total_issues": {
+      "untranslated_paragraphs": 0,
+      "untranslated_headings": 0,
+      "forbidden_terms": 0,
+      "image_issues": 0,
+      "at_a_glance_untranslated": 0
+    }
+  },
+  "terminology": {
+    "preserve_count": 0,
+    "forbidden_count": 25
+  },
+  "chapters": [
+    {
+      "chapter_id": 1,
+      "slug": "prompt-chaining",
+      "zh_title": "提示链",
+      "en_title": "Prompt Chaining",
+      "file": "output/agi-zh-by-chapter/01-prompt-chaining.md",
+      "char_count": 8530,
+      "chinese_ratio": 0.58,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 2,
+      "slug": "routing",
+      "zh_title": "路由",
+      "en_title": "Routing",
+      "file": "output/agi-zh-by-chapter/02-routing.md",
+      "char_count": 14747,
+      "chinese_ratio": 0.21,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 3,
+      "slug": "parallelization",
+      "zh_title": "并行化",
+      "en_title": "Parallelization",
+      "file": "output/agi-zh-by-chapter/03-parallelization.md",
+      "char_count": 14494,
+      "chinese_ratio": 0.28,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 2,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 4,
+      "slug": "reflection",
+      "zh_title": "反思",
+      "en_title": "Reflection",
+      "file": "output/agi-zh-by-chapter/04-reflection.md",
+      "char_count": 11428,
+      "chinese_ratio": 0.29,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 2,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 5,
+      "slug": "tool-use",
+      "zh_title": "工具使用(函数调用)",
+      "en_title": "Tool Use (Function Calling)",
+      "file": "output/agi-zh-by-chapter/05-tool-use.md",
+      "char_count": 24903,
+      "chinese_ratio": 0.14,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 2,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 6,
+      "slug": "planning",
+      "zh_title": "规划",
+      "en_title": "Planning",
+      "file": "output/agi-zh-by-chapter/06-planning.md",
+      "char_count": 11613,
+      "chinese_ratio": 0.32,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 7,
+      "slug": "multi-agent-collaboration",
+      "zh_title": "多智能体协作",
+      "en_title": "Multi-Agent Collaboration",
+      "file": "output/agi-zh-by-chapter/07-multi-agent-collaboration.md",
+      "char_count": 18233,
+      "chinese_ratio": 0.23,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 3,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 8,
+      "slug": "memory-management",
+      "zh_title": "记忆管理",
+      "en_title": "Memory Management",
+      "file": "output/agi-zh-by-chapter/08-memory-management.md",
+      "char_count": 24328,
+      "chinese_ratio": 0.22,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 9,
+      "slug": "learning-and-adaptation",
+      "zh_title": "学习与适应",
+      "en_title": "Learning and Adaptation",
+      "file": "output/agi-zh-by-chapter/09-learning-and-adaptation.md",
+      "char_count": 8486,
+      "chinese_ratio": 0.51,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 10,
+      "slug": "model-context-protocol",
+      "zh_title": "模型上下文协议",
+      "en_title": "Model Context Protocol",
+      "file": "output/agi-zh-by-chapter/10-model-context-protocol.md",
+      "char_count": 14770,
+      "chinese_ratio": 0.42,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 11,
+      "slug": "goal-setting-and-monitoring",
+      "zh_title": "目标设定与监控",
+      "en_title": "Goal Setting and Monitoring",
+      "file": "output/agi-zh-by-chapter/11-goal-setting-and-monitoring.md",
+      "char_count": 12306,
+      "chinese_ratio": 0.26,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 12,
+      "slug": "exception-handling-and-recovery",
+      "zh_title": "异常处理与恢复",
+      "en_title": "Exception Handling and Recovery",
+      "file": "output/agi-zh-by-chapter/12-exception-handling-and-recovery.md",
+      "char_count": 5901,
+      "chinese_ratio": 0.45,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 13,
+      "slug": "human-in-the-loop",
+      "zh_title": "人在回路",
+      "en_title": "Human-in-the-Loop",
+      "file": "output/agi-zh-by-chapter/13-human-in-the-loop.md",
+      "char_count": 8090,
+      "chinese_ratio": 0.48,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 14,
+      "slug": "knowledge-retrieval-rag",
+      "zh_title": "知识检索(RAG)",
+      "en_title": "Knowledge Retrieval (RAG)",
+      "file": "output/agi-zh-by-chapter/14-knowledge-retrieval-rag.md",
+      "char_count": 15812,
+      "chinese_ratio": 0.37,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 15,
+      "slug": "inter-agent-communication-a2a",
+      "zh_title": "智能体间通信(A2A)",
+      "en_title": "Inter-Agent Communication (A2A)",
+      "file": "output/agi-zh-by-chapter/15-inter-agent-communication-a2a.md",
+      "char_count": 13175,
+      "chinese_ratio": 0.31,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 16,
+      "slug": "resource-aware-optimization",
+      "zh_title": "资源感知优化",
+      "en_title": "Resource-Aware Optimization",
+      "file": "output/agi-zh-by-chapter/16-resource-aware-optimization.md",
+      "char_count": 15295,
+      "chinese_ratio": 0.28,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 17,
+      "slug": "reasoning-techniques",
+      "zh_title": "推理技术",
+      "en_title": "Reasoning Techniques",
+      "file": "output/agi-zh-by-chapter/17-reasoning-techniques.md",
+      "char_count": 18542,
+      "chinese_ratio": 0.52,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 4,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 18,
+      "slug": "guardrails-safety-patterns",
+      "zh_title": "护栏/安全模式",
+      "en_title": "Guardrails/Safety Patterns",
+      "file": "output/agi-zh-by-chapter/18-guardrails-safety-patterns.md",
+      "char_count": 21771,
+      "chinese_ratio": 0.28,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 19,
+      "slug": "evaluation-and-monitoring",
+      "zh_title": "评估与监控",
+      "en_title": "Evaluation and Monitoring",
+      "file": "output/agi-zh-by-chapter/19-evaluation-and-monitoring.md",
+      "char_count": 17641,
+      "chinese_ratio": 0.4,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 20,
+      "slug": "prioritization",
+      "zh_title": "优先级排序",
+      "en_title": "Prioritization",
+      "file": "output/agi-zh-by-chapter/20-prioritization.md",
+      "char_count": 11293,
+      "chinese_ratio": 0.21,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 21,
+      "slug": "exploration-and-discovery",
+      "zh_title": "探索与发现",
+      "en_title": "Exploration and Discovery",
+      "file": "output/agi-zh-by-chapter/21-exploration-and-discovery.md",
+      "char_count": 13013,
+      "chinese_ratio": 0.37,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 22,
+      "slug": "advanced-prompting-techniques",
+      "zh_title": "高级提示技术",
+      "en_title": "Advanced Prompting Techniques",
+      "file": "output/agi-zh-by-chapter/22-advanced-prompting-techniques.md",
+      "char_count": 23727,
+      "chinese_ratio": 0.61,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 23,
+      "slug": "ai-agentic-interactions",
+      "zh_title": "AI 智能体交互:从 GUI 到真实世界环境",
+      "en_title": "AI Agentic Interactions: From GUI to Real World Environment",
+      "file": "output/agi-zh-by-chapter/23-ai-agentic-interactions.md",
+      "char_count": 5293,
+      "chinese_ratio": 0.63,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 24,
+      "slug": "agentic-frameworks-overview",
+      "zh_title": "智能体框架速览",
+      "en_title": "A Quick Overview of Agentic Frameworks",
+      "file": "output/agi-zh-by-chapter/24-agentic-frameworks-overview.md",
+      "char_count": 7093,
+      "chinese_ratio": 0.42,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 25,
+      "slug": "building-an-agent-with-agentspace",
+      "zh_title": "使用 AgentSpace 构建智能体",
+      "en_title": "Building an Agent with AgentSpace",
+      "file": "output/agi-zh-by-chapter/25-building-an-agent-with-agentspace.md",
+      "char_count": 2101,
+      "chinese_ratio": 0.47,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 6,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 26,
+      "slug": "ai-agents-on-the-cli",
+      "zh_title": "CLI 上的 AI 智能体",
+      "en_title": "AI Agents on the CLI",
+      "file": "output/agi-zh-by-chapter/26-ai-agents-on-the-cli.md",
+      "char_count": 3936,
+      "chinese_ratio": 0.54,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 27,
+      "slug": "under-the-hood-reasoning-engines",
+      "zh_title": "深入引擎:智能体推理引擎内部探秘",
+      "en_title": "Under the Hood: An Inside Look at the Agents' Reasoning Engines",
+      "file": "output/agi-zh-by-chapter/27-under-the-hood-reasoning-engines.md",
+      "char_count": 8721,
+      "chinese_ratio": 0.64,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 28,
+      "slug": "coding-agents",
+      "zh_title": "编程智能体",
+      "en_title": "Coding Agents",
+      "file": "output/agi-zh-by-chapter/28-coding-agents.md",
+      "char_count": 2528,
+      "chinese_ratio": 0.62,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 1,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    },
+    {
+      "chapter_id": 29,
+      "slug": "conclusion",
+      "zh_title": "结语",
+      "en_title": "Conclusion",
+      "file": "output/agi-zh-by-chapter/29-conclusion.md",
+      "char_count": 5956,
+      "chinese_ratio": 0.69,
+      "grade": "A",
+      "severity_score": 0,
+      "issues": {
+        "untranslated_paragraphs": [],
+        "untranslated_headings": [],
+        "forbidden_terms": [],
+        "image_issues": [],
+        "image_refs_total": 0,
+        "at_a_glance_untranslated": []
+      },
+      "issue_counts": {
+        "untranslated_paragraphs": 0,
+        "untranslated_headings": 0,
+        "forbidden_terms": 0,
+        "image_issues": 0,
+        "at_a_glance_untranslated": 0
+      }
+    }
+  ]
+}

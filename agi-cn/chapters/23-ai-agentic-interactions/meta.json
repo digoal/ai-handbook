@@ -1,0 +1,15 @@
+{
+  "id": 23,
+  "part": "II",
+  "slug": "ai-agentic-interactions",
+  "en_title": "AI Agentic Interactions: From GUI to Real World Environment",
+  "zh_title": "AI 智能体交互:从 GUI 到真实世界环境",
+  "pdf_pages": [
+    387,
+    393
+  ],
+  "page_count": 7,
+  "char_count": 16086,
+  "word_count": 2257,
+  "source_file": "chapters/23-ai-agentic-interactions/source.md"
+}

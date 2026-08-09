@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <marker id="arrow-11_2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+    <marker id="arrow-loop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#FFFFFF"/>
+
+  <!-- 标题 -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="20" font-weight="bold" fill="#111827">目标设定与监控模式视觉总览</text>
+  <text x="400" y="58" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">Goal Setting &amp; Monitoring Pattern Overview</text>
+
+  <!-- 中心节点:Agent控制器(强调节点) -->
+  <rect x="320" y="270" width="160" height="70" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="400" y="300" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">Agent 控制器</text>
+  <text x="400" y="322" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">目标与监控中枢</text>
+
+  <!-- (1) 目标定义 -->
+  <rect x="40" y="110" width="180" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="130" y="142" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">(1) 目标定义</text>
+  <text x="130" y="165" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">高层目标 → 子目标分解</text>
+  <text x="130" y="183" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">Goal Decomposition</text>
+
+  <!-- (2) 进度监控 -->
+  <rect x="580" y="110" width="180" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="670" y="142" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">(2) 进度监控</text>
+  <text x="670" y="165" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">实时跟踪执行状态</text>
+  <text x="670" y="183" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">Progress Monitoring</text>
+
+  <!-- (3) 反馈调整 -->
+  <rect x="40" y="430" width="180" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="130" y="462" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">(3) 反馈调整</text>
+  <text x="130" y="485" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">根据结果动态修正目标</text>
+  <text x="130" y="503" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">Feedback Adjustment</text>
+
+  <!-- (4) 完成判定 -->
+  <rect x="580" y="430" width="180" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="670" y="462" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#111827">(4) 完成判定</text>
+  <text x="670" y="485" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#111827">检查是否达成目标</text>
+  <text x="670" y="503" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">Completion Check</text>
+
+  <!-- 箭头:目标定义 -> 控制器 -->
+  <line x1="220" y1="170" x2="320" y2="280" stroke="#374151" stroke-width="2" marker-end="url(#arrow-11_2)"/>
+  <text x="245" y="220" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">下发目标</text>
+
+  <!-- 箭头:控制器 -> 进度监控 -->
+  <line x1="480" y1="280" x2="580" y2="170" stroke="#374151" stroke-width="2" marker-end="url(#arrow-11_2)"/>
+  <text x="555" y="220" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">执行跟踪</text>
+
+  <!-- 箭头:进度监控 -> 完成判定 -->
+  <line x1="670" y1="190" x2="670" y2="430" stroke="#374151" stroke-width="2" marker-end="url(#arrow-11_2)"/>
+  <text x="685" y="315" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">评估结果</text>
+
+  <!-- 箭头:完成判定 -> 反馈调整 -->
+  <path d="M 580 470 Q 400 540 220 470" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrow-11_2)"/>
+  <text x="400" y="555" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">未达成 → 反馈</text>
+
+  <!-- 箭头:反馈调整 -> 控制器(回到中枢) -->
+  <path d="M 220 445 Q 280 380 320 320" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrow-11_2)"/>
+  <text x="240" y="395" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#374151">调整输入</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="585" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="12" fill="#6B7280">四个核心环节协同构成目标设定与监控的完整闭环,驱动 Agent 高效完成复杂任务</text>
+</svg>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="sans-serif, Microsoft YaHei, 微软雅黑">
+  <defs>
+    <marker id="arrow-17_3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+    <marker id="arrow-emph" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#B45309"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#FFFFFF"/>
+
+  <!-- 标题 -->
+  <text x="400" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#111827">ReAct 范式：推理-行动循环</text>
+
+  <!-- 中心圆(强调节点) - Agent -->
+  <circle cx="400" cy="320" r="78" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="400" y="310" text-anchor="middle" font-size="18" font-weight="bold" fill="#111827">Agent</text>
+  <text x="400" y="332" text-anchor="middle" font-size="13" fill="#111827">智能体</text>
+
+  <!-- 三个循环节点:Thought / Action / Observation -->
+  <!-- Thought -->
+  <rect x="120" y="170" width="170" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="205" y="208" text-anchor="middle" font-size="17" font-weight="bold" fill="#111827">思考</text>
+  <text x="205" y="230" text-anchor="middle" font-size="13" fill="#111827">Thought</text>
+
+  <!-- Action -->
+  <rect x="315" y="450" width="170" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="400" y="488" text-anchor="middle" font-size="17" font-weight="bold" fill="#111827">行动</text>
+  <text x="400" y="510" text-anchor="middle" font-size="13" fill="#111827">Action</text>
+
+  <!-- Observation -->
+  <rect x="510" y="170" width="170" height="80" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="595" y="208" text-anchor="middle" font-size="17" font-weight="bold" fill="#111827">观察</text>
+  <text x="595" y="230" text-anchor="middle" font-size="13" fill="#111827">Observation</text>
+
+  <!-- 循环箭头 (Thought -> Action -> Observation -> Thought) -->
+  <!-- Thought -> Action -->
+  <path d="M 230 250 Q 280 360 320 460" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrow-17_3)"/>
+  <text x="240" y="370" text-anchor="middle" font-size="13" fill="#374151">推理</text>
+
+  <!-- Action -> Observation -->
+  <path d="M 480 460 Q 530 360 580 250" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrow-17_3)"/>
+  <text x="560" y="370" text-anchor="middle" font-size="13" fill="#374151">执行</text>
+
+  <!-- Observation -> Thought (顶部) -->
+  <path d="M 510 200 Q 400 110 290 200" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrow-17_3)"/>
+  <text x="400" y="118" text-anchor="middle" font-size="13" fill="#374151">观察回写，再次推理</text>
+
+  <!-- 中心 Agent 与三个节点的连接(虚线,体现 Agent 串联循环) -->
+  <!-- Agent -> Thought -->
+  <line x1="340" y1="290" x2="270" y2="220" stroke="#B45309" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-emph)"/>
+  <!-- Agent -> Action -->
+  <line x1="400" y1="398" x2="400" y2="450" stroke="#B45309" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-emph)"/>
+  <!-- Agent -> Observation -->
+  <line x1="460" y1="290" x2="530" y2="220" stroke="#B45309" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-emph)"/>
+
+  <!-- 外部环境:知识库 KB 和 工具 API -->
+  <rect x="60" y="450" width="150" height="70" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="135" y="482" text-anchor="middle" font-size="16" font-weight="bold" fill="#111827">知识库</text>
+  <text x="135" y="502" text-anchor="middle" font-size="13" fill="#111827">KB</text>
+
+  <rect x="590" y="450" width="150" height="70" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="665" y="482" text-anchor="middle" font-size="16" font-weight="bold" fill="#111827">工具</text>
+  <text x="665" y="502" text-anchor="middle" font-size="13" fill="#111827">API / Tools</text>
+
+  <!-- Action 与外部环境交互 -->
+  <line x1="315" y1="490" x2="210" y2="485" stroke="#374151" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrow-17_3)"/>
+  <line x1="485" y1="490" x2="590" y2="485" stroke="#374151" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrow-17_3)"/>
+  <text x="135" y="540" text-anchor="middle" font-size="12" fill="#6B7280">查询 / 检索</text>
+  <text x="665" y="540" text-anchor="middle" font-size="12" fill="#6B7280">调用 / 执行</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="580" text-anchor="middle" font-size="13" fill="#6B7280">ReAct = Reasoning + Acting：智能体在 思考 → 行动 → 观察 的循环中持续推理并与外部环境（KB、API）交互。</text>
+</svg>

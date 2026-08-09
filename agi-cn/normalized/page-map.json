@@ -1,0 +1,3020 @@
+{
+  "meta": {
+    "total_pdf_pages": 453,
+    "part_i_start": 40,
+    "part_ii_start": 356,
+    "back_matter_start": 449
+  },
+  "chapters": {
+    "1": {
+      "id": 1,
+      "part": "I",
+      "slug": "prompt-chaining",
+      "en_title": "Prompt Chaining",
+      "zh_title": "提示链",
+      "pdf_start_page": 41,
+      "pdf_end_page": 54,
+      "toc_start_page": 3
+    },
+    "2": {
+      "id": 2,
+      "part": "I",
+      "slug": "routing",
+      "en_title": "Routing",
+      "zh_title": "路由",
+      "pdf_start_page": 55,
+      "pdf_end_page": 68,
+      "toc_start_page": 17
+    },
+    "3": {
+      "id": 3,
+      "part": "I",
+      "slug": "parallelization",
+      "en_title": "Parallelization",
+      "zh_title": "并行化",
+      "pdf_start_page": 69,
+      "pdf_end_page": 83,
+      "toc_start_page": 31
+    },
+    "4": {
+      "id": 4,
+      "part": "I",
+      "slug": "reflection",
+      "en_title": "Reflection",
+      "zh_title": "反思",
+      "pdf_start_page": 84,
+      "pdf_end_page": 96,
+      "toc_start_page": 47
+    },
+    "5": {
+      "id": 5,
+      "part": "I",
+      "slug": "tool-use",
+      "en_title": "Tool Use (Function Calling)",
+      "zh_title": "工具使用(函数调用)",
+      "pdf_start_page": 97,
+      "pdf_end_page": 117,
+      "toc_start_page": 61
+    },
+    "6": {
+      "id": 6,
+      "part": "I",
+      "slug": "planning",
+      "en_title": "Planning",
+      "zh_title": "规划",
+      "pdf_start_page": 118,
+      "pdf_end_page": 130,
+      "toc_start_page": 83
+    },
+    "7": {
+      "id": 7,
+      "part": "I",
+      "slug": "multi-agent-collaboration",
+      "en_title": "Multi-Agent Collaboration",
+      "zh_title": "多智能体协作",
+      "pdf_start_page": 131,
+      "pdf_end_page": 147,
+      "toc_start_page": 97
+    },
+    "8": {
+      "id": 8,
+      "part": "I",
+      "slug": "memory-management",
+      "en_title": "Memory Management",
+      "zh_title": "记忆管理",
+      "pdf_start_page": 148,
+      "pdf_end_page": 167,
+      "toc_start_page": 115
+    },
+    "9": {
+      "id": 9,
+      "part": "I",
+      "slug": "learning-and-adaptation",
+      "en_title": "Learning and Adaptation",
+      "zh_title": "学习与适应",
+      "pdf_start_page": 168,
+      "pdf_end_page": 179,
+      "toc_start_page": 135
+    },
+    "10": {
+      "id": 10,
+      "part": "I",
+      "slug": "model-context-protocol",
+      "en_title": "Model Context Protocol",
+      "zh_title": "模型上下文协议",
+      "pdf_start_page": 180,
+      "pdf_end_page": 195,
+      "toc_start_page": 147
+    },
+    "11": {
+      "id": 11,
+      "part": "I",
+      "slug": "goal-setting-and-monitoring",
+      "en_title": "Goal Setting and Monitoring",
+      "zh_title": "目标设定与监控",
+      "pdf_start_page": 196,
+      "pdf_end_page": 207,
+      "toc_start_page": 163
+    },
+    "12": {
+      "id": 12,
+      "part": "I",
+      "slug": "exception-handling-and-recovery",
+      "en_title": "Exception Handling and Recovery",
+      "zh_title": "异常处理与恢复",
+      "pdf_start_page": 208,
+      "pdf_end_page": 215,
+      "toc_start_page": 175
+    },
+    "13": {
+      "id": 13,
+      "part": "I",
+      "slug": "human-in-the-loop",
+      "en_title": "Human-in-the-Loop",
+      "zh_title": "人在回路",
+      "pdf_start_page": 216,
+      "pdf_end_page": 224,
+      "toc_start_page": 183
+    },
+    "14": {
+      "id": 14,
+      "part": "I",
+      "slug": "knowledge-retrieval-rag",
+      "en_title": "Knowledge Retrieval (RAG)",
+      "zh_title": "知识检索(RAG)",
+      "pdf_start_page": 225,
+      "pdf_end_page": 240,
+      "toc_start_page": 193
+    },
+    "15": {
+      "id": 15,
+      "part": "I",
+      "slug": "inter-agent-communication-a2a",
+      "en_title": "Inter-Agent Communication (A2A)",
+      "zh_title": "智能体间通信(A2A)",
+      "pdf_start_page": 241,
+      "pdf_end_page": 255,
+      "toc_start_page": 209
+    },
+    "16": {
+      "id": 16,
+      "part": "I",
+      "slug": "resource-aware-optimization",
+      "en_title": "Resource-Aware Optimization",
+      "zh_title": "资源感知优化",
+      "pdf_start_page": 256,
+      "pdf_end_page": 270,
+      "toc_start_page": 225
+    },
+    "17": {
+      "id": 17,
+      "part": "I",
+      "slug": "reasoning-techniques",
+      "en_title": "Reasoning Techniques",
+      "zh_title": "推理技术",
+      "pdf_start_page": 271,
+      "pdf_end_page": 293,
+      "toc_start_page": 241
+    },
+    "18": {
+      "id": 18,
+      "part": "I",
+      "slug": "guardrails-safety-patterns",
+      "en_title": "Guardrails/Safety Patterns",
+      "zh_title": "护栏/安全模式",
+      "pdf_start_page": 294,
+      "pdf_end_page": 313,
+      "toc_start_page": 265
+    },
+    "19": {
+      "id": 19,
+      "part": "I",
+      "slug": "evaluation-and-monitoring",
+      "en_title": "Evaluation and Monitoring",
+      "zh_title": "评估与监控",
+      "pdf_start_page": 314,
+      "pdf_end_page": 331,
+      "toc_start_page": 285
+    },
+    "20": {
+      "id": 20,
+      "part": "I",
+      "slug": "prioritization",
+      "en_title": "Prioritization",
+      "zh_title": "优先级排序",
+      "pdf_start_page": 332,
+      "pdf_end_page": 341,
+      "toc_start_page": 303
+    },
+    "21": {
+      "id": 21,
+      "part": "I",
+      "slug": "exploration-and-discovery",
+      "en_title": "Exploration and Discovery",
+      "zh_title": "探索与发现",
+      "pdf_start_page": 342,
+      "pdf_end_page": 355,
+      "toc_start_page": 313
+    },
+    "22": {
+      "id": 22,
+      "part": "II",
+      "slug": "advanced-prompting-techniques",
+      "en_title": "Advanced Prompting Techniques",
+      "zh_title": "高级提示技术",
+      "pdf_start_page": 357,
+      "pdf_end_page": 386,
+      "toc_start_page": 329
+    },
+    "23": {
+      "id": 23,
+      "part": "II",
+      "slug": "ai-agentic-interactions",
+      "en_title": "AI Agentic Interactions: From GUI to Real World Environment",
+      "zh_title": "AI 智能体交互:从 GUI 到真实世界环境",
+      "pdf_start_page": 387,
+      "pdf_end_page": 393,
+      "toc_start_page": 359
+    },
+    "24": {
+      "id": 24,
+      "part": "II",
+      "slug": "agentic-frameworks-overview",
+      "en_title": "A Quick Overview of Agentic Frameworks",
+      "zh_title": "智能体框架速览",
+      "pdf_start_page": 394,
+      "pdf_end_page": 401,
+      "toc_start_page": 367
+    },
+    "25": {
+      "id": 25,
+      "part": "II",
+      "slug": "building-an-agent-with-agentspace",
+      "en_title": "Building an Agent with AgentSpace",
+      "zh_title": "使用 AgentSpace 构建智能体",
+      "pdf_start_page": 402,
+      "pdf_end_page": 407,
+      "toc_start_page": 375
+    },
+    "26": {
+      "id": 26,
+      "part": "II",
+      "slug": "ai-agents-on-the-cli",
+      "en_title": "AI Agents on the CLI",
+      "zh_title": "CLI 上的 AI 智能体",
+      "pdf_start_page": 408,
+      "pdf_end_page": 413,
+      "toc_start_page": 381
+    },
+    "27": {
+      "id": 27,
+      "part": "II",
+      "slug": "under-the-hood-reasoning-engines",
+      "en_title": "Under the Hood: An Inside Look at the Agents' Reasoning Engines",
+      "zh_title": "深入引擎:智能体推理引擎内部探秘",
+      "pdf_start_page": 414,
+      "pdf_end_page": 430,
+      "toc_start_page": 387
+    },
+    "28": {
+      "id": 28,
+      "part": "II",
+      "slug": "coding-agents",
+      "en_title": "Coding Agents",
+      "zh_title": "编程智能体",
+      "pdf_start_page": 431,
+      "pdf_end_page": 438,
+      "toc_start_page": 405
+    },
+    "29": {
+      "id": 29,
+      "part": "II",
+      "slug": "conclusion",
+      "en_title": "Conclusion",
+      "zh_title": "结语",
+      "pdf_start_page": 439,
+      "pdf_end_page": 447,
+      "toc_start_page": 413
+    }
+  },
+  "pages": [
+    {
+      "page": 1,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 2,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 3,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 4,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 5,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 6,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 7,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 8,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 9,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 10,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 11,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 12,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 13,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 14,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 15,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 16,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 17,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 18,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 19,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 20,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 21,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 22,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 23,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 24,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 25,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 26,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 27,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 28,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 29,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 30,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 31,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 32,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 33,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 34,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 35,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 36,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 37,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 38,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 39,
+      "chapter_id": null,
+      "part": null,
+      "section": "frontmatter"
+    },
+    {
+      "page": 40,
+      "chapter_id": null,
+      "part": "I",
+      "section": "part_divider"
+    },
+    {
+      "page": 41,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 42,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 43,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 44,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 45,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 46,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 47,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 48,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 49,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 50,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 51,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 52,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 53,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 54,
+      "chapter_id": 1,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 55,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 56,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 57,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 58,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 59,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 60,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 61,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 62,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 63,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 64,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 65,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 66,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 67,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 68,
+      "chapter_id": 2,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 69,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 70,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 71,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 72,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 73,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 74,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 75,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 76,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 77,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 78,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 79,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 80,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 81,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 82,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 83,
+      "chapter_id": 3,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 84,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 85,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 86,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 87,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 88,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 89,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 90,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 91,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 92,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 93,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 94,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 95,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 96,
+      "chapter_id": 4,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 97,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 98,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 99,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 100,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 101,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 102,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 103,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 104,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 105,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 106,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 107,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 108,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 109,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 110,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 111,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 112,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 113,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 114,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 115,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 116,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 117,
+      "chapter_id": 5,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 118,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 119,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 120,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 121,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 122,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 123,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 124,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 125,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 126,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 127,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 128,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 129,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 130,
+      "chapter_id": 6,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 131,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 132,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 133,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 134,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 135,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 136,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 137,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 138,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 139,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 140,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 141,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 142,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 143,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 144,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 145,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 146,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 147,
+      "chapter_id": 7,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 148,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 149,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 150,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 151,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 152,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 153,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 154,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 155,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 156,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 157,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 158,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 159,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 160,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 161,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 162,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 163,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 164,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 165,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 166,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 167,
+      "chapter_id": 8,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 168,
+      "chapter_id": 9,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 169,
+      "chapter_id": 9,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 170,
+      "chapter_id": 9,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 171,
+      "chapter_id": 9,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 172,
+      "chapter_id": 9,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 173,
+      "chapter_id": 9,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 174,
+      "chapter_id": 9,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 175,
+      "chapter_id": 9,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 176,
+      "chapter_id": 9,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 177,
+      "chapter_id": 9,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 178,
+      "chapter_id": 9,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 179,
+      "chapter_id": 9,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 180,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 181,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 182,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 183,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 184,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 185,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 186,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 187,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 188,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 189,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 190,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 191,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 192,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 193,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 194,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 195,
+      "chapter_id": 10,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 196,
+      "chapter_id": 11,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 197,
+      "chapter_id": 11,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 198,
+      "chapter_id": 11,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 199,
+      "chapter_id": 11,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 200,
+      "chapter_id": 11,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 201,
+      "chapter_id": 11,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 202,
+      "chapter_id": 11,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 203,
+      "chapter_id": 11,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 204,
+      "chapter_id": 11,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 205,
+      "chapter_id": 11,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 206,
+      "chapter_id": 11,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 207,
+      "chapter_id": 11,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 208,
+      "chapter_id": 12,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 209,
+      "chapter_id": 12,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 210,
+      "chapter_id": 12,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 211,
+      "chapter_id": 12,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 212,
+      "chapter_id": 12,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 213,
+      "chapter_id": 12,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 214,
+      "chapter_id": 12,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 215,
+      "chapter_id": 12,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 216,
+      "chapter_id": 13,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 217,
+      "chapter_id": 13,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 218,
+      "chapter_id": 13,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 219,
+      "chapter_id": 13,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 220,
+      "chapter_id": 13,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 221,
+      "chapter_id": 13,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 222,
+      "chapter_id": 13,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 223,
+      "chapter_id": 13,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 224,
+      "chapter_id": 13,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 225,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 226,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 227,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 228,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 229,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 230,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 231,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 232,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 233,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 234,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 235,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 236,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 237,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 238,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 239,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 240,
+      "chapter_id": 14,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 241,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 242,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 243,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 244,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 245,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 246,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 247,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 248,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 249,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 250,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 251,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 252,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 253,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 254,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 255,
+      "chapter_id": 15,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 256,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 257,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 258,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 259,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 260,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 261,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 262,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 263,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 264,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 265,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 266,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 267,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 268,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 269,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 270,
+      "chapter_id": 16,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 271,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 272,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 273,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 274,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 275,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 276,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 277,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 278,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 279,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 280,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 281,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 282,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 283,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 284,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 285,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 286,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 287,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 288,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 289,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 290,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 291,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 292,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 293,
+      "chapter_id": 17,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 294,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 295,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 296,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 297,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 298,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 299,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 300,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 301,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 302,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 303,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 304,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 305,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 306,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 307,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 308,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 309,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 310,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 311,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 312,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 313,
+      "chapter_id": 18,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 314,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 315,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 316,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 317,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 318,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 319,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 320,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 321,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 322,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 323,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 324,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 325,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 326,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 327,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 328,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 329,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 330,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 331,
+      "chapter_id": 19,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 332,
+      "chapter_id": 20,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 333,
+      "chapter_id": 20,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 334,
+      "chapter_id": 20,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 335,
+      "chapter_id": 20,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 336,
+      "chapter_id": 20,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 337,
+      "chapter_id": 20,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 338,
+      "chapter_id": 20,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 339,
+      "chapter_id": 20,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 340,
+      "chapter_id": 20,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 341,
+      "chapter_id": 20,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 342,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 343,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 344,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 345,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 346,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 347,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 348,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 349,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 350,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 351,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 352,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 353,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 354,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 355,
+      "chapter_id": 21,
+      "part": "I",
+      "section": "chapter"
+    },
+    {
+      "page": 356,
+      "chapter_id": null,
+      "part": "II",
+      "section": "part_divider"
+    },
+    {
+      "page": 357,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 358,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 359,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 360,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 361,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 362,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 363,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 364,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 365,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 366,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 367,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 368,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 369,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 370,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 371,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 372,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 373,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 374,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 375,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 376,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 377,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 378,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 379,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 380,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 381,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 382,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 383,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 384,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 385,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 386,
+      "chapter_id": 22,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 387,
+      "chapter_id": 23,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 388,
+      "chapter_id": 23,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 389,
+      "chapter_id": 23,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 390,
+      "chapter_id": 23,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 391,
+      "chapter_id": 23,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 392,
+      "chapter_id": 23,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 393,
+      "chapter_id": 23,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 394,
+      "chapter_id": 24,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 395,
+      "chapter_id": 24,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 396,
+      "chapter_id": 24,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 397,
+      "chapter_id": 24,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 398,
+      "chapter_id": 24,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 399,
+      "chapter_id": 24,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 400,
+      "chapter_id": 24,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 401,
+      "chapter_id": 24,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 402,
+      "chapter_id": 25,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 403,
+      "chapter_id": 25,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 404,
+      "chapter_id": 25,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 405,
+      "chapter_id": 25,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 406,
+      "chapter_id": 25,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 407,
+      "chapter_id": 25,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 408,
+      "chapter_id": 26,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 409,
+      "chapter_id": 26,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 410,
+      "chapter_id": 26,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 411,
+      "chapter_id": 26,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 412,
+      "chapter_id": 26,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 413,
+      "chapter_id": 26,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 414,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 415,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 416,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 417,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 418,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 419,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 420,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 421,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 422,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 423,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 424,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 425,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 426,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 427,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 428,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 429,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 430,
+      "chapter_id": 27,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 431,
+      "chapter_id": 28,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 432,
+      "chapter_id": 28,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 433,
+      "chapter_id": 28,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 434,
+      "chapter_id": 28,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 435,
+      "chapter_id": 28,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 436,
+      "chapter_id": 28,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 437,
+      "chapter_id": 28,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 438,
+      "chapter_id": 28,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 439,
+      "chapter_id": 29,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 440,
+      "chapter_id": 29,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 441,
+      "chapter_id": 29,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 442,
+      "chapter_id": 29,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 443,
+      "chapter_id": 29,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 444,
+      "chapter_id": 29,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 445,
+      "chapter_id": 29,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 446,
+      "chapter_id": 29,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 447,
+      "chapter_id": 29,
+      "part": "II",
+      "section": "chapter"
+    },
+    {
+      "page": 448,
+      "chapter_id": null,
+      "part": null,
+      "section": "chapter"
+    },
+    {
+      "page": 449,
+      "chapter_id": null,
+      "part": null,
+      "section": "glossary"
+    },
+    {
+      "page": 450,
+      "chapter_id": null,
+      "part": null,
+      "section": "glossary"
+    },
+    {
+      "page": 451,
+      "chapter_id": null,
+      "part": null,
+      "section": "index"
+    },
+    {
+      "page": 452,
+      "chapter_id": null,
+      "part": null,
+      "section": "index"
+    },
+    {
+      "page": 453,
+      "chapter_id": null,
+      "part": null,
+      "section": "index"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": 4,
+  "part": "I",
+  "slug": "reflection",
+  "en_title": "Reflection",
+  "zh_title": "反思",
+  "pdf_pages": [
+    84,
+    96
+  ],
+  "page_count": 13,
+  "char_count": 24223,
+  "word_count": 3338,
+  "source_file": "chapters/04-reflection/source.md"
+}

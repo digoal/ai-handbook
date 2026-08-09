@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <marker id="arrow-15_1" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="600" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="20" font-weight="bold" fill="#111827">A2A 与 MCP 协议对比</text>
+
+  <!-- Column Headers -->
+  <text x="240" y="75" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#B45309">A2A 协议 (Agent-to-Agent)</text>
+  <text x="560" y="75" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="16" font-weight="bold" fill="#B45309">MCP 协议 (Model Context Protocol)</text>
+
+  <!-- Row 1: 目标 (Objective) -->
+  <rect x="40" y="95" width="160" height="32" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="120" y="116" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" font-weight="bold" fill="#111827">目标</text>
+
+  <rect x="40" y="135" width="360" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="220" y="160" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">智能体间通信与协作</text>
+  <text x="220" y="180" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">(Agent ↔ Agent)</text>
+
+  <rect x="420" y="135" width="340" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="590" y="160" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">模型与数据源/工具间连接</text>
+  <text x="590" y="180" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">(Model ↔ Data/Tools)</text>
+
+  <line x1="120" y1="127" x2="220" y2="133" stroke="#374151" stroke-width="2" marker-end="url(#arrow-15_1)"/>
+  <line x1="120" y1="127" x2="590" y2="133" stroke="#374151" stroke-width="2" marker-end="url(#arrow-15_1)"/>
+
+  <!-- Row 2: 通信单元 (Communication Unit) -->
+  <rect x="40" y="215" width="160" height="32" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="120" y="236" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" font-weight="bold" fill="#111827">通信单元</text>
+
+  <rect x="40" y="255" width="360" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="220" y="280" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">任务 (Task)</text>
+  <text x="220" y="300" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">面向目标的工作单元</text>
+
+  <rect x="420" y="255" width="340" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="590" y="280" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">上下文 (Context)</text>
+  <text x="590" y="300" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">结构化数据与工具调用</text>
+
+  <line x1="120" y1="247" x2="220" y2="253" stroke="#374151" stroke-width="2" marker-end="url(#arrow-15_1)"/>
+  <line x1="120" y1="247" x2="590" y2="253" stroke="#374151" stroke-width="2" marker-end="url(#arrow-15_1)"/>
+
+  <!-- Row 3: 发现机制 (Discovery) -->
+  <rect x="40" y="335" width="160" height="32" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="120" y="356" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" font-weight="bold" fill="#111827">发现机制</text>
+
+  <rect x="40" y="375" width="360" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="220" y="400" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">智能体卡片 (Agent Card)</text>
+  <text x="220" y="420" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">声明能力、技能与端点</text>
+
+  <rect x="420" y="375" width="340" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="590" y="400" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">服务器列表 (Server List)</text>
+  <text x="590" y="420" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">注册可用的数据/工具</text>
+
+  <line x1="120" y1="367" x2="220" y2="373" stroke="#374151" stroke-width="2" marker-end="url(#arrow-15_1)"/>
+  <line x1="120" y1="367" x2="590" y2="373" stroke="#374151" stroke-width="2" marker-end="url(#arrow-15_1)"/>
+
+  <!-- Row 4: 适用场景 (Use Cases) -->
+  <rect x="40" y="455" width="160" height="32" rx="8" ry="8" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <text x="120" y="476" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" font-weight="bold" fill="#111827">适用场景</text>
+
+  <rect x="40" y="495" width="360" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="220" y="520" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">多智能体协作</text>
+  <text x="220" y="540" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">跨系统任务编排与委派</text>
+
+  <rect x="420" y="495" width="340" height="60" rx="8" ry="8" fill="#DBEAFE" stroke="#1F2937" stroke-width="2"/>
+  <text x="590" y="520" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="14" fill="#111827">工具集成</text>
+  <text x="590" y="540" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">为模型接入外部数据源</text>
+
+  <line x1="120" y1="487" x2="220" y2="493" stroke="#374151" stroke-width="2" marker-end="url(#arrow-15_1)"/>
+  <line x1="120" y1="487" x2="590" y2="493" stroke="#374151" stroke-width="2" marker-end="url(#arrow-15_1)"/>
+
+  <!-- Footer -->
+  <text x="400" y="585" text-anchor="middle" font-family="sans-serif, Microsoft YaHei, 微软雅黑" font-size="13" fill="#6B7280">A2A 关注智能体之间的协作；MCP 关注模型与外部资源的对接</text>
+</svg>

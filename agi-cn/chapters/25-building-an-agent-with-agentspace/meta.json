@@ -1,0 +1,15 @@
+{
+  "id": 25,
+  "part": "II",
+  "slug": "building-an-agent-with-agentspace",
+  "en_title": "Building an Agent with AgentSpace",
+  "zh_title": "使用 AgentSpace 构建智能体",
+  "pdf_pages": [
+    402,
+    407
+  ],
+  "page_count": 6,
+  "char_count": 4576,
+  "word_count": 620,
+  "source_file": "chapters/25-building-an-agent-with-agentspace/source.md"
+}

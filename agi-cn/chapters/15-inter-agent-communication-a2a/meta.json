@@ -1,0 +1,15 @@
+{
+  "id": 15,
+  "part": "I",
+  "slug": "inter-agent-communication-a2a",
+  "en_title": "Inter-Agent Communication (A2A)",
+  "zh_title": "智能体间通信(A2A)",
+  "pdf_pages": [
+    241,
+    255
+  ],
+  "page_count": 15,
+  "char_count": 25631,
+  "word_count": 3240,
+  "source_file": "chapters/15-inter-agent-communication-a2a/source.md"
+}

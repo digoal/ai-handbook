@@ -1,0 +1,15 @@
+{
+  "id": 14,
+  "part": "I",
+  "slug": "knowledge-retrieval-rag",
+  "en_title": "Knowledge Retrieval (RAG)",
+  "zh_title": "知识检索(RAG)",
+  "pdf_pages": [
+    225,
+    240
+  ],
+  "page_count": 16,
+  "char_count": 32192,
+  "word_count": 4385,
+  "source_file": "chapters/14-knowledge-retrieval-rag/source.md"
+}

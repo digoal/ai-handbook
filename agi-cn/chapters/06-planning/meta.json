@@ -1,0 +1,15 @@
+{
+  "id": 6,
+  "part": "I",
+  "slug": "planning",
+  "en_title": "Planning",
+  "zh_title": "规划",
+  "pdf_pages": [
+    118,
+    130
+  ],
+  "page_count": 13,
+  "char_count": 22124,
+  "word_count": 3034,
+  "source_file": "chapters/06-planning/source.md"
+}

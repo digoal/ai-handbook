@@ -14,6 +14,9 @@ Agent:
 - [KiloCode 产品](https://github.com/Kilo-Org/kilocode)  
 - [freebuff(免费的 Agent)产品](https://github.com/CodebuffAI/freebuff)  
   
+Agent 设计:
+- [Agentic Design Patterns(智能体设计模式)](agi-cn/output/agi-zh-by-chapter)
+  
 Agent 编排:
 - [Ruflo](ruflo_handbook)
 - [CrewAI](https://github.com/crewAIInc/crewAI)
