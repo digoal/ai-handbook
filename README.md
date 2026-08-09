@@ -49,3 +49,9 @@ SKILL:
 开源模型:
 - [huggingface](https://huggingface.co/)
 - [modelscope](https://www.modelscope.cn/home)
+  
+AI 应用:
+- [股票分析](https://github.com/TauricResearch/TradingAgents)  
+  
+AI 论文:
+- [Huggingface AI paper trending](https://huggingface.co/papers/trending)  
