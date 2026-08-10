@@ -59,6 +59,7 @@ AI 应用:
   
 AI 论文:
 - [Huggingface AI paper trending](https://huggingface.co/papers/trending)  
+- [Harness Papers](https://github.com/RUCAIBox/awesome-agent-harness)  
 
 
 ----
