@@ -37,9 +37,10 @@ SKILL:
 数据库、多模态存储与召回:  
 - PG及插件, SQLite及插件, DuckDB及插件, SeekDB.    
     - 提供 全文检索、关键词检索、向量检索、图检索、RRF混合检索、reranking 重排. chunk、关联、embedding.    
+- [SeekDB](seekdb_handbook)
 - [Cortrix](cortrix_handbook)
 - [AI Agent Infra with PostgreSQL](ai_infra_with_postgresql_handbook)
-- [SeekDB](seekdb_handbook)
+- [Palantir semantica 开源平替](https://github.com/semantica-agi/semantica)  
   
 本地模型部署:
 - [MLX-LM 或 LM Studio](https://github.com/ml-explore/mlx-lm)
