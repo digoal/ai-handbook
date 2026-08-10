@@ -17,6 +17,7 @@ Agent:
   
 Agent 设计:
 - [Agentic Design Patterns(智能体设计模式) 中文翻译, 仅作学习交流, 请勿传播](agi-cn/output/agi-zh-by-chapter)
+- [AI Ontology(本体论, 给 Agent 构建世界认知体系的哲学理论)]()   
   
 Agent 编排:
 - [Ruflo](ruflo_handbook)
