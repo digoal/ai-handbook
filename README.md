@@ -2,6 +2,10 @@ AI 相关技术栈热门项目 handbook.
   
 ![ai_agent_tech_stack_layers](svg/ai_agent_tech_stack_layers.svg)  
   
+Agent 设计:
+- [Agentic Design Patterns(智能体设计模式) 中文翻译, 仅作学习交流, 请勿传播](agi-cn/output/agi-zh-by-chapter)
+- [AI Ontology(本体论, Agent 认识世界的哲学奠基理论)](https://github.com/digoal/blog/blob/master/202608/20260810_03.md)   
+  
 Agent 真身栖息地/安全沙箱运行环境:
 - [Cloudflare Computer](computer_handbook)  
 - [Docker image](https://github.com/digoal/blog/blob/master/202607/20260730_02.md)  
@@ -14,10 +18,6 @@ Agent:
 - [Pi 源码](pi_handbook)  
 - [KiloCode 产品](https://github.com/Kilo-Org/kilocode)  
 - [freebuff(免费的 Agent)产品](https://github.com/CodebuffAI/freebuff)  
-  
-Agent 设计:
-- [Agentic Design Patterns(智能体设计模式) 中文翻译, 仅作学习交流, 请勿传播](agi-cn/output/agi-zh-by-chapter)
-- [AI Ontology(本体论, 给 Agent 构建世界认知体系的哲学理论)]()   
   
 Agent 编排:
 - [Ruflo](ruflo_handbook)
