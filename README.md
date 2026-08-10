@@ -41,7 +41,7 @@ SKILL:
 - [SeekDB](seekdb_handbook)  
 - [Cortrix](cortrix_handbook)  
 - [AI Agent Infra with PostgreSQL](ai_infra_with_postgresql_handbook)
-- [Palantir semantica 开源平替](https://github.com/semantica-agi/semantica)  
+- [Palantir semantica 开源平替](semantica_handbook)  
 - [Apache Ossie](https://github.com/apache/ossie)  
   
 本地模型部署:
