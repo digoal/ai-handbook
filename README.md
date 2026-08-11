@@ -9,6 +9,7 @@ Agent 设计:
 Agent 真身栖息地/安全沙箱运行环境:
 - [Cloudflare Computer](computer_handbook)  
 - [Docker image](https://github.com/digoal/blog/blob/master/202607/20260730_02.md)  
+- [沙箱方法](https://github.com/digoal/blog/blob/master/202608/20260811_01.md)  
   
 Agent: 
 - [Hermes 产品](https://hermes-agent.nousresearch.com/docs/user-stories)  
@@ -56,6 +57,7 @@ SKILL:
   
 AI 应用:
 - [股票分析](https://github.com/TauricResearch/TradingAgents)  
+- [财务服务](https://github.com/anthropics/financial-services)
   
 AI 论文:
 - [Huggingface AI paper trending](https://huggingface.co/papers/trending)  
