@@ -6,7 +6,7 @@
 
 ## 这是什么?
 
-`docs/handbook/` 目录下是为 [`/Users/digoal/new/financial-services`](https://github.com/anthropics/financial-services) 仓库编写的用户手册。该仓库是 **"Claude for Financial Services"** —— 面向金融行业(投行 / 股权研究 / PE / WM / 基金会计 / 运营)的参考代理、技能与数据连接器。
+`docs/handbook/` 目录下是为 [`financial-services`](https://github.com/anthropics/financial-services) 仓库编写的用户手册。该仓库是 **"Claude for Financial Services"** —— 面向金融行业(投行 / 股权研究 / PE / WM / 基金会计 / 运营)的参考代理、技能与数据连接器。
 
 同一个 source 既可作为 [Claude Cowork](https://claude.com/product/cowork) 插件安装,也可通过 [Claude Managed Agents API](https://docs.claude.com/en/api/managed-agents) 部署到企业后端。本 handbook 完整覆盖两种使用方式。
 
@@ -109,8 +109,8 @@ git rev-parse HEAD
 - 完整术语 → `appendix-a-glossary.md`
 - 反向索引 + 源文件映射 → `appendix-b-references.md`
 - 修订记录 → `appendix-c-changelog.md`
-- 仓库根 README(开发者向) → `/Users/digoal/new/financial-services/README.md`
-- 仓库根 CLAUDE.md(贡献者向) → `/Users/digoal/new/financial-services/CLAUDE.md`
+- 仓库根 README(开发者向) → `financial-services/README.md`
+- 仓库根 CLAUDE.md(贡献者向) → `financial-services/CLAUDE.md`
 
 ## Source files
 
