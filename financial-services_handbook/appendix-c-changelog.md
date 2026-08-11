@@ -134,7 +134,7 @@
 
 ## Cross-references
 
-- 仓库根 README → `/Users/digoal/new/financial-services/README.md`
+- 仓库根 README → `financial-services/README.md`
 - Handbook 总入口 → `./README.md`
 - 上一附录(反向索引 + 源文件映射)→ `./appendix-b-references.md`
 - 术语表 → `./appendix-a-glossary.md`
