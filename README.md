@@ -17,7 +17,7 @@ Agent:
 - [Claude Code 泄漏源码 handbook](claude_leaked_source_handbook)
 - [Pi 源码](pi_handbook)  
 - [KiloCode 产品](https://github.com/Kilo-Org/kilocode)  
-- [freebuff(免费的 Agent)产品](https://github.com/CodebuffAI/freebuff)  
+- [freebuff(可免费使用 DeepSeek,MiMo 等的 coding agent)](https://github.com/CodebuffAI/freebuff)  
   
 Agent 编排:
 - [Ruflo](ruflo_handbook)
