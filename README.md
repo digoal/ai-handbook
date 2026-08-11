@@ -19,6 +19,7 @@ Agent:
 - [Pi 源码](pi_handbook)  
 - [KiloCode 产品](https://github.com/Kilo-Org/kilocode)  
 - [freebuff(可免费使用 DeepSeek,MiMo 等的 coding agent)](https://github.com/CodebuffAI/freebuff)  
+    - https://www.codebuff.com/docs/help/quick-start
   
 Agent 编排:
 - [Ruflo](ruflo_handbook)
