@@ -42,7 +42,7 @@ SKILL:
 - [Cortrix](cortrix_handbook)  
 - [AI Agent Infra with PostgreSQL](ai_infra_with_postgresql_handbook)
 - [Palantir semantica 开源平替](semantica_handbook)  
-- [Apache Ossie](https://github.com/apache/ossie)  
+- [Apache Ossie](ossie_handbook)
   
 本地模型部署:
 - [MLX-LM 或 LM Studio](https://github.com/ml-explore/mlx-lm)

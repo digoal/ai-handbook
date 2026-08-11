@@ -1,0 +1,2003 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="语义互操作规范、转换器与生态实践">
+      
+      
+        <meta name="author" content="Apache Ossie Contributors">
+      
+      
+        <link rel="canonical" href="https://ossie.apache.org/handbook/01-%E9%A1%B9%E7%9B%AE%E5%85%A8%E6%99%AF/">
+      
+      
+        <link rel="prev" href="../00-%E5%BA%8F%E7%AB%A0/">
+      
+      
+        <link rel="next" href="../02-%E6%A0%B8%E5%BF%83%E8%A7%84%E8%8C%83/">
+      
+      
+        
+          <link rel="alternate" href="/en/" hreflang="en">
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>第 1 章 · 项目全景与仓库地图 - Apache Ossie 全景手册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Apache Ossie 全景手册" class="md-header__button md-logo" aria-label="Apache Ossie 全景手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apache Ossie 全景手册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第 1 章 · 项目全景与仓库地图
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/en/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quickstart · 5 分钟入门
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-%E5%BA%8F%E7%AB%A0/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  序章 · 为什么需要 Ossie
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 1 章 · 项目全景与仓库地图
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02-%E6%A0%B8%E5%BF%83%E8%A7%84%E8%8C%83/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 2 章 · 核心规范精读
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 3 章 · 表达式语言与多方言机制
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04-%E7%BC%96%E5%86%99%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 4 章 · 编写你的第一份语义模型
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05-%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 5 章 · 验证工具与 CI/CD 集成
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06-%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%9E%B6%E6%9E%84/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 6 章 · 转换器架构 Hub-and-Spoke
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07-converter%E5%85%A8%E8%B0%B1/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 7 章 · 11 个 Converter 横向评测
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-python-sdk/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 8 章 · Python SDK 深入
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09-go-cli/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 9 章 · Go CLI 与插件系统
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10-%E6%9C%AC%E4%BD%93%E5%B1%82/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 10 章 · 本体层与跨模型对齐
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11-%E6%B2%BB%E7%90%86%E8%B7%AF%E7%BA%BF%E5%9B%BE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 11 章 · 治理、社区与路线图
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../troubleshooting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Troubleshooting · 故障排查
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../comparisons/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Comparisons · 横向对比
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../case-studies/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Case Studies · 实战案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../performance-and-scale/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Performance & Scale · 性能与规模
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../reference-architectures/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference Architectures · 4 种集成模式
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../13-%E9%94%99%E8%AF%AF%E7%9B%AE%E5%BD%95/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 13 章 · 错误目录与诊断字典
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../14-api%E5%8F%82%E8%80%83/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 14 章 · API 参考手册
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../12-%E9%99%84%E5%BD%95/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  附录 · 词汇表与速查表
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Apache Ossie 全景手册" class="md-nav__button md-logo" aria-label="Apache Ossie 全景手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apache Ossie 全景手册
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart · 5 分钟入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-%E5%BA%8F%E7%AB%A0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序章 · 为什么需要 Ossie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 1 章 · 项目全景与仓库地图
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 1 章 · 项目全景与仓库地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 一张仓库地图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 目录职责矩阵
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 版本快照与 spec 状态
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-11-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 11 条 GitHub Actions 工作流速览
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Apache 治理：邮件列表是主渠道
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 工作组与路线图（高层）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 📌 章节要点速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-%E6%A0%B8%E5%BF%83%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 2 章 · 核心规范精读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 3 章 · 表达式语言与多方言机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-%E7%BC%96%E5%86%99%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 4 章 · 编写你的第一份语义模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 5 章 · 验证工具与 CI/CD 集成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%9E%B6%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 6 章 · 转换器架构 Hub-and-Spoke
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-converter%E5%85%A8%E8%B0%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 7 章 · 11 个 Converter 横向评测
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-python-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 8 章 · Python SDK 深入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-go-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 9 章 · Go CLI 与插件系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-%E6%9C%AC%E4%BD%93%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 10 章 · 本体层与跨模型对齐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-%E6%B2%BB%E7%90%86%E8%B7%AF%E7%BA%BF%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 11 章 · 治理、社区与路线图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting · 故障排查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparisons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparisons · 横向对比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../case-studies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Case Studies · 实战案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance-and-scale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance & Scale · 性能与规模
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference-architectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Architectures · 4 种集成模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-%E9%94%99%E8%AF%AF%E7%9B%AE%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 13 章 · 错误目录与诊断字典
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-api%E5%8F%82%E8%80%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 14 章 · API 参考手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-%E9%99%84%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    附录 · 词汇表与速查表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 一张仓库地图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 目录职责矩阵
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 版本快照与 spec 状态
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-11-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 11 条 GitHub Actions 工作流速览
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Apache 治理：邮件列表是主渠道
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 工作组与路线图（高层）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 📌 章节要点速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+-->
+
+<h1 id="1">第 1 章 · 项目全景与仓库地图<a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Abstract</strong> — This chapter orients you in the Apache Ossie repository: core-spec/, converters/, examples/, ontology/, cli/, python/, validation/, compliance/, and docs/. Each top-level directory has a single responsibility. The repo ships 14 MD files of documentation, 11 vendor converters (9 Python + 2 Java), a Go CLI dispatcher (most subcommands currently stub), a Pydantic v2 SDK, and 12 GitHub Actions workflows. The chapter also documents Apache governance: <code>dev@ossie.apache.org</code> is the primary decision channel, spec changes require ≥3 binding +1 votes, and the project is currently an incubating podling.</p>
+<p><strong>【为用户】</strong> 这章让你 5 分钟看明白 Ossie 仓库的结构，知道哪份文档讲什么、哪段代码做什么——你不必精通仓库每一处，但需要知道从哪里找。</p>
+<p><strong>【为开发者】</strong> 你未来的 PR 入口在 <code>cli/</code> 与 <code>python/</code>；converter 改动在 <code>converters/&lt;vendor&gt;/</code>。每个 converter 是独立包，独立的 CI 流水线。</p>
+<p><strong>【为架构师】</strong> 11 个 converter 各自独立发布、11 条独立 CI 工作流（10 个 converter + CLI）——这是<strong>分布式治理</strong>的设计，意味着加入一个新 vendor 不需要触动核心规范。</p>
+</blockquote>
+<h2 id="11">1.1 一张仓库地图<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ossie/                              # 项目根 (Apache 2.0, 孵化中)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── core-spec/                       # 核心规范三件套
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   ├── spec.md                      # 人类可读规范 (~650 行)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── spec.yaml                    # YAML 结构 schema 注释版 (~270 行)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   ├── osi-schema.json              # JSON Schema Draft 2020-12 (~352 行) ★ 权威机器契约
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   ├── expression_language.md       # 表达式语言提案 (~780 行)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   └── img/                         # 配图目录
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── converters/                      # 11 个 vendor 转换器 (Hub spokes)
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   ├── README.md                    # Hub-and-Spoke 主指南
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   ├── snowflake/  dbt/  gooddata/  databricks/  gsf/
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   ├── honeydew/  omni/  orionbelt/ wisdom/
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   ├── salesforce/  polaris/        # 2 个 Java 转换器
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├── examples/                        # 示例
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   ├── tpcds_semantic_model.yaml    # 纯结构 (~631 行)
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   └── flights.yaml                 # 本体 + 映射 (~1111 行)
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>├── ontology/                        # 本体层（可选超集）
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│   ├── ontology.md                  # (~598 行)
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│   └── ontology.json                # JSON Schema
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>├── cli/                             # Go CLI (cobra)
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│   ├── main.go                      # ldflags: version/commit/date
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│   ├── cmd/{root,convert,validate,plugin/...}.go
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│   ├── internal/{plugin,ossiedir}/  # 插件协议 + 目录解析
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│   ├── Makefile  go.mod  .goreleaser.yaml
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>├── python/                          # apache-ossie SDK (Pydantic v2)
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│   ├── src/ossie/{__init__,models}.py
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│   └── tests/test_models.py
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>├── validation/                      # Python 验证器 (PEP 723 inline)
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>│   └── validate.py                  # (~290 行)
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>├── compliance/                      # 占位 (20 行 README) — 合规测试套件规划中
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>├── docs/                            # 项目主文档
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>│   ├── index.md                     # 问题陈述 + 治理 (~377 行)
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>│   └── working_groups.md
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>├── ROADMAP.md                       # 路线图 (~443 行)
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>├── CONTRIBUTING.md                  # 贡献指南 (~287 行)
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>├── .asf.yaml                        # Apache 治理配置 (squash merge only)
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>├── .github/workflows/               # 11 条 CI 工作流（CLI 1 条 + 10 个 converter）
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>└── handbook/                        # ★ 本手册所在位置
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    ├── mkdocs.yml
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    └── src/                         # 14 个 Markdown 源文件
+</span></code></pre></div>
+<h2 id="12">1.2 目录职责矩阵<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>职责</th>
+<th>你最该读的文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>core-spec/</code></td>
+<td>权威规范定义</td>
+<td><code>osi-schema.json</code>（机器契约）、<code>spec.md</code>（人类叙述）</td>
+</tr>
+<tr>
+<td><code>converters/</code></td>
+<td>Hub spokes：每个 vendor 一个子目录</td>
+<td><code>README.md</code>（主指南）、各 converter 的 <code>README.md</code></td>
+</tr>
+<tr>
+<td><code>examples/</code></td>
+<td>真实语义模型示例</td>
+<td><code>tpcds_semantic_model.yaml</code>（入门）、<code>flights.yaml</code>（本体案例）</td>
+</tr>
+<tr>
+<td><code>ontology/</code></td>
+<td>可选的概念层（Entity/Value Type）</td>
+<td><code>ontology.md</code> + <code>flights.yaml</code> 的 <code>ontology:</code> 块</td>
+</tr>
+<tr>
+<td><code>cli/</code></td>
+<td>Go CLI 实现 + 插件发现协议</td>
+<td><code>cmd/root.go</code>、<code>internal/plugin/plugin.go</code></td>
+</tr>
+<tr>
+<td><code>python/</code></td>
+<td>Pydantic v2 类型 SDK</td>
+<td><code>src/ossie/models.py</code>（223 行核心）</td>
+</tr>
+<tr>
+<td><code>validation/</code></td>
+<td>4 类校验的 Python 工具</td>
+<td><code>validate.py</code></td>
+</tr>
+<tr>
+<td><code>docs/</code></td>
+<td>项目级人类文档</td>
+<td><code>index.md</code>（问题陈述 + 治理）</td>
+</tr>
+<tr>
+<td><code>compliance/</code></td>
+<td><strong>占位</strong></td>
+<td>仅 <code>README.md</code>（20 行）</td>
+</tr>
+<tr>
+<td><code>.github/workflows/</code></td>
+<td>11 条 CI</td>
+<td>每条都路径过滤，只在自己目录下改动时触发</td>
+</tr>
+</tbody>
+</table>
+<h2 id="13-spec">1.3 版本快照与 spec 状态<a class="headerlink" href="#13-spec" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⚠️ <strong>实现状态提醒</strong>：<code>0.2.0.dev0</code> 是<strong>开发中的 dev 版本</strong>，schema 在 0.2.0 正式发布前可能继续变更（<a href="https://github.com/apache/ossie/blob/main/core-spec/spec.md"><code>core-spec/spec.md:22-24</code></a>）。已发布稳定版本是 <code>0.1.1</code>（2025-12-11）。本手册所有引用以仓库当前 <code>0.2.0.dev0</code> 文件为准。</p>
+</blockquote>
+<pre class="mermaid"><code>stateDiagram-v2
+  [*] --&gt; 0_1_0: 2025-09
+  0_1_0 --&gt; 0_1_1: 2025-12-11 稳定版
+  0_1_1 --&gt; 0_2_0_dev0: 2026 进行中 (DRAFT)
+  0_2_0_dev0 --&gt; 0_2_0: 计划 (待 dev 结束)
+  0_2_0 --&gt; 1_0_0: 长期目标
+  note right of 0_2_0_dev0
+    • 加入 cardinality 显式表达
+    • 加入 aggregation_method
+    • 加入 cumulative/expansion
+    • 50+ Discussions 待决议
+  end note</code></pre>
+<p><code>spec.yaml</code> 头部明确写有 "DRAFT version"（声明在 <code>core-spec/spec.md:22-24</code> 的 <code>&gt; **DRAFT version** — in development, schema may change before 0.2.0 is released.</code> 注释）；如果你在写依赖 Ossie schema 的工具，需要在 CI 里锁版本号。</p>
+<h2 id="14-11-github-actions">1.4 11 条 GitHub Actions 工作流速览<a class="headerlink" href="#14-11-github-actions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>触发条件</th>
+<th>检查内容</th>
+<th>矩阵</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cli-ci.yml</code></td>
+<td><code>cli/**</code> 或自身变更</td>
+<td><code>go build</code> + <code>go vet</code> + <code>go test</code></td>
+<td>Go 1.26.2</td>
+</tr>
+<tr>
+<td><code>converter-snowflake-ci.yml</code></td>
+<td><code>converters/snowflake/**</code></td>
+<td><code>uv sync</code> + <code>uv run pytest</code></td>
+<td>Python 3.11–3.14</td>
+</tr>
+<tr>
+<td><code>converter-databricks-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>Python 3.11–3.14</td>
+</tr>
+<tr>
+<td><code>converter-dbt-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>Python 3.11–3.14</td>
+</tr>
+<tr>
+<td><code>converter-gooddata-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>Python 3.12–3.14</td>
+</tr>
+<tr>
+<td><code>converter-gsf-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>Python 3.11–3.14</td>
+</tr>
+<tr>
+<td><code>converter-honeydew-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>Python 3.10–3.14</td>
+</tr>
+<tr>
+<td><code>converter-omni-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>Python 3.10–3.14</td>
+</tr>
+<tr>
+<td><code>converter-orionbelt-ci.yml</code></td>
+<td>同上</td>
+<td>同上（含 mypy + ruff）</td>
+<td>Python 3.12–3.14</td>
+</tr>
+<tr>
+<td><code>converter-polaris-ci.yml</code></td>
+<td>同上</td>
+<td><code>mvn -B verify</code></td>
+<td>JDK 21 (Temurin)</td>
+</tr>
+<tr>
+<td><code>converter-salesforce-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>JDK 21</td>
+</tr>
+<tr>
+<td><code>converter-wisdom-ci.yml</code></td>
+<td>—</td>
+<td>（当前仓库尚未添加此 workflow）</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>实现状态提醒</strong>：截至本手册生成时，Wisdom converter 还没有独立的 CI workflow。其余 10 个 converter 各自有 <code>converter-&lt;name&gt;-ci.yml</code>，加上 <code>cli-ci.yml</code> 共 <strong>11 条</strong> GitHub Actions。</p>
+</blockquote>
+<p><strong>架构含义</strong>：每个 converter 是<strong>独立发布的包</strong>（独立 <code>pyproject.toml</code> 或 <code>pom.xml</code>），独立 CI 工作流。这意味着：</p>
+<ul>
+<li>一个 converter 的破坏性改动不会阻塞其他 converter 的发布。</li>
+<li>添加新 vendor converter 不需要触动核心规范的 CI。</li>
+<li>跨 converter 的"契约变更"（如 <code>osi-schema.json</code> 字段新增）需要单独 PR。</li>
+</ul>
+<h2 id="15-apache">1.5 Apache 治理：邮件列表是主渠道<a class="headerlink" href="#15-apache" title="Permanent link">&para;</a></h2>
+<p><code>CONTRIBUTING.md:51-72</code> 明确指出决策的层级：</p>
+<table>
+<thead>
+<tr>
+<th>渠道</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dev@ossie.apache.org</code>（主）</td>
+<td>所有决策、提案讨论、投票</td>
+</tr>
+<tr>
+<td><code>commits@ossie.apache.org</code></td>
+<td>自动 commit/PR 通知</td>
+</tr>
+<tr>
+<td><code>issues@ossie.apache.org</code></td>
+<td>自动 issue 通知</td>
+</tr>
+<tr>
+<td><code>private@ossie.apache.org</code></td>
+<td>PPMC 私议（committer 提名）</td>
+</tr>
+<tr>
+<td>GitHub Issues / Discussions</td>
+<td>辅助；最终仍需在 <code>dev@</code> 走正式流程</td>
+</tr>
+</tbody>
+</table>
+<p><code>.asf.yaml</code> 关键配置（节选）：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 强制 squash merge；rebase 关闭</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">enabled_merge_buttons</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">squash</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">merge</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">rebase</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 主分支保护</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nt">protected_branches</span><span class="p">:</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">main</span><span class="p">:</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">required_pull_request_reviews</span><span class="p">:</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="nt">required_approving_review_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">      </span><span class="nt">require_code_owner_reviews</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">  </span><span class="c1"># 没有 CODEOWNERS</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="nt">required_linear_history</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></code></pre></div>
+<p><strong>投票规则</strong>（<a href="https://github.com/apache/ossie/blob/main/CONTRIBUTING.md"><code>CONTRIBUTING.md:134-158</code></a>）：</p>
+<ul>
+<li>代码改动：lazy consensus（≥1 binding +1，无 veto）</li>
+<li><strong>spec 改动</strong>：≥<strong>3</strong> binding +1，无 veto</li>
+<li>Committer/PPMC 提名：<code>private@</code> 列表，72 小时窗口</li>
+</ul>
+<blockquote>
+<p>这意味着你想影响 spec 演进，需要在 dev@ 发起正式讨论、收集三方共识——这是慢但稳健的治理节奏。</p>
+</blockquote>
+<h2 id="16">1.6 工作组与路线图（高层）<a class="headerlink" href="#16" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/apache/ossie/blob/main/docs/working_groups.md"><code>docs/working_groups.md</code></a> 列出了 4 个活跃工作组：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>工作组</th>
+<th>负责人</th>
+<th>Slack 频道</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Metric Language and Relationships</td>
+<td>Will Pugh</td>
+<td><code>#ossie-metric-language-wg</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Catalog</td>
+<td>Shubham Bhargav (Atlan)</td>
+<td><code>#ossie-catalog-wg</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Ontology</td>
+<td>Kurt (Relational AI)</td>
+<td><code>#ossie-ontology-wg</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Financial Services Common Semantics</td>
+<td>John Heisler (Snowflake)</td>
+<td><code>#ossie-financial-services-common-semantics</code></td>
+</tr>
+</tbody>
+</table>
+<p>第 11 章会深入展开各工作组的当前产出与对 spec 的影响。</p>
+<h2 id="17">1.7 📌 章节要点速查<a class="headerlink" href="#17" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>核心规范三件套是 <code>core-spec/{spec.md, spec.yaml, osi-schema.json}</code>；TPC-DS 是入门示例</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>PR 入口在 <code>cli/</code> 与 <code>python/</code>；converter 改动在 <code>converters/&lt;vendor&gt;/</code>，各自独立 CI</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td>11 条独立 CI（CLI + 10 converter）= 分布式治理；spec 改动需 ≥3 binding +1 投票；<code>dev@</code> 是决策主渠道</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../00-%E5%BA%8F%E7%AB%A0/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 序章 · 为什么需要 Ossie">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                序章 · 为什么需要 Ossie
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../02-%E6%A0%B8%E5%BF%83%E8%A7%84%E8%8C%83/" class="md-footer__link md-footer__link--next" aria-label="下一页: 第 2 章 · 核心规范精读">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                第 2 章 · 核心规范精读
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/apache/ossie" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight", "metadata.social"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../assets/javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

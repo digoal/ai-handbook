@@ -1,0 +1,120 @@
+site_name: Apache Ossie 全景手册
+site_description: 语义互操作规范、转换器与生态实践
+site_author: Apache Ossie Contributors
+site_url: https://ossie.apache.org/handbook/
+docs_dir: src
+site_dir: site
+
+plugins:
+  - search:
+      separator: '[\s\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - rss:
+      match_path: ".*\\.md$"
+      categories:
+        - tags
+  - material/social:
+      enabled: !ENV [CI, false]
+      cards_layout: summary
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+    - navigation.footer
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+    - metadata.social
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换到暗色
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切换到亮色
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - 首页: index.md
+  - Quickstart · 5 分钟入门: quickstart.md
+  - 序章 · 为什么需要 Ossie: 00-序章.md
+  - 第 1 章 · 项目全景与仓库地图: 01-项目全景.md
+  - 第 2 章 · 核心规范精读: 02-核心规范.md
+  - 第 3 章 · 表达式语言与多方言机制: 03-表达式语言.md
+  - 第 4 章 · 编写你的第一份语义模型: 04-编写语义模型.md
+  - 第 5 章 · 验证工具与 CI/CD 集成: 05-验证工具.md
+  - 第 6 章 · 转换器架构 Hub-and-Spoke: 06-转换器架构.md
+  - 第 7 章 · 11 个 Converter 横向评测: 07-converter全谱.md
+  - 第 8 章 · Python SDK 深入: 08-python-sdk.md
+  - 第 9 章 · Go CLI 与插件系统: 09-go-cli.md
+  - 第 10 章 · 本体层与跨模型对齐: 10-本体层.md
+  - 第 11 章 · 治理、社区与路线图: 11-治理路线图.md
+  - Troubleshooting · 故障排查: troubleshooting.md
+  - Comparisons · 横向对比: comparisons.md
+  - Case Studies · 实战案例: case-studies.md
+  - Performance & Scale · 性能与规模: performance-and-scale.md
+  - Reference Architectures · 4 种集成模式: reference-architectures.md
+  - 第 13 章 · 错误目录与诊断字典: 13-错误目录.md
+  - 第 14 章 · API 参考手册: 14-api参考.md
+  - 附录 · 词汇表与速查表: 12-附录.md
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/apache/ossie
+  alternate:
+    - name: English
+      link: /en/
+      lang: en
+
+# Vendor Mermaid 10.x runtime so the 41 <pre class="mermaid"> blocks in src/
+# render as SVG in the browser. The pymdownx.superfences config above only
+# emits the markup; the JS runtime is loaded here.
+extra_javascript:
+  - assets/javascripts/mermaid.min.js
+  - assets/javascripts/mermaid-init.js

@@ -1,0 +1,2260 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="语义互操作规范、转换器与生态实践">
+      
+      
+        <meta name="author" content="Apache Ossie Contributors">
+      
+      
+        <link rel="canonical" href="https://ossie.apache.org/handbook/13-%E9%94%99%E8%AF%AF%E7%9B%AE%E5%BD%95/">
+      
+      
+        <link rel="prev" href="../reference-architectures/">
+      
+      
+        <link rel="next" href="../14-api%E5%8F%82%E8%80%83/">
+      
+      
+        
+          <link rel="alternate" href="/en/" hreflang="en">
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>第 13 章 · 错误目录与诊断字典 - Apache Ossie 全景手册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#13" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Apache Ossie 全景手册" class="md-header__button md-logo" aria-label="Apache Ossie 全景手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apache Ossie 全景手册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第 13 章 · 错误目录与诊断字典
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/en/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quickstart · 5 分钟入门
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-%E5%BA%8F%E7%AB%A0/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  序章 · 为什么需要 Ossie
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-%E9%A1%B9%E7%9B%AE%E5%85%A8%E6%99%AF/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 1 章 · 项目全景与仓库地图
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02-%E6%A0%B8%E5%BF%83%E8%A7%84%E8%8C%83/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 2 章 · 核心规范精读
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 3 章 · 表达式语言与多方言机制
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04-%E7%BC%96%E5%86%99%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 4 章 · 编写你的第一份语义模型
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05-%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 5 章 · 验证工具与 CI/CD 集成
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06-%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%9E%B6%E6%9E%84/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 6 章 · 转换器架构 Hub-and-Spoke
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07-converter%E5%85%A8%E8%B0%B1/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 7 章 · 11 个 Converter 横向评测
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-python-sdk/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 8 章 · Python SDK 深入
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09-go-cli/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 9 章 · Go CLI 与插件系统
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10-%E6%9C%AC%E4%BD%93%E5%B1%82/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 10 章 · 本体层与跨模型对齐
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11-%E6%B2%BB%E7%90%86%E8%B7%AF%E7%BA%BF%E5%9B%BE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 11 章 · 治理、社区与路线图
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../troubleshooting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Troubleshooting · 故障排查
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../comparisons/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Comparisons · 横向对比
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../case-studies/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Case Studies · 实战案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../performance-and-scale/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Performance & Scale · 性能与规模
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../reference-architectures/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference Architectures · 4 种集成模式
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 13 章 · 错误目录与诊断字典
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../14-api%E5%8F%82%E8%80%83/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 14 章 · API 参考手册
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../12-%E9%99%84%E5%BD%95/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  附录 · 词汇表与速查表
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Apache Ossie 全景手册" class="md-nav__button md-logo" aria-label="Apache Ossie 全景手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apache Ossie 全景手册
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart · 5 分钟入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-%E5%BA%8F%E7%AB%A0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序章 · 为什么需要 Ossie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-%E9%A1%B9%E7%9B%AE%E5%85%A8%E6%99%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 1 章 · 项目全景与仓库地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-%E6%A0%B8%E5%BF%83%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 2 章 · 核心规范精读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 3 章 · 表达式语言与多方言机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-%E7%BC%96%E5%86%99%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 4 章 · 编写你的第一份语义模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 5 章 · 验证工具与 CI/CD 集成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%9E%B6%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 6 章 · 转换器架构 Hub-and-Spoke
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-converter%E5%85%A8%E8%B0%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 7 章 · 11 个 Converter 横向评测
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-python-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 8 章 · Python SDK 深入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-go-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 9 章 · Go CLI 与插件系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-%E6%9C%AC%E4%BD%93%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 10 章 · 本体层与跨模型对齐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-%E6%B2%BB%E7%90%86%E8%B7%AF%E7%BA%BF%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 11 章 · 治理、社区与路线图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting · 故障排查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparisons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparisons · 横向对比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../case-studies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Case Studies · 实战案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance-and-scale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance & Scale · 性能与规模
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference-architectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Architectures · 4 种集成模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 13 章 · 错误目录与诊断字典
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 13 章 · 错误目录与诊断字典
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#131-converterissuetype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1 ConverterIssueType 总目录
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.1 ConverterIssueType 总目录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1311-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1.1 声明的 4 个值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1312-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1.2 ⚠️ 引用但未声明的 12 个值（未实现）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2 自定义异常类（7 个）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.2 自定义异常类（7 个）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1321-python-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1 Python 异常（4 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1322-java-3-salesforce-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.2 Java 异常（3 个，全在 Salesforce converter）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#133-python-sdk-validator-raise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3 Python SDK / validator 内置 raise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#134-cli-v13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.4 CLI 退出码约定（v1.3 提案）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#135" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.5 错误诊断决策树
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#136" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.6 测试覆盖现状
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#137" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.7 📌 章节要点速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-api%E5%8F%82%E8%80%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 14 章 · API 参考手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-%E9%99%84%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    附录 · 词汇表与速查表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#131-converterissuetype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1 ConverterIssueType 总目录
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.1 ConverterIssueType 总目录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1311-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1.1 声明的 4 个值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1312-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1.2 ⚠️ 引用但未声明的 12 个值（未实现）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2 自定义异常类（7 个）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.2 自定义异常类（7 个）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1321-python-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1 Python 异常（4 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1322-java-3-salesforce-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.2 Java 异常（3 个，全在 Salesforce converter）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#133-python-sdk-validator-raise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3 Python SDK / validator 内置 raise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#134-cli-v13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.4 CLI 退出码约定（v1.3 提案）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#135" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.5 错误诊断决策树
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#136" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.6 测试覆盖现状
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#137" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.7 📌 章节要点速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+-->
+
+<h1 id="13">第 13 章 · 错误目录与诊断字典<a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Abstract</strong> — A single reference for every error code, exception class, and CLI exit code in the Ossie stack. Tables cover (1) the 16 <code>ConverterIssueType</code> values referenced across the 11 vendor converters — 4 of them declared in <code>ossie_dbt/converter_issues.py</code>, the other 12 referenced but currently undeclared (and therefore <code>AttributeError</code>-prone when imported); (2) the 7 custom exception classes (4 Python, 3 Java); (3) the Python SDK / validator built-in <code>raise</code> patterns; and (4) a proposed CLI exit-code convention inspired by BSD <code>sysexits.h</code>. Every entry is hyperlinked to its source-of-truth file:line.</p>
+<p><strong>【为用户】</strong> 当 converter 跑完输出 <code>issues: [...]</code> 或抛异常时，翻这里查"我看到的这条到底是什么意思"。每条 issue 都给出"修复动作"。</p>
+<p><strong>【为开发者】</strong> 写新 converter 时复用本目录的命名规范。<code>ConverterIssueType</code> 必须先在 <code>converters/dbt/src/ossie_dbt/converter_issues.py</code> 声明再被引用——否则其他 converter 的测试会 <code>AttributeError</code>。</p>
+<p><strong>【为架构师】</strong> 当前 12 个引用未声明的 enum 值是 v1.4 的明确 TODO。修复路径只有两条：补全声明，或在引用处加 fallback。当前任选其一都会改变下游行为，需要在 dev@ 走 lazy consensus。</p>
+</blockquote>
+<h2 id="131-converterissuetype">13.1 <code>ConverterIssueType</code> 总目录<a class="headerlink" href="#131-converterissuetype" title="Permanent link">&para;</a></h2>
+<h3 id="1311-4">13.1.1 声明的 4 个值<a class="headerlink" href="#1311-4" title="Permanent link">&para;</a></h3>
+<p>来源：<code>converters/dbt/src/ossie_dbt/converter_issues.py:25-29</code></p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+<th>典型触发场景</th>
+<th>用户修复动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CONVERSION_METRIC_DROPPED</code></td>
+<td>Ossie 没有对应的 conversion-funnel 指标类型</td>
+<td>dbt <code>conversion</code> 类型 metric 转 Ossie</td>
+<td>在 Ossie 侧用 ratio metric 表达（<code>(a)/(b)</code> 自动展开为子度量）</td>
+</tr>
+<tr>
+<td><code>PRIVATE_METRIC_DROPPED</code></td>
+<td>metric 被 dbt 标 <code>private</code>（不暴露给下游 BI）</td>
+<td>dbt metric <code>meta.private = true</code></td>
+<td>把 <code>private</code> 改为 <code>false</code>；或接受指标被 drop</td>
+</tr>
+<tr>
+<td><code>NATURAL_ENTITY_DROPPED</code></td>
+<td>natural entity（无显式 PK 的维度）Ossie 无法表达</td>
+<td>dbt 中无 PK 的 entity</td>
+<td>在 Ossie 端补 <code>primary_key</code></td>
+</tr>
+<tr>
+<td><code>CUMULATIVE_SEMANTICS_LOSS</code></td>
+<td>Ossie 表达式无法表达 window / grain 语义</td>
+<td>dbt 累积指标 <code>cumulative: true</code></td>
+<td>用 Ossie ratio / 时间窗降级</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1312-12">13.1.2 ⚠️ 引用但未声明的 12 个值（<strong>未实现</strong>）<a class="headerlink" href="#1312-12" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>现状</strong>：这些 enum 值在多个 converter 中被 <code>ConverterIssueType.X</code> 引用，但
+<code>converter_issues.py:25-29</code> <strong>没有声明</strong>。结果：直接 <code>from ossie_dbt import
+ConverterIssueType</code> 的测试在第一个引用点就会 <code>AttributeError</code>。</p>
+<p><strong>修复路径</strong>（v1.4+）：在 <code>converter_issues.py</code> 补齐声明；或在引用处加
+<code>getattr(ConverterIssueType, "X", None)</code> fallback。本手册<strong>不修代码</strong>，
+仅记录现状。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>出处（引用位置）</th>
+<th>期望语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AI_CONTEXT_DROPPED</code></td>
+<td><code>converters/wisdom/src/ossie_wisdom/wisdom_to_osi.py</code>、<code>osi_to_wisdom.py</code>、<code>cli.py</code>；<code>converters/omni/src/osi_omni/*.py</code></td>
+<td>AI 上下文（含 synonyms / examples / instructions）被丢</td>
+</tr>
+<tr>
+<td><code>CARDINALITY_LOSS</code></td>
+<td><code>converters/wisdom/src/ossie_wisdom/wisdom_to_osi.py</code>；<code>converters/omni/src/osi_omni/*.py</code></td>
+<td>多对多关系无法用 Ossie 方向模型表达</td>
+</tr>
+<tr>
+<td><code>CUSTOM_EXTENSION_DROPPED</code></td>
+<td><code>converters/wisdom/src/ossie_wisdom/osi_to_wisdom.py</code></td>
+<td>用户的 <code>custom_extensions[&lt;vendor&gt;]</code> 字段被丢</td>
+</tr>
+<tr>
+<td><code>DUPLICATE_FIELD_DROPPED</code></td>
+<td><code>converters/wisdom/src/ossie_wisdom/wisdom_to_osi.py</code></td>
+<td>同名 field 在 Ossie dataset 里出现多次</td>
+</tr>
+<tr>
+<td><code>EXTRA_MODEL_DROPPED</code></td>
+<td><code>converters/wisdom/src/ossie_wisdom/osi_to_wisdom.py</code></td>
+<td>Wisdom 的 extra model 类型 Ossie 不识别</td>
+</tr>
+<tr>
+<td><code>METRIC_NAME_COLLISION</code></td>
+<td><code>converters/wisdom/src/ossie_wisdom/wisdom_to_osi.py</code></td>
+<td>不同表里两个同名 metric 在 Ossie 全局命名空间冲突</td>
+</tr>
+<tr>
+<td><code>METRIC_TABLE_UNRESOLVED</code></td>
+<td><code>converters/wisdom/src/ossie_wisdom/wisdom_to_osi.py</code></td>
+<td>metric 引用的表未在 model 中找到</td>
+</tr>
+<tr>
+<td><code>MISSING_DIALECT_EXPRESSION</code></td>
+<td><code>converters/wisdom/src/ossie_wisdom/wisdom_to_osi.py</code></td>
+<td>metric 在某个 dialect 上缺表达式</td>
+</tr>
+<tr>
+<td><code>RELATIONSHIP_DROPPED</code></td>
+<td><code>converters/wisdom/src/ossie_wisdom/wisdom_to_osi.py</code></td>
+<td>relationship 引用的 dataset 不存在</td>
+</tr>
+<tr>
+<td><code>STALE_MEASURE</code></td>
+<td><code>converters/wisdom/src/ossie_wisdom/wisdom_to_osi.py</code></td>
+<td>Wisdom 标记为 stale 的 measure</td>
+</tr>
+<tr>
+<td><code>UNIQUE_KEYS_DROPPED</code></td>
+<td><code>converters/wisdom/src/ossie_wisdom/osi_to_wisdom.py</code></td>
+<td>Ossie 的 <code>unique_keys</code> 在 Wisdom 没有等价物</td>
+</tr>
+<tr>
+<td><code>UNSUPPORTED_DIALECT</code></td>
+<td><code>converters/wisdom/src/ossie_wisdom/osi_to_wisdom.py</code></td>
+<td>Wisdom 不识别该 dialect（如 <code>MDX</code>）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>为什么这个不一致存在？</strong> Wisdom converter 是 v0.1.x → v0.2.x 演进期间新建的。
+它直接 fork 了 dbt converter 的 <code>ConverterIssue</code> 数据结构作为内部模型，
+但忘了把扩展的 enum 值<strong>先</strong>声明到共享的 <code>converter_issues.py</code>。</p>
+</blockquote>
+<h2 id="132-7">13.2 自定义异常类（7 个）<a class="headerlink" href="#132-7" title="Permanent link">&para;</a></h2>
+<h3 id="1321-python-4">13.2.1 Python 异常（4 个）<a class="headerlink" href="#1321-python-4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>异常类</th>
+<th>定义位置</th>
+<th>何时抛出</th>
+<th>用户修复动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ConversionError</code></td>
+<td><code>converters/databricks/src/ossie_databricks/_common.py</code>、<code>converters/omni/src/osi_omni/_common.py</code></td>
+<td>converter 输入 schema 不匹配</td>
+<td>检查 YAML 顶层 schema；运行 <code>validation/validate.py</code></td>
+</tr>
+<tr>
+<td><code>OsiConversionError</code></td>
+<td><code>converters/snowflake/src/ossie_snowflake/converter.py</code></td>
+<td>Snowflake 转换失败（含 dialect 警告升级）</td>
+<td>显式选 <code>ANSI_SQL</code> 而非 <code>SNOWFLAKE</code></td>
+</tr>
+<tr>
+<td><code>GSFConversionError</code></td>
+<td><code>converters/gsf/src/ossie_gsf/native_converter.py</code></td>
+<td>NVIDIA GSF 原生 YAML 转换失败</td>
+<td>启用 byte-faithful 模式（<code>custom_extensions[NVIDIA_GSF]</code>）</td>
+</tr>
+<tr>
+<td><code>HoneydewConversionError</code></td>
+<td><code>converters/honeydew/src/honeydew_osi/converter.py</code></td>
+<td>Honeydew workspace 写入失败</td>
+<td>检查 workspace 目录权限</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1322-java-3-salesforce-converter">13.2.2 Java 异常（3 个，全在 Salesforce converter）<a class="headerlink" href="#1322-java-3-salesforce-converter" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>异常类</th>
+<th>定义位置</th>
+<th>何时抛出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ConversionException</code></td>
+<td><code>converters/salesforce/src/main/java/org/apache/ossie/exception/ConversionException.java</code></td>
+<td>Salesforce ↔ Ossie pipeline 步骤失败</td>
+</tr>
+<tr>
+<td><code>InvalidInputException</code></td>
+<td><code>converters/salesforce/src/main/java/org/apache/ossie/exception/InvalidInputException.java</code></td>
+<td>CLI 参数或 schema 校验失败</td>
+</tr>
+<tr>
+<td><code>ValidationException</code></td>
+<td><code>converters/salesforce/src/main/java/org/apache/ossie/exception/ValidationException.java</code></td>
+<td>JSON Schema 验证失败（用 <code>com.networknt/schema-validator</code>）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Polaris</strong>（Java）暂未声明自定义异常类，直接抛 <code>RuntimeException</code>；
+详见 13.4 CLI 退出码。</p>
+</blockquote>
+<h2 id="133-python-sdk-validator-raise">13.3 Python SDK / validator 内置 raise<a class="headerlink" href="#133-python-sdk-validator-raise" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>位置</th>
+<th>触发条件</th>
+<th>用户修复动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AssertionError</code></td>
+<td><code>python/tests/test_models.py</code></td>
+<td><code>test_data_type_enum_matches_core_schema</code> 检测到 enum 与 spec 不同步</td>
+<td>同步更新 <code>OSIDataType</code> 枚举</td>
+</tr>
+<tr>
+<td><code>pydantic.ValidationError</code></td>
+<td><code>python/src/ossie/models.py</code>（自动）</td>
+<td>YAML/JSON 不符合 Pydantic 模型约束</td>
+<td>看 validator 输出，按字段修复</td>
+</tr>
+<tr>
+<td><code>yaml.YAMLError</code></td>
+<td><code>python/src/ossie/models.py</code>（自动）</td>
+<td>YAML 语法错</td>
+<td>用 <code>yamllint</code> 或 IDE 检查 YAML</td>
+</tr>
+<tr>
+<td><code>json.JSONDecodeError</code></td>
+<td><code>python/src/ossie/models.py</code>（自动）</td>
+<td>JSON 语法错</td>
+<td>检查 <code>custom_extensions</code> 中的 JSON 块</td>
+</tr>
+<tr>
+<td><code>RuntimeError</code></td>
+<td><code>converters/*/src/**/*.py</code></td>
+<td>converter 内部 invariant 违反</td>
+<td>文件 issue；附完整 stack trace</td>
+</tr>
+<tr>
+<td><code>TypeError</code> / <code>ValueError</code></td>
+<td>散布</td>
+<td>API 调用方传错类型/值</td>
+<td>看 traceback 调用栈</td>
+</tr>
+<tr>
+<td><code>SystemExit</code></td>
+<td><code>validation/validate.py:60-72</code></td>
+<td>CLI 退出（带退出码）</td>
+<td>见 13.4</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>SDK 异常哲学</strong>：Pydantic v2 模型 <code>frozen=True</code>，所有赋值会抛 <code>ValidationError</code>。
+不要用 <code>try/except</code> 静默吃掉——让上游看到失败。</p>
+</blockquote>
+<h2 id="134-cli-v13">13.4 CLI 退出码约定（v1.3 提案）<a class="headerlink" href="#134-cli-v13" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>现状</strong>：各 converter 退出码不一致（部分返回 <code>0</code> 成功、<code>1</code> 失败；部分用
+<code>returncode == 0</code> 检查；部分用 <code>None</code> 表示异常）。<strong>v1.3 起提议以下规范</strong>，
+v1.4 起所有 converter 适配。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>退出码</th>
+<th>名称</th>
+<th>含义</th>
+<th>用户动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td><code>OK</code></td>
+<td>完全成功，无 warning</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td><code>SCHEMA_INVALID</code></td>
+<td>输入不符合 <code>osi-schema.json</code>（validator 拒绝）</td>
+<td>修复 YAML/JSON</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td><code>CONVERSION_FAILED</code></td>
+<td>converter 逻辑失败（如 SQLGlot 解析失败）</td>
+<td>看 stderr；附 traceback</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td><code>PARTIAL_DEGRADATION</code></td>
+<td>成功但有 warning（如 <code>AI_CONTEXT_DROPPED</code>）</td>
+<td>看 issues 列表；可接受可修</td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td><code>TIMEOUT</code></td>
+<td>plugin invocation 超时</td>
+<td>调大 <code>--timeout</code>；或拆分输入</td>
+</tr>
+<tr>
+<td><code>64</code></td>
+<td><code>CLI_USAGE</code></td>
+<td>参数错误（参数名、互斥冲突）</td>
+<td>看 <code>--help</code></td>
+</tr>
+<tr>
+<td><code>65</code></td>
+<td><code>DATA_FORMAT</code></td>
+<td>输入文件格式无法解析（YAML/JSON 损坏）</td>
+<td>修复文件</td>
+</tr>
+<tr>
+<td><code>66</code></td>
+<td><code>NO_INPUT</code></td>
+<td>找不到输入文件 / 空文件</td>
+<td>检查 <code>--input</code> 路径</td>
+</tr>
+<tr>
+<td><code>67</code></td>
+<td><code>PLUGIN_NOT_FOUND</code></td>
+<td>plugin.yaml 不存在或字段缺失</td>
+<td>重新安装 plugin</td>
+</tr>
+<tr>
+<td><code>68</code></td>
+<td><code>IO_ERROR</code></td>
+<td>读/写失败（权限、磁盘）</td>
+<td>检查权限</td>
+</tr>
+<tr>
+<td><code>69</code></td>
+<td><code>NETWORK_ERROR</code></td>
+<td>Polaris / live catalog 通信失败</td>
+<td>检查 URL / OAuth token</td>
+</tr>
+<tr>
+<td><code>70</code></td>
+<td><code>INTERNAL_SOFTWARE</code></td>
+<td>不可恢复的内部 bug</td>
+<td>文件 issue</td>
+</tr>
+<tr>
+<td><code>71</code></td>
+<td><code>SYSTEM_ERR</code></td>
+<td>系统级错误（OOM、fork 失败）</td>
+<td>检查环境</td>
+</tr>
+<tr>
+<td><code>72</code></td>
+<td><code>OS_FILE_NOT_FOUND</code></td>
+<td>OS-level 文件不存在</td>
+<td>检查路径</td>
+</tr>
+<tr>
+<td><code>73</code></td>
+<td><code>OS_CANNOT_CREATE</code></td>
+<td>OS-level 无法创建输出</td>
+<td>检查权限/磁盘</td>
+</tr>
+<tr>
+<td><code>74</code></td>
+<td><code>IO_ERROR</code></td>
+<td>通用 IO</td>
+<td>看 stderr</td>
+</tr>
+<tr>
+<td><code>75</code></td>
+<td><code>TEMP_FAILURE</code></td>
+<td>临时失败，可重试</td>
+<td>重试</td>
+</tr>
+<tr>
+<td><code>76</code></td>
+<td><code>PROTOCOL_ERROR</code></td>
+<td>子进程协议违规</td>
+<td>文件 issue</td>
+</tr>
+<tr>
+<td><code>77</code></td>
+<td><code>NO_PERMISSION</code></td>
+<td>权限被拒</td>
+<td>检查 ACL</td>
+</tr>
+<tr>
+<td><code>78</code></td>
+<td><code>CONFIG_ERROR</code></td>
+<td>配置文件错误</td>
+<td>验证 <code>plugin.yaml</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>灵感来源</strong>：BSD <code>sysexits.h</code>。<code>64-78</code> 是 <code>EX_USAGE</code> 到 <code>EX_CONFIG</code> 的标准
+区间；我们扩展了 <code>0-4</code> 给业务语义。</p>
+</blockquote>
+<h2 id="135">13.5 错误诊断决策树<a class="headerlink" href="#135" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TB
+  Q1{错误来源?}
+  Q1 --&gt;|validator| A[查 13.1 Schema 错误]
+  Q1 --&gt;|converter| B[查 13.1.1 + 13.1.2 ConverterIssue]
+  Q1 --&gt;|SDK raise| C[查 13.3 内置异常]
+  Q1 --&gt;|CLI exit code| D[查 13.4 退出码]
+
+  A --&gt; R1{exit 1?}
+  R1 --&gt;|是| A1[修复 osi-schema.json 违规]
+  R1 --&gt;|否| A2[查 13.2 自定义异常]
+
+  B --&gt; R2{issues 非空?}
+  R2 --&gt;|是| B1[遍历 issues 列表; 按 13.1 修复]
+  R2 --&gt;|否| B2[查 13.2 自定义异常]
+
+  D --&gt; R3{exit 3?}
+  R3 --&gt;|是| D1[查看 issues; 决定接受/修复]
+  R3 --&gt;|否| R4[按退出码查 13.4 表格]</code></pre>
+<h2 id="136">13.6 测试覆盖现状<a class="headerlink" href="#136" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>测试文件</th>
+<th>错误路径覆盖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>python-sdk</code></td>
+<td><code>python/tests/test_models.py:74-86</code></td>
+<td><code>test_data_type_enum_matches_core_schema</code></td>
+</tr>
+<tr>
+<td><code>dbt converter</code></td>
+<td><code>converters/dbt/tests/test_dbt_converter_issues.py</code></td>
+<td>4 个 declared enum 全部测到</td>
+</tr>
+<tr>
+<td><code>wisdom converter</code></td>
+<td><code>converters/wisdom/tests/test_wisdom_*.py</code></td>
+<td>引用 12 个 undeclared —— <strong>测试启动会 AttributeError</strong></td>
+</tr>
+<tr>
+<td><code>omni converter</code></td>
+<td><code>converters/omni/tests/test_omni_to_osi.py</code></td>
+<td>引用 <code>ConverterIssueType.AI_CONTEXT_DROPPED</code></td>
+</tr>
+<tr>
+<td><code>validation/validate.py</code></td>
+<td>无（CLI，无 unit test）</td>
+<td>退出码未测</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>建议</strong>：v1.4 在 <code>converters/wisdom</code> CI 加 <code>pytest --collect-only</code> 守卫，
+阻断未声明 enum 引用。</p>
+</blockquote>
+<h2 id="137">13.7 📌 章节要点速查<a class="headerlink" href="#137" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>converter 输出 <code>issues</code> 列表翻 13.1.1+13.1.2；CLI exit code 翻 13.4</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>新增 <code>ConverterIssueType</code> 必须<strong>先</strong>在 <code>converter_issues.py</code> 声明；自定义异常基类选 13.2 列出的 7 个之一</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td>12 个未声明 enum 是 v1.4 TODO；CLI 退出码 v1.3 提案 v1.4 强制</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../reference-architectures/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Reference Architectures · 4 种集成模式">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Reference Architectures · 4 种集成模式
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../14-api%E5%8F%82%E8%80%83/" class="md-footer__link md-footer__link--next" aria-label="下一页: 第 14 章 · API 参考手册">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                第 14 章 · API 参考手册
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/apache/ossie" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight", "metadata.social"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../assets/javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

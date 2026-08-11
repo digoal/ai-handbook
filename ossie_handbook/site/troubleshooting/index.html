@@ -1,0 +1,2897 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="语义互操作规范、转换器与生态实践">
+      
+      
+        <meta name="author" content="Apache Ossie Contributors">
+      
+      
+        <link rel="canonical" href="https://ossie.apache.org/handbook/troubleshooting/">
+      
+      
+        <link rel="prev" href="../11-%E6%B2%BB%E7%90%86%E8%B7%AF%E7%BA%BF%E5%9B%BE/">
+      
+      
+        <link rel="next" href="../comparisons/">
+      
+      
+        
+          <link rel="alternate" href="/en/" hreflang="en">
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Troubleshooting · 故障排查 - Apache Ossie 全景手册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#troubleshooting" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Apache Ossie 全景手册" class="md-header__button md-logo" aria-label="Apache Ossie 全景手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apache Ossie 全景手册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Troubleshooting · 故障排查
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/en/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quickstart · 5 分钟入门
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-%E5%BA%8F%E7%AB%A0/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  序章 · 为什么需要 Ossie
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-%E9%A1%B9%E7%9B%AE%E5%85%A8%E6%99%AF/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 1 章 · 项目全景与仓库地图
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02-%E6%A0%B8%E5%BF%83%E8%A7%84%E8%8C%83/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 2 章 · 核心规范精读
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 3 章 · 表达式语言与多方言机制
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04-%E7%BC%96%E5%86%99%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 4 章 · 编写你的第一份语义模型
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05-%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 5 章 · 验证工具与 CI/CD 集成
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06-%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%9E%B6%E6%9E%84/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 6 章 · 转换器架构 Hub-and-Spoke
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07-converter%E5%85%A8%E8%B0%B1/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 7 章 · 11 个 Converter 横向评测
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-python-sdk/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 8 章 · Python SDK 深入
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09-go-cli/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 9 章 · Go CLI 与插件系统
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10-%E6%9C%AC%E4%BD%93%E5%B1%82/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 10 章 · 本体层与跨模型对齐
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11-%E6%B2%BB%E7%90%86%E8%B7%AF%E7%BA%BF%E5%9B%BE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 11 章 · 治理、社区与路线图
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Troubleshooting · 故障排查
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../comparisons/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Comparisons · 横向对比
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../case-studies/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Case Studies · 实战案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../performance-and-scale/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Performance & Scale · 性能与规模
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../reference-architectures/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference Architectures · 4 种集成模式
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../13-%E9%94%99%E8%AF%AF%E7%9B%AE%E5%BD%95/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 13 章 · 错误目录与诊断字典
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../14-api%E5%8F%82%E8%80%83/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 14 章 · API 参考手册
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../12-%E9%99%84%E5%BD%95/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  附录 · 词汇表与速查表
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Apache Ossie 全景手册" class="md-nav__button md-logo" aria-label="Apache Ossie 全景手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apache Ossie 全景手册
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart · 5 分钟入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-%E5%BA%8F%E7%AB%A0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序章 · 为什么需要 Ossie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-%E9%A1%B9%E7%9B%AE%E5%85%A8%E6%99%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 1 章 · 项目全景与仓库地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-%E6%A0%B8%E5%BF%83%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 2 章 · 核心规范精读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 3 章 · 表达式语言与多方言机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-%E7%BC%96%E5%86%99%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 4 章 · 编写你的第一份语义模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 5 章 · 验证工具与 CI/CD 集成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%9E%B6%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 6 章 · 转换器架构 Hub-and-Spoke
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-converter%E5%85%A8%E8%B0%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 7 章 · 11 个 Converter 横向评测
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-python-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 8 章 · Python SDK 深入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-go-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 9 章 · Go CLI 与插件系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-%E6%9C%AC%E4%BD%93%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 10 章 · 本体层与跨模型对齐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-%E6%B2%BB%E7%90%86%E8%B7%AF%E7%BA%BF%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 11 章 · 治理、社区与路线图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting · 故障排查
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting · 故障排查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-validatepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 验证器（validate.py）问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 验证器（validate.py）问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-schema-semantic_model-is-a-required-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 [Schema] 'semantic_model' is a required property
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-schema-foo-is-not-of-type-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 [Schema] 'foo' is not of type 'array'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-schema-bar-is-not-of-type-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 [Schema] 'bar' is not of type 'string'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-unique-duplicate-field-name-x-in-dataset-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 [Unique] Duplicate field name 'X' in dataset 'Y'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-unique-duplicate-metric-name-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 [Unique] Duplicate metric name 'X'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-reference-relationship-x-references-unknown-dataset-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 [Reference] Relationship 'X' references unknown dataset 'Y'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-sql-invalid-expression-snowflake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 [SQL] Invalid expression (snowflake)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-sql-warning-sqlglot-not-installed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 [SQL] Warning: sqlglot not installed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-validator-docker-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.9 Validator 跑不通 docker / sandbox 容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-sdkpython-apache-ossie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. SDK（python apache-ossie）问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. SDK（python apache-ossie）问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-modulenotfounderror-no-module-named-ossie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 ModuleNotFoundError: No module named 'ossie'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-validationerror-from-is-a-required-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 ValidationError: ... 'from' is a required property
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-validationerror-foo-is-not-a-valid-osidialect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 ValidationError: 'foo' is not a valid OSIDialect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-validationerror-opaque-is-not-a-valid-datatype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 ValidationError: 'Opaque' is not a valid DataType
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-to_osi_yaml-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 to_osi_yaml() 输出含 null 字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-yaml-dialect-dialect_" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 YAML 加载后 dialect 字段被转成 dialect_ 或丢失
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Converter 调用问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Converter 调用问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-ossie-snowflake-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 ossie-snowflake: command not found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-keyerror-snowflake-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 KeyError: 'SNOWFLAKE' 在 converter 中
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-round-trip-custom_extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 round-trip 后 custom_extensions 丢失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-ossie-dbt-msi-to-osi-cumulative_semantics_loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 ossie-dbt msi-to-osi 报 CUMULATIVE_SEMANTICS_LOSS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-databricks-on-true" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Databricks 输出包含 on: true 等布尔丢失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-polaris-401-unauthorized-live-catalog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Polaris 报 401 Unauthorized 连 live catalog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-gooddata-ldm-facts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 GoodData LDM 转换后 facts 数组为空
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cligo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. CLI（go）问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. CLI（go）问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-ossie-convert-not-yet-implemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 ossie convert 打印 "not yet implemented"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-ossie-plugin-list-no-plugins-installed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 ossie plugin list 显示 "no plugins installed"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-ossie-validate-stub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 ossie validate 也是 stub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-ossie_plugin_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 OSSIE_PLUGIN_DIR 环境变量不生效
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. spec 演进问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. spec 演进问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-011-020dev0-breakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 0.1.1 → 0.2.0.dev0 升级 breakage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-want-aggregation_method-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Want aggregation_method 但 schema 没这个字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-expressed-cardinality-relationship-fromto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 想要 expressed cardinality 但 Relationship 只有 from/to
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 贡献时遇到的问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 贡献时遇到的问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-icla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 ICLA 提交被拒
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-pr-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 PR 模板 8 项检查没过
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-spec-pr-dev-list-3-binding-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 spec 提案 PR 被 dev list 要求 ≥3 binding +1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 环境与依赖
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 环境与依赖">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 uv 安装失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Windows 原生不支持
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-java-17-vs-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Java 17 vs 21
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 性能与并发
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 性能与并发">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-1m-semantic_model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 1M 行 semantic_model 转换慢
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-validator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 validator 内存峰值高
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 📌 章节要点速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparisons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparisons · 横向对比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../case-studies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Case Studies · 实战案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance-and-scale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance & Scale · 性能与规模
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference-architectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Architectures · 4 种集成模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-%E9%94%99%E8%AF%AF%E7%9B%AE%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 13 章 · 错误目录与诊断字典
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-api%E5%8F%82%E8%80%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 14 章 · API 参考手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-%E9%99%84%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    附录 · 词汇表与速查表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-validatepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 验证器（validate.py）问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 验证器（validate.py）问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-schema-semantic_model-is-a-required-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 [Schema] 'semantic_model' is a required property
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-schema-foo-is-not-of-type-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 [Schema] 'foo' is not of type 'array'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-schema-bar-is-not-of-type-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 [Schema] 'bar' is not of type 'string'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-unique-duplicate-field-name-x-in-dataset-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 [Unique] Duplicate field name 'X' in dataset 'Y'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-unique-duplicate-metric-name-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 [Unique] Duplicate metric name 'X'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-reference-relationship-x-references-unknown-dataset-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 [Reference] Relationship 'X' references unknown dataset 'Y'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-sql-invalid-expression-snowflake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 [SQL] Invalid expression (snowflake)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-sql-warning-sqlglot-not-installed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 [SQL] Warning: sqlglot not installed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-validator-docker-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.9 Validator 跑不通 docker / sandbox 容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-sdkpython-apache-ossie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. SDK（python apache-ossie）问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. SDK（python apache-ossie）问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-modulenotfounderror-no-module-named-ossie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 ModuleNotFoundError: No module named 'ossie'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-validationerror-from-is-a-required-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 ValidationError: ... 'from' is a required property
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-validationerror-foo-is-not-a-valid-osidialect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 ValidationError: 'foo' is not a valid OSIDialect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-validationerror-opaque-is-not-a-valid-datatype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 ValidationError: 'Opaque' is not a valid DataType
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-to_osi_yaml-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 to_osi_yaml() 输出含 null 字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-yaml-dialect-dialect_" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 YAML 加载后 dialect 字段被转成 dialect_ 或丢失
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Converter 调用问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Converter 调用问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-ossie-snowflake-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 ossie-snowflake: command not found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-keyerror-snowflake-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 KeyError: 'SNOWFLAKE' 在 converter 中
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-round-trip-custom_extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 round-trip 后 custom_extensions 丢失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-ossie-dbt-msi-to-osi-cumulative_semantics_loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 ossie-dbt msi-to-osi 报 CUMULATIVE_SEMANTICS_LOSS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-databricks-on-true" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Databricks 输出包含 on: true 等布尔丢失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-polaris-401-unauthorized-live-catalog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Polaris 报 401 Unauthorized 连 live catalog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-gooddata-ldm-facts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 GoodData LDM 转换后 facts 数组为空
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cligo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. CLI（go）问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. CLI（go）问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-ossie-convert-not-yet-implemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 ossie convert 打印 "not yet implemented"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-ossie-plugin-list-no-plugins-installed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 ossie plugin list 显示 "no plugins installed"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-ossie-validate-stub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 ossie validate 也是 stub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-ossie_plugin_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 OSSIE_PLUGIN_DIR 环境变量不生效
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. spec 演进问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. spec 演进问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-011-020dev0-breakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 0.1.1 → 0.2.0.dev0 升级 breakage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-want-aggregation_method-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Want aggregation_method 但 schema 没这个字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-expressed-cardinality-relationship-fromto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 想要 expressed cardinality 但 Relationship 只有 from/to
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 贡献时遇到的问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 贡献时遇到的问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-icla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 ICLA 提交被拒
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-pr-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 PR 模板 8 项检查没过
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-spec-pr-dev-list-3-binding-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 spec 提案 PR 被 dev list 要求 ≥3 binding +1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 环境与依赖
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 环境与依赖">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 uv 安装失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Windows 原生不支持
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-java-17-vs-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Java 17 vs 21
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 性能与并发
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 性能与并发">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-1m-semantic_model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 1M 行 semantic_model 转换慢
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-validator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 validator 内存峰值高
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 📌 章节要点速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="troubleshooting">Troubleshooting · 故障排查<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Abstract</strong> — A symptom-driven troubleshooting guide for the 30 most common Ossie issues. Each entry follows the same schema: Symptom → How to reproduce → Root cause → Fix. Cross-references the relevant core-spec section, validator output, or GitHub Issue for each. Designed so you can <code>grep -n</code> the symptom and jump to the answer.</p>
+<p><strong>【为用户】</strong> 遇到 Ossie 报错时来这里——按症状查。</p>
+<p><strong>【为开发者】</strong> 30 个最常见问题的诊断逻辑，反向工程一遍能学到 Ossie 的边界。</p>
+<p><strong>【为架构师】</strong> 故障模式库（failure mode library）——分类、严重程度、回归路径。</p>
+</blockquote>
+<h2 id="1-validatepy">1. 验证器（validate.py）问题<a class="headerlink" href="#1-validatepy" title="Permanent link">&para;</a></h2>
+<h3 id="11-schema-semantic_model-is-a-required-property">1.1 <code>[Schema] 'semantic_model' is a required property</code><a class="headerlink" href="#11-schema-semantic_model-is-a-required-property" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 跑 <code>validate.py</code>，报 root 缺 <code>semantic_model</code>。</li>
+<li><strong>根因</strong>: 文档顶层是 <code>ontology:</code> 或 <code>ontology_mappings:</code>（如 flights.yaml），validate.py 只校验 <code>semantic_model:</code> 根字段。</li>
+<li><strong>修复</strong>: 验证器不支持 ontology 顶层 schema 校验（Roadmap WG #3 工作）。要么用 <code>python -c "import yaml; yaml.safe_load(open('flights.yaml'))"</code> 确认 YAML 合法，要么把 ontology 示例放到语义模型目录里。</li>
+</ul>
+<h3 id="12-schema-foo-is-not-of-type-array">1.2 <code>[Schema] 'foo' is not of type 'array'</code><a class="headerlink" href="#12-schema-foo-is-not-of-type-array" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: <code>semantic_model</code> 写成了 object 而非 array。</li>
+<li><strong>根因</strong>: schema 里 <code>semantic_model</code> 是 <code>array, minItems: 1</code>（<code>osi-schema.json:34</code>）。</li>
+<li><strong>修复</strong>: 改为列表形式：</li>
+</ul>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">semantic_model</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_model</span><span class="w">     </span><span class="c1"># 注意是 - name</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">datasets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+</span></code></pre></div>
+<h3 id="13-schema-bar-is-not-of-type-string">1.3 <code>[Schema] 'bar' is not of type 'string'</code><a class="headerlink" href="#13-schema-bar-is-not-of-type-string" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 某个字段是 number 或 boolean 而非 string。</li>
+<li><strong>根因</strong>: spec 里大部分字段是 <code>type: string</code>（如 <code>name</code>, <code>description</code>）。</li>
+<li><strong>修复</strong>: 把数字或 boolean 加引号：</li>
+</ul>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orders</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Order</span><span class="nv"> </span><span class="s">ID</span><span class="nv"> </span><span class="s">1234&quot;</span><span class="w">    </span><span class="c1"># 即使是数字也加引号</span>
+</span></code></pre></div>
+<h3 id="14-unique-duplicate-field-name-x-in-dataset-y">1.4 <code>[Unique] Duplicate field name 'X' in dataset 'Y'</code><a class="headerlink" href="#14-unique-duplicate-field-name-x-in-dataset-y" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 同一 dataset 内两个字段同名。</li>
+<li><strong>根因</strong>: 字段名在 dataset 内必须唯一（<code>spec.md:228-230</code>）。</li>
+<li><strong>修复</strong>: 重命名一个字段，并更新所有引用它的 <code>Metric.expression</code>。</li>
+</ul>
+<h3 id="15-unique-duplicate-metric-name-x">1.5 <code>[Unique] Duplicate metric name 'X'</code><a class="headerlink" href="#15-unique-duplicate-metric-name-x" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 同一 model 内两个 metric 同名。</li>
+<li><strong>根因</strong>: metric 在 model 内必须唯一。</li>
+<li><strong>修复</strong>: 同上。</li>
+</ul>
+<h3 id="16-reference-relationship-x-references-unknown-dataset-y">1.6 <code>[Reference] Relationship 'X' references unknown dataset 'Y'</code><a class="headerlink" href="#16-reference-relationship-x-references-unknown-dataset-y" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: relationship 的 <code>from</code> 或 <code>to</code> 指向不存在的数据集。</li>
+<li><strong>根因</strong>: 拼写错误，或引用了不同 <code>SemanticModel</code> 里的 dataset。</li>
+<li><strong>修复</strong>: 检查 <code>from:</code> 和 <code>to:</code> 字段，确保 dataset name 完全匹配（包括大小写）。</li>
+</ul>
+<h3 id="17-sql-invalid-expression-snowflake">1.7 <code>[SQL] Invalid expression</code> (snowflake)<a class="headerlink" href="#17-sql-invalid-expression-snowflake" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: validator 报 <code>Field 'orders.amount' in model 'sales' (SNOWFLAKE): Invalid expression</code>。</li>
+<li><strong>根因</strong>: sqlglot 解析 Snowflake 表达式失败。</li>
+<li><strong>诊断</strong>: 用 <code>--output json</code> 看具体哪行：</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>run<span class="w"> </span>validation/validate.py<span class="w"> </span>model.yaml<span class="w"> </span>--output<span class="w"> </span>json
+</span></code></pre></div>
+<ul>
+<li><strong>修复</strong>:</li>
+<li>表达式语法错误（如缺少括号、关键字拼错）</li>
+<li>用 vendor-specific 函数但 dialect 写成 ANSI_SQL——加 <code>SNOWFLAKE</code> 方言版本</li>
+<li>临时绕过：用 <code>SKIP_SQL_VALIDATION</code> 标记（validator 内部的 <code>MDX</code>/<code>TABLEAU</code>/<code>MAQL</code> 默认跳过）</li>
+</ul>
+<h3 id="18-sql-warning-sqlglot-not-installed">1.8 <code>[SQL] Warning: sqlglot not installed</code><a class="headerlink" href="#18-sql-warning-sqlglot-not-installed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: SQL 校验整层被跳过。</li>
+<li><strong>根因</strong>: <code>validate.py</code> depends on <code>sqlglot&gt;=30.12.0</code>（PEP 723 声明），但环境里没装。</li>
+<li><strong>修复</strong>: 重新跑 <code>uv run validation/validate.py ...</code>——uv 会自动装。<strong>注意</strong>: sqlglot 缺失<strong>不</strong>导致 exit 1，但 SQL 校验报告无效。</li>
+</ul>
+<h3 id="19-validator-docker-sandbox">1.9 Validator 跑不通 docker / sandbox 容器<a class="headerlink" href="#19-validator-docker-sandbox" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 容器内 <code>uv run</code> 不可用。</li>
+<li><strong>修复</strong>: 装 system Python + <code>pip install jsonschema pyyaml sqlglot</code>，然后 <code>python validation/validate.py ...</code>。</li>
+</ul>
+<h2 id="2-sdkpython-apache-ossie">2. SDK（python apache-ossie）问题<a class="headerlink" href="#2-sdkpython-apache-ossie" title="Permanent link">&para;</a></h2>
+<h3 id="21-modulenotfounderror-no-module-named-ossie">2.1 <code>ModuleNotFoundError: No module named 'ossie'</code><a class="headerlink" href="#21-modulenotfounderror-no-module-named-ossie" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: <code>PYTHONPATH=python/src</code> 没设，或 SDK 没安装。</li>
+<li><strong>修复</strong>:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>&lt;ossie-repo&gt;
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">PYTHONPATH</span><span class="o">=</span>python/src<span class="w"> </span>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from ossie import OSIDocument&quot;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># 或：cd python &amp;&amp; uv sync</span>
+</span></code></pre></div></li>
+</ul>
+<h3 id="22-validationerror-from-is-a-required-property">2.2 <code>ValidationError: ... 'from' is a required property</code><a class="headerlink" href="#22-validationerror-from-is-a-required-property" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: SDK 报 <code>from</code> 字段缺失。</li>
+<li><strong>根因</strong>: 你用了 <code>from_dataset=...</code> 而 YAML 用 <code>from:</code>。SDK 用 <code>alias="from"</code>。</li>
+<li><strong>修复</strong>: Python 端写 <code>from_dataset='orders'</code>；YAML 端写 <code>from: orders</code>。</li>
+</ul>
+<h3 id="23-validationerror-foo-is-not-a-valid-osidialect">2.3 <code>ValidationError: 'foo' is not a valid OSIDialect</code><a class="headerlink" href="#23-validationerror-foo-is-not-a-valid-osidialect" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: dialect 写成 <code>Snowflake</code> 而非 <code>SNOWFLAKE</code>。</li>
+<li><strong>根因</strong>: SDK 的 <code>OSIDialect</code> enum 是大写（<code>python/src/ossie/models.py:25-34</code>）。</li>
+<li><strong>修复</strong>: 改为 <code>OSIDialect.SNOWFLAKE</code>、<code>"SNOWFLAKE"</code> 或 <code>dialect="snowflake"</code> 都行；SDK 会自动 normalize。</li>
+</ul>
+<h3 id="24-validationerror-opaque-is-not-a-valid-datatype">2.4 <code>ValidationError: 'Opaque' is not a valid DataType</code><a class="headerlink" href="#24-validationerror-opaque-is-not-a-valid-datatype" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 试图用 <code>Opaque</code> 字段但报错。</li>
+<li><strong>根因</strong>: <code>Opaque</code> 合法，但仅在 <code>OSIDataType.OPAQUE</code> 路径下。</li>
+<li><strong>修复</strong>: 应该是 <code>datatype="Opaque"</code>（首字母大写）；或 Python 端 <code>OSIDataType.OPAQUE</code>。</li>
+</ul>
+<h3 id="25-to_osi_yaml-null">2.5 <code>to_osi_yaml()</code> 输出含 <code>null</code> 字段<a class="headerlink" href="#25-to_osi_yaml-null" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 序列化 YAML 里有 <code>foo: null</code>。</li>
+<li><strong>根因</strong>: 调用时没传 <code>exclude_none=True</code>（默认是 True）。</li>
+<li><strong>修复</strong>: SDK 内部已默认 <code>exclude_none=True</code>（<code>models.py:218</code>），如果还出现 null，检查是否在 dump 后手动合并。</li>
+</ul>
+<h3 id="26-yaml-dialect-dialect_">2.6 YAML 加载后 <code>dialect</code> 字段被转成 <code>dialect_</code> 或丢失<a class="headerlink" href="#26-yaml-dialect-dialect_" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: <code>OSIDialectExpression.dialect</code> 字段访问失败。</li>
+<li><strong>根因</strong>: 类似 <code>from</code> 的别名问题。SDK 已统一为 <code>dialect</code> 字段名。</li>
+<li><strong>修复</strong>: 直接用 <code>expr.dialect</code>。</li>
+</ul>
+<h2 id="3-converter">3. Converter 调用问题<a class="headerlink" href="#3-converter" title="Permanent link">&para;</a></h2>
+<h3 id="31-ossie-snowflake-command-not-found">3.1 <code>ossie-snowflake: command not found</code><a class="headerlink" href="#31-ossie-snowflake-command-not-found" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 安装后仍找不到。</li>
+<li><strong>修复</strong>:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ossie-snowflake
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># 验证 PATH</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>which<span class="w"> </span>ossie-snowflake
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># 应该是 ~/.local/bin/ossie-snowflake</span>
+</span></code></pre></div></li>
+</ul>
+<h3 id="32-keyerror-snowflake-converter">3.2 <code>KeyError: 'SNOWFLAKE'</code> 在 converter 中<a class="headerlink" href="#32-keyerror-snowflake-converter" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 某字段没有 <code>dialect: SNOWFLAKE</code>，converter 卡住。</li>
+<li><strong>诊断</strong>: 看错误前的 warning：<code>no SNOWFLAKE or ANSI_SQL expression</code>。</li>
+<li><strong>修复</strong>: 给字段加 <code>expression.dialects[]</code> 包含 <code>SNOWFLAKE</code>，或确认有 <code>ANSI_SQL</code> fallback。</li>
+</ul>
+<h3 id="33-round-trip-custom_extensions">3.3 round-trip 后 <code>custom_extensions</code> 丢失<a class="headerlink" href="#33-round-trip-custom_extensions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: Ossie → Snowflake → Ossie 后，原 <code>custom_extensions[SALESFORCE]</code> 没了。</li>
+<li><strong>根因</strong>: 该 converter 没有 honor round-trip fidelity（不在白名单）。</li>
+<li><strong>诊断</strong>: 检查 <code>custom_extensions</code> 数组——若只剩 <code>SNOWFLAKE</code> 一个 vendor，原 vendor 已被吞。</li>
+<li><strong>修复</strong>: 升级 converter（开 GitHub Issue）。临时方案：用 <code>ossie-snowflake</code> 时同时加 <code>ossie-salesforce</code> 双向桥。</li>
+</ul>
+<h3 id="34-ossie-dbt-msi-to-osi-cumulative_semantics_loss">3.4 <code>ossie-dbt msi-to-osi</code> 报 <code>CUMULATIVE_SEMANTICS_LOSS</code><a class="headerlink" href="#34-ossie-dbt-msi-to-osi-cumulative_semantics_loss" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: dbt cumulative metric 转换丢失。</li>
+<li><strong>根因</strong>: ossie 0.2.0.dev0 暂不支持 <code>cumulative</code> 度量（Roadmap #39）。</li>
+<li><strong>修复</strong>: 等待 0.2.0 后续版本；或手动改 Ossie YAML 里的 <code>metric</code> 为 <code>derived</code>（占位）。</li>
+</ul>
+<h3 id="35-databricks-on-true">3.5 Databricks 输出包含 <code>on: true</code> 等布尔丢失<a class="headerlink" href="#35-databricks-on-true" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 转换后 join 条件全丢。</li>
+<li><strong>根因</strong>: YAML 1.1 把 <code>on/off/yes/no</code> 视为布尔，被错误识别为 join 关键字。</li>
+<li><strong>修复</strong>: 转换器内部用 YAML 1.2 loader（<code>_common.py:113-128</code>）。如果你自己写 YAML，避免裸用 <code>on:</code>、<code>off:</code> 做 key。</li>
+</ul>
+<h3 id="36-polaris-401-unauthorized-live-catalog">3.6 Polaris 报 <code>401 Unauthorized</code> 连 live catalog<a class="headerlink" href="#36-polaris-401-unauthorized-live-catalog" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: <code>ossie-polaris import --url ...</code> 401。</li>
+<li><strong>根因</strong>: 缺 OAuth 客户端凭据。</li>
+<li><strong>修复</strong>:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ossie-polaris<span class="w"> </span>import<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--url<span class="w"> </span>http://polaris:8181/api/catalog<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--catalog<span class="w"> </span>my_catalog<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>--client-id<span class="w"> </span>&lt;id&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>--client-secret<span class="w"> </span>&lt;secret&gt;
+</span></code></pre></div></li>
+</ul>
+<h3 id="37-gooddata-ldm-facts">3.7 GoodData LDM 转换后 <code>facts</code> 数组为空<a class="headerlink" href="#37-gooddata-ldm-facts" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 转换后 <code>facts: []</code>。</li>
+<li><strong>根因</strong>: GoodData LDM 把度量放 <code>metrics:</code> 而非 <code>facts:</code>；Ossie Metric 转换跳过（GoodData 不支持）。</li>
+<li><strong>修复</strong>: 期望行为。GoodData 不支持 OSSIE Metric 转换（详见 §7.2.3）。</li>
+</ul>
+<h2 id="4-cligo">4. CLI（go）问题<a class="headerlink" href="#4-cligo" title="Permanent link">&para;</a></h2>
+<h3 id="41-ossie-convert-not-yet-implemented">4.1 <code>ossie convert</code> 打印 "not yet implemented"<a class="headerlink" href="#41-ossie-convert-not-yet-implemented" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 跑 <code>ossie convert --to snowflake -i model.yaml</code> 报错。</li>
+<li><strong>根因</strong>: <code>cli/cmd/convert.go:46</code> 是 stub。</li>
+<li><strong>修复</strong>: 今天请用各 converter 自带 CLI：
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ossie-snowflake<span class="w"> </span>-i<span class="w"> </span>model.yaml<span class="w"> </span>-o<span class="w"> </span>snowflake.yaml<span class="w">   </span><span class="c1"># 替代 ossie convert --to snowflake</span>
+</span></code></pre></div></li>
+</ul>
+<h3 id="42-ossie-plugin-list-no-plugins-installed">4.2 <code>ossie plugin list</code> 显示 "no plugins installed"<a class="headerlink" href="#42-ossie-plugin-list-no-plugins-installed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 装好 converter 但 plugin list 是空。</li>
+<li><strong>根因</strong>: <code>plugin list</code> 扫描的是 <code>~/.ossie/plugins/&lt;name&gt;/plugin.yaml</code>——不是 <code>uv tool install</code> 装的。</li>
+<li><strong>修复</strong>: 手动创建 plugin manifest：
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.ossie/plugins/snowflake
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>~/.ossie/plugins/snowflake/plugin.yaml<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="s">ossie_plugin_spec: &quot;0.1.0&quot;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s">ossie_spec_version: &quot;&gt;=0.2.0&quot;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s">name: snowflake</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="s">platform: Snowflake</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="s">convert:</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="s">  to_ossie:</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="s">    invoke: [&quot;ossie-snowflake&quot;, &quot;to-ossie&quot;]</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="s">    accepts: [&quot;.yaml&quot;, &quot;.json&quot;]</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="s">  from_ossie:</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="s">    invoke: [&quot;ossie-snowflake&quot;, &quot;from-ossie&quot;]</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="s">EOF</span>
+</span></code></pre></div></li>
+</ul>
+<h3 id="43-ossie-validate-stub">4.3 <code>ossie validate</code> 也是 stub<a class="headerlink" href="#43-ossie-validate-stub" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 跑 <code>ossie validate model.yaml</code> 报 "not yet implemented"。</li>
+<li><strong>修复</strong>: 用 <code>uv run validation/validate.py model.yaml</code>。</li>
+</ul>
+<h3 id="44-ossie_plugin_dir">4.4 <code>OSSIE_PLUGIN_DIR</code> 环境变量不生效<a class="headerlink" href="#44-ossie_plugin_dir" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 修改了 <code>OSSIE_PLUGIN_DIR</code> 但 plugin list 仍扫默认目录。</li>
+<li><strong>根因</strong>: <code>cli/internal/ossiedir/ossiedir.go:30</code> 优先读 env var，但你重启 shell 之前不生效。</li>
+<li><strong>修复</strong>: <code>export OSSIE_PLUGIN_DIR=/path/to/dir &amp;&amp; which ossie</code> 验证。</li>
+</ul>
+<h2 id="5-spec">5. spec 演进问题<a class="headerlink" href="#5-spec" title="Permanent link">&para;</a></h2>
+<h3 id="51-011-020dev0-breakage">5.1 0.1.1 → 0.2.0.dev0 升级 breakage<a class="headerlink" href="#51-011-020dev0-breakage" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 旧 converter 读 0.2.0 新字段报错。</li>
+<li><strong>根因</strong>: <code>schema.yaml</code> 0.2.0.dev0 删除了一些字段。</li>
+<li><strong>修复</strong>: 锁版本——<code>pyproject.toml</code> pins <code>apache-ossie==0.1.1</code>。</li>
+</ul>
+<h3 id="52-want-aggregation_method-schema">5.2 Want <code>aggregation_method</code> 但 schema 没这个字段<a class="headerlink" href="#52-want-aggregation_method-schema" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 想表达 <code>SUM</code> vs <code>AVG</code> 显式选择。</li>
+<li><strong>根因</strong>: <code>aggregation_method</code> 在 Roadmap #19 讨论中，0.2.0.dev0 暂未实现。</li>
+<li><strong>修复</strong>: 等 0.2.0+。临时把 <code>Metric.name</code> 命名为 <code>sum_amount</code> / <code>avg_amount</code>。</li>
+</ul>
+<h3 id="53-expressed-cardinality-relationship-fromto">5.3 想要 <code>expressed cardinality</code> 但 <code>Relationship</code> 只有 <code>from</code>/<code>to</code><a class="headerlink" href="#53-expressed-cardinality-relationship-fromto" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 想表达 1-to-1 还是 many-to-many。</li>
+<li><strong>根因</strong>: 显式 cardinality 是 Roadmap #50 讨论。</li>
+<li><strong>修复</strong>: 假 many-to-one 是默认（from → to）；命名上区分 <code>one_to_one_rel</code> vs <code>many_to_one_rel</code>。</li>
+</ul>
+<h2 id="6">6. 贡献时遇到的问题<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<h3 id="61-icla">6.1 ICLA 提交被拒<a class="headerlink" href="#61-icla" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: <code>dev@</code> 上 committer 提名需要 ICLA 文件在 Apache 仓库。</li>
+<li><strong>修复</strong>: 走 https://www.apache.org/licenses/icla 流程；通常 1-2 周。</li>
+</ul>
+<h3 id="62-pr-8">6.2 PR 模板 8 项检查没过<a class="headerlink" href="#62-pr-8" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>修复</strong>: 逐项检查；常见项：</li>
+<li>测试：<code>cd converters/&lt;vendor&gt; &amp;&amp; uv run pytest</code></li>
+<li>文档：改 <code>docs/</code>、<code>CONTRIBUTING.md</code>、<code>examples/</code></li>
+<li>License header：每个新文件加 ASF header</li>
+</ul>
+<h3 id="63-spec-pr-dev-list-3-binding-1">6.3 spec 提案 PR 被 dev list 要求 ≥3 binding +1<a class="headerlink" href="#63-spec-pr-dev-list-3-binding-1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 改 <code>osi-schema.json</code> 的 PR 卡 72h 没人投 +1。</li>
+<li><strong>修复</strong>: 这意味着 features 不足够清晰；回到 GitHub Discussions 重新解释。</li>
+</ul>
+<h2 id="7">7. 环境与依赖<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<h3 id="71-uv">7.1 <code>uv</code> 安装失败<a class="headerlink" href="#71-uv" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: <code>curl -LsSf https://astral.sh/uv/install.sh | sh</code> 网络问题。</li>
+<li><strong>修复</strong>: 用 <code>pip install uv</code> 或 <code>brew install uv</code>（macOS）。</li>
+</ul>
+<h3 id="72-windows">7.2 Windows 原生不支持<a class="headerlink" href="#72-windows" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 某些 converter 在 Windows 上跑不通。</li>
+<li><strong>修复</strong>: 用 WSL2；Python 在 Windows 原生支持 OK，Java converter 需 JDK 21+。</li>
+</ul>
+<h3 id="73-java-17-vs-21">7.3 Java 17 vs 21<a class="headerlink" href="#73-java-17-vs-21" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: Salesforce/Polaris 的 Maven build 报 <code>release 21 not found</code>。</li>
+<li><strong>修复</strong>: 装 JDK 21（Temurin 推荐）：<code>brew install openjdk@21</code>。</li>
+</ul>
+<h2 id="8">8. 性能与并发<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<h3 id="81-1m-semantic_model">8.1 1M 行 semantic_model 转换慢<a class="headerlink" href="#81-1m-semantic_model" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 模型超过 1000 dataset 时转换超时。</li>
+<li><strong>诊断</strong>: 单线程处理 + 频繁 SQL 解析。</li>
+<li><strong>修复</strong>: 暂时拆 model；未来 converter roadmap 引入并发。</li>
+</ul>
+<h3 id="82-validator">8.2 validator 内存峰值高<a class="headerlink" href="#82-validator" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>症状</strong>: 大 model validator OOM。</li>
+<li><strong>修复</strong>: 逐 dataset 校验（未来 feature）；临时用 <code>--input &lt;file&gt;</code> 单独校验。</li>
+</ul>
+<h2 id="83">8.3 📌 章节要点速查<a class="headerlink" href="#83" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>30 个症状 → 诊断 → 修复，按目录查</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>这就是 Ossie 失败模式的反向工程</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td>故障模式库 + 修复路径 + 跟踪位置</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../11-%E6%B2%BB%E7%90%86%E8%B7%AF%E7%BA%BF%E5%9B%BE/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 第 11 章 · 治理、社区与路线图">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                第 11 章 · 治理、社区与路线图
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../comparisons/" class="md-footer__link md-footer__link--next" aria-label="下一页: Comparisons · 横向对比">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Comparisons · 横向对比
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/apache/ossie" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight", "metadata.social"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../assets/javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

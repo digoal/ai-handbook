@@ -1,0 +1,2955 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="语义互操作规范、转换器与生态实践">
+      
+      
+        <meta name="author" content="Apache Ossie Contributors">
+      
+      
+        <link rel="canonical" href="https://ossie.apache.org/handbook/02-%E6%A0%B8%E5%BF%83%E8%A7%84%E8%8C%83/">
+      
+      
+        <link rel="prev" href="../01-%E9%A1%B9%E7%9B%AE%E5%85%A8%E6%99%AF/">
+      
+      
+        <link rel="next" href="../03-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80/">
+      
+      
+        
+          <link rel="alternate" href="/en/" hreflang="en">
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>第 2 章 · 核心规范精读 - Apache Ossie 全景手册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Apache Ossie 全景手册" class="md-header__button md-logo" aria-label="Apache Ossie 全景手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apache Ossie 全景手册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第 2 章 · 核心规范精读
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/en/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quickstart · 5 分钟入门
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-%E5%BA%8F%E7%AB%A0/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  序章 · 为什么需要 Ossie
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-%E9%A1%B9%E7%9B%AE%E5%85%A8%E6%99%AF/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 1 章 · 项目全景与仓库地图
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 2 章 · 核心规范精读
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 3 章 · 表达式语言与多方言机制
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04-%E7%BC%96%E5%86%99%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 4 章 · 编写你的第一份语义模型
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05-%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 5 章 · 验证工具与 CI/CD 集成
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06-%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%9E%B6%E6%9E%84/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 6 章 · 转换器架构 Hub-and-Spoke
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07-converter%E5%85%A8%E8%B0%B1/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 7 章 · 11 个 Converter 横向评测
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-python-sdk/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 8 章 · Python SDK 深入
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09-go-cli/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 9 章 · Go CLI 与插件系统
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10-%E6%9C%AC%E4%BD%93%E5%B1%82/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 10 章 · 本体层与跨模型对齐
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11-%E6%B2%BB%E7%90%86%E8%B7%AF%E7%BA%BF%E5%9B%BE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 11 章 · 治理、社区与路线图
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../troubleshooting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Troubleshooting · 故障排查
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../comparisons/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Comparisons · 横向对比
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../case-studies/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Case Studies · 实战案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../performance-and-scale/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Performance & Scale · 性能与规模
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../reference-architectures/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference Architectures · 4 种集成模式
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../13-%E9%94%99%E8%AF%AF%E7%9B%AE%E5%BD%95/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 13 章 · 错误目录与诊断字典
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../14-api%E5%8F%82%E8%80%83/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 14 章 · API 参考手册
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../12-%E9%99%84%E5%BD%95/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  附录 · 词汇表与速查表
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Apache Ossie 全景手册" class="md-nav__button md-logo" aria-label="Apache Ossie 全景手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apache Ossie 全景手册
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart · 5 分钟入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-%E5%BA%8F%E7%AB%A0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序章 · 为什么需要 Ossie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-%E9%A1%B9%E7%9B%AE%E5%85%A8%E6%99%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 1 章 · 项目全景与仓库地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 2 章 · 核心规范精读
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 2 章 · 核心规范精读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0 五个核心设计取舍
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.0 五个核心设计取舍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#201-1-datatype-is_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0.1 取舍 #1 — datatype 与 is_time 是两件事
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#202-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0.2 取舍 #2 — 复合主键定义一对多方向
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#203-3-custom_extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0.3 取舍 #3 — custom_extensions 必须往返保真
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#204-4-ai_context-string-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0.4 取舍 #4 — ai_context 支持 string 与 object 双形态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#205-5-from_dataset-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0.5 取舍 #5 — from_dataset 别名解决 Python 关键字
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 文档顶层结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-semanticmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 SemanticModel 节点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 SemanticModel 节点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specmd99-114verbatim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例（来自 spec.md:99-114，verbatim）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Dataset 节点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Dataset 节点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examplestpcds_semantic_modelyaml35-37" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复合主键的实际用法（来自 examples/tpcds_semantic_model.yaml:35-37）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Field 节点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Field 节点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#expression-osi-schemajson81-110" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expression 结构（osi-schema.json:81-110）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dimension-is_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dimension 与 is_time（关键设计）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        简单字段 vs 计算字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-metric" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Metric 节点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Metric 节点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specmd403-416" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        跨数据集度量（来自 spec.md:403-416）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spec-020dev0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ 缺失字段（spec 0.2.0.dev0 尚未定义）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Relationship 节点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 Relationship 节点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specmd215-221" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复合键（来自 spec.md:215-221）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relationship-python-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship 在 Python SDK 中的别名
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-customextension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7 CustomExtension 机制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7 CustomExtension 机制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么 data 是字符串而非对象？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-aicontextai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8 AIContext：AI 工具的"用户手册"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9 三件套的关系
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#210" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.10 📌 章节要点速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 3 章 · 表达式语言与多方言机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-%E7%BC%96%E5%86%99%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 4 章 · 编写你的第一份语义模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 5 章 · 验证工具与 CI/CD 集成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%9E%B6%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 6 章 · 转换器架构 Hub-and-Spoke
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-converter%E5%85%A8%E8%B0%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 7 章 · 11 个 Converter 横向评测
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-python-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 8 章 · Python SDK 深入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-go-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 9 章 · Go CLI 与插件系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-%E6%9C%AC%E4%BD%93%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 10 章 · 本体层与跨模型对齐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-%E6%B2%BB%E7%90%86%E8%B7%AF%E7%BA%BF%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 11 章 · 治理、社区与路线图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting · 故障排查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparisons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparisons · 横向对比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../case-studies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Case Studies · 实战案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance-and-scale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance & Scale · 性能与规模
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference-architectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Architectures · 4 种集成模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-%E9%94%99%E8%AF%AF%E7%9B%AE%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 13 章 · 错误目录与诊断字典
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-api%E5%8F%82%E8%80%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 14 章 · API 参考手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-%E9%99%84%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    附录 · 词汇表与速查表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0 五个核心设计取舍
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.0 五个核心设计取舍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#201-1-datatype-is_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0.1 取舍 #1 — datatype 与 is_time 是两件事
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#202-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0.2 取舍 #2 — 复合主键定义一对多方向
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#203-3-custom_extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0.3 取舍 #3 — custom_extensions 必须往返保真
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#204-4-ai_context-string-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0.4 取舍 #4 — ai_context 支持 string 与 object 双形态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#205-5-from_dataset-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0.5 取舍 #5 — from_dataset 别名解决 Python 关键字
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 文档顶层结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-semanticmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 SemanticModel 节点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 SemanticModel 节点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specmd99-114verbatim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例（来自 spec.md:99-114，verbatim）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Dataset 节点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Dataset 节点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examplestpcds_semantic_modelyaml35-37" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复合主键的实际用法（来自 examples/tpcds_semantic_model.yaml:35-37）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Field 节点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Field 节点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#expression-osi-schemajson81-110" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expression 结构（osi-schema.json:81-110）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dimension-is_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dimension 与 is_time（关键设计）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        简单字段 vs 计算字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-metric" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Metric 节点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Metric 节点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specmd403-416" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        跨数据集度量（来自 spec.md:403-416）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spec-020dev0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ 缺失字段（spec 0.2.0.dev0 尚未定义）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Relationship 节点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 Relationship 节点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specmd215-221" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复合键（来自 spec.md:215-221）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relationship-python-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship 在 Python SDK 中的别名
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-customextension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7 CustomExtension 机制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7 CustomExtension 机制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么 data 是字符串而非对象？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-aicontextai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8 AIContext：AI 工具的"用户手册"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9 三件套的关系
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#210" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.10 📌 章节要点速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+-->
+
+<h1 id="2">第 2 章 · 核心规范精读<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Abstract</strong> — The Ossie core spec defines five constructs: SemanticModel (top-level container), Dataset (logical table), Field (row-level attribute with optional dimension.is_time and datatype), Relationship (many-to-one foreign key), and Metric (aggregate expression). The normative machine-readable contract is <code>osi-schema.json</code> (Draft 2020-12); <code>spec.md</code> is the human prose; <code>spec.yaml</code> is annotated schema. The chapter covers each field type, required vs optional, and the load-bearing design decisions: <code>datatype</code> vs <code>is_time</code> separation, composite primary keys, <code>custom_extensions</code> round-trip preservation, and the dual-shape <code>ai_context</code> (string or object).</p>
+<p><strong>【为用户】</strong> 这一章是 Ossie 规范 5 大构造（SemanticModel / Dataset / Field / Relationship / Metric）的<strong>字段级速查</strong>。每个字段告诉你"是什么、是否必填、典型取值"。把这一章当字典用。</p>
+<p><strong>【为开发者】</strong> 所有 Python converter 引用的 <code>apache-ossie</code> SDK（Pydantic v2 模型，223 行）字段顺序与本章完全对应（<code>python/src/ossie/models.py:122-203</code>）。Java converter（Salesforce/Polaris）也用同一组字段。</p>
+<p><strong>【为架构师】</strong> 核心规范只定义"<strong>结构</strong>"，不定义"<strong>概念</strong>"。<code>datatype</code> vs <code>is_time</code> 的分离、复合主键、复合 relationship 都是这一层的关键设计取舍。</p>
+<p>⚠️ <strong>实现状态提醒</strong>：以下所有字段引用基于 <code>core-spec/osi-schema.json</code>（DRAFT 0.2.0.dev0）。schema 在 0.2.0 正式发布前可能继续微调。</p>
+</blockquote>
+<h2 id="20">2.0 五个核心设计取舍<a class="headerlink" href="#20" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>v1.2 新增。在字段速查之前，先解释 Ossie 为何这样设计。读完这一节，你理解的是"为什么"，后面 §2.1-§2.8 是"是什么"。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>取舍</th>
+<th>决定的字段</th>
+<th>关键约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>datatype</code> 与 <code>is_time</code> 分离</td>
+<td>Field</td>
+<td>类型与角色独立，可 <code>is_time: true</code> 同时 <code>datatype: Integer</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>复合主键方向决定 join</td>
+<td>Dataset.primary_key / Relationship.from</td>
+<td>一对多方向由主键端定义</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>custom_extensions</code> 往返保真</td>
+<td>SemanticModel 任意节点</td>
+<td>SDK <code>extra="allow"</code>，converter 用 <code>vendor_name</code> 命名空间隔离</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>ai_context</code> 双形态</td>
+<td>SemanticModel/Dataset/Field</td>
+<td>string 或 <code>{instructions, synonyms, examples}</code> 对象</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>from_dataset</code> 别名</td>
+<td>Relationship</td>
+<td>Python 关键字规避，<code>populate_by_name=True</code> 兼容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="201-1-datatype-is_time">2.0.1 取舍 #1 — <code>datatype</code> 与 <code>is_time</code> 是两件事<a class="headerlink" href="#201-1-datatype-is_time" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">d_year</span><span class="w">       </span><span class="c1"># 字段名</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">datatype</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Integer</span><span class="w">  </span><span class="c1"># 数据类型：整数</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">dimension</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">is_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">    </span><span class="c1"># 角色：是时间维度</span>
+</span></code></pre></div>
+<p><code>datatype</code> 描述"这个值是什么类型"；<code>is_time</code> 描述"它扮演什么角色"。两者独立——所以 d_year 是 Integer 但也是时间维度（年）。这与许多 BI 工具把"时间维度 = datetime 类型"绑死的模型相反。代码见 <code>python/src/ossie/models.py:148-160</code> <code>is_time_dimension()</code> 方法：先看 <code>dimension.is_time</code> 显式标记，未设时回退到 <code>datatype in {Date, DateTime}</code>（但 v0.2 默认仍是显式优先）。</p>
+<h3 id="202-2">2.0.2 取舍 #2 — 复合主键定义一对多方向<a class="headerlink" href="#202-2" title="Permanent link">&para;</a></h3>
+<p><code>primary_key</code> 在 Dataset 上声明（不是 Relationship）。Relationship 引用它：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">datasets</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orders</span><span class="w">      </span><span class="c1"># &quot;多&quot;端</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">primary_key</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">order_id</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">line_number</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">customers</span><span class="w">  </span><span class="c1"># &quot;一&quot;端</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">primary_key</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">customer_id</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nt">relationships</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orders_to_customer</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orders</span><span class="w">     </span><span class="c1"># &quot;多&quot;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">customers</span><span class="w">    </span><span class="c1"># &quot;一&quot;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">customer_id</span>
+</span></code></pre></div>
+<p><code>Relationship.from</code> 必须引用一个 <code>primary_key</code> 已声明的 Dataset（详见 §2.5 + §4.2 TPC-DS store_sales 实例）。这样连接方向天然唯一，无需额外 <code>direction</code> 字段。</p>
+<h3 id="203-3-custom_extensions">2.0.3 取舍 #3 — <code>custom_extensions</code> 必须往返保真<a class="headerlink" href="#203-3-custom_extensions" title="Permanent link">&para;</a></h3>
+<p>任何转换器都不能丢失源 vendor 的元数据。机制：</p>
+<ol>
+<li>SDK 用 Pydantic v2 <code>extra="allow"</code>：未知字段全部塞进 <code>model_extra</code>，反序列化时保留</li>
+<li>每个 entry 有 <code>vendor_name</code>（如 <code>DBT</code>/<code>SNOWFLAKE</code>），converter 只读/写匹配自己 vendor_name 的 entry</li>
+<li>转换 N 轮后，所有原始 entry 仍在；新 entry 由新 converter 追加</li>
+</ol>
+<p>应用：dbt → Ossie → Snowflake → dbt，原始 dbt <code>project_name</code> 还在；新加的 Snowflake <code>warehouse_size</code> 也在；二者不冲突。</p>
+<h3 id="204-4-ai_context-string-object">2.0.4 取舍 #4 — <code>ai_context</code> 支持 string 与 object 双形态<a class="headerlink" href="#204-4-ai_context-string-object" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 简洁形态</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">销售分析模型</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">ai_context</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;用于销售分析和客户洞察&quot;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># 结构化形态（LLM agent 友好）</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nt">ai_context</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">instructions</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;用于销售分析和客户洞察&quot;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">synonyms</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;销售分析&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;营收模型&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="nt">examples</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;上个月总销售额？&quot;</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;按地区分组的营收？&quot;</span>
+</span></code></pre></div>
+<p>SDK 用 <code>AIContext</code> union type：<code>str | AIContextObject</code>。Validator 自动判别；converter 落地时按目标 vendor 能力选最完整的形态（详见 §2.8 + §B.10）。</p>
+<h3 id="205-5-from_dataset-python">2.0.5 取舍 #5 — <code>from_dataset</code> 别名解决 Python 关键字<a class="headerlink" href="#205-5-from_dataset-python" title="Permanent link">&para;</a></h3>
+<p>YAML 字段名是 <code>from</code>（简洁）；但 <code>from</code> 是 Python 保留字。SDK 用 Pydantic v2 <code>Field(alias="from", validation_alias="from")</code> 暴露为 Python 端的 <code>from_dataset</code>：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">OSIRelationship</span><span class="p">(</span><span class="n">OSIBaseModel</span><span class="p">):</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">from_dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;from&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>  <span class="c1"># Python 端叫 from_dataset</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">to</span><span class="p">:</span> <span class="nb">str</span>
+</span></code></pre></div>
+<p>读 YAML → <code>OSI.model_validate(dict)</code>；写 YAML → <code>model_dump(by_alias=True)</code> 用 <code>from</code>。SDK 测试在 <code>python/tests/test_models.py:74-86</code> 锁定语义。</p>
+<h2 id="21">2.1 文档顶层结构<a class="headerlink" href="#21" title="Permanent link">&para;</a></h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.2.0.dev0&quot;</span><span class="w">          </span><span class="c1"># 必填：spec 版本（osi-schema.json 限定枚举）</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">semantic_model</span><span class="p">:</span><span class="w">                </span><span class="c1"># 必填：array，可包含多个模型</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">datasets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span><span class="w">            </span><span class="c1"># 必填</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">relationships</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span><span class="w">       </span><span class="c1"># 可选</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">metrics</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span><span class="w">             </span><span class="c1"># 可选</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">custom_extensions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span><span class="w">   </span><span class="c1"># 可选</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>顶层字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code></td>
+<td>string</td>
+<td>✅</td>
+<td>当前 schema 限定为 <code>"0.2.0.dev0"</code> 常量</td>
+</tr>
+<tr>
+<td><code>semantic_model</code></td>
+<td>array</td>
+<td>✅</td>
+<td>顶层容器，支持多模型并存</td>
+</tr>
+<tr>
+<td><code>dialects</code></td>
+<td>array</td>
+<td>—</td>
+<td>（SDK 字段）声明的方言列表</td>
+</tr>
+<tr>
+<td><code>vendors</code></td>
+<td>array</td>
+<td>—</td>
+<td>（SDK 字段）自定义扩展命名空间</td>
+</tr>
+</tbody>
+</table>
+<h2 id="22-semanticmodel">2.2 <code>SemanticModel</code> 节点<a class="headerlink" href="#22-semanticmodel" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:304-350</code>、<code>spec.md:88-114</code></p>
+</blockquote>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sales_analytics</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">销售与客户分析模型</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">ai_context</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nt">instructions</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;用于销售分析和客户洞察&quot;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nt">synonyms</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;销售分析&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;营收模型&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;上个月总销售额？&quot;</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;按地区分组的营收？&quot;</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nt">datasets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w">             </span><span class="c1"># 必填</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="nt">relationships</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">  </span><span class="nt">metrics</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span><span class="nt">custom_extensions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>文件内唯一</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td>人类可读</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string 或 object</td>
+<td>—</td>
+<td>AI 注解；见 §2.8</td>
+</tr>
+<tr>
+<td><code>datasets</code></td>
+<td>array</td>
+<td>✅</td>
+<td>至少 1 个 Dataset</td>
+</tr>
+<tr>
+<td><code>relationships</code></td>
+<td>array</td>
+<td>—</td>
+<td>跨数据集的连接</td>
+</tr>
+<tr>
+<td><code>metrics</code></td>
+<td>array</td>
+<td>—</td>
+<td>跨数据集的度量</td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td>厂商元数据；见 §2.7</td>
+</tr>
+</tbody>
+</table>
+<h3 id="specmd99-114verbatim">示例（来自 <code>spec.md:99-114</code>，verbatim）<a class="headerlink" href="#specmd99-114verbatim" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">semantic_model</span><span class="p">:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sales_analytics</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sales and customer analytics model</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nt">ai_context</span><span class="p">:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">      </span><span class="nt">instructions</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Use</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">model</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">sales</span><span class="nv"> </span><span class="s">analysis</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">customer</span><span class="nv"> </span><span class="s">insights&quot;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="nt">datasets</span><span class="p">:</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orders</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sales.public.orders</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="nt">relationships</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="nt">metrics</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="nt">custom_extensions</span><span class="p">:</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vendor_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DBT</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">        </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;{&quot;project_name&quot;:</span><span class="nv"> </span><span class="s">&quot;tpcds_analytics&quot;,</span><span class="nv"> </span><span class="s">&quot;models_path&quot;:</span><span class="nv"> </span><span class="s">&quot;models/semantic&quot;}&#39;</span>
+</span></code></pre></div>
+<h2 id="23-dataset">2.3 <code>Dataset</code> 节点<a class="headerlink" href="#23-dataset" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:176-227</code>、<code>spec.md:118-173</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>数据集内唯一</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>string</td>
+<td>✅</td>
+<td>物理表引用（<code>database.schema.table</code> 或子查询）</td>
+</tr>
+<tr>
+<td><code>primary_key</code></td>
+<td>array</td>
+<td>—</td>
+<td>单列或<strong>复合</strong>主键（如 <code>["order_id", "line_number"]</code>）</td>
+</tr>
+<tr>
+<td><code>unique_keys</code></td>
+<td>array of arrays</td>
+<td>—</td>
+<td>可选的多组唯一约束</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td>人类可读</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string 或 object</td>
+<td>—</td>
+<td>AI 注解</td>
+</tr>
+<tr>
+<td><code>fields</code></td>
+<td>array</td>
+<td>—</td>
+<td>行级属性列表</td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td>厂商元数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examplestpcds_semantic_modelyaml35-37">复合主键的实际用法（来自 <code>examples/tpcds_semantic_model.yaml:35-37</code>）<a class="headerlink" href="#examplestpcds_semantic_modelyaml35-37" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">store_sales</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tpcds.public.store_sales</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">primary_key</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">ss_item_sk</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ss_ticket_number</span><span class="p p-Indicator">]</span><span class="w">   </span><span class="c1"># 复合主键</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">unique_keys</span><span class="p">:</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">ss_item_sk</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ss_ticket_number</span><span class="p p-Indicator">]</span><span class="w">            </span><span class="c1"># 唯一约束（与主键同组合）</span>
+</span></code></pre></div>
+<p><strong>设计取舍</strong>：<code>primary_key</code> 用一维数组还是 <code>unique_keys</code> 用二维数组？spec 选择：
+- <code>primary_key</code> 是一维数组（最长 1 个组合）
+- <code>unique_keys</code> 是<strong>二维</strong>数组（多个组合，每个组合内部是一维）</p>
+<p>为什么？因为 <code>primary_key</code> 决定<strong>一对多方向</strong>（见 §2.6 Relationship），所以只允许"主"的那一个组合。</p>
+<h2 id="24-field">2.4 <code>Field</code> 节点<a class="headerlink" href="#24-field" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:138-175</code>、<code>spec.md:225-356</code></p>
+</blockquote>
+<p>Field 是 Ossie 中最丰富的构造——它不是"维度也不是度量"，而是<strong>统一的行级属性</strong>。是否被当维度用、是否被当度量用，由消费者决定。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>数据集内唯一</td>
+</tr>
+<tr>
+<td><code>expression</code></td>
+<td><code>Expression</code></td>
+<td>✅</td>
+<td><strong>标量</strong> SQL（field 级不允许聚合）</td>
+</tr>
+<tr>
+<td><code>dimension</code></td>
+<td><code>Dimension</code></td>
+<td>—</td>
+<td>当前仅含 <code>is_time</code> 标志</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>string</td>
+<td>—</td>
+<td>分类标签，如 <code>"filter"</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td>人类可读</td>
+</tr>
+<tr>
+<td><code>datatype</code></td>
+<td><code>DataType</code></td>
+<td>—</td>
+<td>逻辑数据类型（见 §3.1）</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string 或 object</td>
+<td>—</td>
+<td>AI 注解</td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td>厂商元数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="expression-osi-schemajson81-110">Expression 结构（<code>osi-schema.json:81-110</code>）<a class="headerlink" href="#expression-osi-schemajson81-110" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">expression</span><span class="p">:</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">      </span><span class="nt">dialects</span><span class="p">:</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dialect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANSI_SQL</span><span class="w">          </span><span class="c1"># 枚举之一（见 §3.2）</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">          </span><span class="nt">expression</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;lower(email)&quot;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dialect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SNOWFLAKE</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">          </span><span class="nt">expression</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;lower(email)::varchar&quot;</span>
+</span></code></pre></div>
+<ul>
+<li><code>Expression.dialects</code> 是 array，<strong>至少 1 项</strong></li>
+<li>每项含 <code>dialect</code>（枚举）与 <code>expression</code>（字符串）</li>
+<li>字段级<strong>不允许聚合函数</strong>（<code>SUM</code>、<code>AVG</code> 等必须在 Metric 中）</li>
+</ul>
+<h3 id="dimension-is_time">Dimension 与 <code>is_time</code>（<strong>关键设计</strong>）<a class="headerlink" href="#dimension-is_time" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>来源：<code>spec.md:330-356</code></p>
+</blockquote>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">d_year</span><span class="w">                    </span><span class="c1"># Integer 但作为时间维度</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">datatype</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Integer</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">dimension</span><span class="p">:</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="nt">is_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                 </span><span class="c1"># 显式标记</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="nt">ai_context</span><span class="p">:</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="nt">synonyms</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;year&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">d_quarter_name</span><span class="w">            </span><span class="c1"># 无 datatype，作为时间维度</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span><span class="nt">dimension</span><span class="p">:</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="nt">is_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></code></pre></div>
+<p><strong>默认规则</strong>（<code>spec.md:337</code> verbatim）：</p>
+<blockquote>
+<p><em>"When <code>is_time</code> is not set explicitly, it defaults to <code>true</code> if <code>datatype</code> is one of <code>Date</code>, <code>Time</code>, <code>DateTime</code>, <code>DateTimeTz</code>, and <code>false</code> otherwise. Explicit <code>is_time</code> always wins."</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><code>datatype</code></th>
+<th><code>is_time</code></th>
+<th>有效角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Date</code></td>
+<td>未设</td>
+<td>时间维度（默认 true）</td>
+</tr>
+<tr>
+<td><code>DateTimeTz</code></td>
+<td>未设</td>
+<td>时间维度</td>
+</tr>
+<tr>
+<td><code>DateTime</code></td>
+<td><code>false</code></td>
+<td>普通维度（<strong>显式 opt-out</strong>）</td>
+</tr>
+<tr>
+<td><code>Integer</code></td>
+<td><code>true</code></td>
+<td>时间维度（年份 grain）</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td><code>true</code></td>
+<td>时间维度（季度名）</td>
+</tr>
+<tr>
+<td><code>Integer</code></td>
+<td>未设</td>
+<td>普通维度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vs">简单字段 vs 计算字段<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 简单列引用（来自 spec.md:269-278）</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">customer_id</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">expression</span><span class="p">:</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">dialects</span><span class="p">:</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dialect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANSI_SQL</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">        </span><span class="nt">expression</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">customer_id</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">客户标识符</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span><span class="nt">dimension</span><span class="p">:</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="nt">is_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">                </span><span class="c1"># Integer 普通维度</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="c1"># 计算字段（来自 spec.md:289-300）</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full_name</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">  </span><span class="nt">expression</span><span class="p">:</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">    </span><span class="nt">dialects</span><span class="p">:</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dialect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANSI_SQL</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">        </span><span class="nt">expression</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">first_name || &#39; &#39; || last_name</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">客户全名</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">  </span><span class="nt">ai_context</span><span class="p">:</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">    </span><span class="nt">synonyms</span><span class="p">:</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;name&quot;</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;customer</span><span class="nv"> </span><span class="s">name&quot;</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="c1"># 多方言字段（来自 spec.md:316-328）</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email_normalized</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="w">  </span><span class="nt">expression</span><span class="p">:</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="w">    </span><span class="nt">dialects</span><span class="p">:</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dialect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANSI_SQL</span>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="w">        </span><span class="nt">expression</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LOWER(email)</span>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dialect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SNOWFLAKE</span>
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="w">        </span><span class="nt">expression</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LOWER(email)::VARCHAR</span>
+</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dialect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BIGQUERY</span>
+</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a><span class="w">        </span><span class="nt">expression</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAFE_CAST(LOWER(email) AS STRING)</span>
+</span></code></pre></div>
+<h2 id="25-metric">2.5 <code>Metric</code> 节点<a class="headerlink" href="#25-metric" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:273-303</code>、<code>spec.md:358-416</code></p>
+</blockquote>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">total_revenue</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nt">expression</span><span class="p">:</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="nt">dialects</span><span class="p">:</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dialect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANSI_SQL</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">        </span><span class="nt">expression</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SUM(orders.amount)</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">全部订单的总营收</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span><span class="nt">datatype</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Decimal</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span><span class="nt">ai_context</span><span class="p">:</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="nt">synonyms</span><span class="p">:</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;total</span><span class="nv"> </span><span class="s">sales&quot;</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;revenue&quot;</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>模型内唯一</td>
+</tr>
+<tr>
+<td><code>expression</code></td>
+<td><code>Expression</code></td>
+<td>✅</td>
+<td><strong>允许聚合</strong>的 SQL</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td>人类可读</td>
+</tr>
+<tr>
+<td><code>datatype</code></td>
+<td><code>DataType</code></td>
+<td>—</td>
+<td>输出结果的逻辑类型</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string 或 object</td>
+<td>—</td>
+<td>AI 注解</td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td>厂商元数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="specmd403-416">跨数据集度量（来自 <code>spec.md:403-416</code>）<a class="headerlink" href="#specmd403-416" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">avg_orders</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">expression</span><span class="p">:</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="nt">dialects</span><span class="p">:</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dialect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANSI_SQL</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">        </span><span class="nt">expression</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SUM(orders.amount) / COUNT(DISTINCT customers.id)</span>
+</span></code></pre></div>
+<blockquote>
+<p>度量表达式引用<strong>全限定字段名</strong>（<code>dataset.field</code>），由消费者根据声明的 <code>Relationship</code> 决定 JOIN 路径。当前 spec 不在 metric 中直接声明 join——这是"简洁换灵活"的取舍。</p>
+</blockquote>
+<h3 id="spec-020dev0">⚠️ 缺失字段（spec 0.2.0.dev0 尚未定义）<a class="headerlink" href="#spec-020dev0" title="Permanent link">&para;</a></h3>
+<p>当前 schema <strong>没有</strong>：</p>
+<ul>
+<li><code>aggregation_method</code>（已在 roadmap 中）</li>
+<li><code>derived</code> / <code>cumulative</code> 标记</li>
+<li>度量上的 grain 声明</li>
+</ul>
+<p>见第 11 章路线图讨论。</p>
+<h2 id="26-relationship">2.6 <code>Relationship</code> 节点<a class="headerlink" href="#26-relationship" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:228-272</code>、<code>spec.md:177-222</code></p>
+</blockquote>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">store_sales_to_date</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">store_sales</span><span class="w">               </span><span class="c1"># 多端</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date_dim</span><span class="w">                    </span><span class="c1"># 一端</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="nt">from_columns</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">ss_sold_date_sk</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># 外键列</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span><span class="nt">to_columns</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">d_date_sk</span><span class="p p-Indicator">]</span><span class="w">         </span><span class="c1"># 主/唯一键列</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>模型内唯一</td>
+</tr>
+<tr>
+<td><code>from</code></td>
+<td>string</td>
+<td>✅</td>
+<td><strong>多端</strong>的数据集名</td>
+</tr>
+<tr>
+<td><code>to</code></td>
+<td>string</td>
+<td>✅</td>
+<td><strong>一端</strong>的数据集名</td>
+</tr>
+<tr>
+<td><code>from_columns</code></td>
+<td>array</td>
+<td>✅</td>
+<td>多端外键列（<strong>列序对应 <code>to_columns</code></strong>）</td>
+</tr>
+<tr>
+<td><code>to_columns</code></td>
+<td>array</td>
+<td>✅</td>
+<td>一端主/唯一键列</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string 或 object</td>
+<td>—</td>
+<td>AI 注解</td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td>厂商元数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="specmd215-221">复合键（来自 <code>spec.md:215-221</code>）<a class="headerlink" href="#specmd215-221" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">order_lines_to_products</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">order_lines</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">products</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="nt">from_columns</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">product_id</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">variant_id</span><span class="p p-Indicator">]</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">  </span><span class="nt">to_columns</span><span class="p">:</span><span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">id</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">variant_id</span><span class="p p-Indicator">]</span><span class="w">            </span><span class="c1"># 长度必须相同</span>
+</span></code></pre></div>
+<blockquote>
+<p>隐式多对一：spec 当前<strong>不显式声明 cardinality</strong>。如果你的数据集方向标反了，<code>from</code> 实际是一端，会产生不一致 join。Roadmap 中讨论 #50 计划在 0.2.0 后引入显式 cardinality。</p>
+</blockquote>
+<h3 id="relationship-python-sdk">Relationship 在 Python SDK 中的别名<a class="headerlink" href="#relationship-python-sdk" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>来源：<code>python/src/ossie/models.py:165-176</code></p>
+</blockquote>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">OSIRelationship</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">populate_by_name</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="n">from_dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;from&quot;</span><span class="p">)</span>    <span class="c1"># Python 属性是 from_dataset</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="n">to</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="n">from_columns</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="n">to_columns</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</span></code></pre></div>
+<p>Python 关键字 <code>from</code> 不能直接做属性名，所以 SDK 引入 <code>from_dataset</code> 别名；YAML 仍写 <code>from</code>。</p>
+<h2 id="27-customextension">2.7 <code>CustomExtension</code> 机制<a class="headerlink" href="#27-customextension" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:66-80</code>、<code>spec.md:418-496</code>、<code>docs/index.md:278-279</code></p>
+</blockquote>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nt">custom_extensions</span><span class="p">:</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vendor_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SALESFORCE</span><span class="w">       </span><span class="c1"># 自由字符串</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;{&quot;einstein_enabled&quot;:</span><span class="nv"> </span><span class="s">true,</span><span class="nv"> </span><span class="s">&quot;tableau_workbook_id&quot;:</span><span class="nv"> </span><span class="s">&quot;abc&quot;}&#39;</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vendor_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DBT</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;{&quot;project_name&quot;:</span><span class="nv"> </span><span class="s">&quot;tpcds_analytics&quot;}&#39;</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vendor_name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>自由字符串；常用：<code>SALESFORCE</code>、<code>SNOWFLAKE</code>、<code>DBT</code>、<code>DATABRICKS</code>、<code>GOODDATA</code>、<code>POLARIS</code>、<code>NVIDIA_GSF</code>、<code>OMNI</code>、<code>WISDOM</code>、<code>HONEYDEW</code>、<code>ORIONBELT</code></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>string</td>
+<td>✅</td>
+<td><strong>JSON 字符串</strong>（注意是字符串而非对象）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data">为什么 <code>data</code> 是字符串而非对象？<a class="headerlink" href="#data" title="Permanent link">&para;</a></h3>
+<p>为了让 JSON Schema 校验简单（<code>type: string</code>），厂商自行 parse。转换器要"无损往返"，必须做到：</p>
+<ol>
+<li><strong>导出（Ossie → Vendor）</strong>：从所有 <code>custom_extensions</code> 中提取 <code>vendor_name == 目标厂商</code> 的条目，应用到目标格式；<strong>保留</strong>其他 vendor 的条目</li>
+<li><strong>导入（Vendor → Ossie）</strong>：把 vendor 特有但 Ossie 无对应字段的元数据塞进 <code>custom_extensions[该vendor].data</code></li>
+</ol>
+<blockquote>
+<p><strong>关键承诺</strong>（<code>docs/index.md:278-279</code> verbatim）：</p>
+<p><em>"Custom extensions are always preserved during round-trip conversions even by tools that do not understand them."</em></p>
+</blockquote>
+<p>这是 Ossie 互操作的"承重墙"——一个不知道 <code>SALESFORCE</code> extension 的 Snowflake 转换器也必须原样保留它。</p>
+<h2 id="28-aicontextai">2.8 <code>AIContext</code>：AI 工具的"用户手册"<a class="headerlink" href="#28-aicontextai" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:34-65</code>、<code>spec.md:603-635</code></p>
+</blockquote>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># 形态一：简单字符串</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nt">ai_context</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;orders,</span><span class="nv"> </span><span class="s">purchases,</span><span class="nv"> </span><span class="s">sales&quot;</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># 形态二：结构化对象</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="nt">ai_context</span><span class="p">:</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">  </span><span class="nt">instructions</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;用于销售分析&quot;</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">  </span><span class="nt">synonyms</span><span class="p">:</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;orders&quot;</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;purchases&quot;</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;sales&quot;</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">  </span><span class="nt">examples</span><span class="p">:</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;上个月总销售额？&quot;</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;按地区分组的营收？&quot;</span>
+</span></code></pre></div>
+<p><code>AIContext</code> 是 <code>oneOf</code>：可以是 <code>string</code> 或 <code>object {instructions, synonyms, examples}</code>。<code>object</code> 还允许 <code>additionalProperties: true</code>，厂商可加自有键。</p>
+<p><code>ai_context</code> 在 5 个构造上都可出现：</p>
+<pre class="mermaid"><code>classDiagram
+  class SemanticModel { +ai_context }
+  class Dataset { +ai_context }
+  class Field { +ai_context }
+  class Relationship { +ai_context }
+  class Metric { +ai_context }
+  SemanticModel --&gt; Dataset : contains
+  Dataset --&gt; Field : contains
+  SemanticModel --&gt; Relationship : contains
+  SemanticModel --&gt; Metric : contains</code></pre>
+<p>这是 Ossie "AI-native" 设计的核心——LLM agent 通过遍历 <code>ai_context</code> 的 <code>synonyms</code> 和 <code>examples</code> 理解每个字段的业务含义。</p>
+<h2 id="29">2.9 三件套的关系<a class="headerlink" href="#29" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart LR
+  specmd[spec.md&lt;br/&gt;人类叙述]
+  specyaml[spec.yaml&lt;br/&gt;YAML schema&lt;br/&gt;+ 注释]
+  osischema[osi-schema.json&lt;br/&gt;JSON Schema Draft 2020-12]
+
+  specmd -. 引用 .-&gt; osischema
+  specyaml -. 注释版本 .-&gt; osischema
+
+  validator[validation/validate.py] --&gt; osischema
+  sdk[python/src/ossie/models.py] --&gt; osischema
+  converters[所有 converter] --&gt; osischema</code></pre>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>角色</th>
+<th>谁读它</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>core-spec/spec.md</code></td>
+<td>人类可读规范</td>
+<td>用户、贡献者</td>
+</tr>
+<tr>
+<td><code>core-spec/spec.yaml</code></td>
+<td>YAML 结构 + 注释</td>
+<td>编辑 spec 的人</td>
+</tr>
+<tr>
+<td><code>core-spec/osi-schema.json</code></td>
+<td><strong>权威机器契约</strong></td>
+<td>validator、SDK、converter</td>
+</tr>
+</tbody>
+</table>
+<p><strong>黄金法则</strong>：代码层面对 <code>osi-schema.json</code> 做校验；规范演进先改 JSON Schema，再同步 <code>spec.md</code> 和 <code>spec.yaml</code>。</p>
+<h2 id="210">2.10 📌 章节要点速查<a class="headerlink" href="#210" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>5 个构造（SemanticModel/Dataset/Field/Relationship/Metric），<code>datatype</code> 与 <code>is_time</code> 独立，<code>custom_extensions</code> 永远保留</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>Python SDK 字段顺序与 osi-schema.json 完全一致；<code>from_dataset</code> 是 <code>from</code> 的别名</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td><code>osi-schema.json</code> 是机器契约的权威；spec 改动要先改 JSON Schema 再同步文档</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../01-%E9%A1%B9%E7%9B%AE%E5%85%A8%E6%99%AF/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 第 1 章 · 项目全景与仓库地图">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                第 1 章 · 项目全景与仓库地图
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../03-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80/" class="md-footer__link md-footer__link--next" aria-label="下一页: 第 3 章 · 表达式语言与多方言机制">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                第 3 章 · 表达式语言与多方言机制
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/apache/ossie" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight", "metadata.social"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../assets/javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

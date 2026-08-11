@@ -1,0 +1,5378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Apache Ossie 全景手册</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+       max-width: 920px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #222; }
+h1 { border-bottom: 2px solid #3f51b5; padding-bottom: 0.3em; }
+h2 { border-bottom: 1px solid #ccc; padding-bottom: 0.2em; margin-top: 2em; }
+h3 { color: #3f51b5; }
+code { background: #f5f5f5; padding: 0.1em 0.3em; border-radius: 3px; font-family: "Menlo", monospace; font-size: 0.92em; }
+pre { background: #f5f5f5; padding: 1em; border-radius: 5px; overflow-x: auto; font-size: 0.85em; line-height: 1.4; }
+pre code { background: none; padding: 0; }
+table { border-collapse: collapse; margin: 1em 0; }
+th, td { border: 1px solid #ddd; padding: 0.5em 1em; }
+th { background: #f0f0f0; }
+blockquote { border-left: 4px solid #3f51b5; padding-left: 1em; color: #555; background: #fafafa; margin: 1em 0; padding: 0.5em 1em; }
+blockquote blockquote { margin: 0.5em 0; }
+hr { border: none; border-top: 1px dashed #ccc; margin: 2em 0; }
+</style>
+</head>
+<body>
+<h1 id="apache-ossie">Apache Ossie 全景手册</h1>
+<blockquote>
+<p><strong>语义互操作规范、转换器与生态实践</strong></p>
+</blockquote>
+<p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img alt="License" src="https://img.shields.io/badge/license-Apache_2.0-blue.svg" /></a>
+<a href="https://github.com/apache/ossie"><img alt="Spec" src="https://img.shields.io/badge/spec-0.2.0.dev0-orange.svg" /></a>
+<a href="https://github.com/apache/ossie"><img alt="Repo" src="https://img.shields.io/badge/repo-apache%2Fossie-blueviolet" /></a></p>
+<p>本手册基于 <code>/Users/digoal/new/ossie/</code> 仓库当前内容（commit <code>88e0011</code> 及以后）系统分析 Apache Ossie（前身 <strong>OSI — Open Semantic Interchange</strong>）。Ossie 是 Apache 孵化中的供应商中立语义模型规范，旨在解决数据分析、AI、BI 生态中长期存在的"语义碎片化"问题。</p>
+<h2 id="_1">这本手册面向谁</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>你将获得的收获</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🧑‍💻 <strong>用户</strong>（数据工程师、分析师）</td>
+<td>从零写出一份合规的 Ossie 语义模型；用 <code>validate.py</code> 校验；用 converter 部署到 Snowflake / dbt / Databricks / GoodData 等工具</td>
+</tr>
+<tr>
+<td>🛠️ <strong>开发者</strong>（converter 作者、SDK 贡献者）</td>
+<td>深入理解核心规范、Pydantic 类型系统、Java pipeline 架构、CLI 插件协议；获得"如何写一个新 converter"的完整 recipe</td>
+</tr>
+<tr>
+<td>🏛 <strong>架构师</strong>（技术负责人、治理者）</td>
+<td>理解 hub-and-spoke 设计取舍、spec 演进路线图、Apache 治理流程、与 dbt Semantic Layer / Cube / LookML 的对比定位</td>
+</tr>
+</tbody>
+</table>
+<p>每个章节顶部都有三类读者的 <strong>【为用户】【为开发者】【为架构师】</strong> 一句话侧栏；章末是三栏速查表。读者可以只看侧栏决定要不要深入。</p>
+<h2 id="_2">阅读路径</h2>
+<pre><code class="language-mermaid">flowchart LR
+  P[序章] --&gt; C1[第 1 章&lt;br/&gt;项目全景]
+  C1 --&gt; C2[第 2 章&lt;br/&gt;核心规范]
+  C2 --&gt; C3[第 3 章&lt;br/&gt;表达式]
+  C2 --&gt; C4[第 4 章&lt;br/&gt;教程]
+  C4 --&gt; C5[第 5 章&lt;br/&gt;验证]
+  C2 --&gt; C6[第 6 章&lt;br/&gt;转换器架构]
+  C6 --&gt; C7[第 7 章&lt;br/&gt;11 converter]
+  C2 --&gt; C8[第 8 章&lt;br/&gt;Python SDK]
+  C2 --&gt; C9[第 9 章&lt;br/&gt;Go CLI]
+  C7 --&gt; C10[第 10 章&lt;br/&gt;本体层]
+  C10 --&gt; C11[第 11 章&lt;br/&gt;治理路线图]
+  C11 --&gt; A[附录]
+</code></pre>
+<ul>
+<li><strong>用户最小集</strong>：序章 → 第 1 章 → 第 2 章 → 第 4 章 → 第 7 章（选 1–2 个） → 第 10 章</li>
+<li><strong>开发者最小集</strong>：序章 → 第 1 章 → 第 2 章 → 第 5 章 → 第 6 章 → 第 7 章（全部） → 第 8 章 → 第 9 章</li>
+<li><strong>架构师最小集</strong>：序章 → 第 1 章 → 第 2 章 → 第 6 章 → 第 7 章 → 第 10 章 → 第 11 章</li>
+</ul>
+<h2 id="_3">关于仓库当前状态</h2>
+<blockquote>
+<p>⚠️ <strong>实现状态提醒</strong>：仓库当前 spec 版本 <code>0.2.0.dev0</code>（开发中），已发布版本 <code>0.1.1</code>（2025-12-11）。<code>core-spec/spec.md:22</code> 明确标注 "DRAFT version — schema may change before 0.2.0 is released"。Go CLI 中的 <code>convert</code>/<code>validate</code>/<code>plugin install</code>/<code>plugin remove</code> 仍是 stub（<code>cli/cmd/*.go</code>），仅有 <code>plugin list</code> 是已实现功能。<code>compliance/</code> 目录仅有 20 行占位 README。本手册所有引用都基于仓库当前文件；任何"未实现"或"DRAFT"部分都已显式标注。</p>
+</blockquote>
+<h2 id="2026-8">仓库关键数字（2026 年 8 月快照）</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Converter 总数</td>
+<td><strong>11</strong>（9 Python + 2 Java）</td>
+</tr>
+<tr>
+<td>总测试数（converter）</td>
+<td><strong>656+</strong></td>
+</tr>
+<tr>
+<td>核心规范 JSON Schema</td>
+<td>352 行（Draft 2020-12）</td>
+</tr>
+<tr>
+<td>表达式语言提案</td>
+<td>780 行（<code>Ossie_SQL_2026</code> Proposed Final）</td>
+</tr>
+<tr>
+<td>TPC-DS 示例</td>
+<td>632 行 / 5 dataset / 5 metric</td>
+</tr>
+<tr>
+<td>Flights 本体示例</td>
+<td>1112 行 / 44 concept / 12 entity + 32 value type</td>
+</tr>
+<tr>
+<td>Python SDK 模型</td>
+<td>224 行 / 14 公开类型</td>
+</tr>
+<tr>
+<td>CI 工作流</td>
+<td>12 条（CLI 1 条 + converter 11 条）</td>
+</tr>
+<tr>
+<td>参与者组织</td>
+<td><strong>50+</strong>（见 <a href="https://ossie.apache.org/">docs/index.md</a>）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">鸣谢</h2>
+<p>本手册内容基于 Apache Ossie 仓库的开放规范、源代码与社区文档整理，遵循 Apache License 2.0。所有 verbatim 引用均标注 <code>path:line</code> 溯源，便于读者跳转 GitHub 验证。</p>
+<p>— 手册维护：仓库分析自动生成于 2026-08-10</p>
+<hr />
+<h1 id="ossie">序章 · 为什么需要 Ossie</h1>
+<blockquote>
+<p><strong>【为用户】</strong> 这一章告诉你：今天你在 BI/AI 数据栈里遇到的"指标漂移""AI 答非所问"等问题，根源是工具间没有共同的语义层。Ossie 试图用一种开源 YAML/JSON 规范终结这场混乱。</p>
+<p><strong>【为开发者】</strong> Ossie 不是替代你熟悉的 dbt 或 LookML，而是它们的<strong>共同语料</strong>。所有 converter 都基于同一份 <code>osi-schema.json</code>（<code>core-spec/osi-schema.json:1-352</code>），新工具接入只需写一个 converter。</p>
+<p><strong>【为架构师】</strong> "为什么不直接定义一套统一 API？"——因为数据语义远比"调用一个端点"复杂。spec 是<strong>事实标准的载体</strong>：可被文件存储、可被 git 版本化、可被不同语言 SDK 解析。</p>
+</blockquote>
+<h2 id="01">0.1 四个症状：语义碎片化</h2>
+<p>摘自 <a href="https://github.com/apache/ossie/blob/main/docs/index.md"><code>docs/index.md:32-37</code></a>，今天的"现代数据栈"普遍存在四个症状：</p>
+<pre><code class="language-mermaid">flowchart TB
+  subgraph 症状
+    A[📊 指标漂移&lt;br/&gt;Metric Drift]
+    B[🔧 手工翻译&lt;br/&gt;Manual Translation]
+    C[🤖 AI 幻觉&lt;br/&gt;AI Hallucinations]
+    D[🕸 集成债务&lt;br/&gt;Integration Debt]
+  end
+
+  subgraph 根因
+    R1[同一个 KPI&lt;br/&gt;在不同工具里定义不一致]
+    R2[数据跨系统时&lt;br/&gt;人工对账]
+    R3[LLM 看到冲突的&lt;br/&gt;业务逻辑定义]
+    R4[N 个工具 → N·(N-1)&lt;br/&gt;点对点连接器]
+  end
+
+  A --&gt; R1
+  B --&gt; R2
+  C --&gt; R3
+  D --&gt; R4
+</code></pre>
+<ol>
+<li><strong>指标漂移</strong>：同一个"营收"在 Snowflake、Tableau、Looker 里给出三个数，业务方对数据失去信任。</li>
+<li><strong>手工翻译</strong>：每当一个新工具接入，需要人工把语义模型重写一遍，昂贵且易错。</li>
+<li><strong>AI 幻觉</strong>：LLM agent 读到不一致的业务规则，输出不可靠。</li>
+<li><strong>集成债务</strong>：N 个工具意味着 N·(N-1) 个点对点连接器，难以维护。</li>
+</ol>
+<h2 id="02-hub-and-spoke-ossie-api">0.2 Hub-and-Spoke：为什么是 Ossie 而不是统一 API</h2>
+<pre><code class="language-mermaid">flowchart LR
+  SF[Snowflake]
+  SFDBT[dbt]
+  SFDBX[Databricks]
+  SFOMC[Omni]
+  SFTBL[Tableau]
+  SFGDC[GoodData]
+  SFWIS[WisdomAI]
+  SFSF[Salesforce]
+
+  OSSIE{{Ossie&lt;br/&gt;Hub YAML/JSON}}
+
+  SF &lt;--&gt; OSSIE
+  SFDBT &lt;--&gt; OSSIE
+  SFDBX &lt;--&gt; OSSIE
+  SFOMC &lt;--&gt; OSSIE
+  SFTBL &lt;--&gt; OSSIE
+  SFGDC &lt;--&gt; OSSIE
+  SFWIS &lt;--&gt; OSSIE
+  SFSF &lt;--&gt; OSSIE
+</code></pre>
+<blockquote>
+<p>"With N vendors, a point-to-point strategy would require N·(N-1) converters. With Ossie as the hub, only 2·N converters are needed (one import and one export per vendor), and interoperability with all other vendors comes for free."<br />
+— <a href="https://github.com/apache/ossie/blob/main/converters/README.md"><code>converters/README.md:47</code></a></p>
+</blockquote>
+<p><strong>经济学</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>接入策略</th>
+<th>工具数 N=5</th>
+<th>N=8</th>
+<th>N=11（当前）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>点对点</td>
+<td>20 个连接器</td>
+<td>56 个</td>
+<td>110 个</td>
+</tr>
+<tr>
+<td>Hub-and-Spoke</td>
+<td>10 个</td>
+<td>16 个</td>
+<td>22 个</td>
+</tr>
+</tbody>
+</table>
+<p>Ossie 当前已实现 <strong>11 个</strong> vendor 转换器（2 Java + 9 Python），覆盖：</p>
+<ul>
+<li><strong>数据仓库</strong>：Snowflake、Databricks、Polaris（Iceberg REST）</li>
+<li><strong>BI/可视化</strong>：Tableau（via Salesforce）、Omni、GoodData</li>
+<li><strong>dbt 生态</strong>：dbt Semantic Interface（MetricFlow）</li>
+<li><strong>AI/LLM</strong>：WisdomAI、NVIDIA Generative Semantic Fabric（GSF）</li>
+<li><strong>数据建模平台</strong>：Honeydew、OrionBelt</li>
+</ul>
+<h2 id="03">0.3 三类读者与你的阅读路径</h2>
+<pre><code class="language-mermaid">flowchart TB
+  subgraph 用户[🧑‍💻 用户 — Data Engineer / Analyst]
+    U1[序章] --&gt; U2[第 1 章] --&gt; U3[第 2 章] --&gt; U4[第 4 章]
+    U4 --&gt; U5[第 7 章&lt;br/&gt;选 1-2 个]
+    U5 --&gt; U6[第 10 章]
+  end
+
+  subgraph 开发者[🛠 开发者 — Converter 作者]
+    D1[序章] --&gt; D2[第 1 章] --&gt; D3[第 2 章] --&gt; D4[第 5 章]
+    D4 --&gt; D5[第 6 章] --&gt; D6[第 7 章&lt;br/&gt;全部]
+    D6 --&gt; D7[第 8 章] --&gt; D8[第 9 章]
+  end
+
+  subgraph 架构师[🏛 架构师 — Tech Lead]
+    A1[序章] --&gt; A2[第 1 章] --&gt; A3[第 2 章] --&gt; A4[第 6 章]
+    A4 --&gt; A5[第 7 章] --&gt; A6[第 10 章] --&gt; A7[第 11 章]
+  end
+</code></pre>
+<h2 id="04">0.4 本书不承诺什么</h2>
+<p>为了避免期望偏差，这里坦白几件事：</p>
+<ol>
+<li><strong>Ossie 还在演进</strong>。spec 0.2.0.dev0 与已发布的 0.1.1 之间存在破坏性变更；50+ GitHub Discussions 还在讨论中。本手册描述的是<strong>当前仓库</strong>的事实，不是 1.0 的承诺。</li>
+<li><strong>Go CLI 仍是骨架</strong>。<code>ossie convert</code>、<code>ossie validate</code> 是 stub，<strong>今天请用 Python <code>validation/validate.py</code></strong>。第 9 章会如实说明。</li>
+<li><strong>本体层 (ontology) 是高级话题</strong>。核心 spec 不强求本体；它是"可选的超集"。第 10 章单独讨论。</li>
+<li><strong>合规测试套件是规划中的</strong>。<code>compliance/</code> 目录当前只有 20 行占位 README。converter 的测试都在各自 <code>tests/</code> 目录里。</li>
+</ol>
+<h2 id="05">0.5 📌 章节要点速查</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>你的工具栈里如果多个 BI/AI 工具给出不同的"营收"数字，Ossie 是它们的共同语料</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>写一个 converter ≈ 9 步流水线（<code>converters/README.md:232-252</code>），Python/Java 两种模板</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td>Hub-and-Spoke 把 N·(N-1) 降到 2·N；Ossie 是事实标准的载体</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="1">第 1 章 · 项目全景与仓库地图</h1>
+<blockquote>
+<p><strong>【为用户】</strong> 这章让你 5 分钟看明白 Ossie 仓库的结构，知道哪份文档讲什么、哪段代码做什么——你不必精通仓库每一处，但需要知道从哪里找。</p>
+<p><strong>【为开发者】</strong> 你未来的 PR 入口在 <code>cli/</code> 与 <code>python/</code>；converter 改动在 <code>converters/&lt;vendor&gt;/</code>。每个 converter 是独立包，独立的 CI 流水线。</p>
+<p><strong>【为架构师】</strong> 11 个 converter 各自独立发布、12 条独立 CI 工作流——这是<strong>分布式治理</strong>的设计，意味着加入一个新 vendor 不需要触动核心规范。</p>
+</blockquote>
+<h2 id="11">1.1 一张仓库地图</h2>
+<pre><code class="language-text">ossie/                              # 项目根 (Apache 2.0, 孵化中)
+├── core-spec/                       # 核心规范三件套
+│   ├── spec.md                      # 人类可读规范 (~650 行)
+│   ├── spec.yaml                    # YAML 结构 schema 注释版 (~270 行)
+│   ├── osi-schema.json              # JSON Schema Draft 2020-12 (~352 行) ★ 权威机器契约
+│   ├── expression_language.md       # 表达式语言提案 (~780 行)
+│   └── img/                         # 配图目录
+├── converters/                      # 11 个 vendor 转换器 (Hub spokes)
+│   ├── README.md                    # Hub-and-Spoke 主指南
+│   ├── snowflake/  dbt/  gooddata/  databricks/  gsf/
+│   ├── honeydew/  omni/  orionbelt/ wisdom/
+│   ├── salesforce/  polaris/        # 2 个 Java 转换器
+├── examples/                        # 示例
+│   ├── tpcds_semantic_model.yaml    # 纯结构 (~632 行)
+│   └── flights.yaml                 # 本体 + 映射 (~1112 行)
+├── ontology/                        # 本体层（可选超集）
+│   ├── ontology.md                  # (~587 行)
+│   └── ontology.json                # JSON Schema
+├── cli/                             # Go CLI (cobra)
+│   ├── main.go                      # ldflags: version/commit/date
+│   ├── cmd/{root,convert,validate,plugin/...}.go
+│   ├── internal/{plugin,ossiedir}/  # 插件协议 + 目录解析
+│   ├── Makefile  go.mod  .goreleaser.yaml
+├── python/                          # apache-ossie SDK (Pydantic v2)
+│   ├── src/ossie/{__init__,models}.py
+│   └── tests/test_models.py
+├── validation/                      # Python 验证器 (PEP 723 inline)
+│   └── validate.py                  # (~291 行)
+├── compliance/                      # 占位 (20 行 README) — 合规测试套件规划中
+├── docs/                            # 项目主文档
+│   ├── index.md                     # 问题陈述 + 治理 (~377 行)
+│   └── working_groups.md
+├── ROADMAP.md                       # 路线图 (~443 行)
+├── CONTRIBUTING.md                  # 贡献指南 (~287 行)
+├── .asf.yaml                        # Apache 治理配置 (squash merge only)
+├── .github/workflows/               # 12 条 CI 工作流
+└── handbook/                        # ★ 本手册所在位置
+    ├── mkdocs.yml
+    └── src/                         # 14 个 Markdown 源文件
+</code></pre>
+<h2 id="12">1.2 目录职责矩阵</h2>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>职责</th>
+<th>你最该读的文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>core-spec/</code></td>
+<td>权威规范定义</td>
+<td><code>osi-schema.json</code>（机器契约）、<code>spec.md</code>（人类叙述）</td>
+</tr>
+<tr>
+<td><code>converters/</code></td>
+<td>Hub spokes：每个 vendor 一个子目录</td>
+<td><code>README.md</code>（主指南）、各 converter 的 <code>README.md</code></td>
+</tr>
+<tr>
+<td><code>examples/</code></td>
+<td>真实语义模型示例</td>
+<td><code>tpcds_semantic_model.yaml</code>（入门）、<code>flights.yaml</code>（本体案例）</td>
+</tr>
+<tr>
+<td><code>ontology/</code></td>
+<td>可选的概念层（Entity/Value Type）</td>
+<td><code>ontology.md</code> + <code>flights.yaml</code> 的 <code>ontology:</code> 块</td>
+</tr>
+<tr>
+<td><code>cli/</code></td>
+<td>Go CLI 实现 + 插件发现协议</td>
+<td><code>cmd/root.go</code>、<code>internal/plugin/plugin.go</code></td>
+</tr>
+<tr>
+<td><code>python/</code></td>
+<td>Pydantic v2 类型 SDK</td>
+<td><code>src/ossie/models.py</code>（224 行核心）</td>
+</tr>
+<tr>
+<td><code>validation/</code></td>
+<td>4 类校验的 Python 工具</td>
+<td><code>validate.py</code></td>
+</tr>
+<tr>
+<td><code>docs/</code></td>
+<td>项目级人类文档</td>
+<td><code>index.md</code>（问题陈述 + 治理）</td>
+</tr>
+<tr>
+<td><code>compliance/</code></td>
+<td><strong>占位</strong></td>
+<td>仅 <code>README.md</code>（20 行）</td>
+</tr>
+<tr>
+<td><code>.github/workflows/</code></td>
+<td>12 条 CI</td>
+<td>每条都路径过滤，只在自己目录下改动时触发</td>
+</tr>
+</tbody>
+</table>
+<h2 id="13-spec">1.3 版本快照与 spec 状态</h2>
+<blockquote>
+<p>⚠️ <strong>实现状态提醒</strong>：<code>0.2.0.dev0</code> 是<strong>开发中的 dev 版本</strong>，schema 在 0.2.0 正式发布前可能继续变更（<a href="https://github.com/apache/ossie/blob/main/core-spec/spec.md"><code>core-spec/spec.md:22-24</code></a>）。已发布稳定版本是 <code>0.1.1</code>（2025-12-11）。本手册所有引用以仓库当前 <code>0.2.0.dev0</code> 文件为准。</p>
+</blockquote>
+<pre><code class="language-mermaid">stateDiagram-v2
+  [*] --&gt; 0_1_0: 2025-09
+  0_1_0 --&gt; 0_1_1: 2025-12-11 稳定版
+  0_1_1 --&gt; 0_2_0_dev0: 2026 进行中 (DRAFT)
+  0_2_0_dev0 --&gt; 0_2_0: 计划 (待 dev 结束)
+  0_2_0 --&gt; 1_0_0: 长期目标
+  note right of 0_2_0_dev0
+    • 加入 cardinality 显式表达
+    • 加入 aggregation_method
+    • 加入 cumulative/expansion
+    • 50+ Discussions 待决议
+  end note
+</code></pre>
+<p><code>spec.yaml</code> 头部明确写有 "DRAFT version"（<code>spec.yaml:1-3</code>）；如果你在写依赖 Ossie schema 的工具，需要在 CI 里锁版本号。</p>
+<h2 id="14-12-github-actions">1.4 12 条 GitHub Actions 工作流速览</h2>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>触发条件</th>
+<th>检查内容</th>
+<th>矩阵</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cli-ci.yml</code></td>
+<td><code>cli/**</code> 或自身变更</td>
+<td><code>go build</code> + <code>go vet</code> + <code>go test</code></td>
+<td>Go 1.26.2</td>
+</tr>
+<tr>
+<td><code>converter-snowflake-ci.yml</code></td>
+<td><code>converters/snowflake/**</code></td>
+<td><code>uv sync</code> + <code>uv run pytest</code></td>
+<td>Python 3.11–3.14</td>
+</tr>
+<tr>
+<td><code>converter-databricks-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>Python 3.11–3.14</td>
+</tr>
+<tr>
+<td><code>converter-dbt-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>Python 3.11–3.14</td>
+</tr>
+<tr>
+<td><code>converter-gooddata-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>Python 3.12–3.14</td>
+</tr>
+<tr>
+<td><code>converter-gsf-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>Python 3.11–3.14</td>
+</tr>
+<tr>
+<td><code>converter-honeydew-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>Python 3.10–3.14</td>
+</tr>
+<tr>
+<td><code>converter-omni-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>Python 3.10–3.14</td>
+</tr>
+<tr>
+<td><code>converter-orionbelt-ci.yml</code></td>
+<td>同上</td>
+<td>同上（含 mypy + ruff）</td>
+<td>Python 3.12–3.14</td>
+</tr>
+<tr>
+<td><code>converter-polaris-ci.yml</code></td>
+<td>同上</td>
+<td><code>mvn -B verify</code></td>
+<td>JDK 21 (Temurin)</td>
+</tr>
+<tr>
+<td><code>converter-salesforce-ci.yml</code></td>
+<td>同上</td>
+<td>同上</td>
+<td>JDK 21</td>
+</tr>
+<tr>
+<td><code>converter-wisdom-ci.yml</code></td>
+<td>同上</td>
+<td><code>uv run pytest</code></td>
+<td>Python 3.11–3.14</td>
+</tr>
+</tbody>
+</table>
+<p><strong>架构含义</strong>：每个 converter 是<strong>独立发布的包</strong>（独立 <code>pyproject.toml</code> 或 <code>pom.xml</code>），独立 CI 工作流。这意味着：</p>
+<ul>
+<li>一个 converter 的破坏性改动不会阻塞其他 converter 的发布。</li>
+<li>添加新 vendor converter 不需要触动核心规范的 CI。</li>
+<li>跨 converter 的"契约变更"（如 <code>osi-schema.json</code> 字段新增）需要单独 PR。</li>
+</ul>
+<h2 id="15-apache">1.5 Apache 治理：邮件列表是主渠道</h2>
+<p><code>CONTRIBUTING.md:51-72</code> 明确指出决策的层级：</p>
+<table>
+<thead>
+<tr>
+<th>渠道</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dev@ossie.apache.org</code>（主）</td>
+<td>所有决策、提案讨论、投票</td>
+</tr>
+<tr>
+<td><code>commits@ossie.apache.org</code></td>
+<td>自动 commit/PR 通知</td>
+</tr>
+<tr>
+<td><code>issues@ossie.apache.org</code></td>
+<td>自动 issue 通知</td>
+</tr>
+<tr>
+<td><code>private@ossie.apache.org</code></td>
+<td>PPMC 私议（committer 提名）</td>
+</tr>
+<tr>
+<td>GitHub Issues / Discussions</td>
+<td>辅助；最终仍需在 <code>dev@</code> 走正式流程</td>
+</tr>
+</tbody>
+</table>
+<p><code>.asf.yaml</code> 关键配置（节选）：</p>
+<pre><code class="language-yaml"># 强制 squash merge；rebase 关闭
+enabled_merge_buttons:
+  squash: true
+  merge: false
+  rebase: false
+
+# 主分支保护
+protected_branches:
+  main:
+    required_pull_request_reviews:
+      required_approving_review_count: 1
+      require_code_owner_reviews: false  # 没有 CODEOWNERS
+    required_linear_history: true
+</code></pre>
+<p><strong>投票规则</strong>（<a href="https://github.com/apache/ossie/blob/main/CONTRIBUTING.md"><code>CONTRIBUTING.md:134-158</code></a>）：</p>
+<ul>
+<li>代码改动：lazy consensus（≥1 binding +1，无 veto）</li>
+<li><strong>spec 改动</strong>：≥<strong>3</strong> binding +1，无 veto</li>
+<li>Committer/PPMC 提名：<code>private@</code> 列表，72 小时窗口</li>
+</ul>
+<blockquote>
+<p>这意味着你想影响 spec 演进，需要在 dev@ 发起正式讨论、收集三方共识——这是慢但稳健的治理节奏。</p>
+</blockquote>
+<h2 id="16">1.6 工作组与路线图（高层）</h2>
+<p><a href="https://github.com/apache/ossie/blob/main/docs/working_groups.md"><code>docs/working_groups.md</code></a> 列出了 4 个活跃工作组：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>工作组</th>
+<th>负责人</th>
+<th>Slack 频道</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Metric Language and Relationships</td>
+<td>Will Pugh</td>
+<td><code>#ossie-metric-language-wg</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Catalog</td>
+<td>Shubham Bhargav (Atlan)</td>
+<td><code>#ossie-catalog-wg</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Ontology</td>
+<td>Kurt (Relational AI)</td>
+<td><code>#ossie-ontology-wg</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Financial Services Common Semantics</td>
+<td>John Heisler (Snowflake)</td>
+<td><code>#ossie-financial-services-common-semantics</code></td>
+</tr>
+</tbody>
+</table>
+<p>第 11 章会深入展开各工作组的当前产出与对 spec 的影响。</p>
+<h2 id="17">1.7 📌 章节要点速查</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>核心规范三件套是 <code>core-spec/{spec.md, spec.yaml, osi-schema.json}</code>；TPC-DS 是入门示例</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>PR 入口在 <code>cli/</code> 与 <code>python/</code>；converter 改动在 <code>converters/&lt;vendor&gt;/</code>，各自独立 CI</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td>12 条独立 CI = 分布式治理；spec 改动需 ≥3 binding +1 投票；<code>dev@</code> 是决策主渠道</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="2">第 2 章 · 核心规范精读</h1>
+<blockquote>
+<p><strong>【为用户】</strong> 这一章是 Ossie 规范 5 大构造（SemanticModel / Dataset / Field / Relationship / Metric）的<strong>字段级速查</strong>。每个字段告诉你"是什么、是否必填、典型取值"。把这一章当字典用。</p>
+<p><strong>【为开发者】</strong> 所有 Python converter 引用的 <code>apache-ossie</code> SDK（Pydantic v2 模型，224 行）字段顺序与本章完全对应（<code>python/src/ossie/models.py:122-203</code>）。Java converter（Salesforce/Polaris）也用同一组字段。</p>
+<p><strong>【为架构师】</strong> 核心规范只定义"<strong>结构</strong>"，不定义"<strong>概念</strong>"。<code>datatype</code> vs <code>is_time</code> 的分离、复合主键、复合 relationship 都是这一层的关键设计取舍。</p>
+<p>⚠️ <strong>实现状态提醒</strong>：以下所有字段引用基于 <code>core-spec/osi-schema.json</code>（DRAFT 0.2.0.dev0）。schema 在 0.2.0 正式发布前可能继续微调。</p>
+</blockquote>
+<h2 id="21">2.1 文档顶层结构</h2>
+<pre><code class="language-yaml">version: &quot;0.2.0.dev0&quot;          # 必填：spec 版本（osi-schema.json 限定枚举）
+semantic_model:                # 必填：array，可包含多个模型
+  - name: ...
+    datasets: [...]            # 必填
+    relationships: [...]       # 可选
+    metrics: [...]             # 可选
+    custom_extensions: [...]   # 可选
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>顶层字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code></td>
+<td>string</td>
+<td>✅</td>
+<td>当前 schema 限定为 <code>"0.2.0.dev0"</code> 常量</td>
+</tr>
+<tr>
+<td><code>semantic_model</code></td>
+<td>array</td>
+<td>✅</td>
+<td>顶层容器，支持多模型并存</td>
+</tr>
+<tr>
+<td><code>dialects</code></td>
+<td>array</td>
+<td>—</td>
+<td>（SDK 字段）声明的方言列表</td>
+</tr>
+<tr>
+<td><code>vendors</code></td>
+<td>array</td>
+<td>—</td>
+<td>（SDK 字段）自定义扩展命名空间</td>
+</tr>
+</tbody>
+</table>
+<h2 id="22-semanticmodel">2.2 <code>SemanticModel</code> 节点</h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:295-349</code>、<code>spec.md:88-114</code></p>
+</blockquote>
+<pre><code class="language-yaml">- name: sales_analytics
+  description: 销售与客户分析模型
+  ai_context:
+    instructions: &quot;用于销售分析和客户洞察&quot;
+    synonyms: [&quot;销售分析&quot;, &quot;营收模型&quot;]
+    examples:
+      - &quot;上个月总销售额？&quot;
+      - &quot;按地区分组的营收？&quot;
+  datasets: [ ... ]             # 必填
+  relationships: [ ... ]
+  metrics: [ ... ]
+  custom_extensions: [ ... ]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>文件内唯一</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td>人类可读</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string 或 object</td>
+<td>—</td>
+<td>AI 注解；见 §2.8</td>
+</tr>
+<tr>
+<td><code>datasets</code></td>
+<td>array</td>
+<td>✅</td>
+<td>至少 1 个 Dataset</td>
+</tr>
+<tr>
+<td><code>relationships</code></td>
+<td>array</td>
+<td>—</td>
+<td>跨数据集的连接</td>
+</tr>
+<tr>
+<td><code>metrics</code></td>
+<td>array</td>
+<td>—</td>
+<td>跨数据集的度量</td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td>厂商元数据；见 §2.7</td>
+</tr>
+</tbody>
+</table>
+<h3 id="specmd99-114verbatim">示例（来自 <code>spec.md:99-114</code>，verbatim）</h3>
+<pre><code class="language-yaml">semantic_model:
+  - name: sales_analytics
+    description: Sales and customer analytics model
+    ai_context:
+      instructions: &quot;Use this model for sales analysis and customer insights&quot;
+    datasets:
+      - name: orders
+        source: sales.public.orders
+    relationships: []
+    metrics: []
+    custom_extensions:
+      - vendor_name: DBT
+        data: '{&quot;project_name&quot;: &quot;tpcds_analytics&quot;, &quot;models_path&quot;: &quot;models/semantic&quot;}'
+</code></pre>
+<h2 id="23-dataset">2.3 <code>Dataset</code> 节点</h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:138-225</code>、<code>spec.md:118-173</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>数据集内唯一</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>string</td>
+<td>✅</td>
+<td>物理表引用（<code>database.schema.table</code> 或子查询）</td>
+</tr>
+<tr>
+<td><code>primary_key</code></td>
+<td>array</td>
+<td>—</td>
+<td>单列或<strong>复合</strong>主键（如 <code>["order_id", "line_number"]</code>）</td>
+</tr>
+<tr>
+<td><code>unique_keys</code></td>
+<td>array of arrays</td>
+<td>—</td>
+<td>可选的多组唯一约束</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td>人类可读</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string 或 object</td>
+<td>—</td>
+<td>AI 注解</td>
+</tr>
+<tr>
+<td><code>fields</code></td>
+<td>array</td>
+<td>—</td>
+<td>行级属性列表</td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td>厂商元数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examplestpcds_semantic_modelyaml35-37">复合主键的实际用法（来自 <code>examples/tpcds_semantic_model.yaml:35-37</code>）</h3>
+<pre><code class="language-yaml">- name: store_sales
+  source: tpcds.public.store_sales
+  primary_key: [ss_item_sk, ss_ticket_number]   # 复合主键
+  unique_keys:
+    - [ss_item_sk, ss_ticket_number]            # 唯一约束（与主键同组合）
+</code></pre>
+<p><strong>设计取舍</strong>：<code>primary_key</code> 用一维数组还是 <code>unique_keys</code> 用二维数组？spec 选择：
+- <code>primary_key</code> 是一维数组（最长 1 个组合）
+- <code>unique_keys</code> 是<strong>二维</strong>数组（多个组合，每个组合内部是一维）</p>
+<p>为什么？因为 <code>primary_key</code> 决定<strong>一对多方向</strong>（见 §2.6 Relationship），所以只允许"主"的那一个组合。</p>
+<h2 id="24-field">2.4 <code>Field</code> 节点</h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:138-185</code>、<code>spec.md:225-356</code></p>
+</blockquote>
+<p>Field 是 Ossie 中最丰富的构造——它不是"维度也不是度量"，而是<strong>统一的行级属性</strong>。是否被当维度用、是否被当度量用，由消费者决定。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>数据集内唯一</td>
+</tr>
+<tr>
+<td><code>expression</code></td>
+<td><code>Expression</code></td>
+<td>✅</td>
+<td><strong>标量</strong> SQL（field 级不允许聚合）</td>
+</tr>
+<tr>
+<td><code>dimension</code></td>
+<td><code>Dimension</code></td>
+<td>—</td>
+<td>当前仅含 <code>is_time</code> 标志</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>string</td>
+<td>—</td>
+<td>分类标签，如 <code>"filter"</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td>人类可读</td>
+</tr>
+<tr>
+<td><code>datatype</code></td>
+<td><code>DataType</code></td>
+<td>—</td>
+<td>逻辑数据类型（见 §3.1）</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string 或 object</td>
+<td>—</td>
+<td>AI 注解</td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td>厂商元数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="expression-osi-schemajson81-110">Expression 结构（<code>osi-schema.json:81-110</code>）</h3>
+<pre><code class="language-yaml">expression:
+      dialects:
+        - dialect: ANSI_SQL          # 枚举之一（见 §3.1.2）
+          expression: &quot;lower(email)&quot;
+        - dialect: SNOWFLAKE
+          expression: &quot;lower(email)::varchar&quot;
+</code></pre>
+<ul>
+<li><code>Expression.dialects</code> 是 array，<strong>至少 1 项</strong></li>
+<li>每项含 <code>dialect</code>（枚举）与 <code>expression</code>（字符串）</li>
+<li>字段级<strong>不允许聚合函数</strong>（<code>SUM</code>、<code>AVG</code> 等必须在 Metric 中）</li>
+</ul>
+<h3 id="dimension-is_time">Dimension 与 <code>is_time</code>（<strong>关键设计</strong>）</h3>
+<blockquote>
+<p>来源：<code>spec.md:330-356</code></p>
+</blockquote>
+<pre><code class="language-yaml">- name: d_year                    # Integer 但作为时间维度
+  datatype: Integer
+  dimension:
+    is_time: true                 # 显式标记
+  ai_context:
+    synonyms: [&quot;year&quot;]
+
+- name: d_quarter_name            # 无 datatype，作为时间维度
+  dimension:
+    is_time: true
+</code></pre>
+<p><strong>默认规则</strong>（<code>spec.md:337</code> verbatim）：</p>
+<blockquote>
+<p><em>"When <code>is_time</code> is not set explicitly, it defaults to <code>true</code> if <code>datatype</code> is one of <code>Date</code>, <code>Time</code>, <code>DateTime</code>, <code>DateTimeTz</code>, and <code>false</code> otherwise. Explicit <code>is_time</code> always wins."</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><code>datatype</code></th>
+<th><code>is_time</code></th>
+<th>有效角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Date</code></td>
+<td>未设</td>
+<td>时间维度（默认 true）</td>
+</tr>
+<tr>
+<td><code>DateTimeTz</code></td>
+<td>未设</td>
+<td>时间维度</td>
+</tr>
+<tr>
+<td><code>DateTime</code></td>
+<td><code>false</code></td>
+<td>普通维度（<strong>显式 opt-out</strong>）</td>
+</tr>
+<tr>
+<td><code>Integer</code></td>
+<td><code>true</code></td>
+<td>时间维度（年份 grain）</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td><code>true</code></td>
+<td>时间维度（季度名）</td>
+</tr>
+<tr>
+<td><code>Integer</code></td>
+<td>未设</td>
+<td>普通维度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vs">简单字段 vs 计算字段</h3>
+<pre><code class="language-yaml"># 简单列引用（来自 spec.md:269-278）
+- name: customer_id
+  expression:
+    dialects:
+      - dialect: ANSI_SQL
+        expression: customer_id
+  description: 客户标识符
+  dimension:
+    is_time: false                # Integer 普通维度
+
+# 计算字段（来自 spec.md:289-300）
+- name: full_name
+  expression:
+    dialects:
+      - dialect: ANSI_SQL
+        expression: first_name || ' ' || last_name
+  description: 客户全名
+  ai_context:
+    synonyms:
+      - &quot;name&quot;
+      - &quot;customer name&quot;
+
+# 多方言字段（来自 spec.md:316-328）
+- name: email_normalized
+  expression:
+    dialects:
+      - dialect: ANSI_SQL
+        expression: LOWER(email)
+      - dialect: SNOWFLAKE
+        expression: LOWER(email)::VARCHAR
+      - dialect: BIGQUERY
+        expression: SAFE_CAST(LOWER(email) AS STRING)
+</code></pre>
+<h2 id="25-metric">2.5 <code>Metric</code> 节点</h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:273-303</code>、<code>spec.md:358-416</code></p>
+</blockquote>
+<pre><code class="language-yaml">- name: total_revenue
+  expression:
+    dialects:
+      - dialect: ANSI_SQL
+        expression: SUM(orders.amount)
+  description: 全部订单的总营收
+  datatype: Decimal
+  ai_context:
+    synonyms:
+      - &quot;total sales&quot;
+      - &quot;revenue&quot;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>模型内唯一</td>
+</tr>
+<tr>
+<td><code>expression</code></td>
+<td><code>Expression</code></td>
+<td>✅</td>
+<td><strong>允许聚合</strong>的 SQL</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td>人类可读</td>
+</tr>
+<tr>
+<td><code>datatype</code></td>
+<td><code>DataType</code></td>
+<td>—</td>
+<td>输出结果的逻辑类型</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string 或 object</td>
+<td>—</td>
+<td>AI 注解</td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td>厂商元数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="specmd403-416">跨数据集度量（来自 <code>spec.md:403-416</code>）</h3>
+<pre><code class="language-yaml">- name: avg_orders
+  expression:
+    dialects:
+      - dialect: ANSI_SQL
+        expression: SUM(orders.amount) / COUNT(DISTINCT customers.id)
+</code></pre>
+<blockquote>
+<p>度量表达式引用<strong>全限定字段名</strong>（<code>dataset.field</code>），由消费者根据声明的 <code>Relationship</code> 决定 JOIN 路径。当前 spec 不在 metric 中直接声明 join——这是"简洁换灵活"的取舍。</p>
+</blockquote>
+<h3 id="spec-020dev0">⚠️ 缺失字段（spec 0.2.0.dev0 尚未定义）</h3>
+<p>当前 schema <strong>没有</strong>：</p>
+<ul>
+<li><code>aggregation_method</code>（已在 roadmap 中）</li>
+<li><code>derived</code> / <code>cumulative</code> 标记</li>
+<li>度量上的 grain 声明</li>
+</ul>
+<p>见第 11 章路线图讨论。</p>
+<h2 id="26-relationship">2.6 <code>Relationship</code> 节点</h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:228-272</code>、<code>spec.md:177-222</code></p>
+</blockquote>
+<pre><code class="language-yaml">- name: store_sales_to_date
+  from: store_sales               # 多端
+  to: date_dim                    # 一端
+  from_columns: [ss_sold_date_sk] # 外键列
+  to_columns: [d_date_sk]         # 主/唯一键列
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>模型内唯一</td>
+</tr>
+<tr>
+<td><code>from</code></td>
+<td>string</td>
+<td>✅</td>
+<td><strong>多端</strong>的数据集名</td>
+</tr>
+<tr>
+<td><code>to</code></td>
+<td>string</td>
+<td>✅</td>
+<td><strong>一端</strong>的数据集名</td>
+</tr>
+<tr>
+<td><code>from_columns</code></td>
+<td>array</td>
+<td>✅</td>
+<td>多端外键列（<strong>列序对应 <code>to_columns</code></strong>）</td>
+</tr>
+<tr>
+<td><code>to_columns</code></td>
+<td>array</td>
+<td>✅</td>
+<td>一端主/唯一键列</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string 或 object</td>
+<td>—</td>
+<td>AI 注解</td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td>厂商元数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="specmd215-221">复合键（来自 <code>spec.md:215-221</code>）</h3>
+<pre><code class="language-yaml">- name: order_lines_to_products
+  from: order_lines
+  to: products
+  from_columns: [product_id, variant_id]
+  to_columns:   [id, variant_id]            # 长度必须相同
+</code></pre>
+<blockquote>
+<p>隐式多对一：spec 当前<strong>不显式声明 cardinality</strong>。如果你的数据集方向标反了，<code>from</code> 实际是一端，会产生不一致 join。Roadmap 中讨论 #50 计划在 0.2.0 后引入显式 cardinality。</p>
+</blockquote>
+<h3 id="relationship-python-sdk">Relationship 在 Python SDK 中的别名</h3>
+<blockquote>
+<p>来源：<code>python/src/ossie/models.py:165-176</code></p>
+</blockquote>
+<pre><code class="language-python">class OSIRelationship(BaseModel):
+    model_config = ConfigDict(frozen=True, populate_by_name=True)
+    name: str
+    from_dataset: str = Field(..., alias=&quot;from&quot;)    # Python 属性是 from_dataset
+    to: str
+    from_columns: list[str]
+    to_columns: list[str]
+</code></pre>
+<p>Python 关键字 <code>from</code> 不能直接做属性名，所以 SDK 引入 <code>from_dataset</code> 别名；YAML 仍写 <code>from</code>。</p>
+<h2 id="27-customextension">2.7 <code>CustomExtension</code> 机制</h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:66-80</code>、<code>spec.md:418-496</code>、<code>docs/index.md:278-279</code></p>
+</blockquote>
+<pre><code class="language-yaml">custom_extensions:
+  - vendor_name: SALESFORCE       # 自由字符串
+    data: '{&quot;einstein_enabled&quot;: true, &quot;tableau_workbook_id&quot;: &quot;abc&quot;}'
+  - vendor_name: DBT
+    data: '{&quot;project_name&quot;: &quot;tpcds_analytics&quot;}'
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vendor_name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>自由字符串；常用：<code>SALESFORCE</code>、<code>SNOWFLAKE</code>、<code>DBT</code>、<code>DATABRICKS</code>、<code>GOODDATA</code>、<code>POLARIS</code>、<code>NVIDIA_GSF</code>、<code>OMNI</code>、<code>WISDOM</code>、<code>HONEYDEW</code>、<code>ORIONBELT</code></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>string</td>
+<td>✅</td>
+<td><strong>JSON 字符串</strong>（注意是字符串而非对象）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data">为什么 <code>data</code> 是字符串而非对象？</h3>
+<p>为了让 JSON Schema 校验简单（<code>type: string</code>），厂商自行 parse。转换器要"无损往返"，必须做到：</p>
+<ol>
+<li><strong>导出（Ossie → Vendor）</strong>：从所有 <code>custom_extensions</code> 中提取 <code>vendor_name == 目标厂商</code> 的条目，应用到目标格式；<strong>保留</strong>其他 vendor 的条目</li>
+<li><strong>导入（Vendor → Ossie）</strong>：把 vendor 特有但 Ossie 无对应字段的元数据塞进 <code>custom_extensions[该vendor].data</code></li>
+</ol>
+<blockquote>
+<p><strong>关键承诺</strong>（<code>docs/index.md:278-279</code> verbatim）：</p>
+<p><em>"Custom extensions are always preserved during round-trip conversions even by tools that do not understand them."</em></p>
+</blockquote>
+<p>这是 Ossie 互操作的"承重墙"——一个不知道 <code>SALESFORCE</code> extension 的 Snowflake 转换器也必须原样保留它。</p>
+<h2 id="28-aicontextai">2.8 <code>AIContext</code>：AI 工具的"用户手册"</h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:34-65</code>、<code>spec.md:603-635</code></p>
+</blockquote>
+<pre><code class="language-yaml"># 形态一：简单字符串
+ai_context: &quot;orders, purchases, sales&quot;
+
+# 形态二：结构化对象
+ai_context:
+  instructions: &quot;用于销售分析&quot;
+  synonyms:
+    - &quot;orders&quot;
+    - &quot;purchases&quot;
+    - &quot;sales&quot;
+  examples:
+    - &quot;上个月总销售额？&quot;
+    - &quot;按地区分组的营收？&quot;
+</code></pre>
+<p><code>AIContext</code> 是 <code>oneOf</code>：可以是 <code>string</code> 或 <code>object {instructions, synonyms, examples}</code>。<code>object</code> 还允许 <code>additionalProperties: true</code>，厂商可加自有键。</p>
+<p><code>ai_context</code> 在 5 个构造上都可出现：</p>
+<pre><code class="language-mermaid">classDiagram
+  class SemanticModel { +ai_context }
+  class Dataset { +ai_context }
+  class Field { +ai_context }
+  class Relationship { +ai_context }
+  class Metric { +ai_context }
+  SemanticModel --&gt; Dataset : contains
+  Dataset --&gt; Field : contains
+  SemanticModel --&gt; Relationship : contains
+  SemanticModel --&gt; Metric : contains
+</code></pre>
+<p>这是 Ossie "AI-native" 设计的核心——LLM agent 通过遍历 <code>ai_context</code> 的 <code>synonyms</code> 和 <code>examples</code> 理解每个字段的业务含义。</p>
+<h2 id="29">2.9 三件套的关系</h2>
+<pre><code class="language-mermaid">flowchart LR
+  specmd[spec.md&lt;br/&gt;人类叙述]
+  specyaml[spec.yaml&lt;br/&gt;YAML schema&lt;br/&gt;+ 注释]
+  osischema[osi-schema.json&lt;br/&gt;JSON Schema Draft 2020-12]
+
+  specmd -. 引用 .-&gt; osischema
+  specyaml -. 注释版本 .-&gt; osischema
+
+  validator[validation/validate.py] --&gt; osischema
+  sdk[python/src/ossie/models.py] --&gt; osischema
+  converters[所有 converter] --&gt; osischema
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>角色</th>
+<th>谁读它</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>core-spec/spec.md</code></td>
+<td>人类可读规范</td>
+<td>用户、贡献者</td>
+</tr>
+<tr>
+<td><code>core-spec/spec.yaml</code></td>
+<td>YAML 结构 + 注释</td>
+<td>编辑 spec 的人</td>
+</tr>
+<tr>
+<td><code>core-spec/osi-schema.json</code></td>
+<td><strong>权威机器契约</strong></td>
+<td>validator、SDK、converter</td>
+</tr>
+</tbody>
+</table>
+<p><strong>黄金法则</strong>：代码层面对 <code>osi-schema.json</code> 做校验；规范演进先改 JSON Schema，再同步 <code>spec.md</code> 和 <code>spec.yaml</code>。</p>
+<h2 id="210">2.10 📌 章节要点速查</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>5 个构造（SemanticModel/Dataset/Field/Relationship/Metric），<code>datatype</code> 与 <code>is_time</code> 独立，<code>custom_extensions</code> 永远保留</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>Python SDK 字段顺序与 osi-schema.json 完全一致；<code>from_dataset</code> 是 <code>from</code> 的别名</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td><code>osi-schema.json</code> 是机器契约的权威；spec 改动要先改 JSON Schema 再同步文档</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="3">第 3 章 · 表达式语言与多方言机制</h1>
+<blockquote>
+<p><strong>【为用户】</strong> 这一章让你理解 Ossie 如何在"一份模型"里同时支持 7 种 SQL 方言——<strong>总是从最具体的方言往下降级到 ANSI_SQL</strong>。写一份表达式时多写几个方言的版本，你的 Snowflake / Databricks / BigQuery 用户都会感谢你。</p>
+<p><strong>【为开发者】</strong> <code>validation/validate.py:64-72</code> 的 <code>DIALECT_MAP</code> 是当前的 sqlglot 校验映射；<code>MDX</code>、<code>TABLEAU</code>、<code>MAQL</code> 因为 sqlglot 不支持会跳过。<code>Ossie_SQL_2026</code> 提案（<code>expression_language.md:60-67</code>）是即将推出的<strong>新默认方言</strong>。</p>
+<p><strong>【为架构师】</strong> 多方言是 Ossie 与 dbt Semantic Layer、Cube、LookML 的关键差异：Ossie 把方言作为<strong>一等公民</strong>，运行时由 consumer 选；其他方案通常在编译期就锁死。</p>
+</blockquote>
+<h2 id="31">3.1 为什么需要表达式语言</h2>
+<p>Ossie 是<strong>逻辑层</strong>规范——它描述"营收 = SUM(amount)"，但不规定物理表怎么存。问题来了：同样的语义意图在 Snowflake 和 BigQuery 上写法不同：</p>
+<pre><code class="language-sql">-- ANSI_SQL
+DATE_TRUNC('month', order_date)
+</code></pre>
+<pre><code class="language-sql">-- BIGQUERY
+DATE_TRUNC(order_date, MONTH)
+</code></pre>
+<p>Ossie 选择让<strong>同一字段</strong>携带多种方言版本，由 consumer 选用。<code>core-spec/expression_language.md:22</code> 标注当前文档为 <strong>"Proposed Final"</strong>——0.2.0.dev0 还未合并，但 7 个方言已稳定。</p>
+<h2 id="32-7">3.2 7 种方言速查</h2>
+<blockquote>
+<p>来源：<code>osi-schema.json:24-28</code>（<code>Dialect</code> 枚举）、<code>spec.md:48-60</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>方言</th>
+<th>描述</th>
+<th>sqlglot 支持</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ANSI_SQL</code></td>
+<td>标准 SQL</td>
+<td>✅（默认）</td>
+</tr>
+<tr>
+<td><code>SNOWFLAKE</code></td>
+<td>Snowflake SQL</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>DATABRICKS</code></td>
+<td>Databricks SQL</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>BIGQUERY</code></td>
+<td>GoogleSQL</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>MDX</code></td>
+<td>多维表达式（SSAS）</td>
+<td>❌ 跳过</td>
+</tr>
+<tr>
+<td><code>TABLEAU</code></td>
+<td>Tableau 计算字段</td>
+<td>❌ 跳过</td>
+</tr>
+<tr>
+<td><code>MAQL</code></td>
+<td>GoodData MAQL</td>
+<td>❌ 跳过</td>
+</tr>
+</tbody>
+</table>
+<p><code>validation/validate.py:64-72</code> 的方言映射：</p>
+<pre><code class="language-python">DIALECT_MAP = {
+    &quot;ANSI_SQL&quot;: None,            # sqlglot 默认
+    &quot;SNOWFLAKE&quot;: &quot;snowflake&quot;,
+    &quot;DATABRICKS&quot;: &quot;databricks&quot;,
+    &quot;BIGQUERY&quot;: &quot;bigquery&quot;,
+    &quot;MDX&quot;: None, &quot;TABLEAU&quot;: None, &quot;MAQL&quot;: None,   # 跳过 SQL 校验
+}
+</code></pre>
+<h2 id="33-fallback-ansi_sql">3.3 Fallback 链：目标方言 → ANSI_SQL → 警告</h2>
+<blockquote>
+<p>来源：<code>converters/snowflake/src/ossie_snowflake/converter.py:376-414</code>（典型实现）</p>
+</blockquote>
+<pre><code class="language-python"># pseudocode of Snowflake converter's dialect selection
+def pick_expression(ossie_expression, target_dialect):
+    dialects = {d['dialect']: d['expression']
+                for d in ossie_expression['dialects']}
+    # 1. 首选目标方言
+    if target_dialect in dialects:
+        return dialects[target_dialect]
+    # 2. 回退 ANSI_SQL
+    if 'ANSI_SQL' in dialects:
+        return dialects['ANSI_SQL']
+    # 3. 警告并跳过
+    warn(f&quot;field {field_name}: no {target_dialect} or ANSI_SQL expression&quot;)
+    return None
+</code></pre>
+<pre><code class="language-mermaid">flowchart TD
+  Start[消费者需要&lt;br/&gt;target_dialect 表达式] --&gt; Q1{target_dialect&lt;br/&gt;在 dialects[]?}
+  Q1 --&gt;|Yes| Return1[返回该方言版本]
+  Q1 --&gt;|No| Q2{ANSI_SQL&lt;br/&gt;在 dialects[]?}
+  Q2 --&gt;|Yes| Return2[返回 ANSI_SQL&lt;br/&gt;可能语义不等价]
+  Q2 --&gt;|No| Warn[发出 warning&lt;br/&gt;跳过或报错]
+  Return1 --&gt; End[输出表达式]
+  Return2 --&gt; End
+  Warn --&gt; End
+</code></pre>
+<h3 id="specmd316-328">多方言声明示例（<code>spec.md:316-328</code>）</h3>
+<pre><code class="language-yaml">- name: email_normalized
+  expression:
+    dialects:
+      - dialect: ANSI_SQL
+        expression: LOWER(email)
+      - dialect: SNOWFLAKE
+        expression: LOWER(email)::VARCHAR
+      - dialect: BIGQUERY
+        expression: SAFE_CAST(LOWER(email) AS STRING)
+  description: 标准化邮箱
+</code></pre>
+<h2 id="34-vs">3.4 字段 vs 度量：聚合边界</h2>
+<pre><code class="language-mermaid">classDiagram
+  class Field {
+    +name
+    +expression: 标量 SQL
+    +不允许聚合
+  }
+  class Metric {
+    +name
+    +expression: 聚合 SQL
+    +允许 SUM/AVG/COUNT
+  }
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>是否允许 <code>SUM/AVG/COUNT</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Field.expression</code></td>
+<td>❌ 否</td>
+</tr>
+<tr>
+<td><code>Metric.expression</code></td>
+<td>✅ 是</td>
+</tr>
+</tbody>
+</table>
+<p>为什么这样划分？因为字段会被用于<strong>分组 (GROUP BY)</strong> 和<strong>过滤 (WHERE)</strong>，聚合会破坏行级语义；度量天然就是聚合结果。</p>
+<h3 id="examplestpcds_semantic_modelyaml600-611">度量表达式例（<code>examples/tpcds_semantic_model.yaml:600-611</code>）</h3>
+<pre><code class="language-yaml">- name: store_productivity
+  expression:
+    dialects:
+      - dialect: ANSI_SQL
+        expression: |
+          SUM(store_sales.ss_ext_sales_price) /
+          NULLIF(SUM(store.s_number_employees), 0)
+  datatype: Decimal
+</code></pre>
+<p>注意：</p>
+<ol>
+<li>全限定列名（<code>store_sales.ss_ext_sales_price</code>）</li>
+<li><code>NULLIF(..., 0)</code> 防止除零</li>
+<li>没有显式 JOIN——由消费者根据 <code>Relationship</code> 推导</li>
+</ol>
+<h2 id="35-sql-sqlglot">3.5 SQL 校验：sqlglot 在哪用</h2>
+<p><code>validation/validate.py:177-219</code> 的 <code>validate_sql</code> 函数：</p>
+<pre><code class="language-python">def validate_sql(data: dict) -&gt; list[str]:
+    errors = []
+    for model in data.get(&quot;semantic_model&quot;, []):
+        for dataset in model.get(&quot;datasets&quot;, []):
+            for field in dataset.get(&quot;fields&quot;, []) or []:
+                errors.extend(_check_expr(field, field[&quot;name&quot;]))
+            for metric in model.get(&quot;metrics&quot;, []) or []:
+                errors.extend(_check_expr(metric, metric[&quot;name&quot;]))
+    return errors
+</code></pre>
+<p>每个 expression 的 dialect 都被 sqlglot 解析一次。失败的 dialect（如未支持的方言）会跳过而非报错。<strong><code>sqlglot</code> 缺失时</strong>整个 SQL 校验被跳过但仍会 warning：</p>
+<pre><code>[SQL] Warning: sqlglot not installed, skipping SQL validation.
+Install with: pip install sqlglot
+</code></pre>
+<h2 id="36-ossie_sql_2026">3.6 (展望) <code>Ossie_SQL_2026</code> 提案</h2>
+<blockquote>
+<p>来源：<code>core-spec/expression_language.md:53-55, 60-67</code></p>
+</blockquote>
+<pre><code class="language-text">Proposed Final · 2026-07-15
+基础标准：ANSI SQL:2003 Core (ISO/IEC 9075-2:2003)
+</code></pre>
+<p><strong>目标</strong>：把 Ossie 当前依赖 7 个方言的现状收敛成一个<strong>新默认方言</strong>——<code>Ossie_SQL_2026</code>。</p>
+<pre><code class="language-mermaid">stateDiagram-v2
+  [*] --&gt; MultiDialect: 0.1.x-0.2.0.dev0
+  MultiDialect --&gt; OssieSQL2026: 0.2.0+ (Proposed)
+  OssieSQL2026 --&gt; [*]
+  note right of OssieSQL2026
+    • 强制最低 SQL 子集
+    • 跨方言语义等价
+    • 函数分类 (Distributive /
+      Algebraic / Holistic)
+  end note
+</code></pre>
+<p>提案涵盖：</p>
+<ul>
+<li><strong>标识符解析</strong>：<code>Field</code> 或 <code>Field.Field</code> 形式</li>
+<li><strong>SQL 子集</strong>：聚合、窗口、CASE、CAST 等</li>
+<li><strong>函数分类</strong>（关键创新）：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>例子</th>
+<th>可并行化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Distributive（分布）</td>
+<td><code>SUM</code>, <code>COUNT</code>, <code>MIN</code>, <code>MAX</code></td>
+<td>✅ 容易</td>
+</tr>
+<tr>
+<td>Algebraic（代数）</td>
+<td><code>AVG</code>, <code>STDDEV</code>, <code>VARIANCE</code></td>
+<td>✅ 容易</td>
+</tr>
+<tr>
+<td>Holistic（整体）</td>
+<td><code>MEDIAN</code>, <code>PERCENTILE</code>, <code>COUNT DISTINCT</code></td>
+<td>⚠️ 难</td>
+</tr>
+<tr>
+<td>Sketch-based（草图）</td>
+<td><code>APPROX_COUNT_DISTINCT</code></td>
+<td>⚠️ 难</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>这个分类决定了未来"Analytical Context Extension"如何声明度量的可并行化能力。</p>
+</blockquote>
+<h2 id="37">3.7 📌 章节要点速查</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>写多方言时<strong>先 ANSI_SQL</strong> 再写 vendor 变体；<code>MDX/TABLEAU/MAQL</code> sqlglot 不校验</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td><code>pick_expression()</code> 三步链：vendor → ANSI_SQL → warn；sqlglot 缺失不阻断</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td><code>Ossie_SQL_2026</code> 提案（Proposed Final）将把 7 方言收敛为 1 默认；函数分类驱动 Analytical Context</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="4">第 4 章 · 编写你的第一份语义模型</h1>
+<blockquote>
+<p><strong>【为用户】</strong> 本章是教程：从一份最小可运行 YAML 起步，逐步扩展到 TPC-DS 那种 5 表 + 4 关系 + 5 度量的完整模型。每个示例都给出 verbatim 引用 + 中文注释。</p>
+<p><strong>【为开发者】</strong> 这章展示的是 idiomatic 写法。Python converter 测试里大量使用 <code>examples/tpcds_semantic_model.yaml</code> 作为 baseline（<code>converters/snowflake/tests/</code>、<code>converters/orionbelt/tests/</code>），所以学会这一章意味着能看懂测试。</p>
+<p><strong>【为架构师】</strong> TPC-DS 是纯结构示例（无 ontology），flights.yaml 是带 ontology 的完整示例。两者对比有助于理解"何时需要本体"。</p>
+</blockquote>
+<h2 id="41">4.1 最小可运行模型</h2>
+<blockquote>
+<p>适用：第 1 个 dataset、1 个 field。</p>
+</blockquote>
+<pre><code class="language-yaml">version: &quot;0.2.0.dev0&quot;
+semantic_model:
+  - name: hello_ossie
+    description: 你的第一个语义模型
+    datasets:
+      - name: users
+        source: app.public.users
+        primary_key: [user_id]
+        fields:
+          - name: user_id
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: user_id
+            datatype: Integer
+            description: 用户唯一标识
+</code></pre>
+<p>把上面这份 YAML 喂给 <code>validate.py</code>：</p>
+<pre><code class="language-bash">uv run validation/validate.py hello.yaml
+</code></pre>
+<p>如果一切正常，它只输出 warning（如 sqlglot 缺失），不报 error。</p>
+<h2 id="42">4.2 加入度量和关系</h2>
+<pre><code class="language-yaml">version: &quot;0.2.0.dev0&quot;
+semantic_model:
+  - name: hello_ossie
+    datasets:
+      - name: users
+        source: app.public.users
+        primary_key: [user_id]
+        fields:
+          - name: user_id
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: user_id
+            datatype: Integer
+          - name: created_at
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: created_at
+            datatype: DateTime
+            dimension:
+              is_time: true              # DateTime 默认 true，写不写都行
+      - name: orders
+        source: app.public.orders
+        primary_key: [order_id]
+        fields:
+          - name: order_id
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: order_id
+            datatype: Integer
+          - name: user_id
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: user_id
+            datatype: Integer
+          - name: amount
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: amount
+            datatype: Decimal
+    relationships:
+      - name: orders_to_users
+        from: orders
+        to: users
+        from_columns: [user_id]
+        to_columns: [user_id]
+    metrics:
+      - name: total_amount
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: SUM(orders.amount)
+        datatype: Decimal
+        description: 全部订单总金额
+</code></pre>
+<h2 id="43-tpc-ds">4.3 TPC-DS 示例拆解</h2>
+<blockquote>
+<p>来源：<code>examples/tpcds_semantic_model.yaml:1-50</code></p>
+</blockquote>
+<pre><code class="language-mermaid">erDiagram
+  store_sales ||--o{ date_dim : &quot;store_sales_to_date&quot;
+  store_sales ||--o{ customer : &quot;store_sales_to_customer&quot;
+  store_sales ||--o{ item : &quot;store_sales_to_item&quot;
+  store_sales ||--o{ store : &quot;store_sales_to_store&quot;
+
+  store_sales {
+    string ss_item_sk
+    string ss_ticket_number
+  }
+  date_dim {
+    string d_date_sk
+    int d_year
+    string d_quarter_name
+  }
+  customer {
+    string c_customer_sk
+  }
+  item {
+    string i_item_sk
+  }
+  store {
+    string s_store_sk
+    string s_store_id
+  }
+</code></pre>
+<p>TPC-DS 是一个<strong>零售业决策支持</strong>基准。仓库里的示例把 5 张核心表塞进一份 Ossie 模型：</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>来源</th>
+<th>PK</th>
+<th>角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>store_sales</code></td>
+<td><code>tpcds.public.store_sales</code></td>
+<td><code>[ss_item_sk, ss_ticket_number]</code></td>
+<td><strong>事实表（复合主键）</strong></td>
+</tr>
+<tr>
+<td><code>date_dim</code></td>
+<td><code>tpcds.public.date_dim</code></td>
+<td><code>[d_date_sk]</code></td>
+<td>时间维度</td>
+</tr>
+<tr>
+<td><code>customer</code></td>
+<td><code>tpcds.public.customer</code></td>
+<td><code>[c_customer_sk]</code></td>
+<td>客户维度</td>
+</tr>
+<tr>
+<td><code>item</code></td>
+<td><code>tpcds.public.item</code></td>
+<td><code>[i_item_sk]</code></td>
+<td>商品维度</td>
+</tr>
+<tr>
+<td><code>store</code></td>
+<td><code>tpcds.public.store</code></td>
+<td><code>[s_store_sk]</code></td>
+<td>门店维度（注意 <code>unique_keys: [s_store_id]</code> 不同列）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="431">4.3.1 复合主键的写法</h3>
+<pre><code class="language-yaml"># examples/tpcds_semantic_model.yaml:35-37
+- name: store_sales
+  source: tpcds.public.store_sales
+  primary_key: [ss_item_sk, ss_ticket_number]    # 一维，但有两个元素
+  unique_keys:
+    - [ss_item_sk, ss_ticket_number]            # 二维的&quot;唯一约束组&quot;
+</code></pre>
+<p>事实表的"一笔交易"在 TPC-DS 里由 <code>(商品, 票号)</code> 共同标识——所以是复合主键。</p>
+<h3 id="432">4.3.2 时间维度的多样本</h3>
+<pre><code class="language-yaml"># examples/tpcds_semantic_model.yaml:188-200
+- name: d_year
+  datatype: Integer            # Integer 不是时间类型
+  dimension:
+    is_time: true              # 但显式标记为时间维度
+  ai_context:
+    synonyms:
+      - &quot;year&quot;
+
+# examples/tpcds_semantic_model.yaml:203-216
+- name: d_quarter_name
+  dimension:
+    is_time: true              # 没有 datatype，也标记为时间维度
+</code></pre>
+<p>这是 §2.4 中"<code>is_time</code> 与 <code>datatype</code> 独立"原则的经典例子：年份用 <code>Integer</code>，季度名用 <code>String</code>，但<strong>都是时间维度</strong>。</p>
+<h3 id="433">4.3.3 跨数据集度量</h3>
+<pre><code class="language-yaml"># examples/tpcds_semantic_model.yaml:573-585
+- name: customer_lifetime_value
+  expression:
+    dialects:
+      - dialect: ANSI_SQL
+        expression: |
+          SUM(store_sales.ss_ext_sales_price) /
+          COUNT(DISTINCT customer.c_customer_sk)
+  datatype: Decimal
+  description: 客户终身价值
+</code></pre>
+<p>度量引用了 <code>store_sales</code> 和 <code>customer</code> 两个 dataset 里的字段——consumer 根据 <code>store_sales_to_customer</code> 这个 relationship 推导出 JOIN。</p>
+<h3 id="434-custom_extensions">4.3.4 多厂商 custom_extensions</h3>
+<pre><code class="language-yaml"># examples/tpcds_semantic_model.yaml:613-631
+custom_extensions:
+  - vendor_name: SALESFORCE
+    data: |
+      {
+        &quot;tableau_workbook_id&quot;: &quot;tpcds_retail_dashboard&quot;,
+        &quot;einstein_enabled&quot;: true,
+        &quot;crm_sync&quot;: {
+          &quot;enabled&quot;: true,
+          &quot;sync_frequency&quot;: &quot;daily&quot;,
+          &quot;customer_mapping&quot;: &quot;customer.c_customer_id -&gt; Account.AccountNumber&quot;
+        }
+      }
+
+  - vendor_name: DBT
+    data: '{&quot;project_name&quot;: &quot;tpcds_analytics&quot;, &quot;models_path&quot;: &quot;models/semantic&quot;}'
+</code></pre>
+<p>注意一个用 <code>|</code> block scalar、一个用 flow style，两种都合法。两个 vendor 的 metadata 在同一份模型里并存，Snowflake 转换器会忽略 SALESFORCE、Databricks 转换器会忽略 DBT——但 round-trip 时都保留。</p>
+<h2 id="44-flights">4.4 Flights 示例拆解（本体层预览）</h2>
+<blockquote>
+<p>来源：<code>examples/flights.yaml:1-100</code></p>
+</blockquote>
+<p>flights.yaml 是<strong>唯一</strong>带 ontology 的端到端示例。它包含：</p>
+<table>
+<thead>
+<tr>
+<th>块</th>
+<th>行数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ontology:</code></td>
+<td>1–539</td>
+<td>业务概念定义（44 concepts: 12 Entity + 32 Value）</td>
+</tr>
+<tr>
+<td><code>semantic_model:</code> (嵌在 <code>ontology_mappings</code>)</td>
+<td>540+</td>
+<td>6 个数据集的逻辑模型</td>
+</tr>
+<tr>
+<td><code>ontology_mappings:</code></td>
+<td>540–1112</td>
+<td>把逻辑字段映射到 ontology 概念</td>
+</tr>
+</tbody>
+</table>
+<p>ontology 块摘录（<code>flights.yaml:25-45</code>）：</p>
+<pre><code class="language-yaml">- concept: NrFeet
+  description: &quot;英尺距离单位&quot;
+  type: ValueType
+  extends: [Decimal]                  # 继承 Decimal 的所有能力
+
+- concept: CancelationCode
+  type: ValueType
+  extends: [String]
+  requires: |
+    CancelationCode == 'A' OR
+    CancelationCode == 'B' OR
+    CancelationCode == 'C' OR
+    CancelationCode == 'D'            # 枚举约束
+</code></pre>
+<p>这是"业务概念先于物理字段"的本体设计——<code>NrFeet</code>、<code>NrMiles</code>、<code>Delay</code>、<code>Distance</code> 这些单位不只是 raw number，而是有语义的 value type。第 10 章深入展开。</p>
+<h2 id="45">4.5 风格约定</h2>
+<table>
+<thead>
+<tr>
+<th>约定</th>
+<th>推荐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>缩进</td>
+<td>2 空格（YAML 默认）</td>
+</tr>
+<tr>
+<td>字段顺序</td>
+<td><code>name</code> → <code>expression</code> → <code>dimension</code> → <code>datatype</code> → <code>description</code> → <code>ai_context</code></td>
+</tr>
+<tr>
+<td><code>expression.dialects</code> 顺序</td>
+<td>ANSI_SQL 在前，vendor-specific 在后</td>
+</tr>
+<tr>
+<td><code>ai_context</code> 何时用 object</td>
+<td>字段/度量层推荐 object；语义模型层可简化为 string</td>
+</tr>
+<tr>
+<td>引用 dataset 字段</td>
+<td><code>dataset.field_name</code> 全限定</td>
+</tr>
+<tr>
+<td>多行 SQL</td>
+<td>用 <code>|</code> block scalar（保留换行）</td>
+</tr>
+<tr>
+<td>注释</td>
+<td>YAML 用 <code>#</code>；多行注释用 <code>#</code> 起每行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="46">4.6 常见错误与修复</h2>
+<table>
+<thead>
+<tr>
+<th>错误消息</th>
+<th>原因</th>
+<th>修复</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>'orders' is not of type 'array'</code></td>
+<td>顶层 <code>semantic_model</code> 必须是 array</td>
+<td>改为 <code>- name: ...</code> 列表</td>
+</tr>
+<tr>
+<td><code>Duplicate field name 'amount' in dataset 'orders'</code></td>
+<td>字段名重复</td>
+<td>重命名或合并</td>
+</tr>
+<tr>
+<td><code>Relationship 'x_to_y' references unknown dataset 'y'</code></td>
+<td>关系引用了不存在的 dataset</td>
+<td>检查 <code>from</code>/<code>to</code></td>
+</tr>
+<tr>
+<td><code>[SQL] Invalid expression</code></td>
+<td>sqlglot 解析失败</td>
+<td>用 <code>uv run validation/validate.py --output json</code> 看具体 dialect 错误</td>
+</tr>
+<tr>
+<td><code>'primary_key' is required</code></td>
+<td>复合主键必须用 array 形式</td>
+<td><code>primary_key: [a, b]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="vs_1">❌ 错误 vs ✅ 正确</h3>
+<pre><code class="language-yaml"># ❌ 错误：primary_key 是字符串
+primary_key: &quot;ss_item_sk&quot;
+
+# ✅ 正确：primary_key 是数组（即使是单列）
+primary_key: [ss_item_sk]
+</code></pre>
+<pre><code class="language-yaml"># ❌ 错误：relationship.from 是 Python 关键字写法
+- name: x_to_y
+  from: orders
+  to: users
+
+# ✅ 正确：YAML 中 `from` 没问题（这是字符串，不是 Python 属性名）
+- name: x_to_y
+  from: orders               # YAML 不在乎
+  to: users
+</code></pre>
+<h2 id="47">4.7 📌 章节要点速查</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>从最小模型起步；TPC-DS 是测试 baseline；flights.yaml 是 ontology 完整案例</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>TPC-DS 被多个 converter 用作测试 fixture；学会它等于看懂所有 converter 的测试</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td><code>custom_extensions</code> 多 vendor 并存是 Ossie 的承重设计；round-trip 永远保留</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="5-cicd">第 5 章 · 验证工具与 CI/CD 集成</h1>
+<blockquote>
+<p><strong>【为用户】</strong> <code>validation/validate.py</code> 是你写模型时的"实时纠错器"。它做 4 类检查：JSON Schema、唯一性、引用完整性、SQL 语法。本章教你如何安装、运行、解读输出。</p>
+<p><strong>【为开发者】</strong> validator 是 OSSIE 工具链中<strong>最简单也最有用的入口</strong>。它没有 CLI 框架，只是 PEP 723 inline script，可作为库 import。集成到 pre-commit hook 只需 5 行。</p>
+<p><strong>【为架构师】</strong> 当前 validator 是 Python 单进程工具；合规测试套件（<code>compliance/</code>）尚在规划。CI 矩阵（12 工作流）已经覆盖每个 converter 独立测试——这是分布式质量保障。</p>
+<p>⚠️ <strong>实现状态提醒</strong>：<code>compliance/</code> 目录仅有 20 行 README 占位（<a href="https://github.com/apache/ossie/blob/main/compliance/README.md"><code>compliance/README.md</code></a>），合规测试套件<strong>尚未实现</strong>。当前的"合规"保证散落在各 converter 的 <code>tests/</code> 目录。</p>
+</blockquote>
+<h2 id="51">5.1 四层校验架构</h2>
+<blockquote>
+<p>来源：<code>validation/validate.py:78-219</code></p>
+</blockquote>
+<pre><code class="language-mermaid">sequenceDiagram
+  participant U as 用户
+  participant V as validate.py
+  participant S as JSON Schema
+  participant SQL as sqlglot
+
+  U-&gt;&gt;V: python validate.py model.yaml
+  V-&gt;&gt;V: load YAML
+  V-&gt;&gt;S: Draft202012Validator&lt;br/&gt;iter_errors()
+  S--&gt;&gt;V: schema errors[]
+  V-&gt;&gt;V: validate_unique_names()&lt;br/&gt;(dataset/field/metric/relationship)
+  V-&gt;&gt;V: validate_references()&lt;br/&gt;(relationship.from/to 必须存在)
+  V-&gt;&gt;SQL: parse expression per dialect
+  SQL--&gt;&gt;V: parse errors[]
+  V-&gt;&gt;U: errors + warnings
+  V-&gt;&gt;U: exit 0 (warning only) / 1 (errors)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>检查层</th>
+<th>函数</th>
+<th>触发错误示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>JSON Schema</strong></td>
+<td><code>validate_schema()</code></td>
+<td><code>'orders' is not of type 'array'</code></td>
+</tr>
+<tr>
+<td><strong>唯一性</strong></td>
+<td><code>validate_unique_names()</code></td>
+<td><code>Duplicate field name 'amount'</code></td>
+</tr>
+<tr>
+<td><strong>引用完整性</strong></td>
+<td><code>validate_references()</code></td>
+<td><code>references unknown dataset 'y'</code></td>
+</tr>
+<tr>
+<td><strong>SQL 语法</strong></td>
+<td><code>validate_sql()</code></td>
+<td><code>Invalid expression</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="52">5.2 安装与运行</h2>
+<h3 id="pep-723-inline-script">作为 PEP 723 inline script（推荐）</h3>
+<p><code>validate.py</code> 头部（verbatim）：</p>
+<pre><code class="language-python">#!/usr/bin/env python3
+#
+# /// script
+# requires-python = &quot;&gt;=3.11&quot;
+# dependencies = [
+#     &quot;jsonschema&gt;=4.26.0&quot;,
+#     &quot;pyyaml&gt;=6.0.3&quot;,
+#     &quot;sqlglot&gt;=30.12.0&quot;,
+# ]
+# ///
+</code></pre>
+<p>这意味着<strong>无需任何环境配置</strong>，<code>uv run</code> 自动处理依赖：</p>
+<pre><code class="language-bash"># 基础运行（自动下载 jsonschema/pyyaml/sqlglot）
+uv run validation/validate.py examples/tpcds_semantic_model.yaml
+
+# 用自定义 schema（实验性 spec）
+uv run validation/validate.py my_model.yaml --schema /tmp/experimental.json
+</code></pre>
+<h3 id="_5">作为模块导入</h3>
+<pre><code class="language-python">from validate import (
+    validate_schema,
+    validate_unique_names,
+    validate_references,
+    validate_sql,
+)
+import yaml
+
+with open(&quot;my_model.yaml&quot;) as f:
+    data = yaml.safe_load(f)
+
+errors = []
+errors.extend(validate_schema(data, SCHEMA))
+errors.extend(validate_unique_names(data))
+errors.extend(validate_references(data))
+errors.extend(validate_sql(data))
+
+if errors:
+    for e in errors:
+        print(f&quot;  {e}&quot;)
+    raise SystemExit(1)
+</code></pre>
+<h2 id="53">5.3 方言映射与跳过策略</h2>
+<blockquote>
+<p>来源：<code>validation/validate.py:64-72</code></p>
+</blockquote>
+<pre><code class="language-python">DIALECT_MAP = {
+    &quot;ANSI_SQL&quot;: None,            # sqlglot 默认方言
+    &quot;SNOWFLAKE&quot;: &quot;snowflake&quot;,
+    &quot;DATABRICKS&quot;: &quot;databricks&quot;,
+    &quot;BIGQUERY&quot;: &quot;bigquery&quot;,
+    # MDX / TABLEAU / MAQL 暂未映射
+}
+
+SKIP_SQL_VALIDATION = {&quot;MDX&quot;, &quot;TABLEAU&quot;, &quot;MAQL&quot;}
+</code></pre>
+<p><strong>两个细节</strong>：</p>
+<ol>
+<li><strong>裸表达式 + <code>SELECT</code> 包裹双重尝试</strong>（<code>validate.py:177-219</code>）：sqlglot 经常需要包一层 <code>SELECT ... FROM</code> 才能解析列引用，所以每个 expression 先裸 parse，失败再包 SELECT parse。</li>
+<li><strong>sqlglot 缺失不阻断</strong>：如果用户没装 sqlglot，SQL 校验层跳过，但<strong>会发 warning</strong>：</li>
+</ol>
+<pre><code>[SQL] Warning: sqlglot not installed, skipping SQL validation.
+Install with: pip install sqlglot
+</code></pre>
+<p>警告不导致 exit code = 1；JSON Schema / 唯一性 / 引用完整性检查<strong>始终运行</strong>。</p>
+<h2 id="54">5.4 错误格式与退出码</h2>
+<pre><code class="language-text">  [Schema] semantic_model -&gt; 0 -&gt; datasets -&gt; 0 -&gt; name: 'orders' is not of type 'string'
+  [Unique] Duplicate field name 'amount' in dataset 'orders'
+  [Reference] Relationship 'orders_to_customers' references unknown dataset 'customer'
+  [SQL] Field 'orders.amount' in model 'sales' (SNOWFLAKE): Invalid expression
+
+Validation FAILED with 4 error(s):
+</code></pre>
+<ul>
+<li>每个错误带 <code>[类别]</code> 前缀</li>
+<li>Schema 错误包含 JSON pointer 路径（<code>-&gt;</code> 分隔）</li>
+<li>Warnings（如 sqlglot 缺失）<strong>不会</strong>计为 error</li>
+<li>exit 0 = 仅警告或全部通过；exit 1 = 至少一个 error</li>
+</ul>
+<h2 id="55-ci">5.5 集成到 CI</h2>
+<p>仓库里 <strong>12 条 CI 工作流</strong>已经在跑测试，但目前<strong>没有</strong>一条专门跑 <code>validate.py</code>。集成方式有两种：</p>
+<h3 id="a-converter-ci">方式 A：在 converter CI 里加一步</h3>
+<pre><code class="language-yaml"># .github/workflows/converter-snowflake-ci.yml
+- name: Validate semantic model examples
+  run: |
+    cd converters/snowflake
+    uv run ../../validation/validate.py ../../examples/tpcds_semantic_model.yaml
+</code></pre>
+<h3 id="b-validation-workflow">方式 B：单独的 validation workflow</h3>
+<pre><code class="language-yaml"># .github/workflows/validate-models.yml
+name: Validate Ossie Models
+on:
+  pull_request:
+    paths:
+      - 'core-spec/**'
+      - 'examples/**'
+      - 'converters/**'
+      - 'validation/validate.py'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: &quot;3.12&quot;
+      - run: |
+          cd validation
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo &quot;${HOME}/.local/bin&quot; &gt;&gt; &quot;${GITHUB_PATH}&quot;
+      - run: uv run validation/validate.py examples/*.yaml
+</code></pre>
+<h2 id="56-pre-commit-hook">5.6 集成到 pre-commit hook</h2>
+<pre><code class="language-yaml"># .pre-commit-config.yaml
+repos:
+  - repo: local
+    hooks:
+      - id: ossie-validate
+        name: Validate Ossie semantic models
+        entry: uv run validation/validate.py
+        language: system
+        files: '\.(yaml|yml)$'
+        pass_filenames: true
+</code></pre>
+<p>提交 <code>*.yaml</code> 时自动跑 validator。本地开发循环：</p>
+<pre><code class="language-bash"># 改完模型先跑这个
+uv run validation/validate.py examples/tpcds_semantic_model.yaml
+# 再 git commit
+</code></pre>
+<h2 id="57-converter-validator">5.7 与 converter 内部 validator 的关系</h2>
+<p>Python validator 是<strong>通用入口</strong>；每个 converter 自己也跑校验：</p>
+<table>
+<thead>
+<tr>
+<th>Converter</th>
+<th>内部 validator</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Salesforce</td>
+<td><code>SchemaValidator.java</code></td>
+<td>Draft V7（<code>networknt/schema-validator</code>）</td>
+</tr>
+<tr>
+<td>OrionBelt</td>
+<td><code>validation.py:validate_osi</code></td>
+<td>可选 deep OBML validation</td>
+</tr>
+<tr>
+<td>Wisdom</td>
+<td>测试中通过 <code>OSIDocument.model_validate()</code></td>
+<td>复用 Python SDK 的 Pydantic</td>
+</tr>
+</tbody>
+</table>
+<p>通用 validator 与 converter-specific validator 是<strong>互补</strong>而非冲突：</p>
+<ul>
+<li><strong>通用 validator</strong>：保证 schema 合规、所有 converter 都能读</li>
+<li><strong>Converter-specific</strong>：保证自家方言、round-trip 语义</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>实现状态提醒</strong>：目前<strong>没有跨 converter 的一致性测试</strong>。每个 converter 的 round-trip 测试是独立的；规划中的 <code>compliance/</code> 套件会解决这个问题。</p>
+</blockquote>
+<h2 id="58">5.8 📌 章节要点速查</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td><code>uv run validation/validate.py file.yaml</code> 一行命令即可；sqlglot 缺失不阻断但会 warning</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>validator 可作为库 import 嵌入流水线；pre-commit hook 5 行可配</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td><code>compliance/</code> 是规划中的合规测试套件；当前各 converter 独立 round-trip 测试</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="6-hub-and-spoke">第 6 章 · 转换器架构：Hub-and-Spoke 深度解读</h1>
+<blockquote>
+<p><strong>【为用户】</strong> 这一章解释为什么 Ossie 是"中立交换所"而不是另一个 dbt。理解这一章后，你能向团队清楚说明"Ossie 转换器给我们带来了什么"。</p>
+<p><strong>【为开发者】</strong> 这一章是"如何写一个新 converter"的前置。9 步流水线（<code>converters/README.md:232-252</code>）是模板；CLI 插件协议（<code>cli/internal/plugin/plugin.go</code>）是部署载体。</p>
+<p><strong>【为架构师】</strong> Hub-and-Spoke 是 Ossie 全部架构哲学的核心；lossy vs lossless 转换的设计取舍影响整个生态的可信度。</p>
+</blockquote>
+<h2 id="61-nn-1-vs-2n">6.1 经济学：N×(N-1) vs 2N</h2>
+<blockquote>
+<p>来源：<code>converters/README.md:33-47</code></p>
+</blockquote>
+<pre><code class="language-mermaid">flowchart LR
+  subgraph 点对点[N×(N-1) = 110 条]
+    SF1[Snowflake]
+    SFDBT1[dbt]
+    SFDBX1[Databricks]
+    SFOMC1[Omni]
+    SFTBL1[Tableau]
+    SFGDC1[GoodData]
+    SFWIS1[WisdomAI]
+    SFSF1[Salesforce]
+    SF1 -.-&gt; SFDBT1
+    SF1 -.-&gt; SFDBX1
+    SF1 -.-&gt; SFOMC1
+    SFDBT1 -.-&gt; SFDBX1
+    SFDBT1 -.-&gt; SFOMC1
+    SFDBX1 -.-&gt; SFOMC1
+    SFDBT1 -.-&gt; SFTBL1
+    SFDBX1 -.-&gt; SFTBL1
+    SFOMC1 -.-&gt; SFTBL1
+    SFDBT1 -.-&gt; SFGDC1
+    SFDBX1 -.-&gt; SFGDC1
+    SFDBT1 -.-&gt; SFWIS1
+    SFDBT1 -.-&gt; SFSF1
+  end
+
+  subgraph Hub[2N = 22 条]
+    SF2[Snowflake]
+    SFDBT2[dbt]
+    SFDBX2[Databricks]
+    SFOMC2[Omni]
+    SFTBL2[Tableau]
+    SFGDC2[GoodData]
+    SFWIS2[WisdomAI]
+    SFSF2[Salesforce]
+    HUB{{Ossie Hub}}
+
+    SF2 &lt;--&gt; HUB
+    SFDBT2 &lt;--&gt; HUB
+    SFDBX2 &lt;--&gt; HUB
+    SFOMC2 &lt;--&gt; HUB
+    SFTBL2 &lt;--&gt; HUB
+    SFGDC2 &lt;--&gt; HUB
+    SFWIS2 &lt;--&gt; HUB
+    SFSF2 &lt;--&gt; HUB
+  end
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>接入策略</th>
+<th>N=5</th>
+<th>N=8</th>
+<th>N=11（当前）</th>
+<th>N=20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>点对点</strong></td>
+<td>20</td>
+<td>56</td>
+<td>110</td>
+<td>380</td>
+</tr>
+<tr>
+<td><strong>Hub-and-Spoke</strong></td>
+<td>10</td>
+<td>16</td>
+<td>22</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>当 N=11（当前规模），点对点需要 <strong>110</strong> 条 converter；Ossie 模式只需 <strong>22</strong> 条——节省 80% 工程量。</p>
+</blockquote>
+<h2 id="62">6.2 转换器的契约</h2>
+<p>每个 converter 必须满足的隐式契约：</p>
+<pre><code class="language-mermaid">classDiagram
+  class Converter {
+    +输入: 1 份 Ossie YAML/JSON 或 vendor 文档
+    +输出: 1 份 vendor 文档 或 Ossie YAML/JSON
+    +保证1: round-trip 保留 custom_extensions
+    +保证2: 缺方言时回退 ANSI_SQL 并 warning
+    +保证3: 复合主键按位置对应
+    +保证4: ai_context 不静默丢弃
+  }
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>契约</th>
+<th>来源</th>
+<th>实现位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Round-trip fidelity</strong></td>
+<td><code>docs/index.md:278-279</code></td>
+<td>每个 converter 的 <code>CustomExtensionHandler</code></td>
+</tr>
+<tr>
+<td><strong>方言回退</strong></td>
+<td><code>converters/README.md:241-244</code></td>
+<td><code>_extract_expression</code> 函数族</td>
+</tr>
+<tr>
+<td><strong>复合主键位置对应</strong></td>
+<td><code>converters/README.md:158-165</code></td>
+<td>各 converter 的 <code>_convert_relationship</code></td>
+</tr>
+<tr>
+<td><strong>AI 上下文保留</strong></td>
+<td><code>converters/README.md:262</code></td>
+<td>缺 vendor 映射时进 <code>custom_extensions[COMMON]</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="63-export-import">6.3 两方向：Export 与 Import</h2>
+<pre><code class="language-mermaid">flowchart LR
+  subgraph Import[&quot;Import (Vendor → Ossie)&quot;]
+    V1[vendor YAML/JSON]
+    V1 --&gt; Parse[解析 vendor 模型]
+    Parse --&gt; Map1[映射字段/关系/度量]
+    Map1 --&gt; Stash[未映射 metadata&lt;br/&gt;→ custom_extensions]
+    Stash --&gt; Out1[Ossie YAML]
+  end
+
+  subgraph Export[&quot;Export (Ossie → Vendor)&quot;]
+    Y1[Ossie YAML]
+    Y1 --&gt; Validate[校验]
+    Validate --&gt; Map2[映射到 vendor 字段]
+    Map2 --&gt; PickExt[提取目标 vendor extensions]
+    PickExt --&gt; Out2[vendor YAML/JSON]
+  end
+
+  Out1 -.round-trip.-&gt; Y1
+  Out2 -.round-trip.-&gt; V1
+</code></pre>
+<h3 id="9-convertersreadmemd232-252">9 步实现流水线（来源：<code>converters/README.md:232-252</code>）</h3>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>做什么</th>
+<th>关键点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>校验输入</strong></td>
+<td>加载 Ossie YAML，跑 schema 校验</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>解析 Ossie 模型</strong></td>
+<td>遍历 <code>semantic_model[]</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>映射 datasets</strong></td>
+<td><code>name</code>/<code>source</code>/<code>primary_key</code>/<code>unique_keys</code>/<code>fields</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>映射 fields</strong> + <strong>方言选择</strong></td>
+<td>vendor → ANSI_SQL → warn</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>映射 relationships</strong></td>
+<td>复合键按列序对应</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>映射 metrics</strong></td>
+<td>同样方言选择；解析 dataset 引用</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>应用 custom_extensions</strong></td>
+<td>提取目标 vendor 的；保留其他</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>保留 AI 上下文</strong></td>
+<td>vendor 支持则映射；不支持则进 <code>COMMON</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>校验输出</strong></td>
+<td>用 vendor 自家的 schema/tool 验证</td>
+</tr>
+</tbody>
+</table>
+<h2 id="64-6">6.4 边缘场景的 6 种处理范式</h2>
+<blockquote>
+<p>来源：<code>converters/README.md:255-262</code></p>
+</blockquote>
+<pre><code class="language-mermaid">flowchart TD
+  Q{边缘场景?}
+  Q --&gt;|缺 vendor 方言| S1[Fallback ANSI_SQL + warn]
+  Q --&gt;|计算字段含 vendor 语法| S2[要求 vendor 方言&lt;br/&gt;否则 error]
+  Q --&gt;|复合主键 vendor 不支持| S3[flatten 或文档化限制]
+  Q --&gt;|跨数据集度量| S4[解析全限定字段名&lt;br/&gt;断言引用的 dataset 存在]
+  Q --&gt;|未知 vendor extension| S5[保留不丢弃&lt;br/&gt;留给 round-trip]
+  Q --&gt;|ai_context vendor 不支持| S6[放进 custom_extensions COMMON]
+
+  S1 --&gt; R[输出]
+  S2 --&gt; R
+  S3 --&gt; R
+  S4 --&gt; R
+  S5 --&gt; R
+  S6 --&gt; R
+</code></pre>
+<h3 id="snowflake-converter-converterssnowflakesrcossie_snowflakeconverterpy376-414">范例：Snowflake converter 的方言选择（<code>converters/snowflake/src/ossie_snowflake/converter.py:376-414</code>）</h3>
+<pre><code class="language-python">for d in dialects:
+    dialect_name = (d.get(&quot;dialect&quot;) or &quot;&quot;).upper()
+    if dialect_name == &quot;SNOWFLAKE&quot;:
+        snowflake_expr = d.get(&quot;expression&quot;)
+    elif dialect_name == &quot;ANSI_SQL&quot;:
+        ansi_expr = d.get(&quot;expression&quot;)
+
+if snowflake_expr is not None:
+    return snowflake_expr
+if ansi_expr is not None:
+    return ansi_expr
+# warn + skip
+warn(f&quot;field {field_name}: no SNOWFLAKE or ANSI_SQL expression&quot;)
+return None
+</code></pre>
+<h3 id="databricks-yaml-12-convertersdatabrickssrcossie_databricks_commonpy113-128">范例：Databricks 的 YAML 1.2 布尔处理（<code>converters/databricks/src/ossie_databricks/_common.py:113-128</code>）</h3>
+<pre><code class="language-python">class _Yaml12Loader(yaml.SafeLoader):
+    pass
+
+# YAML 1.2 把 on/off 视为字符串，不当布尔
+# 否则 join `on:` 键会被解析为 True，丢失连接条件
+</code></pre>
+<p>这是 Databricks / Omni converter 都遭遇的实战坑：YAML 1.1 的 <code>on/off/yes/no</code> 是布尔，但语义模型里 <code>on:</code> 是 join 关键字。两种 converter 都强制使用 YAML 1.2 加载器。</p>
+<h2 id="65-cli-dispatch-converter">6.5 插件协议：CLI 如何 dispatch converter</h2>
+<blockquote>
+<p>来源：<code>cli/internal/plugin/plugin.go:30-67</code>、<code>cli/internal/plugin/discover.go:25-50</code></p>
+</blockquote>
+<pre><code class="language-mermaid">sequenceDiagram
+  participant U as 用户
+  participant CLI as ossie CLI
+  participant PD as plugin.Discover
+  participant INV as plugin.Invoke
+  participant P as ossie-snowflake
+
+  U-&gt;&gt;CLI: ossie convert --to snowflake -i in.yaml
+  CLI-&gt;&gt;PD: Discover(~/.ossie/plugins)
+  PD-&gt;&gt;CLI: [{name: snowflake, plugin.yaml}]
+  CLI-&gt;&gt;CLI: 选 convert.from_ossie.invoke
+  CLI-&gt;&gt;INV: Invoke(ctx, [&quot;ossie-snowflake&quot;, &quot;from-ossie&quot;], req)
+  INV-&gt;&gt;P: spawn subprocess, pipe JSON request
+  P-&gt;&gt;P: 转换逻辑
+  P-&gt;&gt;INV: JSON response {files: {...}, issues: [...]}
+  INV-&gt;&gt;CLI: Response
+  CLI-&gt;&gt;U: 写入 ./ossie-output/snowflake/from_ossie/
+</code></pre>
+<h3 id="plugin-manifestpluginyaml">Plugin manifest（plugin.yaml）格式</h3>
+<pre><code class="language-yaml"># ~/.ossie/plugins/snowflake/plugin.yaml
+ossie_plugin_spec: &quot;0.1.0&quot;
+ossie_spec_version: &quot;&gt;=0.2.0&quot;
+name: snowflake
+platform: Snowflake
+convert:
+  to_ossie:
+    invoke: [&quot;ossie-snowflake&quot;, &quot;to-ossie&quot;]
+    accepts: [&quot;.yaml&quot;, &quot;.json&quot;]
+  from_ossie:
+    invoke: [&quot;ossie-snowflake&quot;, &quot;from-ossie&quot;]
+</code></pre>
+<p>发现规则（<code>discover.go:25-50</code>）：</p>
+<ul>
+<li>扫描 <code>~/.ossie/plugins/</code> 下每个子目录</li>
+<li>找 <code>plugin.yaml</code>，parse YAML</li>
+<li>不认识 <code>ossie_plugin_spec</code> 字段的目录发出 warning 并跳过</li>
+<li><strong>未知字段被静默忽略</strong>（forward compatibility）</li>
+</ul>
+<h3 id="ipc-json-over-stdinstdout">IPC 协议（JSON over stdin/stdout）</h3>
+<blockquote>
+<p>来源：<code>cli/internal/plugin/invoke.go:13-83</code></p>
+</blockquote>
+<pre><code class="language-go">type Request struct {
+    Files map[string]string `json:&quot;files&quot;`     // 文件名 -&gt; 内容
+}
+
+type Response struct {
+    Files  map[string]string `json:&quot;files&quot;`
+    Issues []Issue           `json:&quot;issues,omitempty&quot;`
+}
+
+type Issue struct {
+    Severity string `json:&quot;severity&quot;`           // &quot;warning&quot; | &quot;error&quot;
+    Message  string `json:&quot;message&quot;`
+    Path     string `json:&quot;path,omitempty&quot;`
+}
+</code></pre>
+<p><strong>关键不变量</strong>（<code>invoke.go:41-43</code>）：</p>
+<blockquote>
+<p><em>"Non-empty <code>Issues</code> is NOT a Go error. The caller must inspect severities."</em></p>
+</blockquote>
+<p>也就是说，plugin 进程 exit code = 0 但 <code>Issues</code> 非空时，调用方需要根据 severity 决定是否视为失败。</p>
+<h2 id="66">6.6 现状标注</h2>
+<blockquote>
+<p>⚠️ <strong>实现状态提醒</strong>：</p>
+<ul>
+<li><code>cli/cmd/convert.go:46-48</code> 当前只打印 <code>"not yet implemented"</code>。今天请用各 converter 自带的 CLI（如 <code>ossie-snowflake -i in -o out</code>）。</li>
+<li><code>cli/cmd/plugin/install.go</code> 同样是 stub。需要手动把 converter 的可执行文件放到 <code>~/.ossie/plugins/&lt;name&gt;/</code> 下。</li>
+</ul>
+</blockquote>
+<h2 id="67">6.7 📌 章节要点速查</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>Hub-and-Spoke 把 N=11 的连接器从 110 条降到 22 条；这是 Ossie 的核心经济性</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>9 步流水线是写新 converter 的模板；CLI 插件协议已就绪但 stub 待补</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td>Round-trip fidelity 是"承重墙"——custom_extensions 必须永远保留</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="7-11-converter">第 7 章 · 11 个 Converter 横向评测</h1>
+<blockquote>
+<p><strong>【为用户】</strong> 这一章是"选哪个 converter 接入我的工具栈"的速查表。每家都给：方向、语言、CLI 命令、数据类型映射、测试覆盖、当前状态。</p>
+<p><strong>【为开发者】</strong> 9 个 Python converter 都遵循 <code>pyproject.toml + src/&lt;package&gt;/cli.py + converter.py</code> 的统一结构；2 个 Java converter（Salesforce、Polaris）走 Maven pipeline 模式。可以挑最近的一家"克隆-修改"。</p>
+<p><strong>【为架构师】</strong> Java vs Python 选型与目标平台的 SDK 主流语言一致：Snowflake/dbt/Databricks 主用 Python，所以选 Python；Salesforce/Polaris 的官方 SDK 在 JVM，所以选 Java。这是工程层面的"平台匹配"原则。</p>
+</blockquote>
+<h2 id="71">7.1 总览矩阵</h2>
+<table>
+<thead>
+<tr>
+<th>Vendor</th>
+<th>语言</th>
+<th>版本</th>
+<th>CLI</th>
+<th>方向</th>
+<th>测试</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Snowflake</strong></td>
+<td>Python</td>
+<td><code>0.2.0.dev0</code></td>
+<td>✅</td>
+<td>导出</td>
+<td>84</td>
+<td>🚧 Active dev</td>
+</tr>
+<tr>
+<td><strong>Salesforce</strong></td>
+<td>Java</td>
+<td>39</td>
+<td>✅</td>
+<td>双向</td>
+<td>32</td>
+<td>✅ Stable</td>
+</tr>
+<tr>
+<td><strong>Polaris</strong></td>
+<td>Java</td>
+<td>39</td>
+<td>✅</td>
+<td>双向</td>
+<td>14</td>
+<td>🚧 Active dev</td>
+</tr>
+<tr>
+<td><strong>Databricks</strong></td>
+<td>Python</td>
+<td><code>0.2.0.dev0</code></td>
+<td>✅</td>
+<td>双向</td>
+<td>77</td>
+<td>🚧 Active dev</td>
+</tr>
+<tr>
+<td><strong>dbt</strong></td>
+<td>Python</td>
+<td><code>0.2.0.dev0</code></td>
+<td>✅</td>
+<td>双向</td>
+<td>92</td>
+<td>✅ Stable</td>
+</tr>
+<tr>
+<td><strong>GoodData</strong></td>
+<td>Python</td>
+<td><code>0.2.0.dev0</code></td>
+<td>❌</td>
+<td>双向</td>
+<td>46</td>
+<td>🚧 Active dev</td>
+</tr>
+<tr>
+<td><strong>NVIDIA GSF</strong></td>
+<td>Python</td>
+<td><code>0.1.0.dev0</code></td>
+<td>✅</td>
+<td>导出</td>
+<td>40</td>
+<td>🚧 Active dev</td>
+</tr>
+<tr>
+<td><strong>Honeyew</strong></td>
+<td>Python</td>
+<td><code>0.2.0.dev0</code></td>
+<td>✅</td>
+<td>导出</td>
+<td>50</td>
+<td>🚧 Active dev</td>
+</tr>
+<tr>
+<td><strong>Omni</strong></td>
+<td>Python</td>
+<td><code>0.2.0.dev0</code></td>
+<td>✅</td>
+<td>双向</td>
+<td>83</td>
+<td>🚧 Active dev</td>
+</tr>
+<tr>
+<td><strong>OrionBelt</strong></td>
+<td>Python</td>
+<td><code>0.2.0.dev0</code></td>
+<td>✅</td>
+<td>双向</td>
+<td>154</td>
+<td>✅ Stable</td>
+</tr>
+<tr>
+<td><strong>WisdomAI</strong></td>
+<td>Python</td>
+<td><code>0.2.0.dev0</code></td>
+<td>✅</td>
+<td>双向</td>
+<td>27</td>
+<td>🚧 Active dev</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>测试总数</strong>：656+，覆盖最广的是 OrionBelt (154)，最小是 Polaris (14)。</p>
+</blockquote>
+<h2 id="72-python-9">7.2 Python 转换器群（9 家）</h2>
+<h3 id="721-snowflake-ossie-snowflake">7.2.1 Snowflake — <code>ossie-snowflake</code></h3>
+<pre><code class="language-bash">ossie-snowflake -i model.yaml -o snowflake_model.yaml
+</code></pre>
+<p><strong>特点</strong>：单模块实现（<code>converter.py</code> 546 行），导出方向。方言选择：<code>SNOWFLAKE</code> → <code>ANSI_SQL</code> → warn。<strong>子查询检测</strong>支持 <code>WITH</code>/<code>SELECT</code> 前缀（注意必须空白后跟关键字以避免误判 <code>WITH_TABLE</code>）。</p>
+<p><strong>数据类型映射</strong>（<code>converters/snowflake/src/ossie_snowflake/converter.py:38-48</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>Ossie</th>
+<th>Snowflake</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>String</code></td>
+<td><code>VARCHAR</code></td>
+</tr>
+<tr>
+<td><code>Integer</code></td>
+<td><code>NUMBER(38,0)</code></td>
+</tr>
+<tr>
+<td><code>Decimal</code></td>
+<td><code>NUMBER</code></td>
+</tr>
+<tr>
+<td><code>Float</code></td>
+<td><code>FLOAT</code></td>
+</tr>
+<tr>
+<td><code>Boolean</code></td>
+<td><code>BOOLEAN</code></td>
+</tr>
+<tr>
+<td><code>Date</code></td>
+<td><code>DATE</code></td>
+</tr>
+<tr>
+<td><code>Time</code></td>
+<td><code>TIME</code></td>
+</tr>
+<tr>
+<td><code>DateTime</code></td>
+<td><code>TIMESTAMP_NTZ</code></td>
+</tr>
+<tr>
+<td><code>DateTimeTz</code></td>
+<td><code>TIMESTAMP_TZ</code></td>
+</tr>
+<tr>
+<td><code>Opaque</code></td>
+<td>(omit + warn)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="722-dbt-ossie-dbt">7.2.2 dbt — <code>ossie-dbt</code></h3>
+<pre><code class="language-bash"># dbt → Ossie
+ossie-dbt msi-to-osi -i semantic_manifest.json -o model.yaml
+
+# Ossie → dbt
+ossie-dbt osi-to-msi -i model.yaml -o semantic_manifest.json
+</code></pre>
+<p><strong>特点</strong>：通过 <code>metricflow&gt;=0.209.0</code> 解析 dbt 的 <code>semantic_manifest.json</code>。<strong>字段分类</strong>优先级：PK → UNIQUE entity → FK → TIME → CATEGORICAL。SQLGlot 用来识别 ratio 度量（<code>(a)/(b)</code> 自动生成子度量）。<strong>snapshot 测试</strong>用 <code>syrupy</code>（<code>tests/__snapshots__/*.ambr</code>）。</p>
+<p><strong>已知降级</strong>（4 类 <code>ConverterIssueType</code>）：</p>
+<ul>
+<li><code>CONVERSION_METRIC_DROPPED</code></li>
+<li><code>PRIVATE_METRIC_DROPPED</code></li>
+<li><code>NATURAL_ENTITY_DROPPED</code></li>
+<li><code>CUMULATIVE_SEMANTICS_LOSS</code></li>
+</ul>
+<h3 id="723-gooddata-ossie-gooddata">7.2.3 GoodData — <code>ossie-gooddata</code></h3>
+<p><strong>特点</strong>：库形式（无 CLI），导出 + 导入 GoodData LDM JSON。<strong>双方言</strong>：<code>ANSI_SQL</code> + <code>MAQL</code>。日期日期时识别由 <code>custom_extensions[GOODDATA].date_dimension: true</code> 标记。</p>
+<p><strong>类型映射</strong>（<code>datatype_mapping.py:24-91</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>Ossie</th>
+<th>GoodData</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>String</code></td>
+<td><code>STRING</code></td>
+</tr>
+<tr>
+<td><code>Integer</code></td>
+<td><code>INT</code></td>
+</tr>
+<tr>
+<td><code>Decimal</code></td>
+<td><code>NUMERIC</code></td>
+</tr>
+<tr>
+<td><code>Float</code></td>
+<td>(NUMERIC + warn)</td>
+</tr>
+<tr>
+<td><code>Boolean</code></td>
+<td><code>BOOLEAN</code></td>
+</tr>
+<tr>
+<td><code>Date</code></td>
+<td><code>DATE</code></td>
+</tr>
+<tr>
+<td><code>DateTime</code></td>
+<td><code>TIMESTAMP</code></td>
+</tr>
+<tr>
+<td><code>DateTimeTz</code></td>
+<td><code>TIMESTAMP_TZ</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>度量不在转换范围内</strong>（GoodData 度量是 MAQL report-time，Ossie SQL 模型无法表达）。</p>
+</blockquote>
+<h3 id="724-databricks-ossie-databricks">7.2.4 Databricks — <code>ossie-databricks</code></h3>
+<pre><code class="language-bash">ossie-databricks export -i model.yaml -o mv.yaml
+ossie-databricks import -i mv.yaml -o model.yaml
+</code></pre>
+<p><strong>特点</strong>：<strong>YAML 1.2 强制</strong>（避免 <code>on:</code>/<code>off:</code> 被当布尔）。<strong>BFS 连接树</strong>构建 Metric View 的 join 结构；<strong>菱形 fan-out</strong>（一个 dataset 两条路径到达）展开为多别名节点。<code>rely.at_most_one_match</code> 转 Ossie <code>unique_keys</code>；<code>source.*</code> 通配列被拒绝（Ossie 无表示）。</p>
+<p><strong>离线</strong>：无外部连接，纯 YAML↔YAML 转换。</p>
+<h3 id="725-nvidia-gsf-ossie-gsf">7.2.5 NVIDIA GSF — <code>ossie-gsf</code></h3>
+<pre><code class="language-bash">ossie-gsf export --input model.yaml --output gsf.yaml --database-name tpcds
+ossie-gsf import --input gsf.yaml --output model.yaml --name my_model
+</code></pre>
+<p><strong>特点</strong>：2168 行单文件 converter。<strong>SQLGlot 多方言</strong>解析（11 候选），无法解析时原样保留。<strong>确定性 UUIDv5 ID</strong> 保证重复运行字节一致。<strong>完整原生 GSF 文档</strong>塞进 <code>custom_extensions[NVIDIA_GSF]</code> 实现 byte-faithful round-trip。</p>
+<blockquote>
+<p><strong>GSF 不支持的 Ossie 特性</strong>：<code>ai_context</code>、synonyms、expression-dialect variants、<code>custom_extensions</code> 槽——全部静默丢失。</p>
+</blockquote>
+<h3 id="726-honeyew-honeydew-osi">7.2.6 Honeyew — <code>honeydew-osi</code></h3>
+<pre><code class="language-bash">honeydew-osi osi-to-honeydew -i model.yaml -o workspace_dir/
+honeydew-osi honeydew-to-osi -i workspace_dir/ -o model.yaml
+</code></pre>
+<p><strong>特点</strong>：转换到 Honeydew <strong>workspace 目录</strong>（<code>workspace.yml</code> + <code>schema/&lt;entity&gt;/</code> + <code>datasets/</code> + <code>attributes/</code> + <code>metrics/</code>）。<strong><code>primary_key</code> 既双</strong>导出 PK + 一个 <code>unique_keys</code>，确保 Honeydew 端 join 不会丢信息。<strong><code>ai_context</code> 映射到 Honeydew 原生字段</strong>；多余 metadata 进 Honeydew <code>metadata.osi</code>。</p>
+<h3 id="727-omni-osi-omni">7.2.7 Omni — <code>osi-omni</code></h3>
+<pre><code class="language-bash">osi-omni export -i model.yaml -o omni_model/ [--base-view NAME] [--dialect DIALECT]
+osi-omni import -i omni_model/ [-o model.yaml]
+</code></pre>
+<p><strong>特点</strong>：转换到 Omni <strong>model 目录</strong>（<code>model.yaml</code> + <code>relationships.yaml</code> + <code>views/*.view.yaml</code> + <code>topics/*.topic.yaml</code>）。<strong>YAML 1.2</strong> 强制。<strong>Omni 标识符正则</strong>放宽（接受 <code>_fivetran_id</code>、<code>camelCase</code>）。<strong><code>${view.column}</code> 模板</strong>翻译为 Ossie 字段引用。</p>
+<blockquote>
+<p><strong>Omni 视图/主题</strong> 一对一映射；<code>--base-view</code> 选 root（默认 FK-sink dataset）。</p>
+</blockquote>
+<h3 id="728-orionbelt-ossie-orionbelt">7.2.8 OrionBelt — <code>ossie-orionbelt</code></h3>
+<pre><code class="language-bash">ossie-orionbelt obml-to-osi [-i|-o] [--ontology] [--no-validate]
+ossie-orionbelt osi-to-obml [-i|-o] [--database NAME] [--schema NAME] [--no-validate]
+</code></pre>
+<p><strong>特点</strong>：OBML YAML ↔ OSI YAML。<strong>本体层导出</strong>（<code>--ontology</code>）。<strong>v0.1.x 兼容 shim</strong> 把 <code>OBSL</code> 扩展中的 PK/UK 提升到 v0.2 first-class。<strong>第三方 vendor extensions</strong>（<code>SNOWFLAKE</code>/<code>DBT</code>/<code>SALESFORCE</code>/<code>GOODDATA</code> 等）在所有层级保留。<strong>未转换的度量</strong>保留进 <code>OSI</code> 扩展并打 <code>LOSSY:</code> warning。</p>
+<blockquote>
+<p><strong>154 测试</strong>——含 property-based round-trip + TPC-DS baseline + "no silent loss" 验证集。</p>
+</blockquote>
+<h3 id="729-wisdomai-ossie-wisdom">7.2.9 WisdomAI — <code>ossie-wisdom</code></h3>
+<pre><code class="language-bash">ossie-wisdom wisdom-to-osi -i domain-export.json -o model.yaml
+ossie-wisdom osi-to-wisdom -i model.yaml -o domain-export.json
+</code></pre>
+<p><strong>特点</strong>：转换 WisdomAI domain export JSON（<code>1.0</code> 格式）。<strong>Per-connection 方言映射</strong>：<code>snowflake → SNOWFLAKE</code>、<code>databricks → DATABRICKS</code>、<code>bigquery → BIGQUERY</code>，其它回退 <code>ANSI_SQL</code> + warning。</p>
+<p><strong>Cardinality 处理</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>Wisdom</th>
+<th>Ossie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MANY_TO_ONE</code></td>
+<td><code>from = left, to = right</code></td>
+</tr>
+<tr>
+<td><code>ONE_TO_MANY</code></td>
+<td><code>from = right, to = left</code></td>
+</tr>
+<tr>
+<td><code>ONE_TO_ONE</code></td>
+<td><code>from = left</code> + ai_context note</td>
+</tr>
+<tr>
+<td><code>MANY_TO_MANY</code></td>
+<td><code>from = left</code> + ai_context note + <code>CARDINALITY_LOSS</code> warning</td>
+</tr>
+</tbody>
+</table>
+<h2 id="73-java-2">7.3 Java 转换器群（2 家）</h2>
+<h3 id="731-polaris-osipolarisconverter">7.3.1 Polaris — <code>OsiPolarisConverter</code></h3>
+<pre><code class="language-bash"># 与 live Polaris (Iceberg REST) 通信
+java -jar ossie-polaris-converter.jar import \
+  --url http://polaris:8181/api/catalog \
+  --catalog my_catalog
+
+java -jar ossie-polaris-converter.jar export \
+  --url http://polaris:8181/api/catalog \
+  --catalog my_catalog \
+  -o model.yaml
+</code></pre>
+<p><strong>特点</strong>：<strong>唯一连接活的 catalog 的 converter</strong>。1 Polaris namespace ↔ 1 Ossie semantic_model。<code>dataset.source</code> = <code>catalog.namespace.table</code>。<code>identifier-field-ids</code> → <code>dataset.primary_key</code>。<strong>嵌套 Iceberg 类型</strong>重新生成 ID 维持 Iceberg ID-uniqueness。</p>
+<p><strong>类型映射</strong>（<code>IcebergTypeMapper.java</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>Iceberg</th>
+<th>Ossie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>boolean</code></td>
+<td><code>Boolean</code></td>
+</tr>
+<tr>
+<td><code>int</code> / <code>long</code></td>
+<td><code>Integer</code></td>
+</tr>
+<tr>
+<td><code>float</code> / <code>double</code></td>
+<td><code>Float</code></td>
+</tr>
+<tr>
+<td><code>decimal(18,2)</code></td>
+<td><code>Decimal</code></td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td><code>Date</code></td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td><code>Time</code></td>
+</tr>
+<tr>
+<td><code>timestamp</code> / <code>timestamp_ns</code></td>
+<td><code>DateTime</code></td>
+</tr>
+<tr>
+<td><code>timestamptz</code> / <code>timestamptz_ns</code></td>
+<td><code>DateTimeTz</code></td>
+</tr>
+<tr>
+<td><code>string</code></td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td>其它</td>
+<td><code>Opaque</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="732-salesforce-osisalesforceconverter">7.3.2 Salesforce — <code>OsiSalesforceConverter</code></h3>
+<pre><code class="language-bash"># Ossie → Salesforce
+java -jar ossie-salesforce-converter.jar toSF -i model.yaml -o sf_model.json
+
+# Salesforce → Ossie
+java -jar ossie-salesforce-converter.jar toOSI -i sf_model.json -o model.yaml
+</code></pre>
+<p><strong>特点</strong>：<strong>Pipeline 架构</strong>——handlers 通过 <code>osi-salesforce-converter-config.yaml</code> 串联：</p>
+<pre><code class="language-yaml"># converters/salesforce/src/main/resources/osi-salesforce-converter-config.yaml
+pipelines:
+  osiToSalesforce:
+    - DatasetMappingHandler
+    - FieldMappingHandler
+    - RelationshipMappingHandler
+    - MetricMappingHandler
+    - SemanticModelMappingHandler
+</code></pre>
+<p>每个 Handler 实现 <code>PipelineStep.execute(sourceData, outputData, mappings)</code>，按顺序处理。</p>
+<p><strong>类型映射</strong>（<code>SalesforceDataTypeMapper.java</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>Salesforce</th>
+<th>Ossie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Text</code> / <code>Email</code> / <code>PhoneNumber</code> / <code>Url</code></td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td><code>Number</code> / <code>Currency</code> / <code>Percentage</code></td>
+<td><code>Decimal</code></td>
+</tr>
+<tr>
+<td><code>Boolean</code></td>
+<td><code>Boolean</code></td>
+</tr>
+<tr>
+<td><code>Date</code></td>
+<td><code>Date</code></td>
+</tr>
+<tr>
+<td><code>DateTime</code></td>
+<td><code>DateTimeTz</code>（<strong>lossy</strong>）</td>
+</tr>
+<tr>
+<td><code>Geo</code></td>
+<td><code>Opaque</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Schema validation</strong> 用 <code>com.networknt/schema-validator</code> (SpecVersion V7)。<strong>DateTime → DateTimeTz</strong> 是有损转换，会打 warning。</p>
+</blockquote>
+<h2 id="74">7.4 状态图</h2>
+<pre><code class="language-mermaid">stateDiagram-v2
+  [*] --&gt; 待实现: idea
+  待实现 --&gt; 活跃: scaffold + 首批 PR
+  活跃 --&gt; 稳定: 测试覆盖 + 文档
+  稳定 --&gt; 活跃: 0.2.0 spec 演进
+
+  note right of 活跃
+    Snowflake / Polaris / Databricks
+    GoodData / GSF / Honeydew / Omni
+    WisdomAI
+  end note
+
+  note right of 稳定
+    Salesforce / dbt / OrionBelt
+  end note
+</code></pre>
+<h2 id="75">7.5 选型决策表</h2>
+<table>
+<thead>
+<tr>
+<th>你的工具栈</th>
+<th>推荐 converter</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Snowflake + BI</td>
+<td>Snowflake</td>
+<td>导出，覆盖最广</td>
+</tr>
+<tr>
+<td>Snowflake + dbt</td>
+<td>dbt + Snowflake</td>
+<td>dbt 双向 + Snowflake 导出</td>
+</tr>
+<tr>
+<td>Databricks 平台</td>
+<td>Databricks</td>
+<td>YAML 离线转换</td>
+</tr>
+<tr>
+<td>Polaris (Iceberg)</td>
+<td>Polaris</td>
+<td>唯一支持 live catalog</td>
+</tr>
+<tr>
+<td>Salesforce CRM</td>
+<td>Salesforce</td>
+<td>双 pipeline、成熟稳定</td>
+</tr>
+<tr>
+<td>dbt 全栈</td>
+<td>dbt</td>
+<td>154 测试、最成熟</td>
+</tr>
+<tr>
+<td>GoodData BI</td>
+<td>GoodData</td>
+<td>双方言 LDM</td>
+</tr>
+<tr>
+<td>NVIDIA AI / Fabric</td>
+<td>GSF</td>
+<td>完整 round-trip 保留</td>
+</tr>
+<tr>
+<td>Honeydew 数据建模</td>
+<td>Honeydew</td>
+<td>workspace 目录映射</td>
+</tr>
+<tr>
+<td>Omni BI</td>
+<td>Omni</td>
+<td>model 目录 + view/topic</td>
+</tr>
+<tr>
+<td>业务建模平台</td>
+<td>OrionBelt</td>
+<td>本体导出 + v0.1.x 兼容</td>
+</tr>
+<tr>
+<td>WisdomAI domain</td>
+<td>WisdomAI</td>
+<td>per-connection 方言</td>
+</tr>
+</tbody>
+</table>
+<h2 id="76">7.6 📌 章节要点速查</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>11 个 converter 中 Snowflake/dbt/Salesforce/Polaris/Databricks 5 个覆盖最主流工具栈</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>Python converter 模板：<code>_common.py + cli.py + &lt;vendor&gt;_to_osi.py + osi_to_&lt;vendor&gt;.py</code>；Java converter 模板：PipelineStep + HandlerFactory</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td>Java/Python 选型匹配目标平台 SDK 主流语言；Polaris 是唯一连 live catalog 的 converter</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="8-python-sdkapache-ossie">第 8 章 · Python SDK（apache-ossie）深入</h1>
+<blockquote>
+<p><strong>【为用户】</strong> 这一章告诉你：当你在 Python 里需要读写 Ossie 文档时，不必手写 YAML/JSON 解析器——<code>apache-ossie</code> 包帮你做完了。</p>
+<p><strong>【为开发者】</strong> Python SDK 是所有 Python converter 的<strong>地基</strong>。<code>OSIDocument.model_validate(yaml.safe_load(open('model.yaml')))</code> 是标准入口；Pydantic v2 + frozen 模型保证 immutable + 类型安全。</p>
+<p><strong>【为架构师】</strong> SDK 的 224 行 Pydantic 模型是规范的可执行版本。任何 spec 字段新增都会先改 <code>osi-schema.json</code>，SDK 必须紧跟——CI 中的 <code>test_data_type_enum_matches_core_schema</code>（<code>python/tests/test_models.py:74-86</code>）保证这一点。</p>
+</blockquote>
+<h2 id="81">8.1 安装</h2>
+<pre><code class="language-bash"># 当前仓库内开发模式（apache-ossie 还未发布到 PyPI）
+cd python
+uv sync
+
+# 未来 PyPI 发布后
+uv add apache-ossie
+pip install apache-ossie
+</code></pre>
+<p><code>pyproject.toml</code> 关键依赖（verbatim）：</p>
+<pre><code class="language-toml">[project]
+name = &quot;apache-ossie&quot;
+version = &quot;0.2.0.dev0&quot;
+requires-python = &quot;&gt;=3.11&quot;
+dependencies = [
+    &quot;pydantic&gt;=2.0&quot;,
+    &quot;PyYAML&gt;=6.0&quot;,
+]
+</code></pre>
+<h2 id="82">8.2 模块全景</h2>
+<pre><code class="language-mermaid">classDiagram
+  direction LR
+  class OSIDialect {
+    &lt;&lt;enum&gt;&gt;
+    +ANSI_SQL
+    +SNOWFLAKE
+    +MDX
+    +MAQL
+    +TABLEAU
+    +DATABRICKS
+    +BIGQUERY
+  }
+  class OSIDataType {
+    &lt;&lt;enum&gt;&gt;
+    +String
+    +Integer
+    +Decimal
+    +Float
+    +Boolean
+    +Date
+    +Time
+    +DateTime
+    +DateTimeTz
+    +Opaque
+  }
+  class OSIVendor {
+    &lt;&lt;enum&gt;&gt;
+    +COMMON
+    +SNOWFLAKE
+    +SALESFORCE
+    +DBT
+    +DATABRICKS
+    +GOODDATA
+    +SEMANTIDO
+    +WISDOM
+  }
+  class OSIAIContextObject {
+    +instructions
+    +synonyms
+    +examples
+  }
+  class OSICustomExtension {
+    +vendor_name
+    +data: str
+  }
+  class OSIDialectExpression {
+    +dialect: OSIDialect
+    +expression: str
+  }
+  class OSIExpression {
+    +dialects: list
+  }
+  class OSIDimension {
+    +is_time: bool?
+  }
+  class OSIField {
+    +name
+    +expression: OSIExpression
+    +dimension?
+    +label?
+    +description?
+    +datatype?
+    +ai_context?
+    +is_time_dimension()
+  }
+  class OSIDataset {
+    +name
+    +source
+    +primary_key?
+    +unique_keys?
+    +description?
+    +fields?
+  }
+  class OSIRelationship {
+    +name
+    +from_dataset (alias from)
+    +to
+    +from_columns
+    +to_columns
+  }
+  class OSIMetric {
+    +name
+    +expression
+    +datatype?
+    +description?
+  }
+  class OSISemanticModel {
+    +name
+    +datasets
+    +relationships?
+    +metrics?
+  }
+  class OSIDocument {
+    +version
+    +dialects?
+    +vendors?
+    +semantic_model
+    +to_osi_yaml()
+    +to_osi_json()
+  }
+  OSIDialectExpression --&gt; OSIDialect
+  OSIExpression --&gt; OSIDialectExpression
+  OSIField --&gt; OSIExpression
+  OSIField --&gt; OSIDimension
+  OSIField --&gt; OSIDataType
+  OSIField --&gt; OSIAIContext
+  OSIField --&gt; OSICustomExtension
+  OSIDataset --&gt; OSIField
+  OSIDataset --&gt; OSICustomExtension
+  OSIRelationship --&gt; OSICustomExtension
+  OSIMetric --&gt; OSIExpression
+  OSISemanticModel --&gt; OSIDataset
+  OSISemanticModel --&gt; OSIRelationship
+  OSISemanticModel --&gt; OSIMetric
+  OSIDocument --&gt; OSISemanticModel
+</code></pre>
+<h2 id="83">8.3 三大枚举</h2>
+<pre><code class="language-python"># python/src/ossie/models.py:25-72
+from ossie import OSIDialect, OSIDataType, OSIVendor
+
+# OSIDialect: 7 种方言
+OSIDialect.SNOWFLAKE           # &lt;OSIDialect.SNOWFLAKE: 'SNOWFLAKE'&gt;
+str(OSIDialect.SNOWFLAKE)      # 'SNOWFLAKE'  ← 直接当字符串用
+
+# OSIDataType: 10 种类型
+OSIDataType.DECIMAL            # &lt;OSIDataType.DECIMAL: 'Decimal'&gt;
+str(OSIDataType.DECIMAL)       # 'Decimal'
+
+# OSIVendor: 9 个已知名 + 自定义
+OSIVendor.SNOWFLAKE
+</code></pre>
+<h2 id="84-pydantic">8.4 Pydantic 模型族</h2>
+<p>所有模型都 <code>frozen=True</code>（实例不可变）+ <code>populate_by_name=True</code>（关系特殊）。<code>OSIRelationship</code> 的 <code>from</code> 别名处理（<code>models.py:165-176</code>）：</p>
+<pre><code class="language-python">class OSIRelationship(BaseModel):
+    model_config = ConfigDict(frozen=True, populate_by_name=True)
+
+    name: str
+    from_dataset: str = Field(..., alias=&quot;from&quot;)    # ← Python 属性是 from_dataset
+    to: str
+    from_columns: list[str]
+    to_columns: list[str]
+</code></pre>
+<p>为什么？因为 <code>from</code> 是 Python 关键字。YAML 写 <code>from: orders</code>，SDK 自动映射到 <code>from_dataset</code>。</p>
+<h2 id="85-is_time_dimension">8.5 <code>is_time_dimension()</code> 方法</h2>
+<blockquote>
+<p>来源：<code>models.py:136-147</code></p>
+</blockquote>
+<pre><code class="language-python">class OSIField(BaseModel):
+    def is_time_dimension(self) -&gt; bool:
+        if self.dimension is None:
+            return False
+        if self.dimension.is_time is not None:
+            return self.dimension.is_time        # 显式优先
+        return self.datatype in _TEMPORAL_DATA_TYPES    # 默认从 datatype 推导
+</code></pre>
+<p><code>_TEMPORAL_DATA_TYPES</code> 是 frozenset：</p>
+<pre><code class="language-python">_TEMPORAL_DATA_TYPES = frozenset({
+    OSIDataType.DATE,
+    OSIDataType.TIME,
+    OSIDataType.DATE_TIME,
+    OSIDataType.DATE_TIME_TZ,
+})
+</code></pre>
+<p>这实现了 spec.md:337 的默认规则——<strong>显式 <code>is_time</code> 永远赢</strong>。</p>
+<h2 id="86-to_osi_yaml-to_osi_json">8.6 序列化：<code>to_osi_yaml()</code> 与 <code>to_osi_json()</code></h2>
+<pre><code class="language-python">class OSIDocument(BaseModel):
+    def to_osi_yaml(self, **kwargs) -&gt; str:
+        data = self.model_dump(
+            by_alias=True,         # ← from_dataset 还是 from
+            exclude_none=True,     # ← 不输出 null 字段
+            mode=&quot;json&quot;,           # ← 严格 JSON 兼容
+            **kwargs,
+        )
+        return yaml.dump(
+            data,
+            default_flow_style=False,
+            sort_keys=False,
+            allow_unicode=True,    # ← 中文不转义
+        )
+
+    def to_osi_json(self, **kwargs) -&gt; str:
+        return self.model_dump_json(
+            by_alias=True,
+            exclude_none=True,
+            **kwargs,
+        )
+</code></pre>
+<p><strong>两个细节</strong>：</p>
+<ol>
+<li><strong><code>exclude_none=True</code></strong>：spec 不要求所有字段，序列化的 YAML 也不应有 None。这让 round-trip 字节级一致。</li>
+<li><strong><code>by_alias=True</code></strong>：序列化时 <code>from_dataset</code> 变回 <code>from</code>，符合 spec。</li>
+</ol>
+<h2 id="87">8.7 完整工作流示例</h2>
+<pre><code class="language-python">import yaml
+from ossie import OSIDocument, OSISemanticModel, OSIDataset, OSIField, OSIMetric
+from ossie import OSIExpression, OSIDialectExpression, OSIDataType, OSIDialect
+
+# 1. 从 YAML 加载并校验
+with open(&quot;model.yaml&quot;) as f:
+    data = yaml.safe_load(f)
+doc = OSIDocument.model_validate(data)
+# ↑ 这一步会自动跑 Pydantic 校验；字段类型错误会抛 ValidationError
+
+# 2. 遍历模型
+for sm in doc.semantic_model:
+    print(f&quot;Model: {sm.name}&quot;)
+    for ds in sm.datasets:
+        print(f&quot;  Dataset: {ds.name} (source: {ds.source})&quot;)
+        for field in (ds.fields or []):
+            is_time = field.is_time_dimension()
+            print(f&quot;    Field: {field.name} | time={is_time}&quot;)
+
+# 3. 修改后回写
+doc.semantic_model[0].metrics = (
+    doc.semantic_model[0].metrics or []
+) + [
+    OSIMetric(
+        name=&quot;new_metric&quot;,
+        expression=OSIExpression(
+            dialects=[
+                OSIDialectExpression(
+                    dialect=OSIDialect.ANSI_SQL,
+                    expression=&quot;SUM(orders.amount)&quot;,
+                ),
+            ],
+        ),
+        datatype=OSIDataType.DECIMAL,
+    ),
+]
+
+# 4. 序列化为 YAML
+print(doc.to_osi_yaml())
+# 输出会自动 exclude_none + by_alias
+</code></pre>
+<h2 id="88-json-schema">8.8 测试：与 JSON Schema 的契约</h2>
+<blockquote>
+<p>来源：<code>python/tests/test_models.py:74-86</code></p>
+</blockquote>
+<pre><code class="language-python">def test_data_type_enum_matches_core_schema():
+    import json
+    with open(&quot;../core-spec/osi-schema.json&quot;) as f:
+        schema = json.load(f)
+    expected = set(schema[&quot;$defs&quot;][&quot;DataType&quot;][&quot;enum&quot;])
+    actual = {dt.value for dt in OSIDataType}
+    assert actual == expected, f&quot;OSIDataType mismatch: {actual ^ expected}&quot;
+</code></pre>
+<p><strong>关键</strong>：每次 spec 字段新增，这个测试会失败，提醒 SDK 维护者同步更新枚举。这就是"spec 是机器契约，SDK 必须紧跟"的自动化保障。</p>
+<h2 id="89-converter">8.9 converter 复用模式</h2>
+<p>每个 Python converter 的标准 import 模式（来自 <code>converters/wisdom/tests/test_wisdom_to_osi.py:24</code>）：</p>
+<pre><code class="language-python">from ossie import OSIDialect, OSIDocument
+from ossie.models import _TEMPORAL_DATA_TYPES
+</code></pre>
+<p>converter 内部通常这样用：</p>
+<pre><code class="language-python"># converter 的输入
+with open(input_path) as f:
+    raw = yaml.safe_load(f)
+doc = OSIDocument.model_validate(raw)        # ← 加载
+
+# 转换逻辑
+vendor_doc = convert_osi_to_vendor(doc)
+
+# 写出（用 SDK 的 to_osi_yaml 保持格式一致）
+with open(output_path, &quot;w&quot;) as f:
+    f.write(doc.to_osi_yaml())
+</code></pre>
+<h2 id="810">8.10 📌 章节要点速查</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td><code>OSIDocument.model_validate(yaml_dict)</code> 是入口；<code>to_osi_yaml()</code> 是出口</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td><code>from_dataset</code> 是 <code>from</code> 的 Python 别名；<code>frozen=True</code> 强制 immutable</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td><code>test_data_type_enum_matches_core_schema</code> 是 spec-SDK 同步的契约测试</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="9-go-cli">第 9 章 · Go CLI 与插件系统</h1>
+<blockquote>
+<p><strong>【为用户】</strong> 这一章诚实说明：Go CLI 当前<strong>仍是骨架</strong>——<code>ossie convert</code>、<code>ossie validate</code>、<code>ossie plugin install</code>、<code>ossie plugin remove</code> 都是 stub。今天请用各 converter 自带的 CLI 或 Python validator。</p>
+<p><strong>【为开发者】</strong> CLI 的<strong>插件发现与调用协议已经完整实现</strong>（<code>cli/internal/plugin/plugin.go</code>、<code>discover.go</code>、<code>invoke.go</code>）。你要做的只是写一个符合 <code>plugin.yaml</code> 规范的二进制文件。Go 学习 cobra + JSON-over-stdin IPC 的样板在此。</p>
+<p><strong>【为架构师】</strong> CLI 的设计已经为"外部 converter 作为插件"铺路（参数 <code>--plugin</code> 直通自定义路径），但内部 stub 还没接上。这是 roadmap 上的待办——一旦 plugin registry 落地，CLI 就能成为用户的统一入口。</p>
+<p>⚠️ <strong>本章实现状态提醒</strong>：本章会多次出现 🚧 标记。<code>cli/cmd/convert.go</code>、<code>cli/cmd/validate.go</code>、<code>cli/cmd/plugin/install.go</code>、<code>cli/cmd/plugin/remove.go</code> 当前都只打印 <code>"not yet implemented"</code>。<code>plugin list</code> 是唯一已实现的命令。</p>
+</blockquote>
+<h2 id="91">9.1 命令树与现状</h2>
+<blockquote>
+<p>来源：<code>cli/cmd/root.go:48-54</code></p>
+</blockquote>
+<pre><code class="language-mermaid">flowchart TB
+  root[ossie&lt;br/&gt;root command]
+
+  convert[convert 🚧 STUB&lt;br/&gt;--from/--to/--input/--output/--plugin/--timeout/--max-input-size]
+  validate[validate 🚧 STUB&lt;br/&gt;--strict/--output]
+  plugin[plugin&lt;br/&gt;子命令组]
+
+  root --&gt; convert
+  root --&gt; validate
+  root --&gt; plugin
+
+  pluginList[plugin list ✅&lt;br/&gt;列出已安装插件]
+  pluginInstall[plugin install 🚧 STUB]
+  pluginRemove[plugin remove 🚧 STUB]
+
+  plugin --&gt; pluginList
+  plugin --&gt; pluginInstall
+  plugin --&gt; pluginRemove
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>状态</th>
+<th>路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ossie</code></td>
+<td>✅</td>
+<td><code>cli/cmd/root.go</code></td>
+</tr>
+<tr>
+<td><code>ossie convert</code></td>
+<td>🚧 STUB</td>
+<td><code>cli/cmd/convert.go:46-48</code></td>
+</tr>
+<tr>
+<td><code>ossie validate</code></td>
+<td>🚧 STUB</td>
+<td><code>cli/cmd/validate.go:37-39</code></td>
+</tr>
+<tr>
+<td><code>ossie plugin list</code></td>
+<td>✅</td>
+<td><code>cli/cmd/plugin/list.go:30-61</code></td>
+</tr>
+<tr>
+<td><code>ossie plugin install</code></td>
+<td>🚧 STUB</td>
+<td><code>cli/cmd/plugin/install.go:36</code></td>
+</tr>
+<tr>
+<td><code>ossie plugin remove</code></td>
+<td>🚧 STUB</td>
+<td><code>cli/cmd/plugin/remove.go:33</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="92-plugin-list">9.2 已实现的部分：<code>plugin list</code></h2>
+<blockquote>
+<p>来源：<code>cli/cmd/plugin/list.go:30-61</code>（verbatim）</p>
+</blockquote>
+<pre><code class="language-go">var listCmd = &amp;cobra.Command{
+    Use:   &quot;list&quot;,
+    Short: &quot;List installed plugins&quot;,
+    RunE: runPluginList,
+}
+
+func runPluginList(cmd *cobra.Command, args []string) error {
+    pluginsDir, err := ossiedir.PluginDir()
+    if err != nil { return err }
+    plugins, err := plugin.Discover(pluginsDir, os.Stderr)
+    if err != nil { return err }
+    if len(plugins) == 0 {
+        fmt.Fprintln(cmd.OutOrStdout(), &quot;no plugins installed&quot;)
+        return nil
+    }
+    w := tabwriter.NewWriter(cmd.OutOrStdout(), 0, 0, 2, ' ', 0)
+    fmt.Fprintln(w, &quot;NAME\t\PLATFORM\t\SPEC&quot;)
+    for _, p := range plugins {
+        fmt.Fprintf(w, &quot;%s\t\%s\t\%s\n&quot;, p.Name, p.Platform, p.OSSIEPluginSpec)
+    }
+    return w.Flush()
+}
+</code></pre>
+<p>输出：</p>
+<pre><code>NAME       PLATFORM     SPEC
+snowflake  Snowflake    0.1.0
+dbt        dbt Labs     0.1.0
+</code></pre>
+<h2 id="93-ossie-convert">9.3 <code>ossie convert</code> 设计（未实现）</h2>
+<blockquote>
+<p>来源：<code>cli/cmd/convert.go:25-43</code>（命令定义；RunE 是 stub）</p>
+</blockquote>
+<pre><code class="language-go">var convertCmd = &amp;cobra.Command{
+    Use:   &quot;convert --from &lt;platform&gt; --input &lt;path&gt; | --to &lt;platform&gt; --input &lt;path&gt;&quot;,
+    Short: &quot;Convert a semantic model between Ossie and a platform format&quot;,
+    RunE:  runConvert,
+}
+
+func init() {
+    convertCmd.Flags().String(&quot;from&quot;, &quot;&quot;, &quot;Source platform — converts platform → Ossie&quot;)
+    convertCmd.Flags().String(&quot;to&quot;, &quot;&quot;, &quot;Target platform — converts Ossie → platform&quot;)
+    convertCmd.Flags().StringP(&quot;input&quot;, &quot;i&quot;, &quot;&quot;, &quot;Input file or directory path (required)&quot;)
+    convertCmd.Flags().StringP(&quot;output&quot;, &quot;o&quot;, &quot;&quot;, &quot;Output directory path (default: ./ossie-output/&lt;plugin&gt;/&lt;direction&gt;)&quot;)
+    convertCmd.Flags().String(&quot;plugin&quot;, &quot;&quot;, &quot;Path to plugin directory (bypasses name-based discovery)&quot;)
+    convertCmd.Flags().Int(&quot;timeout&quot;, 60, &quot;Plugin invocation timeout in seconds&quot;)
+    convertCmd.Flags().String(&quot;max-input-size&quot;, &quot;100MB&quot;, &quot;Maximum total input size&quot;)
+
+    _ = convertCmd.MarkFlagRequired(&quot;input&quot;)
+    convertCmd.MarkFlagsMutuallyExclusive(&quot;from&quot;, &quot;to&quot;)    # ← 二选一
+    convertCmd.MarkFlagsOneRequired(&quot;from&quot;, &quot;to&quot;)
+}
+</code></pre>
+<p><strong>今天请用 converter 自带的 CLI</strong>：</p>
+<pre><code class="language-bash"># ❌ 今日不可用
+ossie convert --to snowflake -i model.yaml
+
+# ✅ 等价命令
+ossie-snowflake -i model.yaml -o snowflake_model.yaml
+</code></pre>
+<h2 id="94">9.4 插件发现协议</h2>
+<blockquote>
+<p>来源：<code>cli/internal/plugin/discover.go:25-50</code>、<code>cli/internal/plugin/plugin.go:30-67</code></p>
+</blockquote>
+<pre><code class="language-mermaid">sequenceDiagram
+  participant U as 用户
+  participant CLI as ossie plugin list
+  participant D as plugin.Discover
+  participant FS as ~/.ossie/plugins/
+
+  U-&gt;&gt;CLI: ossie plugin list
+  CLI-&gt;&gt;D: Discover(~/.ossie/plugins)
+  D-&gt;&gt;FS: os.ReadDir
+  loop 每个子目录
+    D-&gt;&gt;FS: read plugin.yaml
+    alt parse 成功 + 字段完整
+      D-&gt;&gt;D: append to plugins[]
+    else parse 失败
+      D-&gt;&gt;U: stderr warning
+    end
+  end
+  D--&gt;&gt;CLI: plugins[]
+  CLI-&gt;&gt;U: tabwriter 输出
+</code></pre>
+<h3 id="plugin-manifest">Plugin manifest 规范</h3>
+<pre><code class="language-yaml"># ~/.ossie/plugins/&lt;vendor&gt;/plugin.yaml
+ossie_plugin_spec: &quot;0.1.0&quot;
+ossie_spec_version: &quot;&gt;=0.2.0&quot;
+name: snowflake
+platform: Snowflake
+convert:
+  to_ossie:
+    invoke: [&quot;ossie-snowflake&quot;, &quot;to-ossie&quot;]
+    accepts: [&quot;.yaml&quot;, &quot;.json&quot;]
+  from_ossie:
+    invoke: [&quot;ossie-snowflake&quot;, &quot;from-ossie&quot;]
+</code></pre>
+<p><strong>6 个 required 字段</strong>（<code>plugin.go:52-67</code>）：</p>
+<ol>
+<li><code>ossie_plugin_spec</code></li>
+<li><code>ossie_spec_version</code></li>
+<li><code>name</code></li>
+<li><code>convert.to_ossie.invoke</code></li>
+<li><code>convert.to_ossie.accepts</code></li>
+<li><code>convert.from_ossie.invoke</code></li>
+</ol>
+<blockquote>
+<p><strong>未知字段被静默忽略</strong>（<code>discover.go:63-65</code> 注释）——forward compatibility 设计。</p>
+</blockquote>
+<h3 id="_6">插件目录解析</h3>
+<blockquote>
+<p>来源：<code>cli/internal/ossiedir/ossiedir.go:25-43</code></p>
+</blockquote>
+<pre><code class="language-go">const (
+    defaultOssieDir = &quot; .ossie&quot;
+    pluginsSubdir   = &quot;plugins&quot;
+    envVar          = &quot;OSSIE_PLUGIN_DIR&quot;
+)
+
+func PluginDir() (string, error) {
+    if override := os.Getenv(envVar); override != &quot;&quot; {
+        return override, nil
+    }
+    home, err := os.UserHomeDir()
+    if err != nil {
+        return &quot;&quot;, fmt.Errorf(&quot;could not determine home directory: %w&quot;, err)
+    }
+    return filepath.Join(home, defaultOssieDir, pluginsSubdir), nil
+}
+</code></pre>
+<ul>
+<li>优先：<code>$OSSIE_PLUGIN_DIR</code> 环境变量</li>
+<li>默认：<code>~/.ossie/plugins</code>（Windows 走 <code>os.UserHomeDir</code> 跨平台）</li>
+</ul>
+<h2 id="95-ipc">9.5 IPC 协议（已实现）</h2>
+<blockquote>
+<p>来源：<code>cli/internal/plugin/invoke.go:13-83</code></p>
+</blockquote>
+<pre><code class="language-go">type Request struct {
+    Files map[string]string `json:&quot;files&quot;`      // 文件名 → 内容
+}
+
+type Response struct {
+    Files  map[string]string `json:&quot;files&quot;`
+    Issues []Issue           `json:&quot;issues,omitempty&quot;`
+}
+
+type Issue struct {
+    Severity string `json:&quot;severity&quot;`           // &quot;warning&quot; | &quot;error&quot;
+    Message  string `json:&quot;message&quot;`
+    Path     string `json:&quot;path,omitempty&quot;`
+}
+</code></pre>
+<p><strong>调用流程</strong>（verbatim from <code>invoke.go:44-83</code>）：</p>
+<ol>
+<li><code>cmd := exec.CommandContext(ctx, invoke[0], invoke[1:]...)</code></li>
+<li><code>cmd.Dir = pluginDir</code>（在 plugin 目录下执行）</li>
+<li>序列化 <code>Request</code> 写到 stdin</li>
+<li>启动 subprocess，捕获 stdout/stderr</li>
+<li>Parse stdout 为 <code>Response</code> JSON</li>
+<li>转发 stderr 到 <code>pluginStderr</code></li>
+<li>区分 timeout（<code>ctx.Err() != nil</code>）和 exit code != 0</li>
+</ol>
+<p><strong>关键不变量</strong>（<code>invoke.go:41-43</code>）：</p>
+<blockquote>
+<p><em>"Non-empty <code>Issues</code> is NOT a Go error. The caller must inspect severities."</em></p>
+</blockquote>
+<p>也就是 subprocess exit 0 + 非空 Issues 时，需要根据 <code>Severity</code> 字段决定是否视为失败。</p>
+<h3 id="_7">测试覆盖</h3>
+<p><code>invoke_test.go</code> 有 9 个测试，包括 fake-plugin subprocess（用 <code>GO_TEST_PLUGIN=1</code> 重新调用自己）来验证 timeout、stderr forwarding、JSON envelope 等。</p>
+<h2 id="96">9.6 构建与发布</h2>
+<p><code>cli/Makefile</code>（verbatim）：</p>
+<pre><code class="language-make">BINARY_NAME := ossie
+BUILD_DIR   := dist
+
+build:       go build -o $(BUILD_DIR)/$(BINARY_NAME) .
+install:     go build -o $(shell go env GOPATH)/bin/$(BINARY_NAME) .
+test:        go test ./...
+lint:        go vet ./...
+format:      gofmt -w .
+release-dry-run: goreleaser release --snapshot --clean --config .goreleaser.yaml
+clean:       rm -rf $(BUILD_DIR)
+</code></pre>
+<p><code>.goreleaser.yaml</code> 配置矩阵：linux/darwin/windows × amd64/arm64；<code>CGO_ENABLED=0</code>；ldflags 注入 <code>version/commit/date</code>。</p>
+<h2 id="97">9.7 实战：今天能用的插件安装方式</h2>
+<p>虽然 <code>ossie plugin install</code> 是 stub，但你完全可以手工安装：</p>
+<pre><code class="language-bash"># 1. 装 Snowflake converter
+uv tool install ossie-snowflake
+
+# 2. 创建 plugin manifest
+mkdir -p ~/.ossie/plugins/snowflake
+cat &gt; ~/.ossie/plugins/snowflake/plugin.yaml &lt;&lt;EOF
+ossie_plugin_spec: &quot;0.1.0&quot;
+ossie_spec_version: &quot;&gt;=0.2.0&quot;
+name: snowflake
+platform: Snowflake
+convert:
+  to_ossie:
+    invoke: [&quot;ossie-snowflake&quot;, &quot;to-ossie&quot;]
+    accepts: [&quot;.yaml&quot;, &quot;.json&quot;]
+  from_ossie:
+    invoke: [&quot;ossie-snowflake&quot;, &quot;from-ossie&quot;]
+EOF
+
+# 3. 验证发现
+ossie plugin list
+# 应输出 snowflake 这一行
+
+# 4. ⚠️ ossie convert 仍是 stub，所以转换仍要直接调
+ossie-snowflake -i model.yaml -o snowflake_model.yaml
+</code></pre>
+<h2 id="98-cobra">9.8 Cobra 的"陷阱"</h2>
+<blockquote>
+<p>来源：<code>cli/cmd/root.go:30-32</code></p>
+</blockquote>
+<pre><code class="language-go">// NOTE: Cobra does NOT automatically chain PersistentPreRunE from parent to
+// child. If any subcommand defines its own PersistentPreRunE or PreRunE, this
+// function will not run for that subcommand. Future subcommands that define
+// their own must call ossiedir.EnsurePluginDir() explicitly.
+</code></pre>
+<p>这是一个<strong>真实陷阱</strong>——Cobra 不会自动从父命令继承 <code>PersistentPreRunE</code>。如果未来某个子命令自定义 <code>PreRunE</code>，必须显式调用 <code>ossiedir.EnsurePluginDir()</code>。源码注释里明确警告了。</p>
+<h2 id="99">9.9 📌 章节要点速查</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td><code>convert/validate/install/remove</code> 都是 stub；今天请用 <code>ossie-&lt;vendor&gt;</code> 自带 CLI</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>插件协议已完整实现（discover/invoke/IPC），写 converter 时只需提供 <code>plugin.yaml</code></td>
+</tr>
+<tr>
+<td>架构师</td>
+<td>CLI 是 thin dispatcher 设计，stub 状态反映"插件注册中心"尚未成型</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="10-ai">第 10 章 · 本体层、跨模型对齐与 AI 上下文</h1>
+<blockquote>
+<p><strong>【为用户】</strong> 本章讲解 Ossie 的"可选高级特性"——<strong>本体层 (ontology)</strong>。当你需要让多个模型共享业务概念定义（例如"客户"在不同模型里的字段含义要一致），本体层就有用了。TPC-DS 没用本体；flights.yaml 用了。</p>
+<p><strong>【为开发者】</strong> 本体层是 Ossie 区别于 dbt Semantic Layer、Cube、LookML 的<strong>根本差异</strong>。它把"业务概念"与"物理字段"显式分开。OrionBelt 是当前唯一支持 ontology 导出的 converter。</p>
+<p><strong>【为架构师】</strong> 本体层解决的是"<strong>概念互操作</strong>"而非"<strong>结构互操作</strong>"。Core spec 解决结构（任何工具能读写）；ontology 解决概念（不同模型描述同一业务对象时的语义对齐）。这是 Ossie 比竞品更深一层的抽象。</p>
+</blockquote>
+<h2 id="101">10.1 为什么需要本体层</h2>
+<pre><code class="language-mermaid">flowchart LR
+  subgraph 不同模型
+    M1[模型 A&lt;br/&gt;CUSTOMERS.c_id]
+    M2[模型 B&lt;br/&gt;users.user_id]
+    M3[模型 C&lt;br/&gt;people.id_number]
+  end
+
+  subgraph 本体层[Ontology]
+    O[Customer&lt;br/&gt;EntityType&lt;br/&gt;identify_by: id]
+  end
+
+  M1 -.映射.-&gt; O
+  M2 -.映射.-&gt; O
+  M3 -.映射.-&gt; O
+</code></pre>
+<p><strong>核心动机</strong>（<code>docs/index.md:94</code>，来源<code></code>ROADMAP.md:90-114`）：</p>
+<blockquote>
+<p><em>"The current model solves structural interoperability — any tool can read and write semantic models in a common format. The ontology layer solves conceptual interoperability — different models may describe the same business concept using different names or structures."</em></p>
+</blockquote>
+<h2 id="102">10.2 三种概念</h2>
+<blockquote>
+<p>来源：<code>ontology/ontology.md:40-78</code></p>
+</blockquote>
+<pre><code class="language-mermaid">classDiagram
+  direction TB
+  class Concept {
+    &lt;&lt;abstract&gt;&gt;
+    +concept: name
+    +type
+  }
+  class EntityType {
+    +identify_by: list
+    +relationships
+    +requires
+  }
+  class ValueType {
+    +extends: list
+    +requires: list
+  }
+
+  Concept &lt;|-- EntityType
+  Concept &lt;|-- ValueType
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EntityType</code></td>
+<td>真实世界的对象，可被其他对象引用</td>
+<td><code>Person</code>、<code>Order</code>、<code>Aircraft</code></td>
+</tr>
+<tr>
+<td><code>ValueType</code></td>
+<td>带约束的 scalar 类型</td>
+<td><code>SocialSecurityNr</code>、<code>CityName</code></td>
+</tr>
+<tr>
+<td><strong>内置</strong></td>
+<td>任何 ontology 隐式拥有</td>
+<td><code>Any</code>、<code>Boolean</code>、<code>Date</code>、<code>DateTime</code>、<code>Decimal</code>、<code>Float</code>、<code>Integer</code>、<code>String</code></td>
+</tr>
+</tbody>
+</table>
+<p>Entity 只能通过其他对象（通常是 identifier）引用；Value 是带语义的 scalar。两者都继承自内置类型。</p>
+<h2 id="103-cardinality">10.3 关系与 cardinality</h2>
+<blockquote>
+<p>来源：<code>ontology/ontology.md:74-78, 151-157</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Multiplicity</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ManyToOne</code></td>
+<td>最后一个 role 由其他 roles 共同函数性确定</td>
+</tr>
+<tr>
+<td><code>OneToOne</code></td>
+<td>双向 ManyToOne（仅二元关系）</td>
+</tr>
+</tbody>
+</table>
+<p><code>Relationship</code> schema（<code>ontology.md:151-157</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>关系的本地名；完整标识 <code>&lt;Concept&gt;.&lt;name&gt;</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td>人类可读</td>
+</tr>
+<tr>
+<td><code>multiplicity</code></td>
+<td>enum</td>
+<td>—</td>
+<td><code>ManyToOne</code> / <code>OneToOne</code></td>
+</tr>
+<tr>
+<td><code>roles</code></td>
+<td>list</td>
+<td>—</td>
+<td>其它 role（第一个 role 是 container concept）</td>
+</tr>
+<tr>
+<td><code>derived_by</code></td>
+<td>list</td>
+<td>—</td>
+<td>派生表达式</td>
+</tr>
+<tr>
+<td><code>requires</code></td>
+<td>list</td>
+<td>—</td>
+<td>人口约束</td>
+</tr>
+<tr>
+<td><code>verbalizes</code></td>
+<td>list</td>
+<td>✅</td>
+<td>自然语言模式，含 <code>{Concept}</code> 占位符</td>
+</tr>
+</tbody>
+</table>
+<p><strong>点连接标识约定</strong>（<code>ontology.md:183-185</code>）：<code>Person.earns</code> 是全局唯一标识；表达式里写 <code>Person.earns(s)</code> 可以遍历关系。</p>
+<h2 id="104">10.4 内置概念</h2>
+<blockquote>
+<p>来源：<code>ontology/ontology.md:60-68</code></p>
+</blockquote>
+<pre><code class="language-python">ANY, BOOLEAN, DATE, DATETIME, DECIMAL, FLOAT, INTEGER, STRING
+</code></pre>
+<p>8 个内置类型。<strong>注意</strong>：core spec 的 <code>OSIDataType</code> 有 <code>Time</code> 和 <code>DateTimeTz</code>，但本体内置只有 8 个——这是有意为之的"小而稳"的本体核心。</p>
+<p>每个 value type 必须<strong>传递性</strong>继承某个内置；每个 entity 隐式继承 <code>Any</code>。</p>
+<h2 id="105-flights">10.5 Flights 案例深度拆解</h2>
+<blockquote>
+<p>来源：<code>examples/flights.yaml:25-540</code></p>
+</blockquote>
+<p>flights.yaml 是<strong>唯一</strong>带 ontology 的端到端示例。它先定义业务概念（ontology），再定义逻辑模型（semantic_model），最后用 ontology_mappings 桥接两者。</p>
+<h3 id="1051-valuetypeflightsyaml25-75">10.5.1 单位型 ValueType（<code>flights.yaml:25-75</code>）</h3>
+<pre><code class="language-yaml">ontology:
+  - concept: NrFeet
+    description: &quot;英尺距离单位&quot;
+    type: ValueType
+    extends: [Decimal]
+
+  - concept: NrPounds
+    extends: [Integer]
+
+  - concept: NrMiles
+    extends: [Decimal]
+
+  - concept: NrMinutes
+    extends: [Decimal]
+
+  - concept: CancelationCode
+    type: ValueType
+    extends: [String]
+    requires: |
+      CancelationCode == 'A' OR
+      CancelationCode == 'B' OR
+      CancelationCode == 'C' OR
+      CancelationCode == 'D'
+</code></pre>
+<p>这是"业务概念先于物理字段"的本体设计：<code>NrFeet</code>、<code>NrMiles</code> 不只是 raw decimal，而是"英尺"和"英里"的语义单位。<code>CancelationCode</code> 是带枚举约束的 string——Ossie core spec 没有 enum 数据类型，本体层用 <code>requires</code> 表达。</p>
+<h3 id="1052-entitytypeflightsyaml134-149">10.5.2 复合标识 EntityType（<code>flights.yaml:134-149</code>）</h3>
+<pre><code class="language-yaml">- concept: City
+  type: EntityType
+  identify_by: [name, state]          # 复合标识
+  relationships:
+    - name: name
+      roles: [{concept: CityName}]
+      verbalizes: ['{City} has {CityName}']
+      multiplicity: ManyToOne
+    - name: state
+      roles: [{concept: State}]
+      verbalizes: ['{City} is located in {State}']
+      multiplicity: ManyToOne
+</code></pre>
+<p><code>City</code> 由 <code>(name, state)</code> 共同标识。两个 <code>relationships</code> 都用 <code>ManyToOne</code>，因为 <code>CityName</code> 和 <code>State</code> 都是 function determined（每个 City 只有一个名字/州）。</p>
+<h3 id="1053-flightsyaml375-379">10.5.3 一元关系（<code>flights.yaml:375-379</code>）</h3>
+<pre><code class="language-yaml">- name: canceled
+  verbalizes: ['{Flight} was canceled']
+  # 没有 roles —— 一元关系就是布尔标志
+</code></pre>
+<h3 id="1054-flightsyaml401-414">10.5.4 三元关系（<code>flights.yaml:401-414</code>）</h3>
+<pre><code class="language-yaml">- name: registers_longitude_series
+  roles:
+    - concept: DateTime
+    - concept: DegreesLongitude
+  verbalizes: ['{Flight} at {DateTime} registers {DegreesLongitude}']
+  multiplicity: ManyToOne    # 给定 (Flight, DateTime)，最多一个 longitude
+</code></pre>
+<p>三个 role：container 是 <code>Flight</code>，其它两个是 <code>DateTime</code> 和 <code>DegreesLongitude</code>。</p>
+<h3 id="1055-flightsyaml289-296">10.5.5 派生关系（<code>flights.yaml:289-296</code>）</h3>
+<pre><code class="language-yaml">- name: average_departure_delay
+  roles: [{concept: Delay}]
+  multiplicity: ManyToOne
+  derived_by:
+      - - 'Delay == AVG[Flight.departure_delay WHERE Airport == Flight.route.departure GROUP BY Airport]'
+</code></pre>
+<p><code>Delay</code> 的值通过聚合计算：<code>AVG(Flight.departure_delay) WHERE Airport == Flight.route.departure GROUP BY Airport</code>。</p>
+<h2 id="106-ontology-mapping">10.6 Ontology Mapping 桥接</h2>
+<blockquote>
+<p>来源：<code>ontology/ontology.md:382-587</code>、<code>flights.yaml:540-1112</code></p>
+</blockquote>
+<pre><code class="language-mermaid">flowchart LR
+  subgraph 逻辑模型
+    F1[FLIGHT.id]
+    F2[FLIGHT.departure_delay]
+    F3[AIRPORT.code]
+  end
+
+  subgraph 本体
+    C1[Flight.id]
+    C2[Delay]
+    C3[Airport.code]
+  end
+
+  F1 -.-&gt; C1
+  F2 -.-&gt; C2
+  F3 -.-&gt; C3
+
+  style F1 fill:#e3f2fd
+  style C1 fill:#fff3e0
+</code></pre>
+<p><code>OntologyMap</code> schema（<code>ontology.md:382-415</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>—</td>
+<td>映射名</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td>人类可读</td>
+</tr>
+<tr>
+<td><code>semantic_model</code></td>
+<td>object</td>
+<td>✅</td>
+<td>嵌入的 SemanticModel</td>
+</tr>
+<tr>
+<td><code>concept_mappings</code></td>
+<td>array</td>
+<td>✅</td>
+<td>一个概念一个映射</td>
+</tr>
+</tbody>
+</table>
+<p>每个 <code>ConceptMapping</code> 含 <code>object_mappings</code>（给 EntityType）或 <code>link_mappings</code>（给 Relationship 的 link）。<code>ReferentMapping</code> 把逻辑字段绑定到对象的 identifying relationship。</p>
+<blockquote>
+<p><strong>声明一次、复用多处</strong>（<code>ontology.md:583-587</code>）：把 <code>Item</code> 映射到某个 dataset 只需声明一次，即使它参与 4 个 relationship。</p>
+</blockquote>
+<h2 id="107-core-spec">10.7 与 core spec 的边界</h2>
+<pre><code class="language-mermaid">flowchart TB
+  subgraph 物理[物理层]
+    WH[数据仓库&lt;br/&gt;tpcds.public.store_sales]
+  end
+
+  subgraph 逻辑[结构层 - core spec]
+    DS[Dataset + Field + Relationship]
+  end
+
+  subgraph 概念[概念层 - ontology]
+    CON[EntityType / ValueType]
+    MAP[OntologyMap]
+  end
+
+  WH --&gt; DS
+  DS -.映射.-&gt; CON
+  CON --&gt; MAP
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>关注</th>
+<th>文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物理</td>
+<td>数据在哪</td>
+<td>（仓库自己）</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>哪些 dataset/field/relationship/metric</td>
+<td><code>core-spec/</code> + <code>examples/tpcds_semantic_model.yaml</code></td>
+</tr>
+<tr>
+<td>概念</td>
+<td>业务概念是什么、怎么关联</td>
+<td><code>ontology/</code> + <code>examples/flights.yaml</code> 的 <code>ontology:</code> 块</td>
+</tr>
+<tr>
+<td>映射</td>
+<td>物理字段 → 概念</td>
+<td><code>examples/flights.yaml</code> 的 <code>ontology_mappings:</code> 块</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>关键</strong>：<code>tpcds_semantic_model.yaml</code> 是纯结构示例；<code>flights.yaml</code> 是结构+概念+映射完整示例。</p>
+</blockquote>
+<h2 id="108-ai-context">10.8 AI Context：业务语义的载体</h2>
+<blockquote>
+<p>来源：<code>spec.md:603-635</code>、<code>ontology/ontology.md</code> 间接相关</p>
+</blockquote>
+<p><code>ai_context</code> 在 5 个核心构造上都可出现（见 §2.8）。它是 Ossie 的"AI-native"标记：</p>
+<pre><code class="language-yaml">ai_context:
+  instructions: &quot;用于销售分析&quot;
+  synonyms: [&quot;orders&quot;, &quot;purchases&quot;, &quot;sales&quot;]
+  examples:
+    - &quot;上个月总销售额？&quot;
+    - &quot;按地区分组的营收？&quot;
+</code></pre>
+<p>LLM agent 遍历 <code>ai_context.synonyms</code> 和 <code>examples</code> 即可理解每个字段的业务含义，不需要训练数据。本体层进一步给 AI agent 提供"业务概念图"——<code>Customer</code> 是 Entity，<code>Order</code> 与 <code>Customer</code> 是 ManyToOne 关系。</p>
+<h2 id="109">10.9 路线图中的本体层</h2>
+<p><a href="https://github.com/apache/ossie/blob/main/docs/working_groups.md"><code>docs/working_groups.md</code></a> 列出的工作组 #3 (Ontology WG) 由 Relational AI 的 Kurt 领导。当前状态：</p>
+<ul>
+<li><code>flights.yaml</code> 是唯一完整案例</li>
+<li><code>ontology.md</code> 587 行（已较稳定）</li>
+<li>OrionBelt converter 唯一实现 ontology 导出（<code>converters/orionbelt/src/ossie_orionbelt/ontology.py</code>）</li>
+<li><code>validation/validate.py</code> 不验证 ontology 块（仅 schema 层面校验）</li>
+</ul>
+<h2 id="1010">10.10 📌 章节要点速查</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>TPC-DS 是纯结构示例；flights.yaml 是带本体的完整案例；99% 场景不需要本体</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>OrionBelt 是唯一导出 ontology 的 converter；本体层是 Pydantic 模型独立分支</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td>本体层是 Ossie 比 dbt/Cube/LookML 更深一层的"概念互操作"</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="11_1">第 11 章 · 治理、社区与路线图</h1>
+<blockquote>
+<p><strong>【为用户】</strong> 这一章回答三个问题：怎么给 Ossie 提 feedback？怎么参与？怎么判断 Ossie 会不会被某家厂商绑架？</p>
+<p><strong>【为开发者】</strong> 你第一次贡献要走 ICLA；spec 改动需要 ≥3 binding +1 投票；PR 用 GitHub 但决策在 <code>dev@</code>。</p>
+<p><strong>【为架构师】</strong> Apache Way 是 Ossie 治理的根基：meritocracy、peer-based、consensus、公开决策。spec 演进不是哪家公司说了算。</p>
+</blockquote>
+<h2 id="111-apache-way">11.1 Apache Way 的六条价值观</h2>
+<blockquote>
+<p>来源：<code>docs/index.md:84-106</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>价值观</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Meritocracy 精英治理</strong></td>
+<td>Merit 永不失效；任何贡献（代码、文档、测试、社区支持、spec 评审）都计 merit</td>
+</tr>
+<tr>
+<td><strong>Peer-based 同侪制</strong></td>
+<td>不论雇主或资历，所有参与者是同侪</td>
+</tr>
+<tr>
+<td><strong>Consensus 共识决策</strong></td>
+<td>努力达成共识；必要时投票</td>
+</tr>
+<tr>
+<td><strong>Collaborative Development 协作开发</strong></td>
+<td>所有讨论公开（GitHub/邮件列表），私有决策不被鼓励</td>
+</tr>
+<tr>
+<td><strong>Open Communications 公开沟通</strong></td>
+<td>决策要在公开资源上发生</td>
+</tr>
+<tr>
+<td><strong>Vendor-neutral 厂商中立</strong></td>
+<td>任何组织都可贡献，不被单家厂商绑架</td>
+</tr>
+</tbody>
+</table>
+<h2 id="112">11.2 角色链</h2>
+<blockquote>
+<p>来源：<code>CONTRIBUTING.md:195-227</code></p>
+</blockquote>
+<pre><code class="language-mermaid">flowchart LR
+  C[Contributor&lt;br/&gt;任何人]
+  CO[Committer&lt;br/&gt;写权限]
+  PP[PPMC&lt;br/&gt;Podling 项目管理委员会]
+  M[Mentor&lt;br/&gt;ASF 导师]
+  IP[IPMC&lt;br/&gt;Apache 孵化器 PMC]
+
+  C -- 持续贡献 --&gt; CO
+  CO -- 提名 + 投票 --&gt; PP
+  PP -- 孵化毕业 --&gt; IPMC
+  M -.监督.-&gt; PP
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>谁能做</th>
+<th>关键权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Contributor</strong></td>
+<td>任何人</td>
+<td>提 PR；非 binding 投票</td>
+</tr>
+<tr>
+<td><strong>Committer</strong></td>
+<td>已贡献 + PPMC 提名</td>
+<td>合并 PR；<strong>binding 投票</strong></td>
+</tr>
+<tr>
+<td><strong>PPMC</strong></td>
+<td>Committer 中提名</td>
+<td>整体方向；<strong>binding 投票</strong>；毕业成为 PMC</td>
+</tr>
+<tr>
+<td><strong>Mentor</strong></td>
+<td>ASF 资深成员</td>
+<td>监督；PPMC 投票</td>
+</tr>
+<tr>
+<td><strong>IPMC</strong></td>
+<td>Apache Incubator PMC</td>
+<td>批准发布；季度审查</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Ossie 当前是 incubating podling</strong>——毕业前所有发布需经 IPMC 二次投票。</p>
+</blockquote>
+<h2 id="113">11.3 投票流程</h2>
+<blockquote>
+<p>来源：<code>CONTRIBUTING.md:134-158</code></p>
+</blockquote>
+<pre><code class="language-mermaid">flowchart TD
+  P[提案] --&gt; D[讨论期&lt;br/&gt;≥7 天]
+  D --&gt; V[发起 VOTE 线程&lt;br/&gt;dev@ 列表]
+  V --&gt; R{72h 内&lt;br/&gt;够票?}
+  R --&gt;|代码: ≥1 binding +1| P1[Pass&lt;br/&gt;lazy consensus]
+  R --&gt;|spec: ≥3 binding +1| P2[Pass&lt;br/&gt;consensus]
+  R --&gt;|≥1 binding -1| F[否决&lt;br/&gt;或修改后重提]
+  R --&gt;|超时未达| F
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>事项</th>
+<th>通过条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>代码/文档/工具改动</strong></td>
+<td>Lazy consensus（≥1 binding +1，无 veto）</td>
+</tr>
+<tr>
+<td><strong>Spec 改动</strong></td>
+<td>≥<strong>3 binding +1</strong>，无 veto</td>
+</tr>
+<tr>
+<td><strong>Committer/PPMC 提名</strong></td>
+<td><code>private@</code> 列表 lazy consensus，72h 窗口</td>
+</tr>
+<tr>
+<td><strong>程序性投票</strong></td>
+<td>简单多数，不可 veto</td>
+</tr>
+</tbody>
+</table>
+<h2 id="114">11.4 沟通渠道</h2>
+<blockquote>
+<p>来源：<code>CONTRIBUTING.md:51-72</code></p>
+</blockquote>
+<pre><code class="language-mermaid">flowchart LR
+  subgraph 邮件列表
+    dev[dev@ossie.apache.org&lt;br/&gt;主决策渠道]
+    commits[commits@&lt;br/&gt;自动通知]
+    issues[issues@&lt;br/&gt;自动通知]
+    priv[private@&lt;br/&gt;PPMC 私议]
+  end
+
+  subgraph GitHub
+    ghI[Issues]
+    ghD[Discussions]
+    ghPR[Pull Requests]
+  end
+
+  subgraph 聊天
+    slack[Slack&lt;br/&gt;apache-ossie]
+  end
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>渠道</th>
+<th>用途</th>
+<th>优先级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dev@ossie.apache.org</code></td>
+<td><strong>所有决策</strong>、提案讨论、投票</td>
+<td>🔴 最高</td>
+</tr>
+<tr>
+<td><code>commits@</code></td>
+<td>自动 commit/PR 通知</td>
+<td>自动</td>
+</tr>
+<tr>
+<td><code>issues@</code></td>
+<td>自动 issue 通知</td>
+<td>自动</td>
+</tr>
+<tr>
+<td><code>private@</code></td>
+<td>PPMC 私议（committer 提名）</td>
+<td>私密</td>
+</tr>
+<tr>
+<td>GitHub Issues</td>
+<td>错误/功能请求</td>
+<td>辅助</td>
+</tr>
+<tr>
+<td>GitHub Discussions</td>
+<td>公开讨论</td>
+<td>辅助</td>
+</tr>
+<tr>
+<td>Slack</td>
+<td>实时聊天</td>
+<td>辅助</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>关键</strong>：<code>dev@</code> 是<strong>所有</strong>决策的主渠道——GitHub 上热闹但最终要落到 <code>dev@</code> 才算数。</p>
+</blockquote>
+<h2 id="115">11.5 贡献流程</h2>
+<pre><code class="language-mermaid">sequenceDiagram
+  participant U as You
+  participant GH as GitHub
+  participant ML as dev@ 邮件列表
+  participant PPMC as PPMC
+  participant ASF as Apache
+
+  U-&gt;&gt;GH: fork + branch
+  Note over U,GH: 开发 + 测试
+  U-&gt;&gt;GH: PR + PULL_REQUEST_TEMPLATE.md 8 项检查
+  GH-&gt;&gt;ML: 通知 commits@
+  ML-&gt;&gt;PPMC: 1 binding +1 投票
+  PPMC-&gt;&gt;GH: squash merge on main
+  Note over U,ASF: (release 时) 走两阶段投票
+
+  alt Spec 改动
+    U-&gt;&gt;ML: [PROPOSAL] 提案
+    ML-&gt;&gt;ML: 7 天讨论
+    U-&gt;&gt;ML: [VOTE] 发起
+    ML-&gt;&gt;PPMC: ≥3 binding +1
+    PPMC-&gt;&gt;ASF: [VOTE] general@incubator
+    ASF-&gt;&gt;U: IPMC ≥3 binding +1 → 发布
+  end
+</code></pre>
+<h3 id="pull-request-8">Pull Request 模板的 8 项检查</h3>
+<blockquote>
+<p>来源：<code>/.github/PULL_REQUEST_TEMPLATE.md</code></p>
+</blockquote>
+<ol>
+<li><strong>Specification</strong> — spec 改动在 <code>core-spec/</code>，dev list 讨论过，破坏性变更标注</li>
+<li><strong>Ontology</strong> — <code>ontology/</code> 与 spec 一致</li>
+<li><strong>Converters</strong> — <code>converters/</code> 更新，新 converter 有测试</li>
+<li><strong>Validation</strong> — <code>validation/</code> 更新（如 spec 改）</li>
+<li><strong>Documentation</strong> — <code>docs/</code>、<code>CONTRIBUTING.md</code>、examples 更新</li>
+<li><strong>Examples</strong> — <code>examples/</code> 增/改</li>
+<li><strong>Tests</strong> — 全部现有测试通过；新功能覆盖</li>
+<li><strong>Compliance</strong> — ASF license headers；无 PMC 未批准的第三方依赖</li>
+</ol>
+<h2 id="116-roadmapmd">11.6 路线图（来自 ROADMAP.md）</h2>
+<blockquote>
+<p>来源：<code>ROADMAP.md:34-289</code></p>
+</blockquote>
+<h3 id="1161-4">11.6.1 当前工作组（4 个）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>工作组</th>
+<th>负责人</th>
+<th>核心目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Metric Semantics &amp; Core Semantic Model</strong></td>
+<td>Will Pugh</td>
+<td>标准度量语言、一阶 aggregation/grain 语义、cumulative 度量、显式 cardinality</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Catalog Integration</strong></td>
+<td>Shubham Bhargav (Atlan)</td>
+<td>与 catalog 集成模式、独立的语义服务/注册中心</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Ontology</strong></td>
+<td>Kurt (Relational AI)</td>
+<td>本体层、跨模型对齐、<code>ontology-query</code> 提案</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Financial Services Common Semantics</strong></td>
+<td>John Heisler (Snowflake)</td>
+<td>行业特定的语义包</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1162">11.6.2 已规划但未启动工作组</h3>
+<ul>
+<li><strong>Dataset Abstraction &amp; Logical Modeling</strong> — 与物理存储解耦</li>
+<li><strong>Semantic Query Language &amp; Reference Engine</strong> — 标准查询接口、参考编译器、合规测试套件</li>
+<li><strong>SQL Dialect, Expressions, Execution Boundaries</strong> — <code>Ossie_SQL_2026</code> 落地</li>
+<li><strong>Dimensions, Hierarchies, Time Semantics</strong> — 维度层次、维度组、<code>dimension_type</code> enum</li>
+<li><strong>AI-Native Semantic Layer</strong> — 标准化 AI context metadata</li>
+<li><strong>Governance, Identity, Validation</strong> — 稳定标识符、验证/合规标准</li>
+</ul>
+<h3 id="1163">11.6.3 增量增强</h3>
+<ul>
+<li>字段重命名（<code>Field</code> → <code>Dimension</code>）</li>
+<li>数据类型增强：单位、货币、PII 分类</li>
+<li>扩展元数据：<code>measurement</code>、<code>display_format</code>、<code>semantic_type</code>、<code>default_aggregation</code></li>
+<li>空间字段、空间关系、地理层次</li>
+<li>行业特定包（SaaS、零售、金融）</li>
+</ul>
+<h2 id="117-spec-vs-020">11.7 spec 当前缺口 vs 0.2.0 计划</h2>
+<blockquote>
+<p>⚠️ <strong>实现状态提醒</strong>：以下功能在 spec 0.2.0.dev0 中<strong>尚未实现</strong>，正在各工作组讨论中</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>缺失字段/功能</th>
+<th>影响</th>
+<th>跟踪讨论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aggregation_method</code> on Metric</td>
+<td>度量聚合语义不显式</td>
+<td>Discussion #19</td>
+</tr>
+<tr>
+<td><code>derived</code> / <code>cumulative</code> Metric</td>
+<td>无法表达派生/累计度量</td>
+<td>Discussions #39, #40</td>
+</tr>
+<tr>
+<td>Explicit <code>cardinality</code> on Relationship</td>
+<td>隐式多对一</td>
+<td>Discussion #50</td>
+</tr>
+<tr>
+<td>Composite relationship definitions</td>
+<td>复合关系不显式</td>
+<td>Discussion #4</td>
+</tr>
+<tr>
+<td>Dimension hierarchies/groups</td>
+<td>维度层次缺失</td>
+<td>Discussions #17, #20, #21</td>
+</tr>
+<tr>
+<td>Semantic filter definitions</td>
+<td>复用过滤不标准</td>
+<td>Discussion #5</td>
+</tr>
+<tr>
+<td>Native units/currencies</td>
+<td>数字字段无单位</td>
+<td>Discussions #42, #43</td>
+</tr>
+<tr>
+<td>PII/confidential metadata</td>
+<td>隐私标记缺失</td>
+<td>Issue #58</td>
+</tr>
+<tr>
+<td><code>Ossie_SQL_2026</code> as default dialect</td>
+<td>7 方言并存</td>
+<td>Proposal (Proposed Final)</td>
+</tr>
+<tr>
+<td>Reusable datasets across models</td>
+<td>模型间共享缺失</td>
+<td>Roadmap §Future</td>
+</tr>
+</tbody>
+</table>
+<h2 id="118-icla-ai">11.8 ICLA 与 AI 工具条款</h2>
+<blockquote>
+<p>来源：<code>CONTRIBUTING.md:82-99</code></p>
+</blockquote>
+<p>首次"非平凡"贡献合并前需要签署：</p>
+<ul>
+<li><strong>ICLA</strong> (Individual Contributor License Agreement) — 个人贡献</li>
+<li><strong>CCLA</strong> (Corporate CLA) — 代表雇主贡献</li>
+</ul>
+<p>参考 <a href="https://www.apache.org/legal/generative-tooling.html">ASF Generative Tooling Guidance</a>：</p>
+<blockquote>
+<p><em>"You remain personally responsible for all code you submit, regardless of how it was produced."</em></p>
+</blockquote>
+<p>即使用 AI 工具生成代码，贡献者仍对代码负责——AI 生成的代码同样需要 license header、合规审查。</p>
+<h2 id="119">11.9 发布流程</h2>
+<blockquote>
+<p>来源：<code>CONTRIBUTING.md:160-170</code></p>
+</blockquote>
+<pre><code class="language-mermaid">flowchart LR
+  R1[阶段 1&lt;br/&gt;dev@ VOTE]
+  R2[阶段 2&lt;br/&gt;general@incubator VOTE]
+
+  R1 -- ≥3 PPMC +1 --&gt; R2
+  R2 -- ≥3 IPMC +1 --&gt; R[发布]
+
+  R --&gt; Sources[源代码&lt;br/&gt;ASF 官方分发]
+  R --&gt; CLI[CLI&lt;br/&gt;GoReleaser]
+  R --&gt; SDK[Python SDK&lt;br/&gt;uv build]
+  R --&gt; Java[Java 包&lt;br/&gt;Maven]
+</code></pre>
+<p><strong>两阶段</strong>是因为这是 incubating podling——所有 release 都需 IPMC 二次审核。</p>
+<h2 id="1110">11.10 📌 章节要点速查</h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>提 feedback 去 GitHub Discussions；想参与订阅 <code>dev-subscribe@ossie.apache.org</code></td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>第一次贡献要签 ICLA；spec 改动需要 ≥3 binding +1 投票</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td>Apache Way 6 条价值观保证厂商中立；50+ 参与组织、4 个工作组</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="_8">附录 · 词汇表与速查表</h1>
+<blockquote>
+<p>本附录是手册的"参考手册"——遇到具体字段、错误、命令时翻这里。</p>
+</blockquote>
+<h2 id="a">A. 词汇表（中英对照）</h2>
+<table>
+<thead>
+<tr>
+<th>中文</th>
+<th>英文</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>语义模型</td>
+<td>Semantic Model</td>
+<td>业务语义层描述，包含数据集、关系、度量</td>
+</tr>
+<tr>
+<td>数据集</td>
+<td>Dataset</td>
+<td>逻辑表（fact/dimension），对应物理表或子查询</td>
+</tr>
+<tr>
+<td>字段</td>
+<td>Field</td>
+<td>行级属性，可分组、过滤、作为度量表达式操作数</td>
+</tr>
+<tr>
+<td>关系</td>
+<td>Relationship</td>
+<td>外键连接，声明多对一</td>
+</tr>
+<tr>
+<td>度量</td>
+<td>Metric</td>
+<td>跨数据集聚合表达式</td>
+</tr>
+<tr>
+<td>方言</td>
+<td>Dialect</td>
+<td>SQL 方言变体（7 种）</td>
+</tr>
+<tr>
+<td>数据类型</td>
+<td>DataType</td>
+<td>10 种可移植逻辑类型</td>
+</tr>
+<tr>
+<td>时间角色</td>
+<td>is_time</td>
+<td>字段作为时间维度的标记</td>
+</tr>
+<tr>
+<td>AI 上下文</td>
+<td>AI Context</td>
+<td>LLM agent 用的业务注解</td>
+</tr>
+<tr>
+<td>自定义扩展</td>
+<td>Custom Extension</td>
+<td>厂商特定的 metadata</td>
+</tr>
+<tr>
+<td>本体</td>
+<td>Ontology</td>
+<td>业务概念层（可选超集）</td>
+</tr>
+<tr>
+<td>实体类型</td>
+<td>EntityType</td>
+<td>真实世界对象</td>
+</tr>
+<tr>
+<td>值类型</td>
+<td>ValueType</td>
+<td>带约束的 scalar 类型</td>
+</tr>
+<tr>
+<td>多重性</td>
+<td>Multiplicity</td>
+<td>关系的 cardinality</td>
+</tr>
+<tr>
+<td>Hub-and-Spoke</td>
+<td>中心辐射</td>
+<td>Ossie 架构模式</td>
+</tr>
+<tr>
+<td>往返保真</td>
+<td>Round-trip fidelity</td>
+<td>自定义扩展在多轮转换后仍保留</td>
+</tr>
+<tr>
+<td>验证器</td>
+<td>Validator</td>
+<td><code>validation/validate.py</code></td>
+</tr>
+<tr>
+<td>PPMC</td>
+<td>Podling PMC</td>
+<td>孵化阶段项目管理委员会</td>
+</tr>
+<tr>
+<td>ICLA</td>
+<td>Individual CLA</td>
+<td>个人贡献者许可协议</td>
+</tr>
+</tbody>
+</table>
+<h2 id="b">B. 字段速查表</h2>
+<h3 id="b1">B.1 顶层字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code></td>
+<td>string</td>
+<td>✅</td>
+<td>常量 <code>"0.2.0.dev0"</code></td>
+</tr>
+<tr>
+<td><code>semantic_model</code></td>
+<td>array</td>
+<td>✅</td>
+<td>顶层 SemanticModel 列表</td>
+</tr>
+<tr>
+<td><code>dialects</code></td>
+<td>array</td>
+<td>—</td>
+<td>（SDK）声明的方言</td>
+</tr>
+<tr>
+<td><code>vendors</code></td>
+<td>array</td>
+<td>—</td>
+<td>（SDK）声明的 vendor</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b2-semanticmodel">B.2 SemanticModel 字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>文件内唯一</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td>人类可读</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string | object</td>
+<td>—</td>
+<td>AI 注解</td>
+</tr>
+<tr>
+<td><code>datasets</code></td>
+<td>array</td>
+<td>✅</td>
+<td>至少 1 个</td>
+</tr>
+<tr>
+<td><code>relationships</code></td>
+<td>array</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metrics</code></td>
+<td>array</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="b3-dataset">B.3 Dataset 字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>string</td>
+<td>✅</td>
+<td><code>db.schema.table</code> 或子查询</td>
+</tr>
+<tr>
+<td><code>primary_key</code></td>
+<td>array</td>
+<td>—</td>
+<td>单列或复合</td>
+</tr>
+<tr>
+<td><code>unique_keys</code></td>
+<td>array of arrays</td>
+<td>—</td>
+<td>多组唯一约束</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string | object</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fields</code></td>
+<td>array</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="b4-field">B.4 Field 字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>expression</code></td>
+<td>Expression</td>
+<td>✅</td>
+<td>标量 SQL</td>
+</tr>
+<tr>
+<td><code>dimension</code></td>
+<td>object</td>
+<td>—</td>
+<td><code>is_time</code> 标记</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>string</td>
+<td>—</td>
+<td>分类标签</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>datatype</code></td>
+<td>enum</td>
+<td>—</td>
+<td>见下表</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string | object</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="b5-metric">B.5 Metric 字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>expression</code></td>
+<td>Expression</td>
+<td>✅</td>
+<td><strong>允许聚合</strong>的 SQL</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>datatype</code></td>
+<td>enum</td>
+<td>—</td>
+<td>输出结果类型</td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string | object</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="b6-relationship">B.6 Relationship 字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>from</code></td>
+<td>string</td>
+<td>✅</td>
+<td>多端</td>
+</tr>
+<tr>
+<td><code>to</code></td>
+<td>string</td>
+<td>✅</td>
+<td>一端</td>
+</tr>
+<tr>
+<td><code>from_columns</code></td>
+<td>array</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>to_columns</code></td>
+<td>array</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ai_context</code></td>
+<td>string | object</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>custom_extensions</code></td>
+<td>array</td>
+<td>—</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="b7-datatype-10">B.7 DataType 枚举（10 种）</h3>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>String</code></td>
+<td>变长 Unicode</td>
+</tr>
+<tr>
+<td><code>Integer</code></td>
+<td>精确整数</td>
+</tr>
+<tr>
+<td><code>Decimal</code></td>
+<td>精确 base-10</td>
+</tr>
+<tr>
+<td><code>Float</code></td>
+<td>近似浮点</td>
+</tr>
+<tr>
+<td><code>Boolean</code></td>
+<td>布尔</td>
+</tr>
+<tr>
+<td><code>Date</code></td>
+<td>日，无时区</td>
+</tr>
+<tr>
+<td><code>Time</code></td>
+<td>时，无日期</td>
+</tr>
+<tr>
+<td><code>DateTime</code></td>
+<td>当地日期+时间</td>
+</tr>
+<tr>
+<td><code>DateTimeTz</code></td>
+<td>含时区信息</td>
+</tr>
+<tr>
+<td><code>Opaque</code></td>
+<td>已知但不在可移植词汇表</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b8-dialect-7">B.8 Dialect 枚举（7 种）</h3>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>sqlglot 支持</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ANSI_SQL</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>SNOWFLAKE</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>DATABRICKS</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>BIGQUERY</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>MDX</code></td>
+<td>❌ 跳过</td>
+</tr>
+<tr>
+<td><code>TABLEAU</code></td>
+<td>❌ 跳过</td>
+</tr>
+<tr>
+<td><code>MAQL</code></td>
+<td>❌ 跳过</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b9-customextension">B.9 CustomExtension 字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vendor_name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>自由字符串</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>string</td>
+<td>✅</td>
+<td><strong>JSON 字符串</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="b10-aicontext">B.10 AIContext 字段</h3>
+<table>
+<thead>
+<tr>
+<th>形态</th>
+<th>字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>string</td>
+<td>自由文本</td>
+</tr>
+<tr>
+<td>object</td>
+<td><code>instructions</code>, <code>synonyms</code>, <code>examples</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="c-converter">C. Converter 速查</h2>
+<table>
+<thead>
+<tr>
+<th>Vendor</th>
+<th>安装</th>
+<th>CLI 命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Snowflake</td>
+<td><code>uv tool install ossie-snowflake</code></td>
+<td><code>ossie-snowflake -i in.yaml -o out.yaml</code></td>
+</tr>
+<tr>
+<td>dbt</td>
+<td><code>uv tool install ossie-dbt</code></td>
+<td><code>ossie-dbt msi-to-osi</code> / <code>osi-to-msi</code></td>
+</tr>
+<tr>
+<td>Databricks</td>
+<td><code>uv tool install ossie-databricks</code></td>
+<td><code>ossie-databricks export/import</code></td>
+</tr>
+<tr>
+<td>GoodData</td>
+<td><code>uv add ossie-gooddata</code></td>
+<td>（库，无 CLI）</td>
+</tr>
+<tr>
+<td>GSF</td>
+<td><code>uv tool install ossie-gsf</code></td>
+<td><code>ossie-gsf export/import</code></td>
+</tr>
+<tr>
+<td>Honeydew</td>
+<td><code>uv tool install honeydew-osi</code></td>
+<td><code>honeydew-osi osi-to-honeydew</code></td>
+</tr>
+<tr>
+<td>Omni</td>
+<td><code>uv tool install osi-omni</code></td>
+<td><code>osi-omni export/import</code></td>
+</tr>
+<tr>
+<td>OrionBelt</td>
+<td><code>uv tool install ossie-orionbelt</code></td>
+<td><code>ossie-orionbelt obml-to-osi</code> / <code>osi-to-obml</code></td>
+</tr>
+<tr>
+<td>Wisdom</td>
+<td><code>uv tool install ossie-wisdom</code></td>
+<td><code>ossie-wisdom wisdom-to-osi</code> / <code>osi-to-wisdom</code></td>
+</tr>
+<tr>
+<td>Salesforce</td>
+<td>Maven shade jar</td>
+<td><code>java -jar ... toSF/toOSI</code></td>
+</tr>
+<tr>
+<td>Polaris</td>
+<td>Maven shade jar</td>
+<td><code>java -jar ... import/export</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="d">D. 错误消息速查</h2>
+<table>
+<thead>
+<tr>
+<th>错误</th>
+<th>触发条件</th>
+<th>修复</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>'orders' is not of type 'array'</code></td>
+<td>顶层 <code>semantic_model</code> 不是 array</td>
+<td>改为 <code>- name: ...</code></td>
+</tr>
+<tr>
+<td><code>Duplicate field name 'X' in dataset 'Y'</code></td>
+<td>同 dataset 内重名字段</td>
+<td>重命名</td>
+</tr>
+<tr>
+<td><code>Relationship 'X' references unknown dataset 'Y'</code></td>
+<td><code>from</code>/<code>to</code> 引用不存在</td>
+<td>检查 dataset 名</td>
+</tr>
+<tr>
+<td><code>Invalid expression</code></td>
+<td>sqlglot 解析失败</td>
+<td>改 SQL 或换方言</td>
+</tr>
+<tr>
+<td><code>Missing required field: 'version'</code></td>
+<td>缺 <code>version</code> 字段</td>
+<td>加上 <code>version: "0.2.0.dev0"</code></td>
+</tr>
+<tr>
+<td><code>Missing required field: 'semantic_model'</code></td>
+<td>缺顶层字段</td>
+<td>改为数组形式</td>
+</tr>
+<tr>
+<td><code>[SQL] Warning: sqlglot not installed</code></td>
+<td>没装 sqlglot</td>
+<td><code>pip install sqlglot</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="e-cli">E. CLI 命令速查</h2>
+<h3 id="e1-go-cli-stub">E.1 Go CLI 现状（部分 stub）</h3>
+<pre><code class="language-bash">ossie --version
+ossie plugin list                    # ✅ 已实现
+ossie plugin install &lt;name&gt;          # 🚧 STUB
+ossie plugin remove &lt;name&gt;           # 🚧 STUB
+ossie convert --to &lt;vendor&gt; -i &lt;in&gt;  # 🚧 STUB（今天请用 vendor 自带 CLI）
+ossie validate &lt;file.yaml&gt;           # 🚧 STUB（今天请用 uv run validation/validate.py）
+</code></pre>
+<h3 id="e2-python-validator">E.2 Python validator</h3>
+<pre><code class="language-bash"># 推荐方式（PEP 723 inline 自动管理依赖）
+uv run validation/validate.py examples/tpcds_semantic_model.yaml
+
+# 指定 schema
+uv run validation/validate.py my.yaml --schema /tmp/experimental.json
+</code></pre>
+<h2 id="f-faq">F. FAQ</h2>
+<h3 id="f1-ossie-dbt-semantic-layercubelookml">F.1 Ossie 与 dbt Semantic Layer、Cube、LookML 是什么关系？</h3>
+<p><strong>Hub-and-Spoke vs 独立产品</strong>。Ossie 是<strong>互操作规范</strong>——dbt/Cube/LookML 都可以通过 converter 接入 Ossie，反向亦然。这不替代它们，而是让它们能互相转换。</p>
+<h3 id="f2-ossie-dbt-semantic_models">F.2 为什么我应该用 Ossie 而不是直接写 dbt semantic_models？</h3>
+<p>如果你只在一个工具栈里用，写 dbt semantic_models 即可。Ossie 的价值在于<strong>跨工具一致性</strong>——同一份模型在 Snowflake / Databricks / dbt / Tableau 都可用。</p>
+<h3 id="f3-ossie-020dev0">F.3 OSSIE 还在变，0.2.0.dev0 能用吗？</h3>
+<blockquote>
+<p>⚠️ <strong>实现状态提醒</strong>：0.2.0.dev0 是 DRAFT 版本，schema 在 0.2.0 正式发布前可能继续变更。生产环境建议锁版本号到 <code>0.1.1</code>（已发布稳定版）。</p>
+</blockquote>
+<h3 id="f4-cli-ossie-convert">F.4 CLI 的 <code>ossie convert</code> 怎么用？</h3>
+<p>今天不能用。请直接用 vendor 自带的 CLI：</p>
+<pre><code class="language-bash"># 等价命令
+ossie-snowflake -i model.yaml -o snowflake_model.yaml
+ossie-dbt osi-to-msi -i model.yaml -o semantic_manifest.json
+</code></pre>
+<h3 id="f5-compliance">F.5 compliance/ 目录是空的，正常吗？</h3>
+<p>正常。<code>compliance/</code> 是规划中的"跨 converter 合规测试套件"。当前各 converter 的测试在各自 <code>tests/</code> 目录。</p>
+<h3 id="f6-ontology">F.6 本体层（ontology）必须用吗？</h3>
+<p>不必。TPC-DS 示例就是纯结构模型，没有 ontology。本体层是给"跨模型业务概念对齐"这种高级场景准备的。</p>
+<h3 id="f7-ossie">F.7 怎么给 Ossie 提反馈？</h3>
+<ol>
+<li>小问题：去 GitHub Issues</li>
+<li>想法/讨论：去 GitHub Discussions</li>
+<li>实质贡献：在 <code>dev-subscribe@ossie.apache.org</code> 订阅邮件列表，发起讨论</li>
+</ol>
+<h2 id="g">G. 参考链接</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>仓库</td>
+<td>https://github.com/apache/ossie</td>
+</tr>
+<tr>
+<td>官网</td>
+<td>https://ossie.apache.org/</td>
+</tr>
+<tr>
+<td>项目文档</td>
+<td>https://ossie.apache.org/docs/</td>
+</tr>
+<tr>
+<td>Spec 源</td>
+<td><code>core-spec/spec.md</code> + <code>osi-schema.json</code></td>
+</tr>
+<tr>
+<td>Apache Way</td>
+<td>https://www.apache.org/foundation/how-it-works.html</td>
+</tr>
+<tr>
+<td>ICLA</td>
+<td>https://www.apache.org/licenses/icla</td>
+</tr>
+<tr>
+<td>ASF Generative Tooling</td>
+<td>https://www.apache.org/legal/generative-tooling.html</td>
+</tr>
+<tr>
+<td>JSON Schema Draft 2020-12</td>
+<td>https://json-schema.org/specification-links.html#draft-7</td>
+</tr>
+<tr>
+<td>SQLGlot</td>
+<td>https://github.com/tobymao/sqlglot</td>
+</tr>
+</tbody>
+</table>
+<h2 id="h">H. 本手册来源文件索引</h2>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>主要源文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>序章</td>
+<td><code>README.md</code>、<code>docs/index.md</code>、<code>converters/README.md</code></td>
+</tr>
+<tr>
+<td>第 1 章</td>
+<td><code>README.md</code>、<code>CONTRIBUTING.md</code>、<code>.asf.yaml</code>、<code>.github/workflows/</code></td>
+</tr>
+<tr>
+<td>第 2 章</td>
+<td><code>core-spec/spec.md</code>、<code>core-spec/osi-schema.json</code>、<code>core-spec/spec.yaml</code></td>
+</tr>
+<tr>
+<td>第 3 章</td>
+<td><code>core-spec/expression_language.md</code>、<code>validation/validate.py</code></td>
+</tr>
+<tr>
+<td>第 4 章</td>
+<td><code>examples/tpcds_semantic_model.yaml</code>、<code>examples/flights.yaml</code></td>
+</tr>
+<tr>
+<td>第 5 章</td>
+<td><code>validation/validate.py</code>、<code>.github/workflows/*.yml</code></td>
+</tr>
+<tr>
+<td>第 6 章</td>
+<td><code>converters/README.md</code>、<code>cli/cmd/plugin/</code></td>
+</tr>
+<tr>
+<td>第 7 章</td>
+<td><code>converters/&lt;vendor&gt;/README.md</code>、<code>converters/&lt;vendor&gt;/pyproject.toml</code> 或 <code>pom.xml</code></td>
+</tr>
+<tr>
+<td>第 8 章</td>
+<td><code>python/src/ossie/models.py</code>、<code>python/pyproject.toml</code></td>
+</tr>
+<tr>
+<td>第 9 章</td>
+<td><code>cli/cmd/*.go</code>、<code>cli/internal/plugin/</code>、<code>cli/.goreleaser.yaml</code></td>
+</tr>
+<tr>
+<td>第 10 章</td>
+<td><code>ontology/ontology.md</code>、<code>ontology/ontology.json</code>、<code>examples/flights.yaml</code></td>
+</tr>
+<tr>
+<td>第 11 章</td>
+<td><code>CONTRIBUTING.md</code>、<code>ROADMAP.md</code>、<code>docs/index.md</code>、<code>docs/working_groups.md</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>手册维护</strong>：基于 <code>88e0011</code> 提交快照。<br />
+<strong>许可</strong>：本手册内容遵循 Apache License 2.0；verbatim 引用均标注 <code>path:line</code> 溯源。</p>
+</body>
+</html>

@@ -1,0 +1,2404 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="语义互操作规范、转换器与生态实践">
+      
+      
+        <meta name="author" content="Apache Ossie Contributors">
+      
+      
+        <link rel="canonical" href="https://ossie.apache.org/handbook/14-api%E5%8F%82%E8%80%83/">
+      
+      
+        <link rel="prev" href="../13-%E9%94%99%E8%AF%AF%E7%9B%AE%E5%BD%95/">
+      
+      
+        <link rel="next" href="../12-%E9%99%84%E5%BD%95/">
+      
+      
+        
+          <link rel="alternate" href="/en/" hreflang="en">
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>第 14 章 · API 参考手册 - Apache Ossie 全景手册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#14-api" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Apache Ossie 全景手册" class="md-header__button md-logo" aria-label="Apache Ossie 全景手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apache Ossie 全景手册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第 14 章 · API 参考手册
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/en/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quickstart · 5 分钟入门
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-%E5%BA%8F%E7%AB%A0/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  序章 · 为什么需要 Ossie
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-%E9%A1%B9%E7%9B%AE%E5%85%A8%E6%99%AF/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 1 章 · 项目全景与仓库地图
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02-%E6%A0%B8%E5%BF%83%E8%A7%84%E8%8C%83/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 2 章 · 核心规范精读
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 3 章 · 表达式语言与多方言机制
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04-%E7%BC%96%E5%86%99%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 4 章 · 编写你的第一份语义模型
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05-%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 5 章 · 验证工具与 CI/CD 集成
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06-%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%9E%B6%E6%9E%84/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 6 章 · 转换器架构 Hub-and-Spoke
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07-converter%E5%85%A8%E8%B0%B1/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 7 章 · 11 个 Converter 横向评测
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-python-sdk/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 8 章 · Python SDK 深入
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09-go-cli/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 9 章 · Go CLI 与插件系统
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10-%E6%9C%AC%E4%BD%93%E5%B1%82/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 10 章 · 本体层与跨模型对齐
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11-%E6%B2%BB%E7%90%86%E8%B7%AF%E7%BA%BF%E5%9B%BE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 11 章 · 治理、社区与路线图
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../troubleshooting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Troubleshooting · 故障排查
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../comparisons/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Comparisons · 横向对比
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../case-studies/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Case Studies · 实战案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../performance-and-scale/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Performance & Scale · 性能与规模
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../reference-architectures/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference Architectures · 4 种集成模式
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../13-%E9%94%99%E8%AF%AF%E7%9B%AE%E5%BD%95/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 13 章 · 错误目录与诊断字典
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 14 章 · API 参考手册
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../12-%E9%99%84%E5%BD%95/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  附录 · 词汇表与速查表
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Apache Ossie 全景手册" class="md-nav__button md-logo" aria-label="Apache Ossie 全景手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apache Ossie 全景手册
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart · 5 分钟入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-%E5%BA%8F%E7%AB%A0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序章 · 为什么需要 Ossie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-%E9%A1%B9%E7%9B%AE%E5%85%A8%E6%99%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 1 章 · 项目全景与仓库地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-%E6%A0%B8%E5%BF%83%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 2 章 · 核心规范精读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 3 章 · 表达式语言与多方言机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-%E7%BC%96%E5%86%99%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 4 章 · 编写你的第一份语义模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 5 章 · 验证工具与 CI/CD 集成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%9E%B6%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 6 章 · 转换器架构 Hub-and-Spoke
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-converter%E5%85%A8%E8%B0%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 7 章 · 11 个 Converter 横向评测
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-python-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 8 章 · Python SDK 深入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-go-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 9 章 · Go CLI 与插件系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-%E6%9C%AC%E4%BD%93%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 10 章 · 本体层与跨模型对齐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-%E6%B2%BB%E7%90%86%E8%B7%AF%E7%BA%BF%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 11 章 · 治理、社区与路线图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting · 故障排查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparisons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparisons · 横向对比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../case-studies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Case Studies · 实战案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance-and-scale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance & Scale · 性能与规模
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference-architectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Architectures · 4 种集成模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-%E9%94%99%E8%AF%AF%E7%9B%AE%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 13 章 · 错误目录与诊断字典
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 14 章 · API 参考手册
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 14 章 · API 参考手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#141-python-sdkapache-ossie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1 Python SDK（apache-ossie）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.1 Python SDK（apache-ossie）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1411-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1 顶层模型（5 个核心构造）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1412-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2 表达式与多方言（3 个类）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1413-7108-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.3 三大枚举（7+10+8 = 25 个值）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1414-ai-3-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.4 AI 上下文与扩展（3 个 helper）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1415" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.5 关键方法签名
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1416" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.6 完整工作流示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#142-go-cliossie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2 Go CLI（ossie）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.2 Go CLI（ossie）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1421" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2.1 命令树
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1422-ossie-plugin-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2.2 ossie plugin list 输出示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1423-plugin-stub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2.3 手工安装 plugin（绕过 stub）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1424-cobra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2.4 Cobra 陷阱
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#143-vendor-converter-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3 Vendor Converter CLI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.3 Vendor Converter CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1431-python-cli5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3.1 Python CLI（5 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1432-python-library4-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3.2 Python Library（4 个，无 CLI）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1433-java-main-class2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3.3 Java Main Class（2 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#144" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.4 错误处理快速跳转
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#145" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.5 📌 章节要点速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-%E9%99%84%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    附录 · 词汇表与速查表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#141-python-sdkapache-ossie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1 Python SDK（apache-ossie）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.1 Python SDK（apache-ossie）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1411-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1 顶层模型（5 个核心构造）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1412-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2 表达式与多方言（3 个类）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1413-7108-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.3 三大枚举（7+10+8 = 25 个值）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1414-ai-3-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.4 AI 上下文与扩展（3 个 helper）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1415" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.5 关键方法签名
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1416" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.6 完整工作流示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#142-go-cliossie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2 Go CLI（ossie）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.2 Go CLI（ossie）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1421" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2.1 命令树
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1422-ossie-plugin-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2.2 ossie plugin list 输出示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1423-plugin-stub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2.3 手工安装 plugin（绕过 stub）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1424-cobra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2.4 Cobra 陷阱
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#143-vendor-converter-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3 Vendor Converter CLI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.3 Vendor Converter CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1431-python-cli5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3.1 Python CLI（5 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1432-python-library4-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3.2 Python Library（4 个，无 CLI）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1433-java-main-class2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3.3 Java Main Class（2 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#144" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.4 错误处理快速跳转
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#145" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.5 📌 章节要点速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+-->
+
+<h1 id="14-api">第 14 章 · API 参考手册<a class="headerlink" href="#14-api" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Abstract</strong> — A consolidated reference for the three public surfaces of the Ossie stack: (1) the <strong>Python SDK</strong> (<code>apache-ossie</code>, 13 Pydantic v2 model classes plus 3 enums, all exported from <code>python/src/ossie/__init__.py</code>); (2) the <strong>Go CLI</strong> (<code>ossie</code>, Cobra-based, 7 commands — only <code>plugin list</code> fully implemented; <code>convert</code>, <code>validate</code>, <code>plugin install</code>, <code>plugin remove</code> are stubs); (3) the <strong>vendor converter CLIs</strong> (11 entries — 5 Python converters with <code>cli.py</code>, 4 Python converters as library-only, 2 Java converters with main classes). Each entry lists the entrypoint command, arguments, status, and a hand-curated example.</p>
+<p><strong>【为用户】</strong> 当你记不清某个 converter 该传什么 flag、或者想知道 SDK 类的所有方法签名时，翻这一章。</p>
+<p><strong>【为开发者】</strong> Python SDK 的所有公共类型（13 个 class + 3 个 enum + 2 个 helper）都在 §14.1 列全；Go CLI 的 7 个 cobra 命令都在 §14.2。<strong>写新 converter 时，先看 §14.3 找最接近的模板克隆-修改</strong>。</p>
+<p><strong>【为架构师】</strong> Go CLI 是 thin dispatcher 设计——只有 <code>plugin list</code> 真正工作；其余 4 个命令都是 stub，统一通过 plugin IPC 协议调子进程。详见第 9 章 §9.5 IPC 协议（<code>cli/internal/plugin/invoke.go:13-83</code>）。</p>
+</blockquote>
+<h2 id="141-python-sdkapache-ossie">14.1 Python SDK（<code>apache-ossie</code>）<a class="headerlink" href="#141-python-sdkapache-ossie" title="Permanent link">&para;</a></h2>
+<p><strong>包路径</strong>：<code>python/src/ossie/</code>
+<strong>入口</strong>：<code>from ossie import ...</code>（14 个公共类型，详见下表）
+<strong>模式</strong>：Pydantic v2 + <code>frozen=True</code>（实例不可变）</p>
+<h3 id="1411-5">14.1.1 顶层模型（5 个核心构造）<a class="headerlink" href="#1411-5" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>继承</th>
+<th>关键字段</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OSIDocument</code></td>
+<td><code>BaseModel</code></td>
+<td><code>version</code>, <code>dialects?</code>, <code>vendors?</code>, <code>semantic_model</code></td>
+<td><strong>入口点</strong>——<code>model_validate(dict)</code> 加载，<code>to_osi_yaml()</code> / <code>to_osi_json()</code> 导出</td>
+</tr>
+<tr>
+<td><code>OSISemanticModel</code></td>
+<td><code>BaseModel</code></td>
+<td><code>name</code>, <code>datasets</code>, <code>relationships?</code>, <code>metrics?</code></td>
+<td>一个文档可有多个 semantic model</td>
+</tr>
+<tr>
+<td><code>OSIDataset</code></td>
+<td><code>BaseModel</code></td>
+<td><code>name</code>, <code>source</code>, <code>primary_key?</code>, <code>unique_keys?</code>, <code>description?</code>, <code>fields?</code>, <code>custom_extensions?</code></td>
+<td><code>source</code> 是 fqn (e.g. <code>catalog.schema.table</code>)</td>
+</tr>
+<tr>
+<td><code>OSIField</code></td>
+<td><code>BaseModel</code></td>
+<td><code>name</code>, <code>expression: OSIExpression</code>, <code>dimension?</code>, <code>label?</code>, <code>description?</code>, <code>datatype?</code>, <code>ai_context?</code>, <code>custom_extensions?</code></td>
+<td>含方法 <code>is_time_dimension() -&gt; bool</code></td>
+</tr>
+<tr>
+<td><code>OSIRelationship</code></td>
+<td><code>BaseModel</code></td>
+<td><code>name</code>, <code>from_dataset</code> (alias <code>from</code>), <code>to</code>, <code>from_columns</code>, <code>to_columns</code></td>
+<td><code>from</code> 是 Python 关键字 → 别名</td>
+</tr>
+<tr>
+<td><code>OSIMetric</code></td>
+<td><code>BaseModel</code></td>
+<td><code>name</code>, <code>expression</code>, <code>datatype?</code>, <code>description?</code></td>
+<td>metric 不能跨 dataset 引用 field</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1412-3">14.1.2 表达式与多方言（3 个类）<a class="headerlink" href="#1412-3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OSIExpression</code></td>
+<td>包装 <code>dialects: list[OSIDialectExpression]</code></td>
+</tr>
+<tr>
+<td><code>OSIDialectExpression</code></td>
+<td>单个方言：<code>dialect: OSIDialect</code> + <code>expression: str</code></td>
+</tr>
+<tr>
+<td><code>OSIDimension</code></td>
+<td>含 <code>is_time: bool?</code>（显式优先于 datatype 默认）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1413-7108-25">14.1.3 三大枚举（7+10+8 = 25 个值）<a class="headerlink" href="#1413-7108-25" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>枚举</th>
+<th>值数</th>
+<th>值列表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OSIDialect</code></td>
+<td>7</td>
+<td><code>ANSI_SQL</code>, <code>SNOWFLAKE</code>, <code>MDX</code>, <code>MAQL</code>, <code>TABLEAU</code>, <code>DATABRICKS</code>, <code>BIGQUERY</code></td>
+</tr>
+<tr>
+<td><code>OSIDataType</code></td>
+<td>10</td>
+<td><code>String</code>, <code>Integer</code>, <code>Decimal</code>, <code>Float</code>, <code>Boolean</code>, <code>Date</code>, <code>Time</code>, <code>DateTime</code>, <code>DateTimeTz</code>, <code>Opaque</code></td>
+</tr>
+<tr>
+<td><code>OSIVendor</code></td>
+<td>8</td>
+<td><code>COMMON</code>, <code>SNOWFLAKE</code>, <code>SALESFORCE</code>, <code>DBT</code>, <code>DATABRICKS</code>, <code>GOODDATA</code>, <code>SEMANTIDO</code>, <code>WISDOM</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="1414-ai-3-helper">14.1.4 AI 上下文与扩展（3 个 helper）<a class="headerlink" href="#1414-ai-3-helper" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OSIAIContext</code></td>
+<td>wrapper for <code>OSIAIContextObject</code>（双形态：string 或 dict）</td>
+</tr>
+<tr>
+<td><code>OSIAIContextObject</code></td>
+<td><code>instructions</code>, <code>synonyms</code>, <code>examples</code></td>
+</tr>
+<tr>
+<td><code>OSICustomExtension</code></td>
+<td><code>vendor_name: str</code>, <code>data: str</code>（任意 JSON 字符串）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1415">14.1.5 关键方法签名<a class="headerlink" href="#1415" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 入口：YAML/JSON dict → OSS document</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">OSIDocument</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OSIDocument</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># ↑ Pydantic 自动校验；失败抛 pydantic.ValidationError</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 出口：OSSI document → 字节级一致 YAML/JSON</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">OSIDocument</span><span class="o">.</span><span class="n">to_osi_yaml</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">OSIDocument</span><span class="o">.</span><span class="n">to_osi_json</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># ↑ 默认 by_alias=True, exclude_none=True, allow_unicode=True</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># 字段辅助方法</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">OSIField</span><span class="o">.</span><span class="n">is_time_dimension</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># ↑ 显式 dimension.is_time 优先；否则从 datatype 推导（见 §2.4）</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># 私有常量（不要直接 import）</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">_TEMPORAL_DATA_TYPES</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">({</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">OSIDataType</span><span class="o">.</span><span class="n">DATE</span><span class="p">,</span> <span class="n">OSIDataType</span><span class="o">.</span><span class="n">TIME</span><span class="p">,</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">OSIDataType</span><span class="o">.</span><span class="n">DATE_TIME</span><span class="p">,</span> <span class="n">OSIDataType</span><span class="o">.</span><span class="n">DATE_TIME_TZ</span><span class="p">,</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">})</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="c1"># 但 converter 内部经常需要（见 §8.9）</span>
+</span></code></pre></div>
+<h3 id="1416">14.1.6 完整工作流示例<a class="headerlink" href="#1416" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">ossie</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">OSIDocument</span><span class="p">,</span> <span class="n">OSISemanticModel</span><span class="p">,</span> <span class="n">OSIDataset</span><span class="p">,</span> <span class="n">OSIField</span><span class="p">,</span> <span class="n">OSIMetric</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">OSIExpression</span><span class="p">,</span> <span class="n">OSIDialectExpression</span><span class="p">,</span> <span class="n">OSIDataType</span><span class="p">,</span> <span class="n">OSIDialect</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 1. 加载</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;model.yaml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">raw</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">doc</span> <span class="o">=</span> <span class="n">OSIDocument</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># 2. 遍历</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">for</span> <span class="n">sm</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">semantic_model</span><span class="p">:</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="p">:</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">fields</span> <span class="ow">or</span> <span class="p">[]):</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ds</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> | time=</span><span class="si">{</span><span class="n">field</span><span class="o">.</span><span class="n">is_time_dimension</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="c1"># 3. 修改</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">doc</span><span class="o">.</span><span class="n">semantic_model</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="n">doc</span><span class="o">.</span><span class="n">semantic_model</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metrics</span> <span class="ow">or</span> <span class="p">[]</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="p">)</span> <span class="o">+</span> <span class="p">[</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    <span class="n">OSIMetric</span><span class="p">(</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;new_metric&quot;</span><span class="p">,</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        <span class="n">expression</span><span class="o">=</span><span class="n">OSIExpression</span><span class="p">(</span><span class="n">dialects</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>            <span class="n">OSIDialectExpression</span><span class="p">(</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>                <span class="n">dialect</span><span class="o">=</span><span class="n">OSIDialect</span><span class="o">.</span><span class="n">ANSI_SQL</span><span class="p">,</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>                <span class="n">expression</span><span class="o">=</span><span class="s2">&quot;SUM(orders.amount)&quot;</span><span class="p">,</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>            <span class="p">)</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="p">]),</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="n">datatype</span><span class="o">=</span><span class="n">OSIDataType</span><span class="o">.</span><span class="n">DECIMAL</span><span class="p">,</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    <span class="p">)</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="p">]</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="c1"># 4. 写出</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">to_osi_yaml</span><span class="p">())</span>
+</span></code></pre></div>
+<h2 id="142-go-cliossie">14.2 Go CLI（<code>ossie</code>）<a class="headerlink" href="#142-go-cliossie" title="Permanent link">&para;</a></h2>
+<p><strong>源码</strong>：<code>cli/</code>
+<strong>入口</strong>：<code>ossie</code>（cobra root）
+<strong>框架</strong>：Cobra + JSON-over-stdin/stdout IPC</p>
+<h3 id="1421">14.2.1 命令树<a class="headerlink" href="#1421" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>Use</th>
+<th>状态</th>
+<th>关键 flags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ossie</code></td>
+<td>(root)</td>
+<td>✅</td>
+<td><code>--verbose</code> / <code>-v</code> (persistent)</td>
+</tr>
+<tr>
+<td><code>ossie convert</code></td>
+<td><code>--from &lt;p&gt; --input &lt;path&gt;</code> 或 <code>--to &lt;p&gt; --input &lt;path&gt;</code></td>
+<td>🚧 STUB</td>
+<td><code>--from</code>, <code>--to</code>, <code>--input</code>/<code>-i</code> (required), <code>--output</code>/<code>-o</code>, <code>--plugin</code>, <code>--timeout</code> (60), <code>--max-input-size</code> (100MB)</td>
+</tr>
+<tr>
+<td><code>ossie validate</code></td>
+<td><code>validate [flags] &lt;path&gt; [&lt;path&gt;...]</code></td>
+<td>🚧 STUB</td>
+<td><code>--strict</code>, <code>--output</code> (text/json)</td>
+</tr>
+<tr>
+<td><code>ossie plugin list</code></td>
+<td><code>list</code></td>
+<td>✅</td>
+<td>(no flags)</td>
+</tr>
+<tr>
+<td><code>ossie plugin install</code></td>
+<td><code>install [name[@version] \| url]</code></td>
+<td>🚧 STUB</td>
+<td><code>--all</code></td>
+</tr>
+<tr>
+<td><code>ossie plugin remove</code></td>
+<td><code>remove &lt;name&gt;</code></td>
+<td>🚧 STUB</td>
+<td>(no flags)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>STUB 现状</strong>：<code>cli/cmd/{convert,validate,plugin/install,plugin/remove}.go</code>
+当前打印 <code>"not yet implemented"</code>。<strong>今天请用各 converter 自带 CLI 或
+<code>validation/validate.py</code></strong>。</p>
+</blockquote>
+<h3 id="1422-ossie-plugin-list">14.2.2 <code>ossie plugin list</code> 输出示例<a class="headerlink" href="#1422-ossie-plugin-list" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>ossie<span class="w"> </span>plugin<span class="w"> </span>list
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>NAME<span class="w">       </span>PLATFORM<span class="w">     </span>SPEC
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>snowflake<span class="w">  </span>Snowflake<span class="w">    </span><span class="m">0</span>.1.0
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>dbt<span class="w">        </span>dbt<span class="w"> </span>Labs<span class="w">     </span><span class="m">0</span>.1.0
+</span></code></pre></div>
+<h3 id="1423-plugin-stub">14.2.3 手工安装 plugin（绕过 stub）<a class="headerlink" href="#1423-plugin-stub" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.ossie/plugins/snowflake
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>~/.ossie/plugins/snowflake/plugin.yaml<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="s">ossie_plugin_spec: &quot;0.1.0&quot;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s">ossie_spec_version: &quot;&gt;=0.2.0&quot;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s">name: snowflake</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s">platform: Snowflake</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="s">convert:</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="s">  to_ossie:</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="s">    invoke: [&quot;ossie-snowflake&quot;, &quot;to-ossie&quot;]</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="s">    accepts: [&quot;.yaml&quot;, &quot;.json&quot;]</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="s">  from_ossie:</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="s">    invoke: [&quot;ossie-snowflake&quot;, &quot;from-ossie&quot;]</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="s">EOF</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>ossie<span class="w"> </span>plugin<span class="w"> </span>list<span class="w">  </span><span class="c1"># 应能看到 snowflake</span>
+</span></code></pre></div>
+<h3 id="1424-cobra">14.2.4 Cobra 陷阱<a class="headerlink" href="#1424-cobra" title="Permanent link">&para;</a></h3>
+<p>来源：<code>cli/cmd/root.go:30-32</code></p>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// NOTE: Cobra does NOT automatically chain PersistentPreRunE from parent to</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">// child. If any subcommand defines its own PersistentPreRunE or PreRunE, this</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">// function will not run for that subcommand.</span>
+</span></code></pre></div>
+<p>未来子命令若自定义 <code>PreRunE</code>，必须显式调用 <code>ossiedir.EnsurePluginDir()</code>。</p>
+<h2 id="143-vendor-converter-cli">14.3 Vendor Converter CLI<a class="headerlink" href="#143-vendor-converter-cli" title="Permanent link">&para;</a></h2>
+<p>11 个 converter 中：<strong>5 个有 Python CLI</strong>（databricks/dbt/omni/orionbelt/wisdom），
+<strong>4 个 Python converter 是 library-only</strong>（gooddata/gsf/honeydew/snowflake），
+<strong>2 个 Java converter 是 main class</strong>（polaris/salesforce）。</p>
+<h3 id="1431-python-cli5">14.3.1 Python CLI（5 个）<a class="headerlink" href="#1431-python-cli5" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Converter</th>
+<th>包名</th>
+<th>子命令</th>
+<th>关键 flags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Databricks</strong></td>
+<td><code>ossie-databricks</code></td>
+<td><code>export</code>, <code>import</code></td>
+<td><code>-i</code>, <code>-o</code></td>
+</tr>
+<tr>
+<td><strong>dbt</strong></td>
+<td><code>ossie-dbt</code></td>
+<td><code>msi-to-osi</code>, <code>osi-to-msi</code></td>
+<td><code>-i</code>, <code>-o</code> (required)</td>
+</tr>
+<tr>
+<td><strong>Omni</strong></td>
+<td><code>osi-omni</code></td>
+<td><code>export</code>, <code>import</code></td>
+<td><code>-i</code>, <code>-o</code>, <code>--base-view</code>, <code>--dialect</code></td>
+</tr>
+<tr>
+<td><strong>OrionBelt</strong></td>
+<td><code>ossie-orionbelt</code></td>
+<td><code>obml-to-osi</code>, <code>osi-to-obml</code></td>
+<td><code>-i</code>, <code>-o</code>, <code>--ontology</code>, <code>--no-validate</code>, <code>--database</code>, <code>--schema</code></td>
+</tr>
+<tr>
+<td><strong>WisdomAI</strong></td>
+<td><code>ossie-wisdom</code></td>
+<td><code>wisdom-to-osi</code>, <code>osi-to-wisdom</code></td>
+<td><code>-i</code>, <code>-o</code></td>
+</tr>
+</tbody>
+</table>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Databricks</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ossie-databricks<span class="w"> </span><span class="nb">export</span><span class="w"> </span>-i<span class="w"> </span>model.yaml<span class="w"> </span>-o<span class="w"> </span>mv.yaml
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>ossie-databricks<span class="w"> </span>import<span class="w"> </span>-i<span class="w"> </span>mv.yaml<span class="w"> </span>-o<span class="w"> </span>model.yaml
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># dbt (MetricFlow)</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>ossie-dbt<span class="w"> </span>msi-to-osi<span class="w"> </span>-i<span class="w"> </span>semantic_manifest.json<span class="w"> </span>-o<span class="w"> </span>model.yaml
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>ossie-dbt<span class="w"> </span>osi-to-msi<span class="w"> </span>-i<span class="w"> </span>model.yaml<span class="w"> </span>-o<span class="w"> </span>semantic_manifest.json
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1"># Omni</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>osi-omni<span class="w"> </span><span class="nb">export</span><span class="w"> </span>-i<span class="w"> </span>model.yaml<span class="w"> </span>-o<span class="w"> </span>omni_model/<span class="w"> </span>--base-view<span class="w"> </span>orders<span class="w"> </span>--dialect<span class="w"> </span>ANSI_SQL
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1"># OrionBelt</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>ossie-orionbelt<span class="w"> </span>obml-to-osi<span class="w"> </span>-i<span class="w"> </span>obml.yaml<span class="w"> </span>-o<span class="w"> </span>model.yaml<span class="w"> </span>--ontology
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>ossie-orionbelt<span class="w"> </span>osi-to-obml<span class="w"> </span>-i<span class="w"> </span>model.yaml<span class="w"> </span>-o<span class="w"> </span>obml.yaml<span class="w"> </span>--database<span class="w"> </span>db<span class="w"> </span>--schema<span class="w"> </span>s
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># WisdomAI</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>ossie-wisdom<span class="w"> </span>wisdom-to-osi<span class="w"> </span>-i<span class="w"> </span>domain-export.json<span class="w"> </span>-o<span class="w"> </span>model.yaml
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>ossie-wisdom<span class="w"> </span>osi-to-wisdom<span class="w"> </span>-i<span class="w"> </span>model.yaml<span class="w"> </span>-o<span class="w"> </span>domain-export.json
+</span></code></pre></div>
+<h3 id="1432-python-library4-cli">14.3.2 Python Library（4 个，无 CLI）<a class="headerlink" href="#1432-python-library4-cli" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Converter</th>
+<th>包名</th>
+<th>用作库</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GoodData</strong></td>
+<td><code>ossie-gooddata</code></td>
+<td><code>from ossie_gooddata import convert_ldm_to_osi, convert_osi_to_ldm</code></td>
+</tr>
+<tr>
+<td><strong>NVIDIA GSF</strong></td>
+<td><code>ossie-gsf</code></td>
+<td><code>from ossie_gsf import convert_osi_to_gsf, convert_gsf_to_osi</code></td>
+</tr>
+<tr>
+<td><strong>Honeydew</strong></td>
+<td><code>honeydew-osi</code></td>
+<td><code>from honeydew_osi import ...</code></td>
+</tr>
+<tr>
+<td><strong>Snowflake</strong></td>
+<td><code>ossie-snowflake</code></td>
+<td><code>from ossie_snowflake import export_to_snowflake</code></td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 示例：Snowflake 作为库</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">ossie_snowflake</span><span class="w"> </span><span class="kn">import</span> <span class="n">export_to_snowflake</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;model.yaml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">raw</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">snowflake_yaml</span> <span class="o">=</span> <span class="n">export_to_snowflake</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;snowflake_model.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">snowflake_yaml</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="1433-java-main-class2">14.3.3 Java Main Class（2 个）<a class="headerlink" href="#1433-java-main-class2" title="Permanent link">&para;</a></h3>
+<h4 id="polaris">Polaris<a class="headerlink" href="#polaris" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>java<span class="w"> </span>-jar<span class="w"> </span>ossie-polaris-converter.jar<span class="w"> </span>import<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>--url<span class="w"> </span>http://polaris:8181/api/catalog<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>--catalog<span class="w"> </span>my_catalog
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>java<span class="w"> </span>-jar<span class="w"> </span>ossie-polaris-converter.jar<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span>--url<span class="w"> </span>http://polaris:8181/api/catalog<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span>--catalog<span class="w"> </span>my_catalog<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span>-o<span class="w"> </span>model.yaml
+</span></code></pre></div>
+<p><strong>关键 flag</strong>：<code>--url</code>, <code>--catalog</code>, <code>--client-id</code>, <code>--client-secret</code>, <code>--token</code></p>
+<blockquote>
+<p><strong>安全注意</strong>：<code>--client-secret</code> 在命令行传值会被 <code>ps</code> 看到。优先用
+<code>--token</code>（短期 OAuth bearer）。详见 <code>SECURITY.md</code>。</p>
+</blockquote>
+<h4 id="salesforce">Salesforce<a class="headerlink" href="#salesforce" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Ossie → Salesforce</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>java<span class="w"> </span>-jar<span class="w"> </span>ossie-salesforce-converter.jar<span class="w"> </span>toSF<span class="w"> </span>-i<span class="w"> </span>model.yaml<span class="w"> </span>-o<span class="w"> </span>sf_model.json
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Salesforce → Ossie</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>java<span class="w"> </span>-jar<span class="w"> </span>ossie-salesforce-converter.jar<span class="w"> </span>toOSI<span class="w"> </span>-i<span class="w"> </span>sf_model.json<span class="w"> </span>-o<span class="w"> </span>model.yaml
+</span></code></pre></div>
+<p><strong>特点</strong>：Pipeline 架构——5 个 Handler 通过 <code>osi-salesforce-converter-config.yaml</code> 串联：
+<code>DatasetMappingHandler</code> → <code>FieldMappingHandler</code> → <code>RelationshipMappingHandler</code>
+→ <code>MetricMappingHandler</code> → <code>SemanticModelMappingHandler</code>。</p>
+<h2 id="144">14.4 错误处理快速跳转<a class="headerlink" href="#144" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>错误类型</th>
+<th>详见</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ConverterIssueType</code> enum 值</td>
+<td>第 13 章 §13.1</td>
+</tr>
+<tr>
+<td>Python 自定义异常（4 个）</td>
+<td>第 13 章 §13.2.1</td>
+</tr>
+<tr>
+<td>Java 自定义异常（3 个）</td>
+<td>第 13 章 §13.2.2</td>
+</tr>
+<tr>
+<td>CLI 退出码</td>
+<td>第 13 章 §13.4</td>
+</tr>
+</tbody>
+</table>
+<h2 id="145">14.5 📌 章节要点速查<a class="headerlink" href="#145" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>读者</th>
+<th>一句话要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>13 个 SDK 类 + 3 个 enum 在 §14.1；Go CLI 7 个命令在 §14.2（仅 <code>plugin list</code> 真正能用）</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>Python CLI 模板 = <code>_common.py + cli.py + &lt;vendor&gt;_to_osi.py + osi_to_&lt;vendor&gt;.py</code></td>
+</tr>
+<tr>
+<td>架构师</td>
+<td>Go CLI 是 thin dispatcher；converter 自己负责业务逻辑；IPC 协议见第 9 章 §9.5</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../13-%E9%94%99%E8%AF%AF%E7%9B%AE%E5%BD%95/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 第 13 章 · 错误目录与诊断字典">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                第 13 章 · 错误目录与诊断字典
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../12-%E9%99%84%E5%BD%95/" class="md-footer__link md-footer__link--next" aria-label="下一页: 附录 · 词汇表与速查表">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                附录 · 词汇表与速查表
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/apache/ossie" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight", "metadata.social"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../assets/javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>
