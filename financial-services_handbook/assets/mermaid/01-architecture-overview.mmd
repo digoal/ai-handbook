@@ -1,0 +1,10 @@
+%%{init: {'theme': 'base'}}%%
+graph TD
+    SRC["agents/<slug>.md<br/>(canonical source)"]
+    SRC --> CW["Cowork plugin<br/>plugins/agent-plugins/<slug>/"]
+    SRC --> CMA["Managed Agent<br/>managed-agent-cookbooks/<slug>/agent.yaml<br/>system.file: ...agents/<slug>.md"]
+    CW --> U1["Analyst in Cowork"]
+    CMA --> U2["Platform engine<br/>via /v1/agents"]
+    style SRC fill:#1F3864,color:#fff
+    style CW fill:#2E7D32,color:#fff
+    style CMA fill:#C62828,color:#fff

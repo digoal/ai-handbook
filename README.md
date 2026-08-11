@@ -58,7 +58,7 @@ SKILL:
   
 AI 应用:
 - [股票分析](https://github.com/TauricResearch/TradingAgents)  
-- [财务服务](https://github.com/anthropics/financial-services)
+- [财务服务](financial-services_handbook)
   
 AI 论文:
 - [Huggingface AI paper trending](https://huggingface.co/papers/trending)  

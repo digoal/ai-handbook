@@ -1,0 +1,23 @@
+%%{init: {'theme': 'base'}}%%
+sequenceDiagram
+    actor Dev as Platform Eng
+    participant Script as deploy-managed-agent.sh
+    participant SK as POST /v1/skills
+    participant SA as POST /v1/agents (subagent)
+    participant OA as POST /v1/agents (orchestrator)
+
+    Dev->>Script: ANTHROPIC_API_KEY + *MCP_URLs set
+    Dev->>Script: scripts/deploy-managed-agent.sh pitch-agent
+    Script->>Script: yaml2json + resolve ${ENV}
+    loop for each skills/*
+        Script->>SK: zip + multipart upload
+        SK-->>Script: skill_id
+    end
+    loop for each subagent
+        Script->>SA: POST body
+        SA-->>Script: agent_id
+    end
+    Script->>OA: POST body
+    OA-->>Script: orchestrator agent_id
+    Script->>Script: stamp metadata.anthropic_cookbook
+    Script-->>Dev: deployed

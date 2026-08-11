@@ -1,0 +1,17 @@
+%%{init: {'theme': 'base'}}%%
+sequenceDiagram
+    participant SRC as Source session
+    participant ROUTER as orchestrate.py
+    participant TGT as Target session
+
+    Note over SRC: orchestrator appends to output:<br/>{"type":"handoff_request",<br/> "target_agent":"...",<br/> "payload":{...}}
+    SRC-->>ROUTER: stream message_delta events
+    ROUTER->>ROUTER: regex extract handoff_request
+    ROUTER->>ROUTER: check target_agent in ALLOWED_TARGETS
+    ROUTER->>ROUTER: jsonschema.validate(payload)
+    alt valid
+        ROUTER->>TGT: POST .../sessions/steer
+        Note over TGT: new session, fresh steering event
+    else invalid
+        ROUTER->>ROUTER: drop silently
+    end

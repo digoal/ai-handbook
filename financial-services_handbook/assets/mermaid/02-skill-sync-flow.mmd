@@ -1,0 +1,21 @@
+%%{init: {'theme': 'base'}}%%
+flowchart LR
+    A["vertical-plugins/X/<br/>skills/<slug>/<br/>(source of truth)"]
+    B["edit in vertical<br/>(author)"]
+    C["sync-agent-skills.py<br/>shutil.copytree"]
+    D["agent-plugins/Y/<br/>skills/<slug>/<br/>(vendored copy)"]
+    E["check.py<br/>filecmp.dircmp"]
+    F{"drifted??"}
+    G["FAIL:<br/>run sync-agent-skills.py"]
+    H["OK"]
+    A --> B
+    B --> A
+    A --> C
+    C --> D
+    D --> E
+    E --> F
+    F -- "yes" --> G
+    F -- "no"  --> H
+    style A fill:#2E7D32,color:#fff
+    style D fill:#1565C0,color:#fff
+    style E fill:#C62828,color:#fff

@@ -1,0 +1,19 @@
+%%{init: {'theme': 'base'}}%%
+flowchart TD
+    A["What's your role?"] --> B{role}
+    B -- IB --> C["investment-banking +<br/>pitch-agent +<br/>model-builder"]
+    B -- ER --> D["equity-research +<br/>earnings-reviewer +<br/>market-researcher"]
+    B -- PE --> E["private-equity +<br/>valuation-reviewer"]
+    B -- WM --> F["wealth-management +<br/>meeting-prep-agent"]
+    B -- fund-admin --> G["fund-admin +<br/>gl-reconciler +<br/>month-end-closer +<br/>statement-auditor"]
+    B -- "ops" --> H["operations +<br/>kyc-screener"]
+    B -- "market data" --> J["lseg"]
+    B -- "tearsheets" --> K["sp-global"]
+    C --> L["Install via Cowork / Code / Managed Agent"]
+    D --> L
+    E --> L
+    F --> L
+    G --> L
+    H --> L
+    J --> L
+    K --> L

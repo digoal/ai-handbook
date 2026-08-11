@@ -1,0 +1,74 @@
++------------------------------------------------------------------+
+|  .claude-plugin/marketplace.json          (20 entries)            |
++------------------------------------------------------------------+
+                          |
+                          v
++------------------------------------------------------------------+
+|  plugins/                                                        |
+|  +-- agent-plugins/          (10 agents)                         |
+|  |   +-- pitch-agent/                                         |
+|  |   |   +-- .claude-plugin/plugin.json                        |
+|  |   |   +-- agents/pitch-agent.md   <-- CANONICAL system prompt|
+|  |   |   +-- skills/                  ( vendored copies )        |
+|  |   +-- ... 9 more                                             |
+|  |                                                              |
+|  +-- vertical-plugins/        (7 verticals + skill/command src)  |
+|  |   +-- financial-analysis/                                    |
+|  |   |   +-- .claude-plugin/plugin.json                        |
+|  |   |   +-- .mcp.json       (12 MCP connectors)                |
+|  |   |   +-- hooks/hooks.json                                   |
+|  |   |   +-- commands/   (7 slash commands)                    |
+|  |   |   +-- skills/      (13 SKILL.md - source of truth)      |
+|  |   +-- ... 6 more                                             |
+|  |                                                              |
+|  +-- partner-built/          (2 partners)                        |
+|      +-- lseg/         (LSEG, CONNECTORS.md)                    |
+|      +-- spglobal/     (Kensho Technologies)                    |
++------------------------------------------------------------------+
+                          |
+                          v
++------------------------------------------------------------------+
+|  managed-agent-cookbooks/        (10 cookbooks)                  |
+|  +-- pitch-agent/                                                 |
+|  |   +-- agent.yaml                  (POST /v1/agents manifest)  |
+|  |   +-- README.md                   (security tier + handoff)   |
+|  |   +-- steering-examples.json      (sample steering events)    |
+|  |   +-- subagents/                                               |
+|  |       +-- researcher.yaml        (read-only, MCP)             |
+|  |       +-- modeler.yaml           (read + bash)                |
+|  |       +-- deck-writer.yaml       (read + write + edit)        |
+|  |                                                       ^       |
+|  |                                                       |       |
+|  |                                              ONLY writer       |
+|  +-- ... 9 more                                                 |
++------------------------------------------------------------------+
+                          |
+                          v
++------------------------------------------------------------------+
+|  claude-for-msft-365-install/    (separate admin plugin)         |
+|  +-- .claude-plugin/plugin.json                                  |
+|  +-- commands/   (9 admin slash commands)                        |
+|  +-- scripts/    (build-manifest.mjs + sideload .sh/.ps1)        |
+|  +-- examples/python-bootstrap/  (FastAPI reference)             |
++------------------------------------------------------------------+
+                          |
+                          v
++------------------------------------------------------------------+
+|  scripts/    (7 repo scripts)                                   |
+|  +-- check.py                 (linter, MUST run)                 |
+|  +-- deploy-managed-agent.sh  (deploy)                           |
+|  +-- validate.py              (subagent JSON schema)             |
+|  +-- orchestrate.py           (handoff router, REFERENCE)       |
+|  +-- sync-agent-skills.py     (vertical -> agent sync)           |
+|  +-- version_bump.py          (patch auto / minor manual)        |
+|  +-- test-cookbooks.sh        (batch dry-run)                    |
++------------------------------------------------------------------+
+                          |
+                          v
++------------------------------------------------------------------+
+|  .githooks/pre-commit   -> calls version_bump.py --apply         |
+|  .github/workflows/                                              |
+|  +-- plugin-validate.yml  (claude plugin validate)              |
+|  +-- secret-scan.yml      (gitleaks + internal ref scrub)       |
+|  +-- version-bump.yml     (PR backstop for version check)       |
++------------------------------------------------------------------+

@@ -1,0 +1,44 @@
++------------------------------------------------------------------+
+|                  Cookbook Three-Tier Security                     |
++------------------------------------------------------------------+
+
+  TIER A: Reader(s)                  TIER B: Critic/Builder
+  ------------------                ----------------------
+  - Touches untrusted docs           - No untrusted docs
+  - tools: read + grep only          - tools: read + grep [+ bash sandboxed]
+  - mcp_servers: [] (NO MCP)         - mcp_servers: [] (NO MCP)
+  - skills: []                       - skills: [...]
+  - callable_agents: []              - callable_agents: []
+  - output_schema: REQUIRED          - output_schema: optional
+
+  PROMPTS:                          PROMPTS:
+  "Read these custodian             "Re-verify against
+   PDFs, return JSON."               trusted sources."
+
+                                       |
+                                       | (schema-validated
+                                       |  JSON handoff)
+                                       v
+
+  TIER C: Write-Holder             ( exactly ONE per cookbook )
+  -----------------------
+  - NEVER opens untrusted docs
+  - tools: read + write + edit [+ bash if model-builder]
+  - mcp_servers: [] (NO MCP)
+  - skills: [...] (xlsx-author / pptx-author)
+  - callable_agents: []
+  - writes to ./out/<filename>
+
+  PROMPTS:
+  "You are the ONLY worker with Write.
+   Receive the verified output, draft the artifact,
+   and write it to ./out/. Never read external files."
+
++------------------------------------------------------------------+
+|  Security rationale:                                              |
+|  - Tier A output is constrained by output_schema (regex / enum)  |
+|  - Tier B validates Tier A's output independently                |
+|  - Tier C writes only based on Tier B's verified output           |
+|  - Even a malicious untrusted PDF cannot inject a                |
+|    valid handoff_request blob through Tier A's JSON              |
++------------------------------------------------------------------+

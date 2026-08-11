@@ -1,0 +1,15 @@
+%%{init: {'theme': 'base'}}%%
+graph LR
+    USER["User session"]
+    ORCH["orchestrator<br/>(cookbook)"]
+    SA1["subagent:<br/>researcher<br/>(read MCP)"]
+    MCPS["MCP server<br/>(e.g. CapIQ)"]
+    SA2["subagent:<br/>writer<br/>(Write-holder)"]
+    OUT["./out/<br/>.xlsx + .pptx"]
+    USER --> ORCH
+    ORCH --> SA1
+    SA1 -->|"mcp__capiq__<tool>"| MCPS
+    MCPS -->|"JSON"| SA1
+    SA1 -->|"JSON output<br/>(output_schema 校验)"| ORCH
+    ORCH --> SA2
+    SA2 -->|"file_write"| OUT
